@@ -9,3 +9,7 @@ This first meeting has shown what strengths and weaknesses each member of the gr
 
 Week 2 (26/10/2020-30/10/2020):
 
+In the second week, the group met up to decide on our project scenarios and create a project brief. In the meeting we each took turns pitching our project ideas, we had come up with prior, to the rest of the group. Each member came up with at least one project we could do based on the project ideas for each course, provided on the DLE.
+We decided to choose the computer science project as a few team members already have a base knowledge of web design and mobile app development which they have studied in their own time. This also worked out well because the majority of the team are studying computer science.
+We decided to produce our recommendation system for an online electrical retailer. We plan for it to recommend products to customers based on a combination of their previous purchases and other products they have viewed. 
+At the end of this meeting we feel like we have a strong idea of what our project involves and what we need to do next to progress in the module.

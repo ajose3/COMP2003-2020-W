@@ -13,3 +13,16 @@ In the second week, the group met up to decide on our project scenarios and crea
 We decided to choose the computer science project as a few team members already have a base knowledge of web design and mobile app development which they have studied in their own time. This also worked out well because the majority of the team are studying computer science.
 We decided to produce our recommendation system for an online electrical retailer. We plan for it to recommend products to customers based on a combination of their previous purchases and other products they have viewed. 
 At the end of this meeting we feel like we have a strong idea of what our project involves and what we need to do next to progress in the module.
+
+Week 3 (02/11/2020 – 05/11/2020):
+
+In the third week the group meeting consisted of a few various things. 
+Unfortunately, one of our members had to self-isolate for the current and next week meaning he could not attend in person. 
+We first established a rota for who is responsible in writing the weeks blog. 
+We then went on to discuss what time worked for all team members for this weeks’ stand up meeting with Shirley. 
+Finally, we then started splitting the project up into five different categories database, write up, API, diagrams, interface. 
+We had a discussion on what features were needed from the software we were creating as well as the entity and fields required for our database.
+These were then made into tables and an ERD diagram for our database was drawn up. 
+Assignments were then made on who should be making the other diagrams needed for the planning of our software framework such as a state diagrams, use case stories etc. 
+These were assigned using the planner on teams and will be due for the next meeting. 
+Lastly, we made a note of areas of clarification that had sprung up during our discussions in making the ERD and what features were needed from the software which we plan on raising with Shirley during our meeting.

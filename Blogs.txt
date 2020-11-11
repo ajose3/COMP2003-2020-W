@@ -26,3 +26,10 @@ These were then made into tables and an ERD diagram for our database was drawn u
 Assignments were then made on who should be making the other diagrams needed for the planning of our software framework such as a state diagrams, use case stories etc. 
 These were assigned using the planner on teams and will be due for the next meeting. 
 Lastly, we made a note of areas of clarification that had sprung up during our discussions in making the ERD and what features were needed from the software which we plan on raising with Shirley during our meeting.
+
+Week 4 (09/11/20 – 13/11/20):
+
+During week four, the group reflected on the diagrams we had made in the previous weeks and decided how to move forward with the project.
+We looked closer at smaller technicalities and planning decisions that would impact how we proceed with our development, such as: our choice of development IDE, the database management system we will use and properly understanding and utilising version control in a group environment.
+To achieve this, our goals for the week were to find information and resources to aid our choice in what IDE and database management system we would use – such as past and upcoming lectures – as well as other sources we found ourselves. 
+As well as this, we all set out to properly understand and utilize GitHub version control through practise.

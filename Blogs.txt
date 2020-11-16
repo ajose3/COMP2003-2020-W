@@ -37,7 +37,7 @@ As well as this, we all set out to properly understand and utilize GitHub versio
 Week 5 (16/11/2020 - 20/11/2020):
 
 In the fifth week, the group decided on a number of tasks that needed to be completed before development on the database could commence.
-Due to the difficulties associated with meeting in person presented by the second Coronavirus lockdown in the UK, this was the first group meeting held entirely on Zoom.
+Due to the difficulties associated with meeting in person presented by the second Coronavirus lockdown in England, this was the first group meeting held entirely on Zoom.
 Each member took turns discussing which tasks they believed to be most pressing regarding the desire to start development on the database the following week; enabling us to identify areas of particular concern.
 Following further discussion, we narrowed down the concerns to three areas that required further research: risk assessment, login system implementation, and the required database stored procedures and triggers.
 We decided that each task will be allocated to two members to jointly research, with each member volunteering for the task they wished to undertake; giving each member a task to complete for the following week.

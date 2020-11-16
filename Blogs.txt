@@ -33,3 +33,14 @@ During week four, the group reflected on the diagrams we had made in the previou
 We looked closer at smaller technicalities and planning decisions that would impact how we proceed with our development, such as: our choice of development IDE, the database management system we will use and properly understanding and utilising version control in a group environment.
 To achieve this, our goals for the week were to find information and resources to aid our choice in what IDE and database management system we would use – such as past and upcoming lectures – as well as other sources we found ourselves. 
 As well as this, we all set out to properly understand and utilize GitHub version control through practise.
+
+Week 5 (16/11/2020 - 20/11/2020):
+
+In the fifth week, the group decided on a number of tasks that needed to be completed before development on the database could commence.
+Due to the difficulties associated with meeting in person presented by the second Coronavirus lockdown in the UK, this was the first group meeting held entirely on Zoom.
+Each member took turns discussing which tasks they believed to be most pressing regarding the desire to start development on the database the following week; enabling us to identify areas of particular concern.
+Following further discussion, we narrowed down the concerns to three areas that required further research: risk assessment, login system implementation, and the required database stored procedures and triggers.
+We decided that each task will be allocated to two members to jointly research, with each member volunteering for the task they wished to undertake; giving each member a task to complete for the following week.
+
+Having reflected on it in the previous week, the group started by discussing our choice of development IDE and database management system for the project.
+Given our previous experience, we all agreed it would be best to use C# and Visual Studio for the application's development, Microsoft SQL Server for database management, and JetBrains WebStorm for the development of the website.

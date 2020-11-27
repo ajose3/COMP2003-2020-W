@@ -44,3 +44,12 @@ We decided that each task will be allocated to two members to jointly research, 
 
 Having reflected on it in the previous week, the group started by discussing our choice of development IDE and database management system for the project.
 Given our previous experience, we all agreed it would be best to use C# and Visual Studio for the application's development, Microsoft SQL Server for database management, and JetBrains WebStorm for the development of the website.
+
+Week 6 (23/11/2020 - 27/11/2020):
+
+In week 6 we were once again meeting on zoom.
+As a group we went over everything we did in the week before, ironing out any questions about the login system, triggers and procedures. then we looked at what should be achieved for the next week and collectively decided to focus on starting a basic GUI and getting the database set up. 
+We split the GUI task into an admin GUI and a user GUI. 
+Two members were assigned to each of the GUI’s and the database. We also discussed what would be necessary features for the GUI, like a basket system and payment options. 
+
+

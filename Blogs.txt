@@ -50,6 +50,15 @@ Week 6 (23/11/2020 - 27/11/2020):
 In week 6 we were once again meeting on zoom.
 As a group we went over everything we did in the week before, ironing out any questions about the login system, triggers and procedures. then we looked at what should be achieved for the next week and collectively decided to focus on starting a basic GUI and getting the database set up. 
 We split the GUI task into an admin GUI and a user GUI. 
-Two members were assigned to each of the GUI’s and the database. We also discussed what would be necessary features for the GUI, like a basket system and payment options. 
+Two members were assigned to each of the GUI’s and the database. We also discussed what would be necessary features for the GUI, like a basket system and payment options.
+
+Week 7 (30/11/2020 – 4/12/2020):
+
+In the seventh week, half the group met up in person and there was a zoom meeting at the same time with the other half. 
+The tasks that were completed last week were uploaded to Teams for this week for everyone to review and we peer assessed each other’s work to see if everyone agreed with it. 
+A few changes were made to the entity relationship diagram and the tables created because these changes were required after evaluating the wireframes built from the previous week. 
+Also, the group identified what views, stored procedures and triggers were essential to the database. 
+This was delegated between four members of the group to complete for next week. 
+The other two members were assigned to start developing the admin interface so that it displays the databases.    
 
 

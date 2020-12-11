@@ -61,4 +61,7 @@ Also, the group identified what views, stored procedures and triggers were essen
 This was delegated between four members of the group to complete for next week. 
 The other two members were assigned to start developing the admin interface so that it displays the databases.    
 
+Week 8 (7/12/2020-11/12/2020):
+
+In the eighth week, half the group met in person and the other half joined online.  We reviewed each other’s tasks from last week and discussed issues we came across. When looking over the tables we noticed some fields were missing, we determined this was because we forgot to update our normalisation with the new fields we found in previous weeks. Two team members were assigned to adjust and test all the trigger, stored procedures, and views with the added columns in the database. It took longer than expected to create the basic admin interface, so we extended an extra week and assigned this to a single person this time as there is less to complete than the previous week. We then discussed the interim report, we decided that we are now able to start drafting the introduction and background sections of it, we split these between two team members. As it is approaching Christmas, we also decided that it was time to start making the basic app interface. We assigned this to a single team member to set up the initial app structure and setup a connection to the database. 
 

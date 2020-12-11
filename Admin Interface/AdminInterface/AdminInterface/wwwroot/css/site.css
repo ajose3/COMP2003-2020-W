@@ -1,18 +1,18 @@
 ﻿/* Please see documentation at https://docs.microsoft.com/aspnet/core/client-side/bundling-and-minification
 for details on configuring this project to bundle and minify static web assets. */
 
-a.navbar-brand {
+/*a.navbar-brand {
   white-space: normal;
   text-align: center;
   word-break: break-all;
-}
+}*/
 
 /* Provide sufficient contrast against white background */
 a {
   color: #0366d6;
 }
 
-.btn-primary {
+/*.btn-primary {
   color: #fff;
   background-color: #1b6ec2;
   border-color: #1861ac;
@@ -22,11 +22,11 @@ a {
   color: #fff;
   background-color: #1b6ec2;
   border-color: #1861ac;
-}
+}*/
 
 /* Sticky footer styles
 -------------------------------------------------- */
-html {
+/*html {
   font-size: 14px;
 }
 @media (min-width: 768px) {
@@ -49,23 +49,452 @@ html {
 button.accept-policy {
   font-size: 1rem;
   line-height: inherit;
-}
+}*/
 
 /* Sticky footer styles
 -------------------------------------------------- */
-html {
+/*html {
   position: relative;
   min-height: 100%;
-}
+}*/
 
-body {
-  /* Margin bottom by footer height */
-  margin-bottom: 60px;
-}
-.footer {
+/*.footer {
   position: absolute;
   bottom: 0;
   width: 100%;
   white-space: nowrap;
-  line-height: 60px; /* Vertically center the text there */
+  line-height: 60px;
+}*/
+
+
+
+/* variables */
+:root {
+    --navbarColor: 243, 243, 243;
+    --activeColor: red;
+    --inactiveColor: #333;
+    --chartProgress: 0;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    border: 0;
+    outline: 0;
+    font-size: 100%;
+    font-family: 'Montserrat', sans-serif;
+    letter-spacing: 1px;
+    vertical-align: baseline;
+}
+
+/* --- navigation bar --- */
+
+#navbarWrapper {
+    position: relative;
+    z-index: 2;
+}
+
+#navbar {
+    position: fixed;
+    width: 100%;
+    height: 70px;
+    display: flex;
+    align-items: center;
+    background-color: rgb(var(--navbarColor));
+}
+
+#navDropdownMenuBtn {
+    display: none;
+}
+
+.navDropdownPagesList {
+    display: none;
+}
+
+@media screen and (max-width: 999px) {
+    #navDropdownMenuBtn {
+        min-width: 70px;
+        height: 70px;
+        display: flex;
+        align-items: center;
+        flex-direction: column;
+        justify-content: center;
+        cursor: pointer;
+    }
+
+    #navbarPages {
+        display: none;
+    }
+
+    .navDropdownPagesList {
+        position: fixed;
+        list-style: none;
+        margin: 70px 0 0;
+        background-color: rgba(var(--navbarColor), 0.9);
+        min-width: 200px;
+        padding: 10px 0 20px;
+    }
+
+        .navDropdownPagesList.open {
+            display: block;
+        }
+}
+
+.navDropdownMenuBtnLine {
+    width: 25px;
+    height: 2px;
+    cursor: pointer;
+    background-color: #333;
+    margin-top: 0;
+    transform: rotate(0deg);
+    transition: all 0.2s linear;
+}
+
+    .navDropdownMenuBtnLine.close {
+        margin-top: 10px;
+    }
+
+    .navDropdownMenuBtnLine.open1 {
+        transform: rotate(45deg);
+        transition: all 0.2s linear;
+        margin-top: 1px;
+    }
+
+    .navDropdownMenuBtnLine.open2 {
+        transform: rotate(-45deg);
+        transition: all 0.2s linear;
+        margin-top: -1px;
+    }
+
+#navTitle {
+    margin-left: 20px;
+    padding-right: 5px;
+}
+
+    #navTitle a {
+        font-size: 25px;
+        letter-spacing: 1px;
+        text-decoration: none;
+        color: var(--inactiveColor);
+    }
+
+        #navTitle a:hover {
+            color: #4f4f4f;
+        }
+
+#navbarRightWrapper {
+    display: flex;
+    flex-basis: 100%;
+    justify-content: flex-end;
+    align-items: center;
+}
+
+#navbarPages {
+    position: relative;
+}
+
+.navbarPageSpan {
+    padding-right: 50px;
+}
+
+    .navbarPageSpan a {
+        display: inline-block;
+        text-decoration: none;
+        font-size: 18px;
+        letter-spacing: 1px;
+        color: var(--inactiveColor);
+        position: relative;
+    }
+
+    .navbarPageSpan.active a {
+        color: var(--activeColor);
+    }
+
+    .navbarPageSpan a:hover {
+        color: var(--activeColor);
+    }
+
+    .navbarPageSpan a::after {
+        background-color: var(--activeColor);
+        content: "";
+        width: 0;
+        height: 3px;
+        left: 0;
+        bottom: -5px;
+        transition: width 0.35s ease 0s;
+        position: absolute;
+    }
+
+    .navbarPageSpan a:hover::after {
+        width: 100%;
+    }
+
+.navDropdownPagesList.close {
+    display: none;
+}
+
+.navDropdownPage {
+    margin-left: 10px;
+    margin-top: 10px;
+}
+
+    .navDropdownPage a {
+        text-decoration: none;
+        color: var(--inactiveColor);
+        font-size: 18px;
+        letter-spacing: 1px;
+    }
+
+    .navDropdownPage.active a {
+        color: var(--activeColor);
+    }
+
+    .navDropdownPage a:hover {
+        color: var(--activeColor);
+    }
+
+/* ---------------------- */
+
+.container {
+    padding-top: 70px;
+    z-index: 1;
+}
+
+
+/* -- home page -- */
+.dashboardSection {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+    grid-column-gap: 20px;
+    grid-row-gap: 20px;
+    margin: 30px 50px;
+}
+
+.dashboardBlock {
+    background-color: rgb(245, 245, 245);
+    padding: 8px;
+}
+
+.dashboardLeftBlock {
+    grid-column-start: 1;
+    grid-column-end: 2;
+}
+
+.dashboardRightBlock {
+    grid-column-start: 2;
+    grid-column-end: 3;
+}
+
+@media screen and (max-width: 839px) {
+    .dashboardRightBlock {
+        grid-column-start: 1;
+        grid-column-end: 2;
+    }
+}
+
+.dashboardSectionHeader {
+    font-size: 20px;
+    color: #333;
+}
+
+
+
+#ordersTargetWidget {
+    display: block;
+    margin: 20px 0px;
+}
+
+#ordersTargetSettingHeader {
+    font-size: 16px;
+    font-family: 'Montserrat', sans-serif;
+    color: #333;
+}
+
+
+.ordersWidgetSection {
+    display: inline-block;
+    vertical-align: top;
+}
+
+.chartWrapper {
+    position: relative;
+    display: flex;
+    justify-content: flex-start;
+    align-items: flex-start;
+    margin-top: 14px;
+    width: 140px;
+}
+
+.progressContainer {
+    position: relative;
+    width: 140px;
+    height: 140px;
+    text-align: center;
+}
+
+.progressBarTrack {
+    fill: transparent;
+    stroke: rgb(235, 235, 235);
+    stroke-width: 3px;
+}
+
+.progressBarThumb {
+    fill: transparent;
+    stroke: rgb(122, 253, 255);
+    stroke-width: 3px;
+    stroke-linecap: round;
+    /* 0 stroke length, 2πr = perimeter -> gap length = perimeter */
+    stroke-dasharray: 0 calc(30 * 2 * 3.14);
+    transform: rotate(-90deg);
+    transform-origin: 50% 50%;
+    /*animation: progress 1.2s forwards;*/
+}
+
+.progressValue {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 22px;
+    font-family: 'Poppins', sans-serif;
+    color: rgb(100, 100, 100);
+}
+
+@keyframes progress {
+    from {
+        stroke-dasharray: 0 calc(30 * 2 * 3.14);
+    }
+    to {
+        stroke-dasharray: var(--chartProgress), calc(30 * 2 * 3.14);
+    }
+}
+
+#targetsWrapper {
+    width: 140px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: flex-start;
+    margin-left: 30px;
+}
+
+#targetsHeader {
+    font-size: 16px;
+    padding-bottom: 14px;
+}
+
+.orderTarget {
+    font-size: 14px;
+    padding-bottom: 5px;
+}
+
+.widgetBtn {
+    margin-top: 20px;
+    background-color: rgb(200, 200, 200);
+    padding: 2px 4px;
+    font-size: 14px;
+    font-weight: 300;
+    color: rgb(40, 40, 40);
+    min-width: 100px;
+    text-align: center;
+    cursor: pointer;
+}
+
+.widgetBtn:hover {
+    background-color: rgb(210, 210, 210);
+}
+
+.chartSettingsWrapper {
+    display: flex;
+    justify-content: center;
+}
+
+.chartSettingsBtn {
+    margin-top: 12px;
+    width: 120px;
+}
+
+
+
+.selectItemsWrapper {
+    display: block;
+    padding-top: 9px;
+    margin: 0px 8px;
+}
+
+.selectItem {
+    margin-top: 5px;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    background-color: rgb(225, 225, 225);
+    border-radius: 4px;
+    height: 50px;
+    cursor: pointer;
+}
+
+.selectItemContent {
+    display: flex;
+    align-content: center;
+    flex: 1;
+    height: 100%;
+}
+
+.selectItemTitle {
+    display: flex;
+    align-self: center;
+    margin-left: 10px;
+    color: rgb(100, 100, 100);
+    font-size: 16px;
+}
+
+.selectItemSVGWrapper {
+    display: flex;
+    align-items: center;
+    width: 30px;
+    height: 100%;
+}
+
+.selectItem:hover path {
+    stroke: rgb(170, 170, 170);
+}
+
+.selectItem:hover div {
+    color: rgb(70, 70, 70);
+}
+
+.selectItem:hover {
+    background-color: rgb(235, 235, 235);
+}
+
+.selectSVG {
+    width: 100%;
+    height: 100%;
+}
+
+.selectSVGPath {
+    transform: translateY(calc(50% - 15px));
+    stroke: rgb(190, 190, 190);
+}
+
+.selectItemsBtns {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+    grid-column-gap: 8px;
+    /* top, right, bottom, left */
+    margin: 14px 10px 0px 10px;
+}
+
+.gridBtnLeft {
+    margin-top: 0px;
+    grid-column-start: 1;
+    grid-column-end: 2;
+    padding: 8px 4px;
+}
+
+.gridBtnRight {
+    margin-top: 0px;
+    grid-column-start: 2;
+    grid-column-end: 3;
+    padding: 8px 4px;
 }

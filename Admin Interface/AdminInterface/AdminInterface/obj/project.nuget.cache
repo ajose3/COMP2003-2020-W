@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "kuNddMop48174WXyMCbFzntE9YL+Yc29atyWyYd/LZmpafiJNBlb96uLxhGs1TPyS2d/rG/JWW8jCPOoEXda7A==",
+  "dgSpecHash": "rUmKU692aybBEg/1IcDvrOd3CMw/o6lKwL3F1Aqlegqe4COJKG/OkEH6KwwqVHKp57xeu14lBEthxks9JZGa4Q==",
   "success": true,
-  "projectFilePath": "C:\\Users\\joshu\\Desktop\\admin Interface\\AdminInterface\\AdminInterface\\AdminInterface.csproj",
+  "projectFilePath": "C:\\Users\\joshu\\Documents\\GitHub\\COMP2003-2020-W\\Admin Interface\\AdminInterface\\AdminInterface\\AdminInterface.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\joshu\\.nuget\\packages\\entityframework\\6.4.4\\entityframework.6.4.4.nupkg.sha512",
     "C:\\Users\\joshu\\.nuget\\packages\\microsoft.aspnetcore.html.abstractions\\2.2.0\\microsoft.aspnetcore.html.abstractions.2.2.0.nupkg.sha512",

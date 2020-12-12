@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\joshu\\Desktop\\admin Interface\\AdminInterface\\AdminInterface\\AdminInterface.csproj": {}
+    "C:\\Users\\joshu\\Documents\\GitHub\\COMP2003-2020-W\\Admin Interface\\AdminInterface\\AdminInterface\\AdminInterface.csproj": {}
   },
   "projects": {
-    "C:\\Users\\joshu\\Desktop\\admin Interface\\AdminInterface\\AdminInterface\\AdminInterface.csproj": {
+    "C:\\Users\\joshu\\Documents\\GitHub\\COMP2003-2020-W\\Admin Interface\\AdminInterface\\AdminInterface\\AdminInterface.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\joshu\\Desktop\\admin Interface\\AdminInterface\\AdminInterface\\AdminInterface.csproj",
+        "projectUniqueName": "C:\\Users\\joshu\\Documents\\GitHub\\COMP2003-2020-W\\Admin Interface\\AdminInterface\\AdminInterface\\AdminInterface.csproj",
         "projectName": "AdminInterface",
-        "projectPath": "C:\\Users\\joshu\\Desktop\\admin Interface\\AdminInterface\\AdminInterface\\AdminInterface.csproj",
+        "projectPath": "C:\\Users\\joshu\\Documents\\GitHub\\COMP2003-2020-W\\Admin Interface\\AdminInterface\\AdminInterface\\AdminInterface.csproj",
         "packagesPath": "C:\\Users\\joshu\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\joshu\\Desktop\\admin Interface\\AdminInterface\\AdminInterface\\obj\\",
+        "outputPath": "C:\\Users\\joshu\\Documents\\GitHub\\COMP2003-2020-W\\Admin Interface\\AdminInterface\\AdminInterface\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Microsoft\\Xamarin\\NuGet\\"

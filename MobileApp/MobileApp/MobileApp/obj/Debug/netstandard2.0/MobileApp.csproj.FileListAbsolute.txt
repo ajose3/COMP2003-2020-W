@@ -5,11 +5,7 @@ C:\Users\joshu\Documents\GitHub\GroupWork\MobileApp\MobileApp\MobileApp\bin\Debu
 C:\Users\joshu\Documents\GitHub\GroupWork\MobileApp\MobileApp\MobileApp\obj\Debug\netstandard2.0\MobileApp.csprojAssemblyReference.cache
 C:\Users\joshu\Documents\GitHub\GroupWork\MobileApp\MobileApp\MobileApp\obj\Debug\netstandard2.0\App.xaml.g.cs
 C:\Users\joshu\Documents\GitHub\GroupWork\MobileApp\MobileApp\MobileApp\obj\Debug\netstandard2.0\AppShell.xaml.g.cs
-C:\Users\joshu\Documents\GitHub\GroupWork\MobileApp\MobileApp\MobileApp\obj\Debug\netstandard2.0\Views\AboutPage.xaml.g.cs
-C:\Users\joshu\Documents\GitHub\GroupWork\MobileApp\MobileApp\MobileApp\obj\Debug\netstandard2.0\Views\ItemDetailPage.xaml.g.cs
-C:\Users\joshu\Documents\GitHub\GroupWork\MobileApp\MobileApp\MobileApp\obj\Debug\netstandard2.0\Views\ItemsPage.xaml.g.cs
 C:\Users\joshu\Documents\GitHub\GroupWork\MobileApp\MobileApp\MobileApp\obj\Debug\netstandard2.0\Views\LoginPage.xaml.g.cs
-C:\Users\joshu\Documents\GitHub\GroupWork\MobileApp\MobileApp\MobileApp\obj\Debug\netstandard2.0\Views\NewItemPage.xaml.g.cs
 C:\Users\joshu\Documents\GitHub\GroupWork\MobileApp\MobileApp\MobileApp\obj\Debug\netstandard2.0\MobileApp.AssemblyInfoInputs.cache
 C:\Users\joshu\Documents\GitHub\GroupWork\MobileApp\MobileApp\MobileApp\obj\Debug\netstandard2.0\MobileApp.AssemblyInfo.cs
 C:\Users\joshu\Documents\GitHub\GroupWork\MobileApp\MobileApp\MobileApp\obj\Debug\netstandard2.0\MobileApp.csproj.CoreCompileInputs.cache
@@ -17,3 +13,5 @@ C:\Users\joshu\Documents\GitHub\GroupWork\MobileApp\MobileApp\MobileApp\obj\Debu
 C:\Users\joshu\Documents\GitHub\GroupWork\MobileApp\MobileApp\MobileApp\obj\Debug\netstandard2.0\MobileApp.dll
 C:\Users\joshu\Documents\GitHub\GroupWork\MobileApp\MobileApp\MobileApp\obj\Debug\netstandard2.0\ref\MobileApp.dll
 C:\Users\joshu\Documents\GitHub\GroupWork\MobileApp\MobileApp\MobileApp\obj\Debug\netstandard2.0\MobileApp.pdb
+C:\Users\joshu\Documents\GitHub\GroupWork\MobileApp\MobileApp\MobileApp\obj\Debug\netstandard2.0\Views\HomePage.xaml.g.cs
+C:\Users\joshu\Documents\GitHub\GroupWork\MobileApp\MobileApp\MobileApp\obj\Debug\netstandard2.0\Views\ProductPage.xaml.g.cs

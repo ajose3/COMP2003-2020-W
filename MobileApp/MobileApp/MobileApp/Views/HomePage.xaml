@@ -1,0 +1,28 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="MobileApp.Views.HomePage"
+             xmlns:data="clr-namespace:MobileApp.Data" 
+             xmlns:controls="clr-namespace:MobileApp.Models"
+             xmlns:vm="clr-namespace:MobileApp.ViewModels"
+             Title="{Binding Title}">
+
+    <ContentPage.BindingContext>
+        <vm:HomeViewModel/>
+
+    </ContentPage.BindingContext>
+    <Shell.SearchHandler>
+        <controls:ProductSearchHandler
+            Placeholder="Enter search term"
+                     ShowsResults="true"
+                     DisplayMemberName="Name">
+        </controls:ProductSearchHandler>
+    </Shell.SearchHandler>
+    <ContentPage.Content>
+        <StackLayout>
+            <Label Text="Welcome to Xamarin.Forms!"
+                VerticalOptions="CenterAndExpand" 
+                HorizontalOptions="CenterAndExpand" TextColor="Black"/>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

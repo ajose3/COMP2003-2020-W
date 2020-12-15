@@ -27,6 +27,51 @@
                     </VisualStateGroupList>
                 </Setter>
             </Style>
+
+            <DataTemplate x:Key="ProductTemplate">
+                <Grid Padding="10">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto" />
+                        <ColumnDefinition Width="Auto" />
+                    </Grid.ColumnDefinitions>
+                    <Image Grid.RowSpan="2" 
+                       Source="{Binding ImageUrl}" 
+                       Aspect="AspectFill"
+                       HeightRequest="60" 
+                       WidthRequest="80" />
+                    <Label Grid.Column="1" 
+                       Text="{Binding Name}" 
+                       FontAttributes="Bold" 
+                           TextColor="Black"
+                           FontSize="20"/>
+                    <Label Grid.Row="1"
+                       Grid.Column="1" 
+                       Text="{Binding Price}"
+                       FontAttributes="Italic" 
+                       VerticalOptions="End" 
+                           TextColor="Black"
+                           FontSize="20"/>
+                </Grid>
+            </DataTemplate>
+            <DataTemplate x:Key="ProductSearchTemplate">
+                <Grid Padding="10">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="0.15*" />
+                        <ColumnDefinition Width="0.85*" />
+                    </Grid.ColumnDefinitions>
+                    <Image Source="{Binding ImageUrl}" 
+                       Aspect="AspectFill"
+                       HeightRequest="40" 
+                       WidthRequest="40" />
+                    <Label Grid.Column="1" 
+                       Text="{Binding Name}" 
+                       FontAttributes="Bold" />
+                </Grid>
+            </DataTemplate>
         </ResourceDictionary>        
     </Application.Resources>
 </Application>

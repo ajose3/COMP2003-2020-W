@@ -7,6 +7,24 @@
              xmlns:vm="clr-namespace:MobileApp.ViewModels"
              Title="{Binding Title}">
 
+    <ContentPage.Resources>
+        <Style TargetType="Grid">
+            <Setter Property="VisualStateManager.VisualStateGroups">
+                <VisualStateGroupList>
+                    <VisualStateGroup x:Name="CommonStates">
+                        <VisualState x:Name="Normal" />
+                        <VisualState x:Name="Selected">
+                            <VisualState.Setters>
+                                <Setter Property="BackgroundColor" 
+                                        Value="AliceBlue" />
+                            </VisualState.Setters>
+                        </VisualState>
+                    </VisualStateGroup>
+                </VisualStateGroupList>
+            </Setter>
+        </Style>
+    </ContentPage.Resources>
+
     <ContentPage.BindingContext>
         <vm:HomeViewModel/>
     </ContentPage.BindingContext>
@@ -17,11 +35,16 @@
                      DisplayMemberName="Name">
         </controls:ProductSearchHandler>
     </Shell.SearchHandler>
-    <ContentPage.Content>
+    <!--<ContentPage.Content>
         <StackLayout>
             <Label Text="Welcome to Xamarin.Forms!"
                 VerticalOptions="CenterAndExpand" 
                 HorizontalOptions="CenterAndExpand" TextColor="Black"/>
         </StackLayout>
-    </ContentPage.Content>
+    </ContentPage.Content>-->
+    <CollectionView Margin="20"
+                    ItemsSource="{x:Static data:ProductData.Products}"
+                    ItemTemplate="{StaticResource ProductTemplate}"
+                    SelectionMode="Single"
+                    SelectionChanged="OnCollectionViewSelectionChanged"/>
 </ContentPage>

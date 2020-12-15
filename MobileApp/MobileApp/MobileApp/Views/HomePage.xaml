@@ -9,7 +9,6 @@
 
     <ContentPage.BindingContext>
         <vm:HomeViewModel/>
-
     </ContentPage.BindingContext>
     <Shell.SearchHandler>
         <controls:ProductSearchHandler

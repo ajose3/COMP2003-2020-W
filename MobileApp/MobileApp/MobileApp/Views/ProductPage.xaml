@@ -3,8 +3,21 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:data="clr-namespace:MobileApp.Data" 
              xmlns:controls="clr-namespace:MobileApp.Models"
+             xmlns:vm="clr-namespace:MobileApp.ViewModels"
              x:Class="MobileApp.Views.ProductPage">
-    <ContentPage.Content>
+
+    <ContentPage.BindingContext>
+        <vm:ProductDetailsViewModel/>
+    </ContentPage.BindingContext>
+    <Shell.SearchHandler>
+        <controls:ProductSearchHandler
+            Placeholder="Enter search term"
+                     ShowsResults="true"
+                     DisplayMemberName="Name">
+        </controls:ProductSearchHandler>
+    </Shell.SearchHandler>
+
+    <!--<ContentPage.Content>
         <StackLayout>
             <Label Text="Product page!" TextColor="Black"/>
             <Shell.SearchHandler>
@@ -15,18 +28,24 @@
                 </controls:ProductSearchHandler>
             </Shell.SearchHandler>
         </StackLayout>
-    </ContentPage.Content>
-    <ScrollView>
-        <StackLayout Margin="20">
-            <Label Text="{Binding Name}"
-                   HorizontalOptions="Center" 
-                   Style="{DynamicResource TitleStyle}" TextColor="Black" />
-            <Label Text="{Binding Description}"
-                   Style="{DynamicResource BodyStyle}" TextColor="Black"/>
-            <Label Text="{Binding Price}"
-                   Style="{DynamicResource BodyStyle}" TextColor="Black"/>
-        </StackLayout>
-    </ScrollView>
+    </ContentPage.Content>-->
+    <ContentPage.Content>
+        <ScrollView>
+            <StackLayout Margin="20">
+                <Image Source="{Binding ImageUrl}" 
+                   HeightRequest="200" 
+                   WidthRequest="200" 
+                   HorizontalOptions="CenterAndExpand" />
+                <Label Text="{Binding Name}"
+                       HorizontalOptions="Center" 
+                       Style="{DynamicResource TitleStyle}" TextColor="Black" />
+                <Label Text="{Binding Description}"
+                       Style="{DynamicResource BodyStyle}" TextColor="Black"/>
+                <Label Text="{Binding Price}"
+                       Style="{DynamicResource BodyStyle}" TextColor="Black"/>
+            </StackLayout>
+        </ScrollView>
+    </ContentPage.Content>    
 </ContentPage>
 
 <!--<?xml version="1.0" encoding="utf-8" ?>

@@ -28,10 +28,12 @@ namespace MobileApp.ViewModels
                     Name = product.Name;
                     Description = product.Description;
                     Price = product.Price;
+                    ImageUrl = product.ImageUrl;
                     OnPropertyChanged("Id");
                     OnPropertyChanged("Name");
                     OnPropertyChanged("Description");
                     OnPropertyChanged("Price");
+                    OnPropertyChanged("ImageUrl");
                 }
             }
         }
@@ -39,7 +41,7 @@ namespace MobileApp.ViewModels
         public string Name { get; set; }
         public string Description { get; private set; }
         public int Price { get; private set; }
-
+        public string ImageUrl { get; private set; }
         #region INotifyPropertyChanged
 
         public event PropertyChangedEventHandler PropertyChanged;

@@ -54,7 +54,8 @@
                        FontAttributes="Italic" 
                        VerticalOptions="End" 
                            TextColor="Black"
-                           FontSize="20"/>
+                           FontSize="20"
+                           HorizontalTextAlignment="End"/>
                 </Grid>
             </DataTemplate>
             <DataTemplate x:Key="ProductSearchTemplate">

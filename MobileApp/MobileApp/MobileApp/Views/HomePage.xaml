@@ -25,9 +25,24 @@
         </Style>
     </ContentPage.Resources>
 
+    
+
+
+
     <ContentPage.BindingContext>
         <vm:HomeViewModel/>
     </ContentPage.BindingContext>
+    <!--<Shell.TitleView>
+        <Label Text="Test" FontSize="30" VerticalOptions="Center" HorizontalOptions="Fill"/>
+
+    </Shell.TitleView>-->
+        
+
+    <Shell.TitleView>
+        <Image Source="xamarin_logo.png"
+               HorizontalOptions="Center"
+               VerticalOptions="Center" />
+    </Shell.TitleView>
     <Shell.SearchHandler>
         <controls:ProductSearchHandler
             Placeholder="Enter search term"
@@ -35,6 +50,8 @@
                      DisplayMemberName="Name">
         </controls:ProductSearchHandler>
     </Shell.SearchHandler>
+
+
     <!--<ContentPage.Content>
         <StackLayout>
             <Label Text="Welcome to Xamarin.Forms!"
@@ -42,9 +59,64 @@
                 HorizontalOptions="CenterAndExpand" TextColor="Black"/>
         </StackLayout>
     </ContentPage.Content>-->
-    <CollectionView Margin="20"
+
+
+    <StackLayout>
+        <Label Text="Recomended Products" FontSize="Large" TextColor="Black" FontAttributes="Bold"/>
+        <!--Carousel-->
+        <CarouselView ItemsSource="{x:Static data:ProductData.Products}"
+                      PeekAreaInsets="100"
+                      IndicatorView="indicatorview"
+                      HeightRequest="400">
+            <CarouselView.ItemTemplate>
+                <DataTemplate >
+                    <StackLayout>
+                        <Frame HasShadow="True"
+                               BorderColor="DarkGray"
+                               CornerRadius="5"
+                               Margin="2"
+                               HeightRequest="200"
+                               WidthRequest="250"
+                               
+                               >
+                            <StackLayout Margin="0">
+                                <Image Source="{Binding ImageUrl}" 
+                                       Aspect="AspectFill"
+                                       HeightRequest="100"
+                                       WidthRequest="250"
+                                       VerticalOptions="Start"
+                                       HorizontalOptions="Center" />
+                                <Label Text="{Binding Name}" 
+                                       FontAttributes="Bold"
+                                       FontSize="Large"
+                                       HorizontalOptions="Center"
+                                       VerticalOptions="Center" TextColor="Black"/>
+                                <Label Text="{Binding Description}"
+                                       HorizontalOptions="Center" TextColor="Black"/>
+                                <Label Text="{Binding Price}"
+                                       FontAttributes="Italic"
+                                       HorizontalOptions="Center"
+                                       MaxLines="5"
+                                       LineBreakMode="TailTruncation" TextColor="Black"/>
+                            </StackLayout>
+                        </Frame>
+                    </StackLayout>
+                </DataTemplate>
+            </CarouselView.ItemTemplate>
+        </CarouselView>
+        <IndicatorView
+            x:Name="indicatorview"
+            IndicatorColor="LightGray"
+            IndicatorSize="10"
+            VerticalOptions="Start"
+            SelectedIndicatorColor="Black" />
+        <Label Text="You might like" FontSize="Large" TextColor="Black" FontAttributes="Bold"/>
+        <!--collection of all items in product array-->
+        <CollectionView Margin="1"
                     ItemsSource="{x:Static data:ProductData.Products}"
                     ItemTemplate="{StaticResource ProductTemplate}"
                     SelectionMode="Single"
                     SelectionChanged="OnCollectionViewSelectionChanged"/>
+    </StackLayout>
+
 </ContentPage>

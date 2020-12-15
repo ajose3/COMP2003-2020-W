@@ -16,7 +16,15 @@ namespace MobileApp.Views
         public HomePage()
         {
             InitializeComponent();
+            var list = new List<string>
+            {
+                "Hey",
+                "Did you check the",
+                "The CarouselView",
+                "In Xamarin.Forms?"
+            };
         }
+
         async void OnCollectionViewSelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             string productName = (e.CurrentSelection.FirstOrDefault() as Product).Name;
@@ -25,5 +33,7 @@ namespace MobileApp.Views
             // The full route is shown below.
             // await Shell.Current.GoToAsync($"//animals/monkeys/monkeydetails?name={monkeyName}");
         }
+
+
     }
 }

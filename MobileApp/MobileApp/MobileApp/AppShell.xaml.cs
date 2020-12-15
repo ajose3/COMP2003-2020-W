@@ -8,16 +8,44 @@ namespace MobileApp
 {
     public partial class AppShell : Xamarin.Forms.Shell
     {
+        Dictionary<string, Type> routes = new Dictionary<string, Type>();
+        public Dictionary<string, Type> Routes { get { return routes; } }
         public AppShell()
         {
             InitializeComponent();
+            RegisterRoutes();
+            BindingContext = this;
             //Routing.RegisterRoute(nameof(ItemDetailPage), typeof(ItemDetailPage));
             //Routing.RegisterRoute(nameof(NewItemPage), typeof(NewItemPage));
+        }
+        void RegisterRoutes()
+        {
+            //routes.Add("productdetails", typeof(ProductPage));
+            //Routing.RegisterRoute("productdetails", typeof(ProductPage));
+            Routing.RegisterRoute("productdetails", typeof(ProductPage));
+
+
+            foreach (var item in routes)
+            {
+                Routing.RegisterRoute(item.Key, item.Value);
+            }
         }
 
         private async void OnMenuItemClicked(object sender, EventArgs e)
         {
             await Shell.Current.GoToAsync("//LoginPage");
+        }
+        void OnNavigating(object sender, ShellNavigatingEventArgs e)
+        {
+            // Cancel any back navigation
+            //if (e.Source == ShellNavigationSource.Pop)
+            //{
+            //    e.Cancel();
+            //}
+        }
+
+        void OnNavigated(object sender, ShellNavigatedEventArgs e)
+        {
         }
     }
 }

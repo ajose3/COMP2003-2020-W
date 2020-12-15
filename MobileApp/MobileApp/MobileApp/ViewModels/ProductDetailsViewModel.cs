@@ -14,7 +14,7 @@ using Xamarin.Forms;
 namespace MobileApp.ViewModels
 {
     [QueryProperty("ProductName", "name")]
-    class ProductDetailsViewModel : INotifyPropertyChanged
+    public class ProductDetailsViewModel : INotifyPropertyChanged
     {
         public string ProductName
         {
@@ -24,15 +24,18 @@ namespace MobileApp.ViewModels
 
                 if (product != null)
                 {
+                    Id = product.Id;
                     Name = product.Name;
                     Description = product.Description;
                     Price = product.Price;
+                    OnPropertyChanged("Id");
                     OnPropertyChanged("Name");
                     OnPropertyChanged("Description");
                     OnPropertyChanged("Price");
                 }
             }
         }
+        public int Id { get; set; }
         public string Name { get; set; }
         public string Description { get; private set; }
         public int Price { get; private set; }

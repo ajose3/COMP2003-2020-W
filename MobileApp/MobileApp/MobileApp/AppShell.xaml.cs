@@ -23,6 +23,8 @@ namespace MobileApp
             //routes.Add("productdetails", typeof(ProductPage));
             //Routing.RegisterRoute("productdetails", typeof(ProductPage));
             Routing.RegisterRoute("productdetails", typeof(ProductPage));
+            Routing.RegisterRoute("userdetailspage", typeof(UserDetailsPage));
+
 
 
             foreach (var item in routes)
@@ -35,6 +37,8 @@ namespace MobileApp
         {
             await Shell.Current.GoToAsync("//LoginPage");
         }
+
+
         void OnNavigating(object sender, ShellNavigatingEventArgs e)
         {
             // Cancel any back navigation
@@ -46,6 +50,11 @@ namespace MobileApp
 
         void OnNavigated(object sender, ShellNavigatedEventArgs e)
         {
+        }
+
+        private async void MenuItem_Clicked(object sender, EventArgs e)
+        {
+            await Shell.Current.GoToAsync("userdetailspage");
         }
     }
 }

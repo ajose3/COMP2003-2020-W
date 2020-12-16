@@ -11,7 +11,7 @@
     </ContentPage.BindingContext>
     <Shell.SearchHandler>
         <controls:ProductSearchHandler
-            Placeholder="Enter search term"
+            Placeholder="Search for a product"
                      ShowsResults="true"
                      DisplayMemberName="Name">
         </controls:ProductSearchHandler>
@@ -29,34 +29,34 @@
             </Shell.SearchHandler>
         </StackLayout>
     </ContentPage.Content>-->
+    
     <ContentPage.Content>
         <ScrollView>
             <StackLayout Margin="20">
+                <Label Text="{Binding Name}"
+                       HorizontalOptions="Start" 
+                       FontSize="Title" FontAttributes="Bold" TextColor="Black" />
                 <Image Source="{Binding ImageUrl}" 
                    HeightRequest="200" 
-                   WidthRequest="200" 
+                   WidthRequest="500" 
                    HorizontalOptions="CenterAndExpand" />
-                <Label Text="{Binding Name}"
-                       HorizontalOptions="Center" 
-                       Style="{DynamicResource TitleStyle}" TextColor="Black" />
-                <Label Text="{Binding Description}"
+                <FlexLayout>
+                    <Label Text="Price: " TextColor="Black" FontSize="Large"/>
+                    <Label Text="{Binding Price}"
+                       Style="{DynamicResource BodyStyle}" FontSize="Large" TextColor="Black"/>
+                </FlexLayout>
+                <Label Text="Description" TextColor="Black" FontSize="Medium"/>
+                <Label Text= "{Binding Description}"
                        Style="{DynamicResource BodyStyle}" TextColor="Black"/>
-                <Label Text="{Binding Price}"
-                       Style="{DynamicResource BodyStyle}" TextColor="Black"/>
+                <Grid RowDefinitions="50" ColumnDefinitions="*, *">
+                    <Button Text="Buy Now!" Grid.Column="0" Grid.Row="0"/>
+                    <Button Text="Add To Basket" Grid.Column="1" Grid.Row="0"/>
+                </Grid>
+                <Label Text="Reviews" TextColor="Black" FontSize="Medium"/>
+                <ScrollView>
+                    <!--Reviews go here-->
+                </ScrollView>
             </StackLayout>
         </ScrollView>
     </ContentPage.Content>    
 </ContentPage>
-
-<!--<?xml version="1.0" encoding="utf-8" ?>
-<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
-             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="MobileApp.Views.ProductPage">
-    <ContentPage.Content>
-        <StackLayout>
-            <Label Text="Welcome to Xamarin.Forms!"
-                VerticalOptions="CenterAndExpand" 
-                HorizontalOptions="CenterAndExpand" />
-        </StackLayout>
-    </ContentPage.Content>
-</ContentPage>-->

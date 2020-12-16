@@ -1,1 +1,26 @@
+<head>
+  <title> Create tables </title>
+</head>
+
+CREATE TABLE [dbo].[Customer](
+	[Customer_ID] [int] NOT NULL,
+	[First_Name] [varchar](50) NOT NULL,
+	[Last_Name] [varchar](50) NOT NULL,
+	[Age] [int] NOT NULL,
+	[Gender] [varchar](15) NOT NULL,
+	[Address] [varchar](50) NOT NULL,
+	[Email_Address] [varchar](64) NOT NULL,
+	[Phone_Number] [varchar](20) NOT NULL,
+	[Password] [varchar](50) NOT NULL,
+	[Admin] [bit] NOT NULL,
+ CONSTRAINT [PK_Cumstomer_Details] PRIMARY KEY CLUSTERED 
+(
+	[Customer_ID] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+ALTER TABLE [dbo].[Customer] ADD  DEFAULT ((0)) FOR [Admin]
+GO
+
+
 

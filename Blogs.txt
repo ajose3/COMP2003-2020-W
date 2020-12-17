@@ -72,3 +72,19 @@ We then discussed the interim report, we decided that we are now able to start d
 As it is approaching Christmas, we also decided that it was time to start making the basic app interface. 
 We assigned this to a single team member to set up the initial app structure and setup a connection to the database. 
 
+Week 9 (14/11/2020-18/11/2020):
+This was the first week where all of us attended the meeting virtually.
+All assignments from the previous week had been completed except for one.
+The problem arising with the API as it was working and then stopped working after an update of the software. 
+The admin interface had been uploaded to the second branch on Github. 
+The SQL database had been fixed and a few extra stored procedures had also been added. 
+The SQL script was then implemented into our Azure database. 
+We decided on also uploading our SQL script to Github as well as plain text file. 
+The Background and Introduction section in the report were written and inserted into the draft report.
+Due to the problems with the API, we assigned an extra member to the task to complete it by the end of this week. 
+A member was assigned the task of linking the mobile interface to ASP.NET and running tests on stored procedures locally. 
+Another member is tasked with finding a way to generate data to populate the database with.  
+The final two members were tasked with writing two other parts of our report those being project management and development approach.
+
+
+

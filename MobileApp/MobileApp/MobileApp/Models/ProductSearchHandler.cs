@@ -30,20 +30,10 @@ namespace MobileApp.Models
         {
             base.OnItemSelected(item);
             await Task.Delay(1000);
-            //await DisplayAlert (Routing.GetRoute(this));
 
             // Note: strings will be URL encoded for navigation (e.g. "Blue Monkey" becomes "Blue%20Monkey"). Therefore, decode at the receiver.
-            //error occurs here find out how to fix
-            //await (App.Current.MainPage as Xamarin.Forms.Shell).GoToAsync($"ProductPage?name={((Product)item).Name}");
             await Shell.Current.GoToAsync($"productdetails?name={((Product)item).Name}");
-            //await Shell.Current.GoToAsync($"productdetails?name={((Product)item).Name}");
 
-            //await Shell.Current.GoToAsync($"ProductPage?name={((Product)item).Name}");
-
-            //await Shell.Current.GoToAsync($"Views\\ProductPage?name={((Product)item).Name}");
-
-            //Views\\ProductPage.xaml
-            //await Shell.Current.GoToAsync($"//animals/monkeys/productpage?name={((Product)item).Name}");
         }
     }
 }

@@ -84,11 +84,15 @@
                                            VerticalOptions="Center" TextColor="Black"/>
                                     <Label Text="{Binding Description}"
                                            HorizontalOptions="Center" TextColor="Black"/>
-                                    <Label Text="{Binding Price}"
-                                           FontAttributes="Italic"
-                                           HorizontalOptions="Center"
+                                    <!--#todo make price centered in card-->
+                                    <FlexLayout HorizontalOptions="Center">
+                                        <Label Text="Price: £" TextColor="Black" HorizontalOptions="Center"/>
+                                        <Label Text="{Binding Price}"
                                            MaxLines="5"
-                                           LineBreakMode="TailTruncation" TextColor="Black"/>
+                                           LineBreakMode="TailTruncation" 
+                                               HorizontalOptions="Center" TextColor="Black"/>
+                                    </FlexLayout>
+
                                 </StackLayout>
                             </Frame>
                         </StackLayout>

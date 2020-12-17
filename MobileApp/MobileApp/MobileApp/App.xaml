@@ -48,14 +48,16 @@
                        FontAttributes="Bold" 
                            TextColor="Black"
                            FontSize="20"/>
-                    <Label Grid.Row="1"
-                       Grid.Column="1" 
-                       Text="{Binding Price}"
-                       FontAttributes="Italic" 
+                    <FlexLayout Grid.Column="1" Grid.Row="1">
+                        <Label Text="Price: £" TextColor="Black" FontSize="20" />
+                        <Label
+                       Text="{Binding Price}" 
                        VerticalOptions="End" 
                            TextColor="Black"
                            FontSize="20"
                            HorizontalTextAlignment="End"/>
+                    </FlexLayout>
+
                 </Grid>
             </DataTemplate>
             <DataTemplate x:Key="ProductSearchTemplate">

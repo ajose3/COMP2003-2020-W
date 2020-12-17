@@ -40,7 +40,7 @@ namespace MobileApp.ViewModels
         public int Id { get; set; }
         public string Name { get; set; }
         public string Description { get; private set; }
-        public string Price { get; private set; }
+        public float Price { get; private set; }
         public string ImageUrl { get; private set; }
         #region INotifyPropertyChanged
 

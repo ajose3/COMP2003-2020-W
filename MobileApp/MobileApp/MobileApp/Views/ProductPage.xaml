@@ -40,8 +40,9 @@
                    HeightRequest="200" 
                    WidthRequest="500" 
                    HorizontalOptions="CenterAndExpand" />
+                <!--flex box to display word price next to price binding-->
                 <FlexLayout>
-                    <Label Text="Price: " TextColor="Black" FontSize="Large"/>
+                    <Label Text="Price: £" TextColor="Black" FontSize="Large"/>
                     <Label Text="{Binding Price}"
                        Style="{DynamicResource BodyStyle}" FontSize="Large" TextColor="Black"/>
                 </FlexLayout>

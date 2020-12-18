@@ -1,0 +1,116 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="MobileApp.Views.HomePage"
+             xmlns:data="clr-namespace:MobileApp.Data" 
+             xmlns:controls="clr-namespace:MobileApp.Models"
+             xmlns:vm="clr-namespace:MobileApp.ViewModels"
+             Title="{Binding Title}">
+
+    <ContentPage.Resources>
+        <Style TargetType="Grid">
+            <Setter Property="VisualStateManager.VisualStateGroups">
+                <VisualStateGroupList>
+                    <VisualStateGroup x:Name="CommonStates">
+                        <VisualState x:Name="Normal" />
+                        <VisualState x:Name="Selected">
+                            <VisualState.Setters>
+                                <Setter Property="BackgroundColor" 
+                                        Value="AliceBlue" />
+                            </VisualState.Setters>
+                        </VisualState>
+                    </VisualStateGroup>
+                </VisualStateGroupList>
+            </Setter>
+        </Style>
+    </ContentPage.Resources>
+
+    
+
+
+
+    <ContentPage.BindingContext>
+        <vm:HomeViewModel/>
+    </ContentPage.BindingContext>
+    <!--<Shell.TitleView>
+        <Label Text="Test" FontSize="30" VerticalOptions="Center" HorizontalOptions="Fill"/>
+
+    </Shell.TitleView>-->
+        
+
+    
+    <Shell.SearchHandler>
+        <controls:ProductSearchHandler
+            Placeholder="Enter search term"
+                     ShowsResults="true"
+                     DisplayMemberName="Name">
+        </controls:ProductSearchHandler>
+    </Shell.SearchHandler>
+    <Shell.TitleView>
+        <Image Source="icon_about.png.png"
+               HorizontalOptions="Center"
+               VerticalOptions="Center" WidthRequest="50" HeightRequest="50"/>
+    </Shell.TitleView>
+    <!--<Shell.TabBarIsVisible Shell.TabBarIsVisible="True"/>-->
+
+    <ScrollView>
+        <StackLayout>
+            <Label Text="Recomended Products" FontSize="Large" TextColor="Black" FontAttributes="Bold"/>
+            <!--Carousel -> itemSource is list of all products change to recomeneded product list-->
+            <CarouselView ItemsSource="{x:Static data:ProductData.Products}"
+                          PeekAreaInsets="100"
+                          IndicatorView="indicatorview"
+                          HeightRequest="230">
+                    <CarouselView.ItemTemplate>
+                    <DataTemplate >
+                        <StackLayout >
+                            <Frame HasShadow="True"
+                                   BorderColor="DarkGray"
+                                   CornerRadius="5"
+                                   Margin="2"
+                                   HeightRequest="200"
+                                   WidthRequest="250">
+                                <StackLayout Margin="0">
+                                    <Image Source="{Binding ImageUrl}" 
+                                           Aspect="AspectFill"
+                                           HeightRequest="100"
+                                           WidthRequest="250"
+                                           VerticalOptions="Start"
+                                           HorizontalOptions="Center" />
+                                    <Label Text="{Binding Name}" 
+                                           FontAttributes="Bold"
+                                           FontSize="Large"
+                                           HorizontalOptions="Center"
+                                           VerticalOptions="Center" TextColor="Black"/>
+                                    <Label Text="{Binding Description}"
+                                           HorizontalOptions="Center" TextColor="Black"/>
+                                    <!--#todo make price centered in card-->
+                                    <FlexLayout HorizontalOptions="Center">
+                                        <Label Text="Price: £" TextColor="Black" HorizontalOptions="Center"/>
+                                        <Label Text="{Binding Price}"
+                                           MaxLines="5"
+                                           LineBreakMode="TailTruncation" 
+                                               HorizontalOptions="Center" TextColor="Black"/>
+                                    </FlexLayout>
+
+                                </StackLayout>
+                            </Frame>
+                        </StackLayout>
+                    </DataTemplate>
+                </CarouselView.ItemTemplate>
+            </CarouselView>
+            <IndicatorView
+                x:Name="indicatorview"
+                IndicatorColor="LightGray"
+                IndicatorSize="10"
+                SelectedIndicatorColor="Black" />
+            <Label Text="You might like" FontSize="Large" TextColor="Black" FontAttributes="Bold"/>
+            <!--collection of all items in product array-->
+            <CollectionView Margin="1"
+                        ItemsSource="{x:Static data:ProductData.Products}"
+                        ItemTemplate="{StaticResource ProductTemplate}"
+                        SelectionMode="Single"
+                        SelectionChanged="OnCollectionViewSelectionChanged"/>
+        </StackLayout>
+    </ScrollView>
+</ContentPage>

@@ -72,7 +72,7 @@ We then discussed the interim report, we decided that we are now able to start d
 As it is approaching Christmas, we also decided that it was time to start making the basic app interface. 
 We assigned this to a single team member to set up the initial app structure and setup a connection to the database. 
 
-Week 9 (14/11/2020-18/11/2020):
+Week 9 (14/12/2020-18/12/2020):
 This was the first week where all of us attended the meeting virtually.
 All assignments from the previous week had been completed except for one.
 The problem arising with the API as it was working and then stopped working after an update of the software. 

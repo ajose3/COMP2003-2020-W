@@ -8,6 +8,27 @@
     <Application.Resources>
         <ResourceDictionary>
             <Color x:Key="Primary">#2196F3</Color>
+
+            <Color
+              x:Key="LineColor">
+              <x:Arguments>
+                <x:Double>0.90</x:Double> <!-- R/255 -->
+                <x:Double>0.90</x:Double> <!-- G/255 -->
+                <x:Double>0.90</x:Double> <!-- B/255 -->
+                <x:Double>1.0</x:Double> <!-- A: 0.0-1.0 -->
+              </x:Arguments>
+            </Color>
+
+            <Color
+              x:Key="GridLineColor">
+              <x:Arguments>
+                <x:Double>0.95</x:Double> <!-- R/255 -->
+                <x:Double>0.95</x:Double> <!-- G/255 -->
+                <x:Double>0.95</x:Double> <!-- B/255 -->
+                <x:Double>1.0</x:Double> <!-- A: 0.0-1.0 -->
+              </x:Arguments>
+            </Color>
+
             <Style TargetType="Button">
                 <Setter Property="TextColor" Value="White"></Setter>
                 <Setter Property="VisualStateManager.VisualStateGroups">
@@ -15,12 +36,12 @@
                         <VisualStateGroup x:Name="CommonStates">
                             <VisualState x:Name="Normal">
                                 <VisualState.Setters>
-                                    <Setter Property="BackgroundColor" Value="{StaticResource Primary}" />
+                                    <Setter Property="BackgroundColor" Value="{StaticResource Primary}"/>
                                 </VisualState.Setters>
                             </VisualState>
                             <VisualState x:Name="Disabled">
                                 <VisualState.Setters>
-                                    <Setter Property="BackgroundColor" Value="#332196F3" />
+                                    <Setter Property="BackgroundColor" Value="#332196F3"/>
                                 </VisualState.Setters>
                             </VisualState>
                         </VisualStateGroup>
@@ -28,51 +49,64 @@
                 </Setter>
             </Style>
 
+            <Style x:Key="SeparatorLineStyle" TargetType="BoxView">
+                <Setter Property="Margin" Value="15,5"/>
+                <Setter Property="VerticalOptions" Value="Center"/>
+                <Setter Property="HorizontalOptions" Value="FillAndExpand"/>
+                <Setter Property="HeightRequest" Value="1"/>
+                <Setter Property="Color" Value="{StaticResource LineColor}"/>
+            </Style>
+
             <DataTemplate x:Key="ProductTemplate">
-                <Grid Padding="10">
+                <Grid Padding="10,10,10,0">
                     <Grid.RowDefinitions>
-                        <RowDefinition Height="Auto" />
-                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="5"/>
                     </Grid.RowDefinitions>
                     <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="Auto" />
-                        <ColumnDefinition Width="Auto" />
+                        <ColumnDefinition Width="100"/>
+                        <ColumnDefinition Width="Auto"/>
                     </Grid.ColumnDefinitions>
-                    <Image Grid.RowSpan="2" 
+                    <!-- scale image to fit the view (won't be cropped to fill view) -->
+                    <Image Grid.RowSpan="2"
                        Source="{Binding ImageUrl}" 
-                       Aspect="AspectFill"
-                       HeightRequest="60" 
-                       WidthRequest="80" />
-                    <Label Grid.Column="1" 
+                       Aspect="AspectFit"
+                       HeightRequest="80"/>
+                    <Label Margin="10,10,0,0" Grid.Column="1"
                        Text="{Binding Name}" 
                        FontAttributes="Bold" 
                            TextColor="Black"
                            FontSize="20"/>
-                    <FlexLayout Grid.Column="1" Grid.Row="1">
-                        <Label Text="Price: £" TextColor="Black" FontSize="20" />
+                    <FlexLayout Margin="10,0,0,0" Grid.Column="1" Grid.Row="1">
+                        <Label Text="Price: £" TextColor="DarkGray" FontSize="20"/>
                         <Label
                        Text="{Binding Price}" 
                        VerticalOptions="End" 
-                           TextColor="Black"
+                           TextColor="DarkGray"
                            FontSize="20"
                            HorizontalTextAlignment="End"/>
                     </FlexLayout>
 
+                    <!-- separator line -->
+                    <BoxView Grid.Row="2" Grid.ColumnSpan="3" Margin="0" Color="{StaticResource GridLineColor}" Style="{StaticResource SeparatorLineStyle}"/>
+
                 </Grid>
             </DataTemplate>
+
             <DataTemplate x:Key="ProductSearchTemplate">
                 <Grid Padding="10">
                     <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="0.15*" />
-                        <ColumnDefinition Width="0.85*" />
+                        <ColumnDefinition Width="0.15*"/>
+                        <ColumnDefinition Width="0.85*"/>
                     </Grid.ColumnDefinitions>
                     <Image Source="{Binding ImageUrl}" 
                        Aspect="AspectFill"
                        HeightRequest="40" 
-                       WidthRequest="40" />
+                       WidthRequest="40"/>
                     <Label Grid.Column="1" 
                        Text="{Binding Name}" 
-                       FontAttributes="Bold" />
+                       FontAttributes="Bold"/>
                 </Grid>
             </DataTemplate>
         </ResourceDictionary>        

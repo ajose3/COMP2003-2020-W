@@ -1,4 +1,5 @@
-﻿using MobileApp.ViewModels;
+﻿using MobileApp.Models;
+using MobileApp.ViewModels;
 using MobileApp.Views;
 using System;
 using System.Collections.Generic;
@@ -21,9 +22,9 @@ namespace MobileApp
         void RegisterRoutes()
         {
             //routes.Add("productdetails", typeof(ProductPage));
-            //Routing.RegisterRoute("productdetails", typeof(ProductPage));
             Routing.RegisterRoute("productdetails", typeof(ProductPage));
             Routing.RegisterRoute("userdetailspage", typeof(UserDetailsPage));
+            Routing.RegisterRoute("checkoutpage", typeof(CheckoutPage));
 
 
 
@@ -55,6 +56,15 @@ namespace MobileApp
         private async void MenuItem_Clicked(object sender, EventArgs e)
         {
             await Shell.Current.GoToAsync("userdetailspage");
+            // close the menu
+            Shell.Current.FlyoutIsPresented = false;
+        }
+
+        private async void ClickedBasketMenuItem(object sender, EventArgs e)
+        {
+            await Shell.Current.GoToAsync("checkoutpage");
+            // close the menu
+            Shell.Current.FlyoutIsPresented = false;
         }
     }
 }

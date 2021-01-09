@@ -1,39 +1,33 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\joshu\\Documents\\GitHub\\GroupWork\\MobileApp\\MobileApp\\MobileApp.iOS\\MobileApp.iOS.csproj": {}
+    "/Users/alistair/Projects/COMP2003-2020-W/MobileApp/MobileApp/MobileApp.iOS/MobileApp.iOS.csproj": {}
   },
   "projects": {
-    "C:\\Users\\joshu\\Documents\\GitHub\\GroupWork\\MobileApp\\MobileApp\\MobileApp.iOS\\MobileApp.iOS.csproj": {
+    "/Users/alistair/Projects/COMP2003-2020-W/MobileApp/MobileApp/MobileApp.iOS/MobileApp.iOS.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\joshu\\Documents\\GitHub\\GroupWork\\MobileApp\\MobileApp\\MobileApp.iOS\\MobileApp.iOS.csproj",
+        "projectUniqueName": "/Users/alistair/Projects/COMP2003-2020-W/MobileApp/MobileApp/MobileApp.iOS/MobileApp.iOS.csproj",
         "projectName": "MobileApp.iOS",
-        "projectPath": "C:\\Users\\joshu\\Documents\\GitHub\\GroupWork\\MobileApp\\MobileApp\\MobileApp.iOS\\MobileApp.iOS.csproj",
-        "packagesPath": "C:\\Users\\joshu\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\joshu\\Documents\\GitHub\\GroupWork\\MobileApp\\MobileApp\\MobileApp.iOS\\obj\\",
+        "projectPath": "/Users/alistair/Projects/COMP2003-2020-W/MobileApp/MobileApp/MobileApp.iOS/MobileApp.iOS.csproj",
+        "packagesPath": "/Users/alistair/.nuget/packages/",
+        "outputPath": "/Users/alistair/Projects/COMP2003-2020-W/MobileApp/MobileApp/MobileApp.iOS/obj/",
         "projectStyle": "PackageReference",
         "skipContentFileWrite": true,
-        "fallbackFolders": [
-          "C:\\Microsoft\\Xamarin\\NuGet\\"
-        ],
         "configFilePaths": [
-          "C:\\Users\\joshu\\AppData\\Roaming\\NuGet\\NuGet.Config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Xamarin.Offline.config"
+          "/Users/alistair/.config/NuGet/NuGet.Config"
         ],
         "originalTargetFrameworks": [
           "xamarinios10"
         ],
         "sources": {
-          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
           "xamarinios10": {
             "projectReferences": {
-              "C:\\Users\\joshu\\Documents\\GitHub\\GroupWork\\MobileApp\\MobileApp\\MobileApp\\MobileApp.csproj": {
-                "projectPath": "C:\\Users\\joshu\\Documents\\GitHub\\GroupWork\\MobileApp\\MobileApp\\MobileApp\\MobileApp.csproj"
+              "/Users/alistair/Projects/COMP2003-2020-W/MobileApp/MobileApp/MobileApp/MobileApp.csproj": {
+                "projectPath": "/Users/alistair/Projects/COMP2003-2020-W/MobileApp/MobileApp/MobileApp/MobileApp.csproj"
               }
             }
           }
@@ -44,11 +38,11 @@
           "dependencies": {
             "Xamarin.Essentials": {
               "target": "Package",
-              "version": "[1.5.3.2, )"
+              "version": "[1.6.0, )"
             },
             "Xamarin.Forms": {
               "target": "Package",
-              "version": "[4.8.0.1451, )"
+              "version": "[5.0.0.1874, )"
             }
           }
         }
@@ -65,28 +59,22 @@
         }
       }
     },
-    "C:\\Users\\joshu\\Documents\\GitHub\\GroupWork\\MobileApp\\MobileApp\\MobileApp\\MobileApp.csproj": {
+    "/Users/alistair/Projects/COMP2003-2020-W/MobileApp/MobileApp/MobileApp/MobileApp.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\joshu\\Documents\\GitHub\\GroupWork\\MobileApp\\MobileApp\\MobileApp\\MobileApp.csproj",
+        "projectUniqueName": "/Users/alistair/Projects/COMP2003-2020-W/MobileApp/MobileApp/MobileApp/MobileApp.csproj",
         "projectName": "MobileApp",
-        "projectPath": "C:\\Users\\joshu\\Documents\\GitHub\\GroupWork\\MobileApp\\MobileApp\\MobileApp\\MobileApp.csproj",
-        "packagesPath": "C:\\Users\\joshu\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\joshu\\Documents\\GitHub\\GroupWork\\MobileApp\\MobileApp\\MobileApp\\obj\\",
+        "projectPath": "/Users/alistair/Projects/COMP2003-2020-W/MobileApp/MobileApp/MobileApp/MobileApp.csproj",
+        "packagesPath": "/Users/alistair/.nuget/packages/",
+        "outputPath": "/Users/alistair/Projects/COMP2003-2020-W/MobileApp/MobileApp/MobileApp/obj/",
         "projectStyle": "PackageReference",
-        "fallbackFolders": [
-          "C:\\Microsoft\\Xamarin\\NuGet\\"
-        ],
         "configFilePaths": [
-          "C:\\Users\\joshu\\AppData\\Roaming\\NuGet\\NuGet.Config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Xamarin.Offline.config"
+          "/Users/alistair/.config/NuGet/NuGet.Config"
         ],
         "originalTargetFrameworks": [
           "netstandard2.0"
         ],
         "sources": {
-          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
@@ -113,11 +101,11 @@
             },
             "Xamarin.Essentials": {
               "target": "Package",
-              "version": "[1.5.3.2, )"
+              "version": "[1.6.0, )"
             },
             "Xamarin.Forms": {
               "target": "Package",
-              "version": "[4.8.0.1451, )"
+              "version": "[5.0.0.1874, )"
             }
           },
           "imports": [
@@ -130,7 +118,7 @@
           ],
           "assetTargetFallback": true,
           "warn": true,
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.101\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "/usr/local/share/dotnet/sdk/5.0.101/RuntimeIdentifierGraph.json"
         }
       }
     }

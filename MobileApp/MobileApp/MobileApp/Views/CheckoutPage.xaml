@@ -1,0 +1,52 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms" 
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:data="clr-namespace:MobileApp.Data" 
+             xmlns:vm="clr-namespace:MobileApp.ViewModels"
+             x:Class="MobileApp.Views.CheckoutPage">
+
+    <ContentPage.BindingContext>
+        <vm:CheckoutViewModel/>
+    </ContentPage.BindingContext>
+
+    <ContentPage.Content>
+        <StackLayout Margin="20">
+            <!-- page title -->
+            <Label Text="Checkout"
+                    HorizontalOptions="Start" 
+                    FontSize="Title" FontAttributes="Bold" TextColor="Black" />
+
+            <!-- flex box to display number of items label next to value binding -->
+            <FlexLayout>
+                <Label Text="Number of items in basket: " TextColor="Gray" FontSize="Medium"/>
+                <Label Text="{Binding NumItems}" FontSize="Medium"
+                    Style="{DynamicResource BodyStyle}" TextColor="Gray"/>
+            </FlexLayout>
+
+            <!-- collection view of all products in basket -->
+            <CollectionView
+                Margin="0,10,0,0"
+                x:Name="ItemsCollectionView"
+                ItemsLayout="VerticalList"
+                VerticalOptions="Start"
+                ItemsSource="{x:Static data:Basket.Products}"
+                ItemTemplate="{StaticResource ProductTemplate}"
+                SelectionMode="Single"
+                SelectionChanged="OnCollectionViewSelectionChanged"/>
+
+            <!-- separator line -->
+            <BoxView Style="{StaticResource SeparatorLineStyle}"/>
+
+            <!-- flex box to display total price label next to value binding -->
+            <FlexLayout>
+                <Label Text="Total Price: £" TextColor="Black" FontSize="Large"/>
+                <Label Text="{Binding TotalPrice}" FontSize="Large"
+                    Style="{DynamicResource BodyStyle}" TextColor="Black"/>
+            </FlexLayout>
+
+            <!-- pay button -->
+            <Button Margin="0,14,0,0" Text="Pay" Command="{Binding ClickedPayBtnCmd}"/>
+        </StackLayout>
+    </ContentPage.Content>
+
+</ContentPage>

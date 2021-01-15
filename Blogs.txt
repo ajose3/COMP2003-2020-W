@@ -86,5 +86,12 @@ A member was assigned the task of linking the mobile interface to ASP.NET and ru
 Another member is tasked with finding a way to generate data to populate the database with.  
 The final two members were tasked with writing two other parts of our report those being project management and development approach.
 
+Week 10 (11/01/21 – 15/11/21):
+During week ten, the group looked back at what we had progressed on during week nine, as well as any work that may have been completed over the holiday period. 
+This would be the last full week of work we would have before the deadlines coming in the following week, so during week ten we looked at what we had left to complete for our interim deliverables.
+We decided our main priority would be mostly complete all remaining report sections, par the conclusion, as well as going over sections that had already been completed in order to ensure that all sections included all required information as well as the quality of work was up to a standard we were all happy with. Similarly, we decided to allocate some time to finishing some final touches on our application demo, as to allow us to showcase enough of it during the coming presentation.
+Finally, we would take a bit of time to prepare for the marketplace demo in the following week, looking at how and what we would present. We divided up sections for a PowerPoint we had chosen to present between us to create and present on the day.
+
+
 
 

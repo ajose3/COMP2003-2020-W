@@ -3,12 +3,59 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>@ViewData["Title"] - AdminInterface</title>
-    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
-    <link rel="stylesheet" href="~/css/site.css" />
+    <title>@ViewData["Title"]</title>
+    <!--<link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />-->
+    <link href="https://fonts.googleapis.com/css?family=Montserrat:100,200,300" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300&display=swap" rel="stylesheet">
+    <!--<link rel="stylesheet" href="~/css/site.css" />-->
+    <link rel="stylesheet" href="../../css/site.css" />
 </head>
-<body>
-    <header>
+<body onload="setupPage()">
+
+    <div id="navbarWrapper">
+        <div id="navbar">
+            <!-- left side -->
+
+            <div id="navDropdownMenuBtn" onclick="navDropdownMenuClick()">
+                <div class="navDropdownMenuBtnLine"></div>
+                <div class="navDropdownMenuBtnLine close"></div>
+            </div>
+
+            <div id="navTitle"><a href="">COMP2003</a></div>
+
+            <!-- end left side -->
+            <!-- right side -->
+
+            <div id="navbarRightWrapper">
+                <div id="navbarPages">
+                    <span id="navPage1" class="navbarPageSpan"><a asp-area="" asp-controller="Home" asp-action="Index">Home</a></span>
+                    <!--
+                    -->
+                    <span id="navPage2" class="navbarPageSpan"><a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a></span>
+                    <!--
+                    -->
+                    <span id="navPage3" class="navbarPageSpan"><a asp-area="" asp-controller="Customers" asp-action="Index">Customers</a></span>
+                    <!--
+                    -->
+                    <span id="navPage4" class="navbarPageSpan"><a asp-area="" asp-controller="Orders" asp-action="Index">Orders</a></span>
+                    <!--
+                    -->
+                    <span id="navPage5" class="navbarPageSpan"><a asp-area="" asp-controller="Products" asp-action="Index">Products</a></span>
+                    <!--
+                    -->
+                    <span id="navPage6" class="navbarPageSpan"><a asp-area="" asp-controller="Ratings" asp-action="Index">Ratings</a></span>
+                </div>
+            </div>
+
+        </div>
+
+        <ul class="navDropdownPagesList close">
+            <!-- pages added to dropdown list in javascript -->
+        </ul>
+    </div>
+
+
+    <!--<header>
         <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
             <div class="container">
                 <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">AdminInterface</a>
@@ -40,21 +87,25 @@
                 </div>
             </div>
         </nav>
-    </header>
+    </header>-->
+
+
     <div class="container">
         <main role="main" class="pb-3">
             @RenderBody()
         </main>
     </div>
 
-    <footer class="border-top footer text-muted">
+    <!--<footer class="border-top footer text-muted">
         <div class="container">
             &copy; 2020 - AdminInterface - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
         </div>
-    </footer>
+    </footer>-->
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
-    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <!--<script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>-->
     <script src="~/js/site.js" asp-append-version="true"></script>
     @RenderSection("Scripts", required: false)
+
 </body>
+
 </html>

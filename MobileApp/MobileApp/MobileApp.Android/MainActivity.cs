@@ -30,4 +30,5 @@ namespace MobileApp.Droid
             base.OnRequestPermissionsResult(requestCode, permissions, grantResults);
         }
     }
+
 }

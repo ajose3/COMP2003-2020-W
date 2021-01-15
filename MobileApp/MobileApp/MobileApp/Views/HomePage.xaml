@@ -40,6 +40,24 @@
             Placeholder="Enter search term"
                      ShowsResults="true"
                      DisplayMemberName="Name">
+            <controls:ProductSearchHandler.ItemTemplate>
+                <DataTemplate>
+                    <Grid Padding="10" HeightRequest="50">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="0.4*" />
+                            <ColumnDefinition Width="0.6*" />
+                        </Grid.ColumnDefinitions>
+                        <Image Source="{Binding ImageUrl}"
+                                   VerticalOptions="Start"
+                                   Aspect="AspectFit"
+                                   HeightRequest="40"
+                                   WidthRequest="40" />
+                        <Label Grid.Column="1"
+                                   Text="{Binding Name}"
+                                   FontAttributes="Bold" />
+                    </Grid>
+                </DataTemplate>
+            </controls:ProductSearchHandler.ItemTemplate>
         </controls:ProductSearchHandler>
     </Shell.SearchHandler>
     <Shell.TitleView>
@@ -69,7 +87,7 @@
                                    WidthRequest="250">
                                 <StackLayout Margin="0">
                                     <Image Source="{Binding ImageUrl}" 
-                                           Aspect="AspectFill"
+                                           Aspect="AspectFit"
                                            HeightRequest="100"
                                            WidthRequest="250"
                                            VerticalOptions="Start"

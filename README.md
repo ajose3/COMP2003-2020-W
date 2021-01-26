@@ -12,9 +12,10 @@ Edward Baillie Rodriguez<br>
 Finlay Williams<br>
 Jack Babbe <br>
 
-<h2>What you will find in this repository:<h2>
-  - Admin Interface (Folder) - contains up to date code used to develop the admin interface<br>
-  - Diagrams (Folder) - contains a wireframe documents. Also, has all the diagrams in the interim report<br>
-  - MobileApp (Folder) - contains up to date code used to develop the mobile app<br>
-  - Blogs.txt - contains up to date weekly blog posts <br>
-  - Database.txt - contains up to date code used in databases. e.g. CREATE TABLE, Stored Procedures, Triggers<br>
+<h2>What you will find in this repository:</h2> 
+
+* Admin Interface (Folder) - contains up to date code used to develop the admin interface
+* Diagrams (Folder) - contains a wireframe documents. Also, has all the diagrams in the interim report
+* MobileApp (Folder) - contains up to date code used to develop the mobile app
+* Blogs.txt - contains up to date weekly blog posts
+* Database.txt - contains up to date code used in databases. e.g. CREATE TABLE, Stored Procedures, Triggers

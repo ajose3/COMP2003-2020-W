@@ -105,6 +105,13 @@ On Wednesday the team met again review the report, delegate the final tasks and 
 Having completed the remaining tasks, we met again on the due date of the report for a final review of the report, including the completed tasks, and made any necessary changes, before submitting it.
 In review of the weeks interactions, and in consideration of the end of the semester, we decided it would be beneficial to enact a week long interlude before proceeding again with the project.
 
+Week 12 + 13 (23/01/2021 - 12/02/2021)
+
+Last week we decided to not have a team meeting as we all had coursework. This week we reflected on the feedback given to us during our demo and decided that we needed to simply and find something unique in our system. We talked about how to do this and had some ideas to change our system to fetch data from other sites and use this to recommend instead of having our own ecommerce with products. 
+We decided to ask Shirly before starting this just to make sure we were on the right track. Shirly informed us that our original product vision was a better route for us to take so we got started back on that. We outlined everything we needed to get done before the addition of the AI. We needed a functioning login system which would allow admins and users to log into our system with secure passwords. We need to collect realistic data for our database so we have decided to use a web scrapper to collect this as it would be the most efficient solution. We want to start on out rating system, allowing users to leave a rating on an item as this is going to be key data for the recommender system. connecting out database to our mobile app is something else we need to implement once we have some data so that we can test our recommender. 
+We split these tasks up between us and decided that we all needed to know how to use Xamarin. Two of us know how the use it already so we gave two others the task to learn this week then the last two next week.
+
+
 
 
 

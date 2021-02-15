@@ -1,25 +1,31 @@
 {
   "format": 1,
   "restore": {
-    "/Users/alistair/Projects/COMP2003-2020-W(2)/Admin Interface/AdminInterface/AdminInterface/AdminInterface.csproj": {}
+    "C:\\Users\\anand\\source\\repos\\COMP2003\\Admin Interface\\AdminInterface\\AdminInterface\\AdminInterface.csproj": {}
   },
   "projects": {
-    "/Users/alistair/Projects/COMP2003-2020-W(2)/Admin Interface/AdminInterface/AdminInterface/AdminInterface.csproj": {
+    "C:\\Users\\anand\\source\\repos\\COMP2003\\Admin Interface\\AdminInterface\\AdminInterface\\AdminInterface.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "/Users/alistair/Projects/COMP2003-2020-W(2)/Admin Interface/AdminInterface/AdminInterface/AdminInterface.csproj",
+        "projectUniqueName": "C:\\Users\\anand\\source\\repos\\COMP2003\\Admin Interface\\AdminInterface\\AdminInterface\\AdminInterface.csproj",
         "projectName": "AdminInterface",
-        "projectPath": "/Users/alistair/Projects/COMP2003-2020-W(2)/Admin Interface/AdminInterface/AdminInterface/AdminInterface.csproj",
-        "packagesPath": "/Users/alistair/.nuget/packages/",
-        "outputPath": "/Users/alistair/Projects/COMP2003-2020-W(2)/Admin Interface/AdminInterface/AdminInterface/obj/",
+        "projectPath": "C:\\Users\\anand\\source\\repos\\COMP2003\\Admin Interface\\AdminInterface\\AdminInterface\\AdminInterface.csproj",
+        "packagesPath": "C:\\Users\\anand\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\anand\\source\\repos\\COMP2003\\Admin Interface\\AdminInterface\\AdminInterface\\obj\\",
         "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "C:\\Microsoft\\Xamarin\\NuGet\\"
+        ],
         "configFilePaths": [
-          "/Users/alistair/.config/NuGet/NuGet.Config"
+          "C:\\Users\\anand\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Xamarin.Offline.config"
         ],
         "originalTargetFrameworks": [
           "netcoreapp3.1"
         ],
         "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
@@ -79,7 +85,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "/usr/local/share/dotnet/sdk/5.0.102/RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.102\\RuntimeIdentifierGraph.json"
         }
       }
     }

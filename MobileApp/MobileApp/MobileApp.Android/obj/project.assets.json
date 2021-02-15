@@ -1,7 +1,7 @@
 {
   "version": 3,
   "targets": {
-    "MonoAndroid,Version=v11.0": {
+    "MonoAndroid,Version=v10.0": {
       "System.Numerics.Vectors/4.5.0": {
         "type": "package",
         "compile": {
@@ -2103,46 +2103,53 @@
     }
   },
   "projectFileDependencyGroups": {
-    "MonoAndroid,Version=v11.0": [
+    "MonoAndroid,Version=v10.0": [
       "MobileApp >= 1.0.0",
       "Xamarin.Essentials >= 1.6.0",
       "Xamarin.Forms >= 5.0.0.1874"
     ]
   },
   "packageFolders": {
-    "/Users/alistair/.nuget/packages/": {}
+    "C:\\Users\\joshu\\.nuget\\packages\\": {},
+    "C:\\Microsoft\\Xamarin\\NuGet\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "/Users/alistair/Projects/COMP2003-2020-W/MobileApp/MobileApp/MobileApp.Android/MobileApp.Android.csproj",
+      "projectUniqueName": "C:\\Users\\joshu\\Documents\\GitHub\\COMP2003-2020-W\\MobileApp\\MobileApp\\MobileApp.Android\\MobileApp.Android.csproj",
       "projectName": "MobileApp.Android",
-      "projectPath": "/Users/alistair/Projects/COMP2003-2020-W/MobileApp/MobileApp/MobileApp.Android/MobileApp.Android.csproj",
-      "packagesPath": "/Users/alistair/.nuget/packages/",
-      "outputPath": "/Users/alistair/Projects/COMP2003-2020-W/MobileApp/MobileApp/MobileApp.Android/obj/",
+      "projectPath": "C:\\Users\\joshu\\Documents\\GitHub\\COMP2003-2020-W\\MobileApp\\MobileApp\\MobileApp.Android\\MobileApp.Android.csproj",
+      "packagesPath": "C:\\Users\\joshu\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\joshu\\Documents\\GitHub\\COMP2003-2020-W\\MobileApp\\MobileApp\\MobileApp.Android\\obj\\",
       "projectStyle": "PackageReference",
       "skipContentFileWrite": true,
+      "fallbackFolders": [
+        "C:\\Microsoft\\Xamarin\\NuGet\\"
+      ],
       "configFilePaths": [
-        "/Users/alistair/.config/NuGet/NuGet.Config"
+        "C:\\Users\\joshu\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config",
+        "C:\\Program Files (x86)\\NuGet\\Config\\Xamarin.Offline.config"
       ],
       "originalTargetFrameworks": [
-        "monoandroid11.0"
+        "monoandroid10.0"
       ],
       "sources": {
+        "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
         "https://api.nuget.org/v3/index.json": {}
       },
       "frameworks": {
-        "monoandroid11.0": {
+        "monoandroid10.0": {
           "projectReferences": {
-            "/Users/alistair/Projects/COMP2003-2020-W/MobileApp/MobileApp/MobileApp/MobileApp.csproj": {
-              "projectPath": "/Users/alistair/Projects/COMP2003-2020-W/MobileApp/MobileApp/MobileApp/MobileApp.csproj"
+            "C:\\Users\\joshu\\Documents\\GitHub\\COMP2003-2020-W\\MobileApp\\MobileApp\\MobileApp\\MobileApp.csproj": {
+              "projectPath": "C:\\Users\\joshu\\Documents\\GitHub\\COMP2003-2020-W\\MobileApp\\MobileApp\\MobileApp\\MobileApp.csproj"
             }
           }
         }
       }
     },
     "frameworks": {
-      "monoandroid11.0": {
+      "monoandroid10.0": {
         "dependencies": {
           "Xamarin.Essentials": {
             "target": "Package",

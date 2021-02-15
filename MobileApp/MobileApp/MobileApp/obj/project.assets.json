@@ -534,24 +534,31 @@
     ]
   },
   "packageFolders": {
-    "/Users/alistair/.nuget/packages/": {}
+    "C:\\Users\\joshu\\.nuget\\packages\\": {},
+    "C:\\Microsoft\\Xamarin\\NuGet\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "/Users/alistair/Projects/COMP2003-2020-W/MobileApp/MobileApp/MobileApp/MobileApp.csproj",
+      "projectUniqueName": "C:\\Users\\joshu\\Documents\\GitHub\\COMP2003-2020-W\\MobileApp\\MobileApp\\MobileApp\\MobileApp.csproj",
       "projectName": "MobileApp",
-      "projectPath": "/Users/alistair/Projects/COMP2003-2020-W/MobileApp/MobileApp/MobileApp/MobileApp.csproj",
-      "packagesPath": "/Users/alistair/.nuget/packages/",
-      "outputPath": "/Users/alistair/Projects/COMP2003-2020-W/MobileApp/MobileApp/MobileApp/obj/",
+      "projectPath": "C:\\Users\\joshu\\Documents\\GitHub\\COMP2003-2020-W\\MobileApp\\MobileApp\\MobileApp\\MobileApp.csproj",
+      "packagesPath": "C:\\Users\\joshu\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\joshu\\Documents\\GitHub\\COMP2003-2020-W\\MobileApp\\MobileApp\\MobileApp\\obj\\",
       "projectStyle": "PackageReference",
+      "fallbackFolders": [
+        "C:\\Microsoft\\Xamarin\\NuGet\\"
+      ],
       "configFilePaths": [
-        "/Users/alistair/.config/NuGet/NuGet.Config"
+        "C:\\Users\\joshu\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config",
+        "C:\\Program Files (x86)\\NuGet\\Config\\Xamarin.Offline.config"
       ],
       "originalTargetFrameworks": [
         "netstandard2.0"
       ],
       "sources": {
+        "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
         "https://api.nuget.org/v3/index.json": {}
       },
       "frameworks": {
@@ -595,7 +602,7 @@
         ],
         "assetTargetFallback": true,
         "warn": true,
-        "runtimeIdentifierGraphPath": "/usr/local/share/dotnet/sdk/5.0.101/RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.102\\RuntimeIdentifierGraph.json"
       }
     }
   }

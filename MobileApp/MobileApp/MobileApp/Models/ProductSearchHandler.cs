@@ -31,9 +31,12 @@ namespace MobileApp.Models
             base.OnItemSelected(item);
             await Task.Delay(1000);
 
-            // Note: strings will be URL encoded for navigation (e.g. "Blue Monkey" becomes "Blue%20Monkey"). Therefore, decode at the receiver.
-            await Shell.Current.GoToAsync($"productdetails?name={((Product)item).Name}");
+            // Note: strings will be URL encoded for navigation. Therefore, decode at the receiver.
+            //await Shell.Current.GoToAsync($"productdetails?id={((Product)item).Id}");
 
+            //await (App.Current.MainPage as Xamarin.Forms.Shell).GoToAsync($"productdetails?id={((Product)item).Id}");
+
+            await Shell.Current.GoToAsync($"productdetails?id={((Product)item).Id}");
         }
     }
 }

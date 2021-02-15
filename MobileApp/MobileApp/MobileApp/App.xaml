@@ -94,8 +94,8 @@
                 </Grid>
             </DataTemplate>
 
-            <DataTemplate x:Key="ProductSearchTemplate">
-                <Grid Padding="10">
+            <!--<DataTemplate x:Key="ProductSearchTemplate">
+                <Grid Padding="10" HeightRequest="50">
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="0.15*"/>
                         <ColumnDefinition Width="0.85*"/>
@@ -108,7 +108,7 @@
                        Text="{Binding Name}" 
                        FontAttributes="Bold"/>
                 </Grid>
-            </DataTemplate>
+            </DataTemplate>-->
         </ResourceDictionary>        
     </Application.Resources>
 </Application>

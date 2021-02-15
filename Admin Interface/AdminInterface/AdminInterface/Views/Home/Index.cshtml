@@ -2,7 +2,141 @@
     ViewData["Title"] = "Home Page";
 }
 
-<div class="text-center">
+<!--<div class="text-center">
     <h1 class="display-4">Welcome</h1>
     <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
 </div>
+-->
+<!-- grid layout -->
+<div class="dashboardSection">
+    <div class="dashboardBlock dashboardLeftBlock">
+        <span class="dashboardSectionHeader">Orders</span>
+
+        <div id="ordersTargetWidget">
+
+            <div class="ordersWidgetSection">
+                <span id="ordersTargetSettingHeader">Last 30 days</span>
+
+                <div class="chartWrapper">
+                    <div class="progressContainer">
+                        <svg class="progressBar" viewBox="0 0 64 64">
+                            <circle class="progressBarTrack" cx="50%" cy="50%" r="30px"></circle>
+                            <circle class="progressBarThumb" cx="50%" cy="50%" r="30px"></circle>
+                        </svg>
+                        <span class="progressValue">982</span>
+                    </div>
+                </div>
+
+                <div class="chartSettingsWrapper">
+                    <div class="widgetBtn chartSettingsBtn">settings</div>
+                </div>
+
+            </div>
+
+            <div class="ordersWidgetSection">
+                <div id="targetsWrapper">
+                    <div id="targetsHeader">Targets</div>
+                    <div class="orderTarget selectedTarget" data-value="1500">30 days: 1500</div>
+                    <div class="orderTarget" data-value="3200">60 days: 3200</div>
+                    <div class="widgetBtn">view more</div>
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+    <div class="dashboardBlock dashboardRightBlock">
+        <span class="dashboardSectionHeader">Current Tickets</span>
+
+        <div class="selectItemsWrapper">
+            <div class="selectItem">
+                <div class="selectItemContent">
+                    <div class="selectItemTitle">Ticket</div>
+                </div>
+                <div class="selectItemSVGWrapper">
+                    <svg class="selectSVG" width="30" height="30">
+                        <path class="selectSVGPath" fill="none" stroke-linecap="round" stroke-width="3" d="M 7.5 5 22.5 15 M 22.5 15 7.5 25" />
+                    </svg>
+                </div>
+            </div>
+
+            <div class="selectItem">
+                <div class="selectItemContent">
+                    <div class="selectItemTitle">Ticket</div>
+                </div>
+                <div class="selectItemSVGWrapper">
+                    <svg class="selectSVG" width="30" height="30">
+                        <path class="selectSVGPath" fill="none" stroke-linecap="round" stroke-width="3" d="M 7.5 5 22.5 15 M 22.5 15 7.5 25" />
+                    </svg>
+                </div>
+            </div>
+
+            <div class="selectItem">
+                <div class="selectItemContent">
+                    <div class="selectItemTitle">Ticket</div>
+                </div>
+                <div class="selectItemSVGWrapper">
+                    <svg class="selectSVG" width="30" height="30">
+                        <path class="selectSVGPath" fill="none" stroke-linecap="round" stroke-width="3" d="M 7.5 5 22.5 15 M 22.5 15 7.5 25" />
+                    </svg>
+                </div>
+            </div>
+
+            <div class="selectItemsBtns">
+                <div class="widgetBtn gridBtnLeft">view all</div>
+                <div class="widgetBtn gridBtnRight">manage users</div>
+            </div>
+
+        </div>
+
+    </div>
+</div>
+
+<div class="dashboardSection">
+    <div class="dashboardBlock dashboardLeftBlock">
+        <span class="dashboardSectionHeader">Low Stock</span>
+
+        <div class="selectItemsWrapper">
+            <div class="selectItem">
+                <div class="selectItemContent">
+                    <div class="selectItemTitle">Product</div>
+                </div>
+                <div class="selectItemSVGWrapper">
+                    <svg class="selectSVG" width="30" height="30">
+                        <path class="selectSVGPath" fill="none" stroke-linecap="round" stroke-width="3" d="M 7.5 5 22.5 15 M 22.5 15 7.5 25" />
+                    </svg>
+                </div>
+            </div>
+
+            <div class="selectItem">
+                <div class="selectItemContent">
+                    <div class="selectItemTitle">Product</div>
+                </div>
+                <div class="selectItemSVGWrapper">
+                    <svg class="selectSVG" width="30" height="30">
+                        <path class="selectSVGPath" fill="none" stroke-linecap="round" stroke-width="3" d="M 7.5 5 22.5 15 M 22.5 15 7.5 25" />
+                    </svg>
+                </div>
+            </div>
+
+            <div class="selectItem">
+                <div class="selectItemContent">
+                    <div class="selectItemTitle">Product</div>
+                </div>
+                <div class="selectItemSVGWrapper">
+                    <svg class="selectSVG" width="30" height="30">
+                        <path class="selectSVGPath" fill="none" stroke-linecap="round" stroke-width="3" d="M 7.5 5 22.5 15 M 22.5 15 7.5 25" />
+                    </svg>
+                </div>
+            </div>
+
+            <div class="selectItemsBtns">
+                <div class="widgetBtn gridBtnLeft">view all</div>
+            </div>
+
+        </div>
+
+    </div>
+</div>
+
+<script>let activePageIndex = 0;</script>

@@ -1,14 +1,20 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
-             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-             mc:Ignorable="d"
-             x:Class="MobileApp.Views.LoginPage"
-             Shell.NavBarIsVisible="False">
+             x:Class="MobileApp.Views.LoginPage">
     <ContentPage.Content>
-        <StackLayout Padding="10,0,10,0" VerticalOptions="Center">
-            <Button VerticalOptions="Center" Text="Login" Command="{Binding LoginCommand}"/>
+        <StackLayout Padding="10">
+            <Label FontSize="Header" HorizontalOptions="Center" Text="Login"/>
+            <Label Text="Username" FontSize="Large"/>
+            <Entry x:Name="usernameEntry" Text="{Binding Username}" Placeholder="username" FontSize="Large"/>
+            <Label Text="Password" FontSize="Large"/>
+            <Entry x:Name="passwordEntry" Text="{Binding Password}" Placeholder="password" FontSize="Large" IsPassword="True"/>
+            <Button Text="Login" Command="{Binding SubmitCommand}"/>
+            <!--<Label x:Name="messageLabel"/>-->
+            <FlexLayout Wrap="Wrap" JustifyContent="SpaceAround">
+                <Button WidthRequest="185" Text="Register"/>
+                <Button WidthRequest="185" Text="Reset Password"/>
+            </FlexLayout>
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>

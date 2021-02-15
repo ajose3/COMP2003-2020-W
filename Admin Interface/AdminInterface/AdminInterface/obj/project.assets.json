@@ -9222,23 +9222,23 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\anand\\.nuget\\packages\\": {},
+    "C:\\Users\\joshu\\.nuget\\packages\\": {},
     "C:\\Microsoft\\Xamarin\\NuGet\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\anand\\source\\repos\\COMP2003\\Admin Interface\\AdminInterface\\AdminInterface\\AdminInterface.csproj",
+      "projectUniqueName": "C:\\Users\\joshu\\Documents\\GitHub\\COMP2003-2020-W\\Admin Interface\\AdminInterface\\AdminInterface\\AdminInterface.csproj",
       "projectName": "AdminInterface",
-      "projectPath": "C:\\Users\\anand\\source\\repos\\COMP2003\\Admin Interface\\AdminInterface\\AdminInterface\\AdminInterface.csproj",
-      "packagesPath": "C:\\Users\\anand\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\anand\\source\\repos\\COMP2003\\Admin Interface\\AdminInterface\\AdminInterface\\obj\\",
+      "projectPath": "C:\\Users\\joshu\\Documents\\GitHub\\COMP2003-2020-W\\Admin Interface\\AdminInterface\\AdminInterface\\AdminInterface.csproj",
+      "packagesPath": "C:\\Users\\joshu\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\joshu\\Documents\\GitHub\\COMP2003-2020-W\\Admin Interface\\AdminInterface\\AdminInterface\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Microsoft\\Xamarin\\NuGet\\"
       ],
       "configFilePaths": [
-        "C:\\Users\\anand\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\joshu\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Xamarin.Offline.config"
       ],

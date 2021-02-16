@@ -120,7 +120,17 @@ connecting out database to our mobile app is something else we need to implement
 We split these tasks up between us and decided that we all needed to know how to use Xamarin.
 Two of us know how the use it already so we gave two others the task to learn this week then the last two next week.
 
+Week 14 (15/02/2021 – 19/02/2021:
 
+During the fourteenth week, the team met on zoom due to the current situation, but one member was not able to make it because of private problems. 
+Firstly, the group reviewed each other’s work that was meant to be completed by this week.
+We had to ensure that everything was in place to continue with the project. 
+We tested versions of the project by downloading and testing it from GitHub; the group showed other members how project versions were moved around GitHub so they can use it in the same way in the future. 
+Also, the group had decided there are some changes that needed to be made on the database such as adding field for images of products. 
+This week, one member of the group has the task of updating the database according to what improvements were discussed during the meeting.
+The two members who worked on the admin login interface last week will continue with it and at the same time, learn Xamarin as they needed to learn it as well. 
+Another member will continue to be working on the dashboard on the admin interface. In addition, we have assigned a member to work on mobile login page. 
+The group have decided the one member who was not able to attend the meeting should take a break this week to sort out their private problems and not to add any more stress. 
 
 
 

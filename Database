@@ -70,6 +70,8 @@ Ratings.Product_ID = (SELECT deleted.Product_ID FROM deleted)
 GO
 ALTER TABLE [dbo].[Products] ENABLE TRIGGER [Remove_Rating]
 GO
+ALTER TABLE Products
+ADD Product_Description VARCHAR(150), Image_URL VARCHAR(200);
 
 
 CREATE TABLE [dbo].[Ratings](
@@ -189,7 +191,33 @@ ELSE
     COMMIT TRANSACTION
 GO
 
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+ALTER PROCEDURE [dbo].[Add_Product] (
+    @ID_Product int,
+    @Name_Product varchar(50),
+    @Stock_Left int,
+    @Product_Type varchar(50),
+    @Sold_Amount int,
+    @cost money,
+    @description varchar(150),
+    @image_URL varchar(200)
+)
+AS
+BEGIN TRANSACTION
+IF (SELECT COUNT(*) FROM dbo.Products WHERE Product_ID = @ID_Product AND Product_Name = @Name_Product AND Stock = @Stock_Left AND Type_of_Product = @Product_Type AND Amount_Sold = @Sold_Amount AND Price = @cost) < 1
+BEGIN
+    INSERT INTO dbo.Products(Product_ID, Product_Name, Stock, Type_of_Product, Amount_Sold, Price, Product_Description, Image_URL)
+    VALUES (@ID_Product, @Name_Product, @Stock_Left, @Product_Type, @Sold_Amount, @cost, @description, @image_URL)
+END
 
+IF @@ERROR != 0
+    ROLLBACK TRANSACTION
+ELSE
+    COMMIT TRANSACTION
+GO
 
 CREATE PROCEDURE [dbo].[Cancel_Order](
     @ID_Order int,

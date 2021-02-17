@@ -4,11 +4,13 @@
              x:Class="MobileApp.Views.LoginPage">
     <ContentPage.Content>
         <StackLayout Padding="10">
-            <Label FontSize="Header" HorizontalOptions="Center" Text="Login"/>
-            <Label Text="Username" FontSize="Large"/>
-            <Entry x:Name="usernameEntry" Text="{Binding Username}" Placeholder="username" FontSize="Large"/>
+            <!--Padding="0 0 20 0"-->
+            <Label FontSize="40" HorizontalOptions="Center" Text="Login"/>
+            <Label Text="Email" FontSize="Large"/>
+            <Entry x:Name="usernameEntry" Text="{Binding Username}" Placeholder="Email" FontSize="Large"/>
             <Label Text="Password" FontSize="Large"/>
-            <Entry x:Name="passwordEntry" Text="{Binding Password}" Placeholder="password" FontSize="Large" IsPassword="True"/>
+            <Entry x:Name="passwordEntry" Text="{Binding Password}" Placeholder="Password" FontSize="Large" IsPassword="True"/>
+            
             <Button Text="Login" Command="{Binding SubmitCommand}"/>
             <!--<Label x:Name="messageLabel"/>-->
             <FlexLayout Wrap="Wrap" JustifyContent="SpaceAround">

@@ -87,6 +87,14 @@
         <ShellContent Route="LoginView" ContentTemplate="{DataTemplate local:LoginPage}" />
     </FlyoutItem>
 
+    <FlyoutItem Title="SignUp" Icon="icon_login.png">
+        <ShellContent Route="LoginView" ContentTemplate="{DataTemplate local:SignUpPage}" />
+    </FlyoutItem>
+
+    <FlyoutItem Title="Reset Password" Icon="icon_login.png">
+        <ShellContent Route="LoginView" ContentTemplate="{DataTemplate local:ResetPasswordPage}" />
+    </FlyoutItem>
+
     <!--<FlyoutItem Title="About" Icon="icon_about.png">
         <ShellContent Route="AboutPage" ContentTemplate="{DataTemplate local:AboutPage}" />
     </FlyoutItem>-->

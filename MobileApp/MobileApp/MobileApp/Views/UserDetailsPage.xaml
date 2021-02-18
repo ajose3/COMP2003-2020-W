@@ -4,14 +4,20 @@
              xmlns:vm="clr-namespace:MobileApp.ViewModels"
              x:Class="MobileApp.Views.UserDetailsPage">
 
-    <Shell.TitleView>
-        <Label Text="UserDetails" FontSize="Title" FontAttributes="Bold" VerticalOptions="CenterAndExpand"/>
-    </Shell.TitleView>
+    <!--<Shell.TitleView>
+        <Label Text="UserDetails" FontSize="Header" FontAttributes="Bold" VerticalOptions="CenterAndExpand"/>
+    </Shell.TitleView>-->
     <ContentPage.Content>
-        <StackLayout>
-            <Label Text="User details page!"
-                VerticalOptions="CenterAndExpand" 
-                HorizontalOptions="CenterAndExpand" TextColor="Black" FontSize="Large"/>
+        <StackLayout Spacing="15" Padding="10">
+            <Label Text="Account Details" FontSize="40" FontAttributes="Bold" TextColor="Black"/>
+            <Label Text="First Name: " FontSize="25"/>
+            <Label Text="Last Name: " FontSize="25"/>
+            <Label Text="Age: " FontSize="25"/>
+            <Label Text="Address: " FontSize="25"/>
+            <Label Text="Email: " FontSize="25"/>
+
+            <Button Text="Edit Details" Font="25"/>
+
             <!--map username to current user-->
             <Label Text="{Binding UserName}" TextColor="Black" FontSize="Large"/>
         </StackLayout>

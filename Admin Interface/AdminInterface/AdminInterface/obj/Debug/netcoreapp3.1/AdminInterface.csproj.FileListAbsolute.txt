@@ -782,3 +782,4 @@ C:\Users\joshu\Documents\GitHub\COMP2003-2020-W\Admin Interface\AdminInterface\A
 C:\Users\joshu\Documents\GitHub\COMP2003-2020-W\Admin Interface\AdminInterface\AdminInterface\obj\Debug\netcoreapp3.1\AdminInterface.dll
 C:\Users\joshu\Documents\GitHub\COMP2003-2020-W\Admin Interface\AdminInterface\AdminInterface\obj\Debug\netcoreapp3.1\AdminInterface.pdb
 C:\Users\joshu\Documents\GitHub\COMP2003-2020-W\Admin Interface\AdminInterface\AdminInterface\obj\Debug\netcoreapp3.1\AdminInterface.genruntimeconfig.cache
+C:\Users\joshu\Documents\GitHub\COMP2003-2020-W\Admin Interface\AdminInterface\AdminInterface\obj\Debug\netcoreapp3.1\AdminInterface.csprojAssemblyReference.cache

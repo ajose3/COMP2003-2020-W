@@ -1,4 +1,5 @@
-﻿using MobileApp.Models;
+﻿using MobileApp.Data;
+using MobileApp.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -21,6 +22,10 @@ namespace MobileApp.Views
             MessagingCenter.Subscribe<User, string>(this, "LoginAlert", (sender, username) =>
             {
                 DisplayAlert("LoginResponse", username, "Ok");
+                if (TokenData.value !=null)
+                {
+                    DisplayAlert("Token", TokenData.value, "Ok");
+                }
             });
             this.BindingContext = loginModel;
 
@@ -32,6 +37,17 @@ namespace MobileApp.Views
             {
                 loginModel.SubmitCommand.Execute(null);
             };
+        }
+
+        //move to viewModel
+        private void GoToRegisterPage(object sender, EventArgs e)
+        {
+            Shell.Current.GoToAsync("signUpPage");
+        }
+
+        private void GoToResetPage(object sender, EventArgs e)
+        {
+            Shell.Current.GoToAsync("resetPwordPage");
         }
     }
 }

@@ -82,33 +82,25 @@
     <FlyoutItem Title="Home" Icon="">
         <ShellContent Route="HomePage" ContentTemplate="{DataTemplate local:HomePage}"/>
     </FlyoutItem>
-    
-    <FlyoutItem Title="Login" Icon="icon_login.png">
-        <ShellContent Route="LoginView" ContentTemplate="{DataTemplate local:LoginPage}" />
-    </FlyoutItem>
 
-    <FlyoutItem Title="SignUp" Icon="icon_login.png">
-        <ShellContent Route="LoginView" ContentTemplate="{DataTemplate local:SignUpPage}" />
+    <FlyoutItem Title="UserDetails" Icon="">
+        <ShellContent Route="UserDetailsView" ContentTemplate="{DataTemplate local:UserDetailsPage}" />
     </FlyoutItem>
-
-    <FlyoutItem Title="Reset Password" Icon="icon_login.png">
-        <ShellContent Route="LoginView" ContentTemplate="{DataTemplate local:ResetPasswordPage}" />
-    </FlyoutItem>
-
-    <!--<FlyoutItem Title="About" Icon="icon_about.png">
-        <ShellContent Route="AboutPage" ContentTemplate="{DataTemplate local:AboutPage}" />
-    </FlyoutItem>-->
-    <!--<FlyoutItem Title="Browse" Icon="icon_feed.png">
-        <ShellContent Route="ItemsPage" ContentTemplate="{DataTemplate local:ItemsPage}" />
-    </FlyoutItem>-->
 
     <!-- When the Flyout is visible this will be a menu item you can tie a click behavior to  -->
-    <!--<MenuItem Text="UserDetials" StyleClass="MenuItemLayoutStyle" Clicked="MenuItem_Clicked">
-    </MenuItem>-->
-    <MenuItem Text="UserDetails" StyleClass="MenuItemLayoutStyle" Clicked="MenuItem_Clicked">
-    </MenuItem>
+    
     <MenuItem Text="Basket" StyleClass="MenuItemLayoutStyle" Clicked="ClickedBasketMenuItem">
     </MenuItem>
+
+    <MenuItem Text="Login" StyleClass="MenuItemLayoutStyle" Clicked="ClickedLoginMenuItem">
+    </MenuItem>
+
+    <MenuItem Text="Reset Password" StyleClass="MenuItemLayoutStyle" Clicked="ClickedResetPasswordMenuItem">
+    </MenuItem>
+    
+    <MenuItem Text="SignUp" StyleClass="MenuItemLayoutStyle" Clicked="ClickedSignUpMenuItem">
+    </MenuItem>
+
     <!--<MenuItem Text="Logout" StyleClass="MenuItemLayoutStyle" Clicked="OnMenuItemClicked">
     </MenuItem>-->
     

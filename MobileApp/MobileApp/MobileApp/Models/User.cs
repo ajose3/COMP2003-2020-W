@@ -41,12 +41,19 @@ namespace MobileApp.Models
 
         public void OnSubmit()
         {
+            //Move to view model
             if (!string.IsNullOrEmpty(username))
             {
                 bool isFound = UserData.searchUser(username,password);
+                //Contact API
+
+
                 if (isFound)
                 {
+                    //for testing
+                    TokenData.value = "tokenGoesHere";
                     MessagingCenter.Send(this, "LoginAlert", "User found");
+                    /////
                 }
                 else
                 {

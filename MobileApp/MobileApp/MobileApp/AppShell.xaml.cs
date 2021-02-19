@@ -25,7 +25,9 @@ namespace MobileApp
             Routing.RegisterRoute("productdetails", typeof(ProductPage));
             Routing.RegisterRoute("userdetailspage", typeof(UserDetailsPage));
             Routing.RegisterRoute("checkoutpage", typeof(CheckoutPage));
-
+            Routing.RegisterRoute("resetPwordPage", typeof(ResetPasswordPage));
+            Routing.RegisterRoute("signUpPage", typeof(SignUpPage));
+            Routing.RegisterRoute("loginPage", typeof(LoginPage));
 
 
             foreach (var item in routes)
@@ -53,9 +55,9 @@ namespace MobileApp
         {
         }
 
-        private async void MenuItem_Clicked(object sender, EventArgs e)
+        private async void ClickedResetPasswordMenuItem(object sender, EventArgs e)
         {
-            await Shell.Current.GoToAsync("userdetailspage");
+            await Shell.Current.GoToAsync("resetPwordPage");
             // close the menu
             Shell.Current.FlyoutIsPresented = false;
         }
@@ -63,6 +65,20 @@ namespace MobileApp
         private async void ClickedBasketMenuItem(object sender, EventArgs e)
         {
             await Shell.Current.GoToAsync("checkoutpage");
+            // close the menu
+            Shell.Current.FlyoutIsPresented = false;
+        }
+
+        private async void ClickedSignUpMenuItem(object sender, EventArgs e)
+        {
+            await Shell.Current.GoToAsync("signUpPage");
+            // close the menu
+            Shell.Current.FlyoutIsPresented = false;
+        }
+
+        private async void ClickedLoginMenuItem(object sender, EventArgs e)
+        {
+            await Shell.Current.GoToAsync("loginPage");
             // close the menu
             Shell.Current.FlyoutIsPresented = false;
         }

@@ -6,7 +6,7 @@
         <ScrollView>
             <StackLayout Padding="10">
                 <!--Padding="0 0 20 0"-->
-                <Label FontSize="40" HorizontalOptions="Center" Text="Register an Account"/>
+                <Label FontSize="40" HorizontalOptions="Center" Text="SignUp"/>
 
                 <Label Text="Email" FontSize="Large"/>
                 <Entry x:Name="usernameEntry" Text="{Binding Username}" Placeholder="Email" FontSize="Large"/>

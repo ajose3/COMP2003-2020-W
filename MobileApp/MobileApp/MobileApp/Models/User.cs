@@ -12,34 +12,40 @@ namespace MobileApp.Models
     {
         public event PropertyChangedEventHandler PropertyChanged = delegate { };
         public string username;
-        public string Username 
-        { 
-            get { return username; } 
-            set
-            {
-                username = value;
-                PropertyChanged(this, new PropertyChangedEventArgs("Username"));
-            } 
-        }
+        //public string Username 
+        //{ 
+        //    get { return username; } 
+        //    set
+        //    {
+        //        username = value;
+        //        PropertyChanged(this, new PropertyChangedEventArgs("Username"));
+        //    } 
+        //}
         public string password;
-        public string Password 
-        {
-            get
-            { return password;}
-            set
-            {
-                password = value;
-                PropertyChanged(this, new PropertyChangedEventArgs("Password"));
-            }
-        }
+        //public string Password 
+        //{
+        //    get
+        //    { return password;}
+        //    set
+        //    {
+        //        password = value;
+        //        PropertyChanged(this, new PropertyChangedEventArgs("Password"));
+        //    }
+        //}
         public ICommand SubmitCommand { get; set; }
 
         public User()
         {
-            SubmitCommand = new Command(OnSubmit);
+            //SubmitCommand = new Command(OnSubmit);
+        }
+        public User(string username, string password)
+        {
+            //SubmitCommand = new Command(OnSubmit);
+            this.username = username;
+            this.password = password;
         }
 
-        public void OnSubmit()
+        public string OnSubmit()
         {
             //Move to view model
             if (!string.IsNullOrEmpty(username))
@@ -52,15 +58,18 @@ namespace MobileApp.Models
                 {
                     //for testing
                     TokenData.value = "tokenGoesHere";
-                    MessagingCenter.Send(this, "LoginAlert", "User found");
-                    /////
+                    //MessagingCenter.Send(this, "LoginAlert", "User found");
+
+                    return "User Found";
                 }
                 else
                 {
-                    MessagingCenter.Send(this, "LoginAlert", "User not found");
+                    //MessagingCenter.Send(this, "LoginAlert", "User not found");
+                    return "not found";
                 }
 
             }
+            return null;
         }
     }
 }

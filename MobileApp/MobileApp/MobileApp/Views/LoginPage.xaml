@@ -1,21 +1,23 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:vm="clr-namespace:MobileApp.ViewModels"
              x:Class="MobileApp.Views.LoginPage">
     <ContentPage.Content>
         <StackLayout Padding="10">
             <!--Padding="0 0 20 0"-->
             <Label FontSize="40" HorizontalOptions="Center" Text="Login"/>
             <Label Text="Email" FontSize="Large"/>
-            <Entry x:Name="usernameEntry" Text="{Binding Username}" Placeholder="Email" FontSize="Large"/>
+            <Entry x:Name="usernameEntry" Text="{Binding username}" Placeholder="Email" FontSize="Large"/>
             <Label Text="Password" FontSize="Large"/>
-            <Entry x:Name="passwordEntry" Text="{Binding Password}" Placeholder="Password" FontSize="Large" IsPassword="True"/>
+            <Entry x:Name="passwordEntry" Text="{Binding password}" Placeholder="Password" FontSize="Large" IsPassword="True"/>
             
-            <Button Text="Login" Command="{Binding SubmitCommand}"/>
+            <!--<Button Text="Login" Command="{Binding SubmitCommand}"/>-->
+            <Button Text="Login" x:Name="LoginBtn" Command="{Binding LoginCmd}"/>
             <!--<Label x:Name="messageLabel"/>-->
             <FlexLayout Wrap="Wrap" JustifyContent="SpaceAround">
-                <Button WidthRequest="185" Text="Register" Clicked="GoToRegisterPage"/>
-                <Button WidthRequest="185" Text="Reset Password" Clicked="GoToResetPage"/>
+                <Button WidthRequest="185" Text="Register" Command="{Binding GoSignUpPage}"/>
+                <Button WidthRequest="185" Text="Reset Password" Command="{Binding GoResetPage}"/>
             </FlexLayout>
         </StackLayout>
     </ContentPage.Content>

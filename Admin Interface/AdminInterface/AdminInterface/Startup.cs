@@ -27,7 +27,7 @@ namespace AdminInterface
         {
             services.AddControllersWithViews();
 
-            services.AddDbContext<COMP2003_WContext>(options => 
+            services.AddDbContext<COMP2003_WContext>(options =>
             options.UseSqlServer(Configuration.GetConnectionString("COMP2003_W_DB")));
         }
 
@@ -55,7 +55,7 @@ namespace AdminInterface
             {
                 endpoints.MapControllerRoute(
                     name: "default",
-                    pattern: "{controller=Login}/{action=Login}");
+                    pattern: "{controller=Login}/{action=Index}");
                 //pattern: "{controller=Home}/{action=Index}/{id?}");
             });
         }

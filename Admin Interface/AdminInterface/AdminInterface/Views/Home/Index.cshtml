@@ -10,85 +10,69 @@
 <!-- grid layout -->
 <div class="dashboardSection">
     <div class="dashboardBlock dashboardLeftBlock">
-        <span class="dashboardSectionHeader">Orders</span>
+        <span class="dashboardSectionHeader">Monthly Sales</span>
 
-        <div id="ordersTargetWidget">
+        <!--<div id="ordersTargetWidget">
 
-            <div class="ordersWidgetSection">
-                <span id="ordersTargetSettingHeader">Last 30 days</span>
+        <div class="ordersWidgetSection">
+            <span id="ordersTargetSettingHeader">Last 30 days</span>
 
-                <div class="chartWrapper">
-                    <div class="progressContainer">
-                        <svg class="progressBar" viewBox="0 0 64 64">
-                            <circle class="progressBarTrack" cx="50%" cy="50%" r="30px"></circle>
-                            <circle class="progressBarThumb" cx="50%" cy="50%" r="30px"></circle>
-                        </svg>
-                        <span class="progressValue">982</span>
-                    </div>
+            <div class="chartWrapper">
+                <div class="progressContainer">
+                    <svg class="progressBar" viewBox="0 0 64 64">
+                        <circle class="progressBarTrack" cx="50%" cy="50%" r="30px"></circle>
+                        <circle class="progressBarThumb" cx="50%" cy="50%" r="30px"></circle>
+                    </svg>
+                    <span class="progressValue">982</span>
                 </div>
-
-                <div class="chartSettingsWrapper">
-                    <div class="widgetBtn chartSettingsBtn">settings</div>
-                </div>
-
             </div>
 
-            <div class="ordersWidgetSection">
-                <div id="targetsWrapper">
-                    <div id="targetsHeader">Targets</div>
-                    <div class="orderTarget selectedTarget" data-value="1500">30 days: 1500</div>
-                    <div class="orderTarget" data-value="3200">60 days: 3200</div>
-                    <div class="widgetBtn">view more</div>
-                </div>
+            <div class="chartSettingsWrapper">
+                <div class="widgetBtn chartSettingsBtn">settings</div>
             </div>
 
         </div>
+
+        <div class="ordersWidgetSection">
+            <div id="targetsWrapper">
+                <div id="targetsHeader">Targets</div>
+                <div class="orderTarget selectedTarget" data-value="1500">30 days: 1500</div>
+                <div class="orderTarget" data-value="3200">60 days: 3200</div>
+                <div class="widgetBtn">view more</div>
+            </div>
+        </div>-->
+
+        <canvas id="lineChart"></canvas>
 
     </div>
     <div class="dashboardBlock dashboardRightBlock">
-        <span class="dashboardSectionHeader">Current Tickets</span>
-
-        <div class="selectItemsWrapper">
-            <div class="selectItem">
-                <div class="selectItemContent">
-                    <div class="selectItemTitle">Ticket</div>
-                </div>
-                <div class="selectItemSVGWrapper">
-                    <svg class="selectSVG" width="30" height="30">
-                        <path class="selectSVGPath" fill="none" stroke-linecap="round" stroke-width="3" d="M 7.5 5 22.5 15 M 22.5 15 7.5 25" />
-                    </svg>
-                </div>
-            </div>
-
-            <div class="selectItem">
-                <div class="selectItemContent">
-                    <div class="selectItemTitle">Ticket</div>
-                </div>
-                <div class="selectItemSVGWrapper">
-                    <svg class="selectSVG" width="30" height="30">
-                        <path class="selectSVGPath" fill="none" stroke-linecap="round" stroke-width="3" d="M 7.5 5 22.5 15 M 22.5 15 7.5 25" />
-                    </svg>
-                </div>
-            </div>
-
-            <div class="selectItem">
-                <div class="selectItemContent">
-                    <div class="selectItemTitle">Ticket</div>
-                </div>
-                <div class="selectItemSVGWrapper">
-                    <svg class="selectSVG" width="30" height="30">
-                        <path class="selectSVGPath" fill="none" stroke-linecap="round" stroke-width="3" d="M 7.5 5 22.5 15 M 22.5 15 7.5 25" />
-                    </svg>
-                </div>
-            </div>
-
-            <div class="selectItemsBtns">
-                <div class="widgetBtn gridBtnLeft">view all</div>
-                <div class="widgetBtn gridBtnRight">manage users</div>
-            </div>
-
-        </div>
-
+        <span class="dashboardSectionHeader">Order Status</span>
+        <table id="orderStatusTable" class="table">
+            <thead>
+                <tr>
+                    <th>Invoice</th>
+                    <th>Amount</th>
+                    <th>Status</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>#12345</td>
+                    <td>$45.00</td>
+                    <td>Dispatched</td>
+                </tr>
+                <tr>
+                    <td>#23456</td>
+                    <td>$09.49</td>
+                    <td>Delivered</td>
+                </tr>
+                <tr>
+                    <td>#34567</td>
+                    <td>$14.28</td>
+                    <td>Delivered</td>
+                </tr>
+            </tbody>
+        </table>
     </div>
 </div>
 
@@ -139,4 +123,31 @@
     </div>
 </div>
 
-<script>let activePageIndex = 0;</script>
+<script>let activePageIndex = 0;
+
+    const chart = document.getElementById("lineChart");
+    let lineChart = new Chart(chart, {
+        // The type of chart we want to create
+        type: 'line',
+        data: {
+            labels: ['January', 'February', 'March', 'April', 'May', 'June', 'July'],
+            datasets: [{
+                label: 'Sales',
+                fill: false,
+                borderColor: 'rgb(255, 99, 132)',
+                data: [0, 10, 5, 2, 20, 30, 45]
+            }]
+        },
+        // Configuration options go here
+        options: {
+            responsive: true,
+            maintainAspectRatio: false,
+            scales: {
+                yAxes: [{
+                    ticks: {
+                        beginAtZero: true
+                    }
+                }]
+            }
+        }
+    });</script>

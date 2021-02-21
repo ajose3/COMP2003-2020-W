@@ -71,7 +71,7 @@ button.accept-policy {
 /* variables */
 :root {
     --navbarColor: 243, 243, 243;
-    --activeColor: red;
+    --activeColor: 255, 99, 132;
     --inactiveColor: #333;
     --chartProgress: 0;
 }
@@ -101,6 +101,7 @@ button.accept-policy {
     display: flex;
     align-items: center;
     background-color: rgb(var(--navbarColor));
+    box-shadow: inset 5px 5px 4px #fff, 5px 5px 3px rgb(235, 235, 235);
 }
 
 #navDropdownMenuBtn {
@@ -207,15 +208,15 @@ button.accept-policy {
     }
 
     .navbarPageSpan.active a {
-        color: var(--activeColor);
+        color: rgb(var(--activeColor));
     }
 
     .navbarPageSpan a:hover {
-        color: var(--activeColor);
+        color: rgb(var(--activeColor));
     }
 
     .navbarPageSpan a::after {
-        background-color: var(--activeColor);
+        background-color: rgb(var(--activeColor));
         content: "";
         width: 0;
         height: 3px;
@@ -246,11 +247,11 @@ button.accept-policy {
     }
 
     .navDropdownPage.active a {
-        color: var(--activeColor);
+        color: rgb(var(--activeColor));
     }
 
     .navDropdownPage a:hover {
-        color: var(--activeColor);
+        color: rgb(var(--activeColor));
     }
 
 /* ---------------------- */
@@ -258,6 +259,7 @@ button.accept-policy {
 .container {
     padding-top: 70px;
     z-index: 1;
+    background-color: rgb(245, 245, 245);
 }
 
 
@@ -271,8 +273,12 @@ button.accept-policy {
 }
 
 .dashboardBlock {
-    background-color: rgb(245, 245, 245);
-    padding: 8px;
+    /*background-color: rgb(245, 245, 245);*/
+    padding: 16px;
+    background-color: rgb(252, 252, 252);
+    /*box-shadow: 5px 5px 3px rgb(225, 225, 225);*/
+    box-shadow: inset 5px 5px 4px #fff, 5px 5px 3px rgb(225, 225, 225);
+    border-radius: 12px;
 }
 
 .dashboardLeftBlock {
@@ -294,7 +300,7 @@ button.accept-policy {
 
 .dashboardSectionHeader {
     font-size: 20px;
-    color: #333;
+    color: rgb(150, 150, 150);
 }
 
 
@@ -500,58 +506,21 @@ button.accept-policy {
     padding: 8px 4px;
 }
 
-/*Login stuff*/
-body{
-    margin: 0;
-    padding: 0;
-    font-family: sans-serif;
-    background-size: cover;
+#lineChart {
+    height: 400px !important;
 }
-.login-box{
-    width: 280px;
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    color: white;
-}
-.login-box h1{
-    float: left;
-    font-size: 40px;
-    border-bottom: 6px solid #4caf50;
-    margin-bottom: 50px;
-    padding: 13px 0
-}
-.textbox{
+
+#orderStatusTable {
     width: 100%;
-    overflow: hidden;
-    font-size: 20px;
-    padding: 8px 0;
-    margin: 8px 0;
-    border-bottom: 1px solid #4caf50;
+    padding-top: 20px;
 }
-.textbox i{
-    width: 26px;
-    float: left;
-    text-align: center;
-}
-.textbox input{
-    border: none;
-    outline: none;
-    background: none;
-    color: white;
-    font-size: 18px;
-    width: 80px;
-    float: left;
-    margin: 0 10px;
-}
-.btn{
-    width: 100%;
-    background: none;
-    border: 2px solid #4caf50;
-    color: white;
-    padding: 5px;
-    font-size: 18px;
-    cursor: pointer;
-    margin: 12px 0;
-}
+
+    #orderStatusTable th {
+        /* top, right, bottom, left */
+        padding: 10px 10px 20px 10px;
+    }
+
+    #orderStatusTable td {
+        /* top, right, bottom, left */
+        padding: 4px 14px 4px 14px;
+    }

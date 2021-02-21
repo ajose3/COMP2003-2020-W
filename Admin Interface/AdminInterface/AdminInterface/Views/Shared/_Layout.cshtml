@@ -9,6 +9,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300&display=swap" rel="stylesheet">
     <!--<link rel="stylesheet" href="~/css/site.css" />-->
     <link rel="stylesheet" href="../../css/site.css" />
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
 <body onload="setupPage()">
 
@@ -21,7 +22,7 @@
                 <div class="navDropdownMenuBtnLine close"></div>
             </div>
 
-            <div id="navTitle"><a href="">COMP2003</a></div>
+            <div id="navTitle"><a href="">Dashboard</a></div>
 
             <!-- end left side -->
             <!-- right side -->
@@ -31,8 +32,7 @@
                     <span id="navPage1" class="navbarPageSpan"><a asp-area="" asp-controller="Home" asp-action="Index">Home</a></span>
                     <!--
                     -->
-                    <span id="navPage2" class="navbarPageSpan"><a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a></span>
-                    <!--
+                    <!--<span id="navPage2" class="navbarPageSpan"><a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a></span>
                     -->
                     <span id="navPage3" class="navbarPageSpan"><a asp-area="" asp-controller="Customers" asp-action="Index">Customers</a></span>
                     <!--
@@ -44,6 +44,9 @@
                     <!--
                     -->
                     <span id="navPage6" class="navbarPageSpan"><a asp-area="" asp-controller="Ratings" asp-action="Index">Ratings</a></span>
+                    <!--
+                    -->
+                    <span id="navPage7" class="navbarPageSpan"><a>Logout</a></span>
                 </div>
             </div>
 
@@ -88,7 +91,6 @@
             </div>
         </nav>
     </header>-->
-
 
     <div class="container">
         <main role="main" class="pb-3">

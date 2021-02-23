@@ -73,6 +73,7 @@ As it is approaching Christmas, we also decided that it was time to start making
 We assigned this to a single team member to set up the initial app structure and setup a connection to the database. 
 
 Week 9 (14/12/2020-18/12/2020):
+
 This was the first week where all of us attended the meeting virtually.
 All assignments from the previous week had been completed except for one.
 The problem arising with the API as it was working and then stopped working after an update of the software. 
@@ -105,7 +106,7 @@ On Wednesday the team met again review the report, delegate the final tasks and 
 Having completed the remaining tasks, we met again on the due date of the report for a final review of the report, including the completed tasks, and made any necessary changes, before submitting it.
 In review of the weeks interactions, and in consideration of the end of the semester, we decided it would be beneficial to enact a week long interlude before proceeding again with the project.
 
-Week 12 + 13 (23/01/2021 - 12/02/2021)
+Week 12 + 13 (23/01/2021 - 12/02/2021):
 
 Last week we decided to not have a team meeting as we all had coursework. 
 This week we reflected on the feedback given to us during our demo and decided that we needed to simply and find something unique in our system.
@@ -120,7 +121,7 @@ connecting out database to our mobile app is something else we need to implement
 We split these tasks up between us and decided that we all needed to know how to use Xamarin.
 Two of us know how the use it already so we gave two others the task to learn this week then the last two next week.
 
-Week 14 (15/02/2021 – 19/02/2021:
+Week 14 (15/02/2021 – 19/02/2021):
 
 During the fourteenth week, the team met on zoom due to the current situation, but one member was not able to make it because of private problems. 
 Firstly, the group reviewed each other’s work that was meant to be completed by this week.
@@ -132,5 +133,6 @@ The two members who worked on the admin login interface last week will continue 
 Another member will continue to be working on the dashboard on the admin interface. In addition, we have assigned a member to work on mobile login page. 
 The group have decided the one member who was not able to attend the meeting should take a break this week to sort out their private problems and not to add any more stress. 
 
+Week 15 (22/02/21 - 26/02/21):
 
-
+This week we looked over and discussed the tasks from last week, we determined another week would be needed to complete both the login system and the admin dashboard. During the meeting, we determined that we were on track to finishing the ecommerce application within the next few weeks. We decided it was time to put more focus on the recommendation system portion of the project. We assigned two people the task of researching recommendation systems and to produce a short report each of their findings. Two reports are to be produced hoping to identify any discrepancies in research. The final two members of the group were assigned to update and improve the UML diagrams and draft some portions of the interim report using the feedback given from the previous.

@@ -161,6 +161,51 @@ namespace RESTfulAPI.Repositories
                 return responseMessage;
             }
         }
+
+        public static User GetCustomerDetails(string token)
+        {
+            User user = new User();
+            SqlDataReader responseReader;
+
+            var query = "Exec GetCustomerDetails @Token = '_token';";
+
+            query = query.Replace("_token", token);
+
+            SqlConnection connection = new SqlConnection(dbConnection());
+
+            try
+            {
+                connection.Open();
+                SqlCommand command = new SqlCommand(query, connection);
+
+                responseReader = command.ExecuteReader();
+
+                while (responseReader.Read())
+                {
+                    user.FirstName = responseReader[1].ToString();
+                    user.LastName = responseReader[2].ToString();
+                    user.Email = responseReader[3].ToString();
+                    user.Password = responseReader[4].ToString();
+                    user.Age = Int32.Parse(responseReader[5].ToString());
+                    user.Gender = Boolean.Parse(responseReader[6].ToString());
+                    user.Address = responseReader[7].ToString();
+                    user.PhoneNumber = responseReader[8].ToString();
+                }
+                responseReader.Read();
+                //responseMessage = responseReader.GetSqlString(responseReader.GetOrdinal("OutputMessage"));
+                responseReader.Close();
+
+                command.Dispose();
+                connection.Close();
+                return user;
+            }
+            catch (Exception)
+            {
+                return user;
+            }
+        }
+
+
         //admin
 
         //temp

@@ -78,5 +78,27 @@ namespace MobileApp.Services
             response.EnsureSuccessStatusCode();
             return await response.Content.ReadAsStringAsync().ConfigureAwait(false);
         }
+
+        public async Task<User> GetCustomerDetails()
+        {
+            string token = TokenData.value;
+
+            var request = new HttpRequestMessage
+            {
+                Method = HttpMethod.Get,
+                RequestUri = new Uri($"http://web.socem.plymouth.ac.uk/COMP2003/COMP2003_W/GetDetails?token={token}"),
+                //Content = new StringContent(json, Encoding.UTF8, "application/json"),
+            };
+
+            var response = await Client.SendAsync(request).ConfigureAwait(false);
+            response.EnsureSuccessStatusCode();
+            var returnedJson = await response.Content.ReadAsStringAsync().ConfigureAwait(false);
+            //var a = response.JsonConvert.De
+            
+            User user = JsonConvert.DeserializeObject<User>(returnedJson);
+            return user;
+
+        }
+
     }
 }

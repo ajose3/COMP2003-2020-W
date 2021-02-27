@@ -10,16 +10,19 @@
     <ContentPage.Content>
         <StackLayout Spacing="15" Padding="10">
             <Label Text="Account Details" FontSize="40" FontAttributes="Bold" TextColor="Black"/>
-            <Label Text="First Name: " FontSize="25"/>
-            <Label Text="Last Name: " FontSize="25"/>
-            <Label Text="Age: " FontSize="25"/>
-            <Label Text="Address: " FontSize="25"/>
-            <Label Text="Email: " FontSize="25"/>
+            <Label x:Name="fName" Text="{Binding FirstName}" FontSize="25"/>
+            <Label Text="{Binding LastName} " FontSize="25"/>
+            <Label Text="{Binding Age} " FontSize="25"/>
+            <Label Text="{Binding Address} " FontSize="25"/>
+            <Label Text="{Binding Email} " FontSize="25"/>
+            <Label Text="{Binding Password} " FontSize="25"/>
+            <Label Text="{Binding Gender} " FontSize="25"/>
 
+            <Button Text="Populate" Font="25" Command="{Binding PopulateDetails}"/>
             <Button Text="Edit Details" Font="25"/>
 
             <!--map username to current user-->
-            <Label Text="{Binding UserName}" TextColor="Black" FontSize="Large"/>
+            <!--<Label Text="{Binding UserName}" TextColor="Black" FontSize="Large"/>-->
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>

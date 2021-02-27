@@ -54,6 +54,13 @@ namespace RESTfulAPI.Controllers
             return DataAccess.DeleteCustomer(token);
         }
 
+        [HttpGet]
+        [Route("GetDetails")]
+        public User GetCustomerDetails(string token)
+        {
+            return DataAccess.GetCustomerDetails(token);
+        }
+
         //Admin requests
 
         [HttpGet]

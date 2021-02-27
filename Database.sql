@@ -56,13 +56,14 @@ FOREIGN KEY (Customer_ID) REFERENCES Customer(Customer_ID),
 FOREIGN KEY (Product_ID) REFERENCES Products(Product_ID)
 ON DELETE CASCADE
 );
---------------------------------------------------------------------------------------------------------------
+--Views-------------------------------------------------------------------------------------------------------
 
 CREATE VIEW [dbo].[Top_Rated] AS 
 SELECT Ratings.Rating , Products.Product_Name, Ratings.Product_ID
 FROM Ratings
 INNER JOIN Products ON Products.Product_ID = Ratings.Product_ID;
 GO
+
 --------------------------------------------------------------------------------------------------------------
 
 --stored procedures
@@ -824,6 +825,18 @@ BEGIN
 END
 GO
 
+
+CREATE PROCEDURE GetCustomerDetails
+@Token VARCHAR(25)
+AS
+BEGIN
+	IF EXISTS(SELECT * FROM Sessions WHERE Token = @Token AND CURRENT_TIMESTAMP <= ExpiryTime)
+		BEGIN
+			DECLARE @Customer_ID AS INT = (SELECT Customer_ID FROM Sessions WHERE Token = @Token);
+			SELECT * FROM Customer WHERE Customer_ID = @Customer_ID;
+		END
+END
+GO
 
 -- how to run
 DECLARE @Out as BIT; 

@@ -8,7 +8,7 @@ using Xamarin.Forms;
 
 namespace MobileApp.ViewModels
 {
-    class SignUpViewModel : BaseViewModel
+    public class SignUpViewModel : BaseViewModel
     {
         public SignUpViewModel()
         {

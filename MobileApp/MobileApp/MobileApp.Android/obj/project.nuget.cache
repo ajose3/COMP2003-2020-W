@@ -1,9 +1,11 @@
 {
   "version": 2,
-  "dgSpecHash": "WQkDlRkK4mWz9MDhN5LSKpW4047Woshue4UO5eH1qRwfmBkuwZltwWzYbjSYaGEpLWcpbepJ2z/gYgG7ZS9KPQ==",
+  "dgSpecHash": "X3nq4Ikr1heJOTZy9sZV1NWFC9x75GQ/3Fqc2nLHQjaNeZ3mbkMO5iDgdRy5vYfJTgCQdlul3WjwSLY1clxBrw==",
   "success": true,
   "projectFilePath": "C:\\Users\\joshu\\Documents\\GitHub\\COMP2003-2020-W\\MobileApp\\MobileApp\\MobileApp.Android\\MobileApp.Android.csproj",
   "expectedPackageFiles": [
+    "C:\\Users\\joshu\\.nuget\\packages\\newtonsoft.json\\12.0.3\\newtonsoft.json.12.0.3.nupkg.sha512",
+    "C:\\Users\\joshu\\.nuget\\packages\\restsharp\\106.11.7\\restsharp.106.11.7.nupkg.sha512",
     "C:\\Users\\joshu\\.nuget\\packages\\system.numerics.vectors\\4.5.0\\system.numerics.vectors.4.5.0.nupkg.sha512",
     "C:\\Users\\joshu\\.nuget\\packages\\xamarin.androidx.activity\\1.1.0.5\\xamarin.androidx.activity.1.1.0.5.nupkg.sha512",
     "C:\\Users\\joshu\\.nuget\\packages\\xamarin.androidx.annotation\\1.1.0.8\\xamarin.androidx.annotation.1.1.0.8.nupkg.sha512",

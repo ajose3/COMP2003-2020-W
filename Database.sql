@@ -42,7 +42,8 @@ Image_Url TEXT,
 Stock INT NOT NULL,
 Catagory VARCHAR(50) NOT NULL,
 Total_Sold INT DEFAULT 0 NOT NULL,
-Price MONEY NOT NULL
+Price MONEY NOT NULL,
+Description TEXT
 );
 
 CREATE TABLE Reviews(
@@ -50,6 +51,7 @@ Product_ID INT NOT NULL,
 Customer_ID INT NOT NULL,
 Rating TINYINT NOT NULL CHECK(0 < Rating AND Rating <= 5),
 Description TEXT NOT NULL,
+PRIMARY KEY (Product_ID, Customer_ID),
 FOREIGN KEY (Customer_ID) REFERENCES Customer(Customer_ID),
 FOREIGN KEY (Product_ID) REFERENCES Products(Product_ID)
 ON DELETE CASCADE
@@ -213,7 +215,7 @@ GO
 
 --Edit user
 
-CREATE PROCEDURE UpdateCustomer
+CREATE PROCEDURE EditCustomer
 @Token VARCHAR(25),
 @FirstName VARCHAR(50),
 @LastName VARCHAR(50),
@@ -250,7 +252,7 @@ GO
 
 -- how to run
 DECLARE @Out as BIT; 
-EXEC UpdateCustomer @Token = '8E-433D-BCB4-A596E369001C', @FirstName = 'This has', @LastName = 'been changed', @Email = 'email501', @Password = '^?H??(\u0004qQ??o??)s`=\rj???*\u0011?r\u001d\u0015B?', @Age = '34', @Gender = 1, @Address = 'address string 5', @PhoneNumber = '01454234', @Success = @Out OUTPUT; 
+EXEC EditCustomer @Token = '8E-433D-BCB4-A596E369001C', @FirstName = 'This has', @LastName = 'been changed', @Email = 'email501', @Password = '^?H??(\u0004qQ??o??)s`=\rj???*\u0011?r\u001d\u0015B?', @Age = '34', @Gender = 1, @Address = 'address string 5', @PhoneNumber = '01454234', @Success = @Out OUTPUT; 
 SELECT @Out AS 'OutputMessage'; 
 --------
 
@@ -336,8 +338,9 @@ SELECT @Out AS 'OutputMessage';
 
 ------Admin ---------
 
---Register Admin (Unfinished)
+--Register Admin
 CREATE PROCEDURE RegisterAdmin
+@Token VARCHAR(25),
 @First_Name VARCHAR(50), 
 @Last_Name VARCHAR(50),
 @Email VARCHAR(320),
@@ -350,18 +353,35 @@ CREATE PROCEDURE RegisterAdmin
 AS
 BEGIN
 	BEGIN TRANSACTION
-		IF EXISTS (SELECT * FROM Customer WHERE Email_Address = @Email)
+		IF EXISTS (SELECT Customer_ID FROM Sessions WHERE Token = @Token AND CURRENT_TIMESTAMP <= ExpiryTime)
 			BEGIN
-			--an account with this email already exists
-				SELECT @Success = 0;
+				DECLARE @Customer_ID AS INT = (SELECT Customer_ID FROM Sessions WHERE Token = @Token AND CURRENT_TIMESTAMP <= ExpiryTime);
+				IF EXISTS(SELECT * FROM Customer WHERE Customer_ID = @Customer_ID AND Admin = 1)
+					BEGIN
+						IF EXISTS (SELECT * FROM Customer WHERE Email_Address = @Email)
+							BEGIN
+							--an account with this email already exists
+								SELECT @Success = 0;
+							END
+						ELSE
+							BEGIN
+								INSERT INTO Customer
+								(First_Name, Last_Name, Email_Address, Password, Age, Gender, Address, Phone_Number, Admin)
+								VALUES
+								(@First_Name, @Last_Name, @Email, @Password, @Age, @Gender, @Address, @Phone_Number, 1);
+								SELECT @Success = 1;
+							END
+					END
+				ELSE
+					BEGIN
+					--not admin
+						SELECT Success = 0
+					END
 			END
 		ELSE
 			BEGIN
-				INSERT INTO Customer
-				(First_Name, Last_Name, Email_Address, Password, Age, Gender, Address, Phone_Number, Admin)
-				VALUES
-				(@First_Name, @Last_Name, @Email, @Password, @Age, @Gender, @Address, @Phone_Number, 1);
-				SELECT @Success = 1;
+			--not logged in
+				SELECT @Success = 0;
 			END
 		IF @@ERROR != 0
 			BEGIN
@@ -376,7 +396,7 @@ GO
 
 -- how to run
 DECLARE @Out as BIT
-exec RegisterAdmin @First_Name = 'bob', @Last_Name = 'bobby', @Email = 'email3@admin.com', @Password = 'password', @Age = '5', @Gender = 1, @Address = 'address goes here', @Phone_Number = '07932153300', @success = @Out OUTPUT;
+exec RegisterAdmin @Token = 'FD-48BA-8080-EE76E5F9FAEC', @First_Name = 'bob', @Last_Name = 'bobby', @Email = 'email3@admin.com', @Password = 'password', @Age = '5', @Gender = 1, @Address = 'address goes here', @Phone_Number = '07932153300', @success = @Out OUTPUT;
 SELECT @OUT AS 'Outputmessage';
 --------
 
@@ -425,7 +445,7 @@ SELECT @Out AS 'OutputMessage';
 
 
 --Admin Delete Customer
-CREATE PROCEDURE AdminRemoveCustomer
+CREATE PROCEDURE AdminDeleteCustomer
 @Token VARCHAR(25),
 @Customer_Deleting_ID INT,
 @Success BIT OUTPUT
@@ -461,7 +481,7 @@ GO
 
 -- how to run
 DECLARE @Out as BIT; 
-EXEC AdminRemoveCustomer @Token = 'FD-48BA-8080-EE76E5F9FAEC', @Customer_Deleting_ID = 2, @Success = @Out OUTPUT; 
+EXEC AdminDeleteCustomer @Token = 'FD-48BA-8080-EE76E5F9FAEC', @Customer_Deleting_ID = 2, @Success = @Out OUTPUT; 
 SELECT @Out AS 'OutputMessage'; 
 --------
 
@@ -528,7 +548,7 @@ BEGIN
 			BEGIN
 				DECLARE @Customer_ID AS INT = (SELECT Customer_ID FROM Sessions WHERE Token = @Token)
 				
-				IF EXISTS(SELECT * FROM Orders WHERE Order_ID = @Order_ID)
+				IF EXISTS(SELECT * FROM Orders WHERE Order_ID = @Order_ID AND Customer_ID = @Customer_ID)
 					BEGIN
 						DECLARE @Quantity AS INT = (SELECT Quantity FROM Orders WHERE Order_ID = @Order_ID)
 						
@@ -582,6 +602,7 @@ CREATE PROCEDURE AddProduct
 @Stock INT,
 @Catagory VARCHAR(50),
 @Price MONEY,
+@Description TEXT,
 @Success BIT OUTPUT
 AS
 BEGIN
@@ -600,9 +621,9 @@ BEGIN
 						ELSE
 							BEGIN
 								INSERT INTO Products
-								(Product_Name, Image_Url, Stock, Catagory, Price)
+								(Product_Name, Image_Url, Stock, Catagory, Price, Description)
 								VALUES
-								(@Product_Name, @Image_Url, @Stock, @Catagory, @Price)
+								(@Product_Name, @Image_Url, @Stock, @Catagory, @Price, @Description)
 								
 								SELECT @Success = 1;
 							END
@@ -631,13 +652,13 @@ GO
 
 -- how to run
 DECLARE @Out as BIT; 
-EXEC AddProduct @Token = 'FD-48BA-8080-EE76E5F9FAEC', @Product_Name = 'P Name', @Image_Url = 'url goes here', @Stock = 10, @Catagory='TV', @Price='10.11', @Success = @Out OUTPUT; 
+EXEC AddProduct @Token = 'FD-48BA-8080-EE76E5F9FAEC', @Product_Name = 'P Name', @Image_Url = 'url goes here', @Stock = 10, @Catagory='TV', @Price='10.11', @Description = "description", @Success = @Out OUTPUT; 
 SELECT @Out AS 'OutputMessage'; 
 --------
 
 --remove product
 
-CREATE PROCEDURE RemoveProduct
+CREATE PROCEDURE DeleteProduct
 @Token VARCHAR(25),
 @Product_ID INT,
 @Success BIT OUTPUT
@@ -686,7 +707,7 @@ GO
 
 -- how to run
 DECLARE @Out as BIT; 
-EXEC RemoveProduct @Token = 'FD-48BA-8080-EE76E5F9FAEC', @Product_ID = 1, @Success = @Out OUTPUT; 
+EXEC DeleteProduct @Token = 'FD-48BA-8080-EE76E5F9FAEC', @Product_ID = 1, @Success = @Out OUTPUT; 
 SELECT @Out AS 'OutputMessage'; 
 --------
 
@@ -702,6 +723,7 @@ CREATE PROCEDURE EditProduct
 @Catagory VARCHAR(50),
 @Total_Sold INT,
 @Price MONEY,
+@Description TEXT,
 @Success BIT OUTPUT
 AS
 BEGIN
@@ -715,7 +737,7 @@ BEGIN
 						IF EXISTS(SELECT * FROM Products WHERE Product_ID = @Product_ID)
 							BEGIN													
 								UPDATE Products
-								SET Product_Name = @Product_Name, Image_Url = Image_Url, Stock = @Stock, Catagory = @Catagory, Total_Sold = @Total_Sold, Price = @Price
+								SET Product_Name = @Product_Name, Image_Url = Image_Url, Stock = @Stock, Catagory = @Catagory, Total_Sold = @Total_Sold, Price = @Price, Description = @Description
 								WHERE Product_ID = @Product_ID;
 								
 								SELECT @Success = 1;
@@ -750,7 +772,7 @@ GO
 
 -- how to run
 DECLARE @Out as BIT; 
-EXEC EditProduct @Token = 'FD-48BA-8080-EE76E5F9FAEC', @Product_ID = 1, @Product_Name = 'Changed the name', @Image_Url = 'The url has changed', @Stock=100, @Catagory='Phone', @Total_Sold=11, @Price= 12.00, @Success = @Out OUTPUT; 
+EXEC EditProduct @Token = 'FD-48BA-8080-EE76E5F9FAEC', @Product_ID = 1, @Product_Name = 'Changed the name', @Image_Url = 'The url has changed', @Stock=100, @Catagory='Phone', @Total_Sold=11, @Price= 12.00, @Description = "description", @Success = @Out OUTPUT; 
 SELECT @Out AS 'OutputMessage';
 --------
 

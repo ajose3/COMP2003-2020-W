@@ -28,6 +28,8 @@ namespace MobileApp
             Routing.RegisterRoute("resetPwordPage", typeof(ResetPasswordPage));
             Routing.RegisterRoute("signUpPage", typeof(SignUpPage));
             Routing.RegisterRoute("loginPage", typeof(LoginPage));
+            Routing.RegisterRoute("successPage", typeof(SuccessPage));
+            
 
 
             foreach (var item in routes)

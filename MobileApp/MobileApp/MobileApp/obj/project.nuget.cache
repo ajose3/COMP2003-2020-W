@@ -1,11 +1,13 @@
 {
   "version": 2,
-  "dgSpecHash": "dCWIp1Lizg7w/AjQNFVBhy13xu6Umeu8Rx79NN52vukK2pVMZJPyE74Er7nOZRi++7ckBvF8pqKEECG38km7FQ==",
+  "dgSpecHash": "N3Zv4CMlgpUm3FhOo/WekQAC/JRRpr59FXTjiz6wVpYnQyPv0Wr1FuwO5BPYDYeCJA2OMT+Tbntclrf+2Ij4IQ==",
   "success": true,
   "projectFilePath": "C:\\Users\\joshu\\Documents\\GitHub\\COMP2003-2020-W\\MobileApp\\MobileApp\\MobileApp\\MobileApp.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\joshu\\.nuget\\packages\\microsoft.netcore.platforms\\1.1.0\\microsoft.netcore.platforms.1.1.0.nupkg.sha512",
     "C:\\Users\\joshu\\.nuget\\packages\\netstandard.library\\2.0.3\\netstandard.library.2.0.3.nupkg.sha512",
+    "C:\\Users\\joshu\\.nuget\\packages\\newtonsoft.json\\12.0.3\\newtonsoft.json.12.0.3.nupkg.sha512",
+    "C:\\Users\\joshu\\.nuget\\packages\\restsharp\\106.11.7\\restsharp.106.11.7.nupkg.sha512",
     "C:\\Users\\joshu\\.nuget\\packages\\system.numerics.vectors\\4.5.0\\system.numerics.vectors.4.5.0.nupkg.sha512",
     "C:\\Users\\joshu\\.nuget\\packages\\xamarin.essentials\\1.6.0\\xamarin.essentials.1.6.0.nupkg.sha512",
     "C:\\Users\\joshu\\.nuget\\packages\\xamarin.forms\\5.0.0.1874\\xamarin.forms.5.0.0.1874.nupkg.sha512"

@@ -13,22 +13,22 @@ namespace MobileApp.Data
             Users = new List<User>();
             Users.Add(new User
             {
-                username = "Bob",
+                email = "Bob",
                 password = "password"
             });
             Users.Add(new User
             {
-                username = "user",
+                email = "user",
                 password = "password"
             });
             Users.Add(new User
             {
-                username = "1",
+                email = "1",
                 password = "1"
             });
             Users.Add(new User
             {
-                username = "bill",
+                email = "bill",
                 password = "password"
             });
 
@@ -38,7 +38,7 @@ namespace MobileApp.Data
         {
             foreach (User user in Users)
             {
-                if ((user.username == username) && (user.password == password))
+                if ((user.email == username) && (user.password == password))
                 {
                     return true;
                 }

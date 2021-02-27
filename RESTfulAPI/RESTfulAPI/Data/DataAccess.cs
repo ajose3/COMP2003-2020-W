@@ -28,16 +28,16 @@ namespace RESTfulAPI.Repositories
             hash = hash.Replace("'","");
             return hash;
         }
-        public static string ValidateCustomer(User user)
+        public static string ValidateCustomer(string email, string password)
         {
             SqlDataReader responseReader;
             string token = null;
 
-            string hashedPassword = HashPassword(user.Password);
+            string hashedPassword = HashPassword(password);
 
             var query = "DECLARE @Out as VARCHAR(25); EXEC ValidateCustomer @Email = '_email', @Password = '_password', @Token = @Out OUTPUT; SELECT @OUT AS 'OutputMessage'; ";
 
-            query = query.Replace("_email", user.Email).Replace("_password", hashedPassword);
+            query = query.Replace("_email", email).Replace("_password", hashedPassword);
 
             SqlConnection connection = new SqlConnection(dbConnection());
 
@@ -103,7 +103,7 @@ namespace RESTfulAPI.Repositories
 
             string hashedPassword = HashPassword(user.Password);
 
-            var query = "DECLARE @Out as BIT; EXEC UpdateCustomer @Token = '_token', @FirstName = '_fName', @LastName = '_lName', @Email = '_email', @Password = '_password', @Age = '_age', @Gender = _gender, @Address = '_address', @PhoneNumber = '_phoneNumber', @Success = @Out OUTPUT; SELECT @Out AS 'OutputMessage'; ";
+            var query = "DECLARE @Out as BIT; EXEC EditCustomer @Token = '_token', @FirstName = '_fName', @LastName = '_lName', @Email = '_email', @Password = '_password', @Age = '_age', @Gender = _gender, @Address = '_address', @PhoneNumber = '_phoneNumber', @Success = @Out OUTPUT; SELECT @Out AS 'OutputMessage'; ";
 
             query = query.Replace("_token",token).Replace("_fName", user.FirstName).Replace("_lName", user.LastName).Replace("_email", user.Email).Replace("_password", hashedPassword).Replace("_age", user.Age.ToString()).Replace("_gender",user.Gender.ToString()).Replace("_address", user.Address).Replace("_phoneNumber", user.PhoneNumber);
 
@@ -200,16 +200,16 @@ namespace RESTfulAPI.Repositories
         //temp ^^
 
 
-        public static string ValidateAdmin(User user)
+        public static string ValidateAdmin(string email, string password)
         {
             SqlDataReader responseReader;
             string token = null;
 
-            string hashedPassword = HashPassword(user.Password);
+            string hashedPassword = HashPassword(password);
 
             var query = "DECLARE @Out as VARCHAR(25); EXEC ValidateAdmin @Email = '_email', @Password = '_password', @Token = @Out OUTPUT; SELECT @Out AS 'OutputMessage'; ";
 
-            query = query.Replace("_email", user.Email).Replace("_password", hashedPassword);
+            query = query.Replace("_email", email).Replace("_password", hashedPassword);
 
             SqlConnection connection = new SqlConnection(dbConnection());
 
@@ -239,7 +239,7 @@ namespace RESTfulAPI.Repositories
             SqlDataReader responseReader;
             bool responseMessage = false;
 
-            var query = "DECLARE @Out as BIT; EXEC AdminRemoveCustomer @Token = '_token', @Customer_Deleting_ID = _delID, @Success = @Out OUTPUT; SELECT @Out AS 'OutputMessage'; ";
+            var query = "DECLARE @Out as BIT; EXEC AdminDeleteCustomer @Token = '_token', @Customer_Deleting_ID = _delID, @Success = @Out OUTPUT; SELECT @Out AS 'OutputMessage'; ";
 
             query = query.Replace("_token", token).Replace("_delID", Customer_Deleting_ID.ToString());
 

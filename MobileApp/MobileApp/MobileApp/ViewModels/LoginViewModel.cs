@@ -1,5 +1,6 @@
 ﻿using MobileApp.Data;
 using MobileApp.Models;
+using MobileApp.Services;
 using MobileApp.Views;
 using System;
 using System.Collections.Generic;
@@ -19,14 +20,19 @@ namespace MobileApp.ViewModels
         public string username { get; set; }
         public string password { get; set; }
 
-        public ICommand LoginCmd => new Command(() =>
+        public ICommand LoginCmd => new Command(async () =>
         {
             User user = new User(username,password);
-            user.OnSubmit();
-            Shell.Current.DisplayAlert("LoginResult",user.OnSubmit(),"OK");
-            if (TokenData.value !=null)
+            //user.OnSubmit();
+
+            WebDataService webDataService = new WebDataService();
+            await webDataService.GetValidateCustomer(user);
+            //var result = await webDataService.PutUpdateCustomer(user);
+            //Shell.Current.DisplayAlert("LoginResult",user.OnSubmit(),"OK");
+            if (TokenData.value !=null || TokenData.value != "0")
             {
-                Shell.Current.DisplayAlert("Token", TokenData.value, "Ok");
+                await Shell.Current.GoToAsync("successPage");
+                await Shell.Current.DisplayAlert("Token", TokenData.value, "Ok");
             }
         });
         public ICommand GoSignUpPage => new Command(() =>

@@ -20,9 +20,9 @@ namespace RESTfulAPI.Controllers
         //user requests
         [HttpGet]
         [Route("Validate")]
-        public string ValidateCustomer(User user)
+        public string ValidateCustomer(string email, string password)
         {
-            string token = DataAccess.ValidateCustomer(user);
+            string token = DataAccess.ValidateCustomer(email, password);
             if (token != "0")
             {
                 return token;
@@ -58,9 +58,9 @@ namespace RESTfulAPI.Controllers
 
         [HttpGet]
         [Route("Admin/Validate")]
-        public string ValidateAdmin(User user)
+        public string ValidateAdmin(string email, string password)
         {
-            string token = DataAccess.ValidateAdmin(user);
+            string token = DataAccess.ValidateAdmin(email, password);
             if (token != "0")
             {
                 return token;

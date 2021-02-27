@@ -577,3 +577,5 @@ C:\Users\joshu\Documents\GitHub\COMP2003-2020-W\MobileApp\MobileApp\MobileApp.An
 C:\Users\joshu\Documents\GitHub\COMP2003-2020-W\MobileApp\MobileApp\MobileApp.Android\obj\Debug\100\stamp\_ResolveLibraryProjectImports.stamp
 C:\Users\joshu\Documents\GitHub\COMP2003-2020-W\MobileApp\MobileApp\MobileApp.Android\obj\Debug\100\res\menu\mainmenu.xml
 C:\Users\joshu\Documents\GitHub\COMP2003-2020-W\MobileApp\MobileApp\MobileApp.Android\obj\Debug\100\android\src\crc64bcb156adcf39ed15\SearchPageRenderer.java
+C:\Users\joshu\Documents\GitHub\COMP2003-2020-W\MobileApp\MobileApp\MobileApp.Android\obj\Debug\100\android\assets\Newtonsoft.Json.dll
+C:\Users\joshu\Documents\GitHub\COMP2003-2020-W\MobileApp\MobileApp\MobileApp.Android\obj\Debug\100\android\assets\RestSharp.dll

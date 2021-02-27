@@ -11,7 +11,15 @@ namespace MobileApp.Models
     public class User : INotifyPropertyChanged
     {
         public event PropertyChangedEventHandler PropertyChanged = delegate { };
-        public string username;
+        public string email;
+        public string password;
+        public string FirstName;
+        public string LastName;
+        public int Age;
+        public string Address;
+        public string PhoneNumber;
+        public bool Gender;
+
         //public string Username 
         //{ 
         //    get { return username; } 
@@ -21,7 +29,7 @@ namespace MobileApp.Models
         //        PropertyChanged(this, new PropertyChangedEventArgs("Username"));
         //    } 
         //}
-        public string password;
+
         //public string Password 
         //{
         //    get
@@ -32,7 +40,7 @@ namespace MobileApp.Models
         //        PropertyChanged(this, new PropertyChangedEventArgs("Password"));
         //    }
         //}
-        public ICommand SubmitCommand { get; set; }
+        //public ICommand SubmitCommand { get; set; }
 
         public User()
         {
@@ -41,35 +49,48 @@ namespace MobileApp.Models
         public User(string username, string password)
         {
             //SubmitCommand = new Command(OnSubmit);
-            this.username = username;
+            this.email = username;
             this.password = password;
         }
 
-        public string OnSubmit()
+        public User(string username, string password, string firstName, string lastName, int age, string address, string phoneNumber, bool gender)
         {
-            //Move to view model
-            if (!string.IsNullOrEmpty(username))
-            {
-                bool isFound = UserData.searchUser(username,password);
-                //Contact API
-
-
-                if (isFound)
-                {
-                    //for testing
-                    TokenData.value = "tokenGoesHere";
-                    //MessagingCenter.Send(this, "LoginAlert", "User found");
-
-                    return "User Found";
-                }
-                else
-                {
-                    //MessagingCenter.Send(this, "LoginAlert", "User not found");
-                    return "not found";
-                }
-
-            }
-            return null;
+            //SubmitCommand = new Command(OnSubmit);
+            this.email = username;
+            this.password = password;
+            this.FirstName = firstName;
+            this.LastName = lastName;
+            this.Age = age;
+            this.Address = address;
+            this.PhoneNumber = phoneNumber;
+            this.Gender = gender;
         }
+
+        //    public string OnSubmit()
+        //    {
+        //        //Move to view model
+        //        if (!string.IsNullOrEmpty(username))
+        //        {
+        //            bool isFound = UserData.searchUser(username,password);
+        //            //Contact API
+
+
+        //            if (isFound)
+        //            {
+        //                //for testing
+        //                TokenData.value = "tokenGoesHere";
+        //                //MessagingCenter.Send(this, "LoginAlert", "User found");
+
+        //                return "User Found";
+        //            }
+        //            else
+        //            {
+        //                //MessagingCenter.Send(this, "LoginAlert", "User not found");
+        //                return "not found";
+        //            }
+
+        //        }
+        //        return null;
+        //    }
     }
 }

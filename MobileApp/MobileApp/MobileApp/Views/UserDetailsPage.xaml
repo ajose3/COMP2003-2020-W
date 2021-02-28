@@ -10,16 +10,15 @@
     <ContentPage.Content>
         <StackLayout Spacing="15" Padding="10">
             <Label Text="Account Details" FontSize="40" FontAttributes="Bold" TextColor="Black"/>
-            <Label x:Name="fName" Text="{Binding FirstName}" FontSize="25"/>
-            <Label Text="{Binding LastName} " FontSize="25"/>
-            <Label Text="{Binding Age} " FontSize="25"/>
-            <Label Text="{Binding Address} " FontSize="25"/>
-            <Label Text="{Binding Email} " FontSize="25"/>
-            <Label Text="{Binding Password} " FontSize="25"/>
-            <Label Text="{Binding Gender} " FontSize="25"/>
+            <Label x:Name="fName" Text="{Binding FirstName, StringFormat='FirstName: {0}'}" FontSize="25"/>
+            <Label Text="{Binding LastName, StringFormat='LastName: {0}'} " FontSize="25"/>
+            <Label Text="{Binding Age, StringFormat='Age: {0}'} " FontSize="25"/>
+            <Label Text="{Binding Address, StringFormat='Address: {0}'} " FontSize="25"/>
+            <Label Text="{Binding Email, StringFormat='Email: {0}'} " FontSize="25"/>
+            <!--<Label Text="{Binding Password, StringFormat='Password: {0}'} " FontSize="25"/>-->
+            <Label Text="{Binding Gender, StringFormat='Gender: {0}'} " FontSize="25"/>
 
-            <Button Text="Populate" Font="25" Command="{Binding PopulateDetails}"/>
-            <Button Text="Edit Details" Font="25"/>
+            <Button Text="Edit Details" Font="25" Command="{Binding GoToEditPage}"/>
 
             <!--map username to current user-->
             <!--<Label Text="{Binding UserName}" TextColor="Black" FontSize="Large"/>-->

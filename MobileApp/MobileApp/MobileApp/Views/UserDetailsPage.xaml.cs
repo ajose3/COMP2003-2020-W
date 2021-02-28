@@ -17,7 +17,6 @@ namespace MobileApp.Views
         {
             InitializeComponent();
             this.BindingContext = new CustomerDetailsViewModel();
-
         }
     }
 }

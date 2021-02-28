@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
 using System.Text;
+using System.Threading.Tasks;
 using System.Windows.Input;
 using Xamarin.Forms;
 
@@ -12,32 +13,100 @@ namespace MobileApp.ViewModels
 {
     public class CustomerDetailsViewModel : INotifyPropertyChanged
     {
+        public CustomerDetailsViewModel()
+        {
+            Task.Run(async () => await LoadDetails());
+        }
 
-        public string Email { get; set; }
-        //public string Email
-        //{
-        //    get { return email; }
-        //    set
-        //    {
-        //        email = value;
-        //        OnPropertyChanged(nameof(Email));
-        //    }
-        //}
-        public string Password { get; set; }
-        public string FirstName { get; set; }
-        public string LastName { get; set; }
-        public int Age { get; set; }
-        public string Address { get; set; }
-        public string PhoneNumber { get; set; }
-        public string Gender { get; set; }
+        public event PropertyChangedEventHandler PropertyChanged;
+        public string email;
+        public string Email
+        {
+            get { return email; }
+            set
+            {
+                email = value;
+                OnPropertyChanged("Email");
+            }
+        }
+        public string password;
+        public string Password
+        {
+            get { return password; }
+            set
+            {
+                email = value;
+                OnPropertyChanged("Password");
+            }
+        }
+        public string firstName;
+        public string FirstName
+        {
+            get { return firstName; }
+            set
+            {
+                firstName = value;
+                OnPropertyChanged("FirstName");
+            }
+        }
+        public string lastName;
+        public string LastName
+        {
+            get { return lastName; }
+            set
+            {
+                lastName = value;
+                OnPropertyChanged("LastName");
+            }
+        }
+        public int age;
+        public int Age
+        {
+            get { return age; }
+            set
+            {
+                age = value;
+                OnPropertyChanged("Age");
+            }
+        }
+        public string address;
+        public string Address
+        {
+            get { return address; }
+            set
+            {
+                address = value;
+                OnPropertyChanged("Address");
+            }
+        }
+        public string phoneNumber;
 
+        public string PhoneNumber
+        {
+            get { return phoneNumber; }
+            set
+            {
+                phoneNumber = value;
+                OnPropertyChanged("PhoneNumber");
+            }
+        }
+        public string gender;
+        public string Gender
+        {
+            get { return gender; }
+            set
+            {
+                gender = value;
+                OnPropertyChanged("Gender");
+            }
+        }
 
-        public ICommand PopulateDetails => new Command(async () =>
+        public async Task LoadDetails()
         {
             WebDataService webDataService = new WebDataService();
             User user = await webDataService.GetCustomerDetails();
             Email = user.email;
-            Password = user.password;
+            //Password = (user.password).ToString();
             FirstName = user.FirstName;
             LastName = user.LastName;
             Age = user.Age;
@@ -51,12 +120,17 @@ namespace MobileApp.ViewModels
             {
                 Gender = "Female";
             }
+        }
+
+        public ICommand GoToEditPage => new Command(() =>
+        {
+            Shell.Current.GoToAsync("editDetailsPage");
         });
 
-        public event PropertyChangedEventHandler PropertyChanged;
-        void OnPropertyChanged([CallerMemberName] string propertyName = null)
+        protected virtual void OnPropertyChanged(string propertyName)
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
+
     }
 }

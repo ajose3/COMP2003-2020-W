@@ -1,24 +1,48 @@
-﻿using MobileApp.Views;
+﻿using MobileApp.Data;
+using MobileApp.Models;
+using MobileApp.Services;
+using MobileApp.Views;
 using System;
 using System.Collections.Generic;
 using System.Text;
+using System.Windows.Input;
 using Xamarin.Forms;
 
 namespace MobileApp.ViewModels
 {
     public class LoginViewModel : BaseViewModel
     {
-        public Command LoginCommand { get; }
 
         public LoginViewModel()
         {
-            LoginCommand = new Command(OnLoginClicked);
         }
 
-        private async void OnLoginClicked(object obj)
+        public string username { get; set; }
+        public string password { get; set; }
+
+        public ICommand LoginCmd => new Command(async () =>
         {
-            // Prefixing with `//` switches to a different navigation stack instead of pushing to the active one
-            await Shell.Current.GoToAsync($"//{nameof(HomePage)}");
-        }
+            User user = new User(username,password);
+            //user.OnSubmit();
+
+            WebDataService webDataService = new WebDataService();
+            await webDataService.GetValidateCustomer(user);
+            //var result = await webDataService.PutUpdateCustomer(user);
+            //Shell.Current.DisplayAlert("LoginResult",user.OnSubmit(),"OK");
+            if (TokenData.value !=null || TokenData.value != "0")
+            {
+                await Shell.Current.GoToAsync("successPage");
+                await Shell.Current.DisplayAlert("Token", TokenData.value, "Ok");
+            }
+        });
+        public ICommand GoSignUpPage => new Command(() =>
+        {
+            Shell.Current.GoToAsync("signUpPage");
+        });
+        public ICommand GoResetPage => new Command(() =>
+        {
+            Shell.Current.GoToAsync("resetPwordPage");
+        });
+
     }
 }

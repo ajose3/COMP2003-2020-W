@@ -1,0 +1,40 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="MobileApp.Views.EditDetailsPage">
+    <ContentPage.Content>
+        <ScrollView>
+            <StackLayout Padding="10">
+                <!--Padding="0 0 20 0"-->
+                <Label FontSize="40" HorizontalOptions="Center" Text="SignUp"/>
+
+                <Label Text="Email" FontSize="Large"/>
+                <Entry x:Name="usernameEntry" Text="{Binding Email}" Placeholder="Email" FontSize="Large"/>
+                <Label Text="Password" FontSize="Large"/>
+                <Entry x:Name="passwordEntry" Text="{Binding Password}" Placeholder="Password" FontSize="Large" IsPassword="True"/>
+                <Label Text="Confirm Password" FontSize="Large"/>
+                <Entry x:Name="passwordConfirmEntry" Text="{Binding Password}" Placeholder="Confirm password" FontSize="Large" IsPassword="True"/>
+
+                <Label Text="First Name" FontSize="Large"/>
+                <Entry x:Name="firstNameEntry" Text="{Binding FirstName}" Placeholder="First name" FontSize="Large"/>
+                <Label Text="Last Name" FontSize="Large"/>
+                <Entry x:Name="lastNameEntry" Text="{Binding LastName}" Placeholder="Last Name" FontSize="Large"/>
+                <Label Text="Age" FontSize="Large"/>
+                <Entry x:Name="ageEntry" Text="{Binding Age}" Placeholder="Age" FontSize="Large"/>
+                <Label Text="Gender" FontSize="Large"/>
+                <Picker x:Name="gender" HorizontalOptions="FillAndExpand" SelectedItem="{Binding Gender}">
+                    <Picker.Items>
+                        <x:String>Male</x:String>
+                        <x:String>Female</x:String>
+                    </Picker.Items>
+                </Picker>
+                <Label Text="Address" FontSize="Large"/>
+                <Entry x:Name="addressEntry" Text="{Binding PhoneNumber}" Placeholder="Address" FontSize="Large"/>
+                <Label Text="Phone Number" FontSize="Large"/>
+                <Entry x:Name="phoneNumberEntry" Text="{Binding Address}" Placeholder="Phone Number" FontSize="Large"/>
+
+                <Button Text="Update User"/>
+            </StackLayout>
+        </ScrollView>
+    </ContentPage.Content>
+</ContentPage>

@@ -83,22 +83,27 @@
         <ShellContent Route="HomePage" ContentTemplate="{DataTemplate local:HomePage}"/>
     </FlyoutItem>
 
-    <!--<FlyoutItem Title="About" Icon="icon_about.png">
-        <ShellContent Route="AboutPage" ContentTemplate="{DataTemplate local:AboutPage}" />
-    </FlyoutItem>-->
-    <!--<FlyoutItem Title="Browse" Icon="icon_feed.png">
-        <ShellContent Route="ItemsPage" ContentTemplate="{DataTemplate local:ItemsPage}" />
-    </FlyoutItem>-->
+    <FlyoutItem Title="UserDetails" Icon="">
+        <ShellContent Route="UserDetailsView" ContentTemplate="{DataTemplate local:UserDetailsPage}" />
+    </FlyoutItem>
 
     <!-- When the Flyout is visible this will be a menu item you can tie a click behavior to  -->
-    <!--<MenuItem Text="UserDetials" StyleClass="MenuItemLayoutStyle" Clicked="MenuItem_Clicked">
-    </MenuItem>-->
-    <MenuItem Text="UserDetails" StyleClass="MenuItemLayoutStyle" Clicked="MenuItem_Clicked">
-    </MenuItem>
+    
     <MenuItem Text="Basket" StyleClass="MenuItemLayoutStyle" Clicked="ClickedBasketMenuItem">
     </MenuItem>
-    <MenuItem Text="Logout" StyleClass="MenuItemLayoutStyle" Clicked="OnMenuItemClicked">
+
+    <MenuItem Text="Login" StyleClass="MenuItemLayoutStyle" Clicked="ClickedLoginMenuItem">
     </MenuItem>
+
+    <MenuItem Text="Reset Password" StyleClass="MenuItemLayoutStyle" Clicked="ClickedResetPasswordMenuItem">
+    </MenuItem>
+    
+    <MenuItem Text="SignUp" StyleClass="MenuItemLayoutStyle" Clicked="ClickedSignUpMenuItem">
+    </MenuItem>
+
+    <!--<MenuItem Text="Logout" StyleClass="MenuItemLayoutStyle" Clicked="OnMenuItemClicked">
+    </MenuItem>-->
+    
 
     <!--
         TabBar lets you define content that won't show up in a flyout menu. When this content is active
@@ -107,9 +112,9 @@
         content you can do so by calling 
         await Shell.Current.GoToAsync("//LoginPage");
     -->
-    <TabBar>
+    <!--<TabBar>
         <ShellContent Route="LoginPage" ContentTemplate="{DataTemplate local:LoginPage}" />
-    </TabBar>
+    </TabBar>-->
 
     <!-- Optional Templates 
     // These may be provided inline as below or as separate classes.

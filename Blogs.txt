@@ -136,3 +136,9 @@ The group have decided the one member who was not able to attend the meeting sho
 Week 15 (22/02/21 - 26/02/21):
 
 This week we looked over and discussed the tasks from last week, we determined another week would be needed to complete both the login system and the admin dashboard. During the meeting, we determined that we were on track to finishing the ecommerce application within the next few weeks. We decided it was time to put more focus on the recommendation system portion of the project. We assigned two people the task of researching recommendation systems and to produce a short report each of their findings. Two reports are to be produced hoping to identify any discrepancies in research. The final two members of the group were assigned to update and improve the UML diagrams and draft some portions of the interim report using the feedback given from the previous.
+
+Week 16 (01/03/2021-05/03/2021):
+
+On week 16 we had our regular zoom meeting. We first discussed how we got on with last week’s tasks for the people we then assigned an extra person to help with the tasks that could not be completed. 
+Once we had all agreed on the next steps, we needed to take in terms of what type of AI we would build, and which parts of the final report would need to be written to include all the new features to the program. 
+We then assigned new tasks to the people who had completed their previous tasks mainly starting to build the AI, writing the report, and cleaning up our interface with animations and so on. 

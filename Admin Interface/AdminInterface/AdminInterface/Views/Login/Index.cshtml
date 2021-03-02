@@ -6,7 +6,7 @@
     Layout = null;
 }
 
-<div class="login-box">
+@*<div class="login-box">
     <h1>Login</h1>
     <div class="textbox">
         <input type="text" placeholder="Username" name="" value="">
@@ -18,6 +18,19 @@
 
     <input class="btn" type="button" name="" value="">
 
+</div>*@
+
+<environment names="Development">
+    <link rel="stylesheet" href="~/css/LoginStyleSheet.css" />
+</environment>
+
+<div class="loginContainer">
+    <form action="#">
+        <h1>Login</h1>
+        <input type="text" id="email" placeholder="Email"><br>
+        <input type="password" id="password" placeholder="Password"><br><br>
+        <input type="submit" value="Login" class="submitBtn">
+    </form>
 </div>
 
 <script></script>

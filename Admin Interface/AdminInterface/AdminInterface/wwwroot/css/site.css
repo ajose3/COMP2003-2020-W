@@ -260,6 +260,7 @@ button.accept-policy {
     padding-top: 70px;
     z-index: 1;
     background-color: rgb(245, 245, 245);
+    max-width: 100%;
 }
 
 
@@ -279,6 +280,7 @@ button.accept-policy {
     /*box-shadow: 5px 5px 3px rgb(225, 225, 225);*/
     box-shadow: inset 5px 5px 4px #fff, 5px 5px 3px rgb(225, 225, 225);
     border-radius: 12px;
+    min-width: 300px;
 }
 
 .dashboardLeftBlock {
@@ -291,10 +293,15 @@ button.accept-policy {
     grid-column-end: 3;
 }
 
-@media screen and (max-width: 839px) {
+/* 849px and down - single block lines */
+@media screen and (max-width: 849px) {
     .dashboardRightBlock {
         grid-column-start: 1;
         grid-column-end: 2;
+    }
+
+    .dashboardSection {
+        grid-template-columns: minmax(0, 1fr);
     }
 }
 
@@ -407,9 +414,9 @@ button.accept-policy {
     cursor: pointer;
 }
 
-    .widgetBtn:hover {
-        background-color: rgb(210, 210, 210);
-    }
+.widgetBtn:hover {
+    background-color: rgb(210, 210, 210);
+}
 
 .chartSettingsWrapper {
     display: flex;
@@ -513,14 +520,41 @@ button.accept-policy {
 #orderStatusTable {
     width: 100%;
     padding-top: 20px;
+    margin-top: 20px;
 }
 
-    #orderStatusTable th {
-        /* top, right, bottom, left */
-        padding: 10px 10px 20px 10px;
+#orderStatusTable th {
+    /* top, right, bottom, left */
+    /*padding: 10px 10px 20px 10px;*/
+    color: rgb(253, 114, 130);
+}
+
+#orderStatusTable td {
+    /* top, right, bottom, left */
+    /*padding: 4px 14px 4px 14px;*/
+}
+
+/* 999px and down */
+@media screen and (max-width: 999px) {
+    #orderStatusTable {
+        font-size: 14px;
+    }
+}
+
+/* 599px and down */
+@media screen and (max-width: 599px) {
+    #lineChart {
+        height: 200px !important;
+    }
+}
+
+/* 549px and down */
+@media screen and (max-width: 549px) {
+    .dashboardSection {
+        margin: 20px 30px;
     }
 
-    #orderStatusTable td {
-        /* top, right, bottom, left */
-        padding: 4px 14px 4px 14px;
+    .dashboardSectionHeader {
+        font-size: 16px;
     }
+}

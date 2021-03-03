@@ -26,12 +26,7 @@ namespace AdminInterface.Controllers
             //contact api (admin login)
             if (Token.value == null || Token.value == "1")
             {
-                //display alert saying wrong password
-                //return Redirect("~/Home/Privacy");
-                //return "<script>alert('Data inserted successfully')</script>"
-                //return Content("<script language='javascript' type='text/javascript'>alert('Hello world!');</script>");
                 return Redirect("~/Login");
-
             }
 
             //if password correct

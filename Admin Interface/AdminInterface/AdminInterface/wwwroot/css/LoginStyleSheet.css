@@ -1,0 +1,79 @@
+﻿
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    transition: all .2s linear;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+::selection {
+    color: white;
+    background: #FF6384;
+}
+
+.loginContainer {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    overflow: hidden;
+    z-index: 0;
+    padding-bottom: 90px;
+}
+
+    .loginContainer form {
+        width: 30%;
+        padding: 45px 25px;
+        box-shadow: 0 6px 8px rgba(0,0,0,.3);
+        border-radius: 15px;
+        backdrop-filter: blur(4px);
+        /*align-items: center;*/
+        /*justify-content: center;*/
+    }
+
+        .loginContainer form h1 {
+            text-align: center;
+            font-size: 4em;
+            /*margin: 20px 0;*/
+            padding: 10px 0 70px 0;
+        }
+
+        .loginContainer form input {
+            width: 100%;
+            min-height: 40px;
+            border-radius: 10px;
+            font-size: 1.4em;
+            padding: 0 10px;
+            margin: 10px 0;
+            border-color: grey;
+        }
+
+        .loginContainer form .submitBtn {
+            background-color: #FF6384;
+            border-color: white;
+            color: white;
+            font-size: 1.6em;
+            padding: 5px 0;
+            width: 30%;
+            cursor: pointer;
+        }
+
+            .loginContainer form .submitBtn:hover {
+                background-color: #FF2853;
+            }
+
+            .loginContainer form .submitBtn:focus {
+                outline: none;
+            }
+
+        .loginContainer form input[type=text]:focus {
+            outline: none;
+            border: 3px solid #FF6384;
+        }
+
+        .loginContainer form input[type=password]:focus {
+            outline: none;
+            border: 3px solid #FF6384;
+        }

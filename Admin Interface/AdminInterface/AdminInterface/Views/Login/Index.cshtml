@@ -5,19 +5,17 @@
     ViewData["Title"] = "Login Page";
     Layout = null;
 }
+<environment names="Development">
+    <link rel="stylesheet" href="~/css/LoginStyleSheet.css" />
+</environment>
 
-<div class="login-box">
-    <h1>Login</h1>
-    <div class="textbox">
-        <input type="text" placeholder="Username" name="" value="">
-    </div>
-
-    <div class="textbox">
-        <input type="password" placeholder="Password" name="" value="">
-    </div>
-
-    <input class="btn" type="button" name="" value="">
-
+<div class="loginContainer">
+    <form method="POST">
+        <h1>Login</h1>
+        <input type="text" id="email" placeholder="Email" name="email"><br>
+        <input type="password" id="password" placeholder="Password" name="password"><br><br>
+        <input type="submit" value="Login" class="submitBtn">
+    </form>
 </div>
 
 <script></script>

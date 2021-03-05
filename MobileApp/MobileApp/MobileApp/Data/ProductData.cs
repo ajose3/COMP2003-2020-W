@@ -75,7 +75,7 @@ namespace MobileApp.Data
                 Name = "Charger",
                 Description = "This is a Charger",
                 Price = 10.00f,
-                ImageUrl = "https://m.media-amazon.com/images/I/51uwkfNxYxL._AC_SX180_SY120_QL70_.jpg",
+                ImageUrl = "https://images-na.ssl-images-amazon.com/images/I/51tWZFkT3AL._AC_SL1300_.jpg",
                 Stock = 300
             });
 

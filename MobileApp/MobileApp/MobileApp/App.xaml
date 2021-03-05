@@ -31,6 +31,9 @@
 
             <Style TargetType="Button">
                 <Setter Property="TextColor" Value="White"></Setter>
+                <Setter Property="FontSize" Value="20"></Setter>
+                <Setter Property="CornerRadius" Value="10"></Setter>
+                <Setter Property="VerticalOptions" Value="CenterAndExpand"></Setter>
                 <Setter Property="VisualStateManager.VisualStateGroups">
                     <VisualStateGroupList>
                         <VisualStateGroup x:Name="CommonStates">
@@ -58,40 +61,43 @@
             </Style>
 
             <DataTemplate x:Key="ProductTemplate">
-                <Grid Padding="10,10,10,0">
-                    <Grid.RowDefinitions>
-                        <RowDefinition Height="Auto"/>
-                        <RowDefinition Height="Auto"/>
-                        <RowDefinition Height="5"/>
-                    </Grid.RowDefinitions>
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="100"/>
-                        <ColumnDefinition Width="Auto"/>
-                    </Grid.ColumnDefinitions>
-                    <!-- scale image to fit the view (won't be cropped to fill view) -->
-                    <Image Grid.RowSpan="2"
+                <Frame BorderColor="#D8DAE0" CornerRadius="20" HasShadow="True">
+                    <Grid Padding="10,10,10,0">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="5"/>
+                        </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="100"/>
+                            <ColumnDefinition Width="Auto"/>
+                        </Grid.ColumnDefinitions>
+                        <!-- scale image to fit the view (won't be cropped to fill view) -->
+                        <Image Grid.RowSpan="2"
                        Source="{Binding ImageUrl}" 
                        Aspect="AspectFit"
                        HeightRequest="80"/>
-                    <Label Margin="10,10,0,0" Grid.Column="1"
+                        <Label Margin="10,10,0,0" Grid.Column="1"
                        Text="{Binding Name}" 
                        FontAttributes="Bold" 
                            TextColor="Black"
                            FontSize="20"/>
-                    <FlexLayout Margin="10,0,0,0" Grid.Column="1" Grid.Row="1">
-                        <Label Text="Price: £" TextColor="DarkGray" FontSize="20"/>
-                        <Label
+                        <FlexLayout Margin="10,0,0,0" Grid.Column="1" Grid.Row="1">
+                            <Label Text="Price: £" TextColor="DarkGray" FontSize="20"/>
+                            <Label
                        Text="{Binding Price}" 
                        VerticalOptions="End" 
                            TextColor="DarkGray"
                            FontSize="20"
                            HorizontalTextAlignment="End"/>
-                    </FlexLayout>
+                        </FlexLayout>
 
-                    <!-- separator line -->
-                    <BoxView Grid.Row="2" Grid.ColumnSpan="3" Margin="0" Color="{StaticResource GridLineColor}" Style="{StaticResource SeparatorLineStyle}"/>
+                        <!-- separator line -->
+                        <!--<BoxView Grid.Row="2" Grid.ColumnSpan="3" Margin="0" Color="{StaticResource GridLineColor}" Style="{StaticResource SeparatorLineStyle}"/>-->
 
-                </Grid>
+                    </Grid>
+
+                </Frame>
             </DataTemplate>
 
             <!--<DataTemplate x:Key="ProductSearchTemplate">

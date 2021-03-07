@@ -67,14 +67,15 @@
 
     <ScrollView>
         <StackLayout Margin="0">
-            <Label Margin="10,10" Text="Recomended Products" CharacterSpacing="0.5" FontSize="30" TextColor="Black" FontAttributes="Bold"/>
+            <Label Margin="10,10" Text="Recommended Products" CharacterSpacing="0.5" FontSize="30" TextColor="Black" FontAttributes="Bold"/>
             <!--Carousel -> itemSource is list of all products change to recomeneded product list-->
             <CarouselView ItemsSource="{x:Static data:RecommendedProducts.RecProducts}"
                           Margin="0,5,0,0"
                           PeekAreaInsets="100"
                           IndicatorView="indicatorview"
                           HeightRequest="250"
-                          CurrentItem="OnCollectionViewSelectionChanged">
+                          CurrentItem="OnCollectionViewSelectionChanged"
+                          >
                 <CarouselView.ItemTemplate>
                     <DataTemplate>
                         <StackLayout>
@@ -129,7 +130,7 @@
             <!-- separator line -->
             <BoxView Style="{StaticResource SeparatorLineStyle}" Margin="15,25,15,10"/>
 
-            <Label Text="You might like" FontSize="30" CharacterSpacing="0.5" TextColor="Black" FontAttributes="Bold"/>
+            <Label Margin="10,10" Text="You might like" FontSize="30" CharacterSpacing="0.5" TextColor="Black" FontAttributes="Bold"/>
             <!--collection of all items in product array-->
             <CollectionView Margin="5"
                             BackgroundColor="#f7f7f7"
@@ -140,6 +141,9 @@
                             SelectionChanged="OnCollectionViewSelectionChanged"
                             ItemsUpdatingScrollMode="KeepScrollOffset"
                             >
+                <CollectionView.EmptyView>
+                    <Label HorizontalOptions="Center" Text="No Products"/>
+                </CollectionView.EmptyView>
             </CollectionView>
         </StackLayout>
     </ScrollView>

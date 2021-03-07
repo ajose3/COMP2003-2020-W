@@ -43,7 +43,7 @@
                 </Frame>
                 
                 <Label Text="{Binding Name}"
-                       HorizontalOptions="Start" 
+                       HorizontalOptions="Center" 
                        FontSize="40" FontAttributes="Bold" TextColor="Black" />
                 <!--flex box to display word price next to price binding-->
                 <FlexLayout>

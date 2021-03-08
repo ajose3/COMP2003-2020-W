@@ -46,11 +46,11 @@
                        HorizontalOptions="Center" 
                        FontSize="40" FontAttributes="Bold" TextColor="Black" />
                 <FlexLayout>
-                    <Label Text="{StaticResource IconStar}" FontFamily="FA-S" FontSize="20" TextColor="Gold"/>
-                    <Label Text="{StaticResource IconStar}" FontFamily="FA-S" FontSize="20" TextColor="Gold"/>
-                    <Label Text="{StaticResource IconStar}" FontFamily="FA-S" FontSize="20" TextColor="Gold"/>
-                    <Label Text="{StaticResource IconStar}" FontFamily="FA-S" FontSize="20"/>
-                    <Label Text="{StaticResource IconStar}" FontFamily="FA-S" FontSize="20"/>
+                    <Label Text="{StaticResource IconStar}" FontFamily="FA-S" FontSize="20" TextColor="{Binding StarColor1}"/>
+                    <Label Text="{StaticResource IconStar}" FontFamily="FA-S" FontSize="20" TextColor="{Binding StarColor2}"/>
+                    <Label Text="{StaticResource IconStar}" FontFamily="FA-S" FontSize="20" TextColor="{Binding StarColor3}"/>
+                    <Label Text="{StaticResource IconStar}" FontFamily="FA-S" FontSize="20" TextColor="{Binding StarColor4}"/>
+                    <Label Text="{StaticResource IconStar}" FontFamily="FA-S" FontSize="20" TextColor="{Binding StarColor5}"/>
                 </FlexLayout>
 
                 <!--flex box to display word price next to price binding-->
@@ -75,13 +75,13 @@
                 <Button Text="Write Review"/>
                 <CollectionView BackgroundColor="Red"
                                 ItemsLayout="VerticalList"
-                                ItemsSource="{x:Static data:ReviewData.Reviews}"
+                                ItemsSource="{Binding Reviews}"
                                 ItemTemplate="{StaticResource ReviewTemplate}"
                                 SelectionMode="Single"
                                 HeightRequest="500"
                                 >
                     <CollectionView.EmptyView>
-                        <Label HorizontalOptions="Center" Text="No Reviews"/>
+                        <Label HorizontalOptions="Center" HorizontalTextAlignment="Center" Text="Be the first to review this product" FontSize="28" TextColor="Black"/>
                     </CollectionView.EmptyView>
                 </CollectionView>
             </StackLayout>

@@ -106,11 +106,11 @@
                         <StackLayout>
                             <Label Text="{Binding Title}" FontSize="28" TextColor="Black"/>
                             <FlexLayout>
-                                <Label Text="{StaticResource IconStar}" FontFamily="FA-S" FontSize="20" TextColor="Gold"/>
-                                <Label Text="{StaticResource IconStar}" FontFamily="FA-S" FontSize="20" TextColor="Gold"/>
-                                <Label Text="{StaticResource IconStar}" FontFamily="FA-S" FontSize="20" TextColor="Gold"/>
-                                <Label Text="{StaticResource IconStar}" FontFamily="FA-S" FontSize="20"/>
-                                <Label Text="{StaticResource IconStar}" FontFamily="FA-S" FontSize="20"/>
+                                <Label Text="{StaticResource IconStar}" FontFamily="FA-S" FontSize="20" TextColor="{Binding StarColor1}"/>
+                                <Label Text="{StaticResource IconStar}" FontFamily="FA-S" FontSize="20" TextColor="{Binding StarColor2}"/>
+                                <Label Text="{StaticResource IconStar}" FontFamily="FA-S" FontSize="20" TextColor="{Binding StarColor3}"/>
+                                <Label Text="{StaticResource IconStar}" FontFamily="FA-S" FontSize="20" TextColor="{Binding StarColor4}"/>
+                                <Label Text="{StaticResource IconStar}" FontFamily="FA-S" FontSize="20" TextColor="{Binding StarColor5}"/>
                             </FlexLayout>
                             <BoxView Style="{StaticResource SeparatorLineStyle}" Margin="0,0,0,0"/>
                             <Label Text="{Binding Desciption}" FontSize="20" TextColor="Black"/>

@@ -94,11 +94,11 @@ namespace MobileApp.Data
             {
                 foreach (var rev in Reviews)
                 {
-                    rev.StarColor1 = "Grey";
-                    rev.StarColor2 = "Grey";
-                    rev.StarColor3 = "Grey";
-                    rev.StarColor4 = "Grey";
-                    rev.StarColor5 = "Grey";
+                    rev.StarColor1 = "Gray";
+                    rev.StarColor2 = "Gray";
+                    rev.StarColor3 = "Gray";
+                    rev.StarColor4 = "Gray";
+                    rev.StarColor5 = "Gray";
                     if (rev.Rating >= 1)
                     {
                         rev.StarColor1 = "Gold";
@@ -122,6 +122,17 @@ namespace MobileApp.Data
                 }
             }
             return (List<Review>)Reviews;
+        }
+        public static void writeReview(int prodId, int rating, string title, string desciption)
+        {
+            AllReviews.Add(new Review
+            {
+                ProdID = prodId,
+                CustomerID = 1,
+                Rating = rating,
+                Title = title,
+                Desciption = desciption
+            });
         }
     }
 }

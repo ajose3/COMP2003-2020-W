@@ -29,8 +29,15 @@
             </Shell.SearchHandler>
         </StackLayout>
     </ContentPage.Content>-->
+
+    <!--<ContentPage.ToolbarItems>
+        <ToolbarItem Text="Share"/>
+    </ContentPage.ToolbarItems>-->
     
     <ContentPage.Content>
+        <Grid>
+            
+        
         <ScrollView>
             <StackLayout Margin="10">
 
@@ -72,8 +79,8 @@
                 <BoxView Style="{StaticResource SeparatorLineStyle}"/>
 
                 <Label Text="Reviews" TextColor="Black" FontSize="30"/>
-                <Button Text="Write Review"/>
-                <CollectionView BackgroundColor="Red"
+                    <Button Text="Write Review" Clicked="WriteReview_Clicked" Command="{Binding ResetWriteCommand}"/>
+                <CollectionView BackgroundColor="White"
                                 ItemsLayout="VerticalList"
                                 ItemsSource="{Binding Reviews}"
                                 ItemTemplate="{StaticResource ReviewTemplate}"
@@ -84,7 +91,61 @@
                         <Label HorizontalOptions="Center" HorizontalTextAlignment="Center" Text="Be the first to review this product" FontSize="28" TextColor="Black"/>
                     </CollectionView.EmptyView>
                 </CollectionView>
+                
             </StackLayout>
         </ScrollView>
+            
+            <!-- Backdrop -->
+            <BoxView Color="#4B000000"
+                        Opacity="0"
+                        InputTransparent="True"
+                        x:Name="Backdrop">
+                <BoxView.GestureRecognizers>
+                    <TapGestureRecognizer Tapped="TapGestureRecognizer_Tapped"/>
+                </BoxView.GestureRecognizers>
+            </BoxView>
+
+            <!-- Bottom Drawer -->
+
+            <Frame  x:Name="BottomToolbar"
+                    HeightRequest="495"
+                    VerticalOptions="End"
+                    BackgroundColor="White"
+                    CornerRadius="20"
+                    TranslationY="540"
+                    Padding="15,6"
+                    HasShadow="True">
+                <Frame.GestureRecognizers>
+                    <PanGestureRecognizer
+                        PanUpdated="PanGestureRecognizer_PanUpdated"/>
+                </Frame.GestureRecognizers>
+                <StackLayout Orientation="Vertical" Padding="0,4">
+                    <BoxView CornerRadius="2" HeightRequest="2"
+                             BackgroundColor="LightGray"
+                             HorizontalOptions="Center"/>
+                    <Label Text="Write a Review"
+                           TextColor="Black"
+                           HorizontalOptions="Center"
+                           FontSize="30"
+                           FontAttributes="Bold"/>
+                    <FlexLayout>
+                        <Button Text="{StaticResource IconStar}" FontFamily="FA-S" FontSize="20" TextColor="{Binding RStarColor1}" WidthRequest="30" HeightRequest="30" Padding="0" BackgroundColor="Transparent" BorderColor="Transparent" Command="{Binding SelectRatingCommand}" CommandParameter="1"/>
+                        <Button Text="{StaticResource IconStar}" FontFamily="FA-S" FontSize="20" TextColor="{Binding RStarColor2}" WidthRequest="30" HeightRequest="30" Padding="0" BackgroundColor="Transparent" BorderColor="Transparent" Command="{Binding SelectRatingCommand}" CommandParameter="2"/>
+                        <Button Text="{StaticResource IconStar}" FontFamily="FA-S" FontSize="20" TextColor="{Binding RStarColor3}" WidthRequest="30" HeightRequest="30" Padding="0" BackgroundColor="Transparent" BorderColor="Transparent" Command="{Binding SelectRatingCommand}" CommandParameter="3"/>
+                        <Button Text="{StaticResource IconStar}" FontFamily="FA-S" FontSize="20" TextColor="{Binding RStarColor4}" WidthRequest="30" HeightRequest="30" Padding="0" BackgroundColor="Transparent" BorderColor="Transparent" Command="{Binding SelectRatingCommand}" CommandParameter="4"/>
+                        <Button Text="{StaticResource IconStar}" FontFamily="FA-S" FontSize="20" TextColor="{Binding RStarColor5}" WidthRequest="30" HeightRequest="30" Padding="0" BackgroundColor="Transparent" BorderColor="Transparent" Command="{Binding SelectRatingCommand}" CommandParameter="5"/>
+                    </FlexLayout>
+                    <Frame BorderColor="LightGray" CornerRadius="20" Padding="10,0" HasShadow="True" Margin="0,10">
+                        <Entry Text="{Binding RTitle}" Placeholder="Title" PlaceholderColor="DarkGray" FontSize="28" TextColor="Black" BackgroundColor="White"/>
+                    </Frame>
+                    
+                    <Frame BorderColor="LightGray" CornerRadius="20" Padding="10,0" HasShadow="True">
+                        <Editor Text="{Binding RDescription}" Placeholder="Description" PlaceholderColor="DarkGray" FontSize="28" TextColor="Black" HeightRequest="250" BackgroundColor="White"/>
+                    </Frame>
+                    <Button Text="Done" Command="{Binding WriteReview}" Clicked="DoneReview_Clicked"/>
+                </StackLayout>
+            </Frame>
+
+        </Grid>
     </ContentPage.Content>    
 </ContentPage>

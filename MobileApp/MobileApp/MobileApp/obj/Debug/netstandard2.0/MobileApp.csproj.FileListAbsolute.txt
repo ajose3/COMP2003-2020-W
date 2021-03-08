@@ -58,13 +58,16 @@ C:\Users\joshu\Documents\GitHub\COMP2003-2020-W\MobileApp\MobileApp\MobileApp\bi
 C:\Users\joshu\Documents\GitHub\COMP2003-2020-W\MobileApp\MobileApp\MobileApp\bin\Debug\netstandard2.0\MobileApp.dll
 C:\Users\joshu\Documents\GitHub\COMP2003-2020-W\MobileApp\MobileApp\MobileApp\bin\Debug\netstandard2.0\ref\MobileApp.dll
 C:\Users\joshu\Documents\GitHub\COMP2003-2020-W\MobileApp\MobileApp\MobileApp\bin\Debug\netstandard2.0\MobileApp.pdb
-C:\Users\joshu\Documents\GitHub\COMP2003-2020-W\MobileApp\MobileApp\MobileApp\obj\Debug\netstandard2.0\MobileApp.csprojAssemblyReference.cache
 C:\Users\joshu\Documents\GitHub\COMP2003-2020-W\MobileApp\MobileApp\MobileApp\obj\Debug\netstandard2.0\App.xaml.g.cs
 C:\Users\joshu\Documents\GitHub\COMP2003-2020-W\MobileApp\MobileApp\MobileApp\obj\Debug\netstandard2.0\AppShell.xaml.g.cs
 C:\Users\joshu\Documents\GitHub\COMP2003-2020-W\MobileApp\MobileApp\MobileApp\obj\Debug\netstandard2.0\Views\CheckoutPage.xaml.g.cs
+C:\Users\joshu\Documents\GitHub\COMP2003-2020-W\MobileApp\MobileApp\MobileApp\obj\Debug\netstandard2.0\Views\EditDetailsPage.xaml.g.cs
 C:\Users\joshu\Documents\GitHub\COMP2003-2020-W\MobileApp\MobileApp\MobileApp\obj\Debug\netstandard2.0\Views\HomePage.xaml.g.cs
 C:\Users\joshu\Documents\GitHub\COMP2003-2020-W\MobileApp\MobileApp\MobileApp\obj\Debug\netstandard2.0\Views\LoginPage.xaml.g.cs
 C:\Users\joshu\Documents\GitHub\COMP2003-2020-W\MobileApp\MobileApp\MobileApp\obj\Debug\netstandard2.0\Views\ProductPage.xaml.g.cs
+C:\Users\joshu\Documents\GitHub\COMP2003-2020-W\MobileApp\MobileApp\MobileApp\obj\Debug\netstandard2.0\Views\ResetPasswordPage.xaml.g.cs
+C:\Users\joshu\Documents\GitHub\COMP2003-2020-W\MobileApp\MobileApp\MobileApp\obj\Debug\netstandard2.0\Views\SignUpPage.xaml.g.cs
+C:\Users\joshu\Documents\GitHub\COMP2003-2020-W\MobileApp\MobileApp\MobileApp\obj\Debug\netstandard2.0\Views\SuccessPage.xaml.g.cs
 C:\Users\joshu\Documents\GitHub\COMP2003-2020-W\MobileApp\MobileApp\MobileApp\obj\Debug\netstandard2.0\Views\UserDetailsPage.xaml.g.cs
 C:\Users\joshu\Documents\GitHub\COMP2003-2020-W\MobileApp\MobileApp\MobileApp\obj\Debug\netstandard2.0\MobileApp.AssemblyInfoInputs.cache
 C:\Users\joshu\Documents\GitHub\COMP2003-2020-W\MobileApp\MobileApp\MobileApp\obj\Debug\netstandard2.0\MobileApp.AssemblyInfo.cs
@@ -73,7 +76,4 @@ C:\Users\joshu\Documents\GitHub\COMP2003-2020-W\MobileApp\MobileApp\MobileApp\ob
 C:\Users\joshu\Documents\GitHub\COMP2003-2020-W\MobileApp\MobileApp\MobileApp\obj\Debug\netstandard2.0\MobileApp.dll
 C:\Users\joshu\Documents\GitHub\COMP2003-2020-W\MobileApp\MobileApp\MobileApp\obj\Debug\netstandard2.0\ref\MobileApp.dll
 C:\Users\joshu\Documents\GitHub\COMP2003-2020-W\MobileApp\MobileApp\MobileApp\obj\Debug\netstandard2.0\MobileApp.pdb
-C:\Users\joshu\Documents\GitHub\COMP2003-2020-W\MobileApp\MobileApp\MobileApp\obj\Debug\netstandard2.0\Views\SignUpPage.xaml.g.cs
-C:\Users\joshu\Documents\GitHub\COMP2003-2020-W\MobileApp\MobileApp\MobileApp\obj\Debug\netstandard2.0\Views\ResetPasswordPage.xaml.g.cs
-C:\Users\joshu\Documents\GitHub\COMP2003-2020-W\MobileApp\MobileApp\MobileApp\obj\Debug\netstandard2.0\Views\SuccessPage.xaml.g.cs
-C:\Users\joshu\Documents\GitHub\COMP2003-2020-W\MobileApp\MobileApp\MobileApp\obj\Debug\netstandard2.0\Views\EditDetailsPage.xaml.g.cs
+C:\Users\joshu\Documents\GitHub\COMP2003-2020-W\MobileApp\MobileApp\MobileApp\obj\Debug\netstandard2.0\MobileApp.csprojAssemblyReference.cache

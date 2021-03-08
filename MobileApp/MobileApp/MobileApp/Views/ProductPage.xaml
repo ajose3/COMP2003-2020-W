@@ -45,6 +45,14 @@
                 <Label Text="{Binding Name}"
                        HorizontalOptions="Center" 
                        FontSize="40" FontAttributes="Bold" TextColor="Black" />
+                <FlexLayout>
+                    <Label Text="{StaticResource IconStar}" FontFamily="FA-S" FontSize="20" TextColor="Gold"/>
+                    <Label Text="{StaticResource IconStar}" FontFamily="FA-S" FontSize="20" TextColor="Gold"/>
+                    <Label Text="{StaticResource IconStar}" FontFamily="FA-S" FontSize="20" TextColor="Gold"/>
+                    <Label Text="{StaticResource IconStar}" FontFamily="FA-S" FontSize="20"/>
+                    <Label Text="{StaticResource IconStar}" FontFamily="FA-S" FontSize="20"/>
+                </FlexLayout>
+
                 <!--flex box to display word price next to price binding-->
                 <FlexLayout>
                     <Label Text="Price: £" TextColor="Black" FontSize="30"/>
@@ -64,9 +72,18 @@
                 <BoxView Style="{StaticResource SeparatorLineStyle}"/>
 
                 <Label Text="Reviews" TextColor="Black" FontSize="30"/>
-                <ScrollView>
-                    <!--Reviews go here-->
-                </ScrollView>
+                <Button Text="Write Review"/>
+                <CollectionView BackgroundColor="Red"
+                                ItemsLayout="VerticalList"
+                                ItemsSource="{x:Static data:ReviewData.Reviews}"
+                                ItemTemplate="{StaticResource ReviewTemplate}"
+                                SelectionMode="Single"
+                                HeightRequest="500"
+                                >
+                    <CollectionView.EmptyView>
+                        <Label HorizontalOptions="Center" Text="No Reviews"/>
+                    </CollectionView.EmptyView>
+                </CollectionView>
             </StackLayout>
         </ScrollView>
     </ContentPage.Content>    

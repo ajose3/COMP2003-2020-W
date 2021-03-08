@@ -100,7 +100,24 @@
 
 
             </DataTemplate>
-
+            <DataTemplate x:Key="ReviewTemplate">
+                <Grid Padding="5">
+                    <Frame BorderColor="#D8DAE0" CornerRadius="20" HasShadow="True" HeightRequest="120">
+                        <StackLayout>
+                            <Label Text="{Binding Title}" FontSize="28" TextColor="Black"/>
+                            <FlexLayout>
+                                <Label Text="{StaticResource IconStar}" FontFamily="FA-S" FontSize="20" TextColor="Gold"/>
+                                <Label Text="{StaticResource IconStar}" FontFamily="FA-S" FontSize="20" TextColor="Gold"/>
+                                <Label Text="{StaticResource IconStar}" FontFamily="FA-S" FontSize="20" TextColor="Gold"/>
+                                <Label Text="{StaticResource IconStar}" FontFamily="FA-S" FontSize="20"/>
+                                <Label Text="{StaticResource IconStar}" FontFamily="FA-S" FontSize="20"/>
+                            </FlexLayout>
+                            <BoxView Style="{StaticResource SeparatorLineStyle}" Margin="0,0,0,0"/>
+                            <Label Text="{Binding Desciption}" FontSize="20" TextColor="Black"/>
+                        </StackLayout>
+                    </Frame>
+                </Grid>
+            </DataTemplate>
             <!--<DataTemplate x:Key="ProductSearchTemplate">
                 <Grid Padding="10" HeightRequest="50">
                     <Grid.ColumnDefinitions>
@@ -116,6 +133,10 @@
                        FontAttributes="Bold"/>
                 </Grid>
             </DataTemplate>-->
+            <x:String x:Key="IconStar">&#xf005;</x:String>
+            <x:String x:Key="IconUser">&#xf007;</x:String>
+            <x:String x:Key="IconHome">&#xf015;</x:String>
+            <x:String x:Key="IconPower">&#xf011;</x:String>
         </ResourceDictionary>        
     </Application.Resources>
 </Application>

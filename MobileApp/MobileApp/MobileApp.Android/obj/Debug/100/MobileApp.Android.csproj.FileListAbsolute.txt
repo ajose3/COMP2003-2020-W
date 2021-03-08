@@ -59,6 +59,7 @@ C:\Users\joshu\Documents\GitHub\COMP2003-2020-W\MobileApp\MobileApp\MobileApp.An
 C:\Users\joshu\Documents\GitHub\COMP2003-2020-W\MobileApp\MobileApp\MobileApp.Android\obj\Debug\100\res\drawable\xamarin_logo.png
 C:\Users\joshu\Documents\GitHub\COMP2003-2020-W\MobileApp\MobileApp\MobileApp.Android\obj\Debug\100\res\drawable\icon_about.png
 C:\Users\joshu\Documents\GitHub\COMP2003-2020-W\MobileApp\MobileApp\MobileApp.Android\obj\Debug\100\res\drawable\icon_feed.png
+C:\Users\joshu\Documents\GitHub\COMP2003-2020-W\MobileApp\MobileApp\MobileApp.Android\obj\Debug\100\res\menu\mainmenu.xml
 C:\Users\joshu\Documents\GitHub\COMP2003-2020-W\MobileApp\MobileApp\MobileApp.Android\obj\Debug\100\uploadflags.txt
 C:\Users\joshu\Documents\GitHub\COMP2003-2020-W\MobileApp\MobileApp\MobileApp.Android\obj\Debug\100\resolvedassemblies.hash
 C:\Users\joshu\Documents\GitHub\COMP2003-2020-W\MobileApp\MobileApp\MobileApp.Android\obj\Debug\100\android\assets\FormsViewGroup.dll
@@ -75,6 +76,8 @@ C:\Users\joshu\Documents\GitHub\COMP2003-2020-W\MobileApp\MobileApp\MobileApp.An
 C:\Users\joshu\Documents\GitHub\COMP2003-2020-W\MobileApp\MobileApp\MobileApp.Android\obj\Debug\100\android\assets\mscorlib.dll
 C:\Users\joshu\Documents\GitHub\COMP2003-2020-W\MobileApp\MobileApp\MobileApp.Android\obj\Debug\100\android\assets\mscorlib.pdb
 C:\Users\joshu\Documents\GitHub\COMP2003-2020-W\MobileApp\MobileApp\MobileApp.Android\obj\Debug\100\android\assets\netstandard.dll
+C:\Users\joshu\Documents\GitHub\COMP2003-2020-W\MobileApp\MobileApp\MobileApp.Android\obj\Debug\100\android\assets\Newtonsoft.Json.dll
+C:\Users\joshu\Documents\GitHub\COMP2003-2020-W\MobileApp\MobileApp\MobileApp.Android\obj\Debug\100\android\assets\RestSharp.dll
 C:\Users\joshu\Documents\GitHub\COMP2003-2020-W\MobileApp\MobileApp\MobileApp.Android\obj\Debug\100\android\assets\System.ComponentModel.Composition.dll
 C:\Users\joshu\Documents\GitHub\COMP2003-2020-W\MobileApp\MobileApp\MobileApp.Android\obj\Debug\100\android\assets\System.ComponentModel.Composition.pdb
 C:\Users\joshu\Documents\GitHub\COMP2003-2020-W\MobileApp\MobileApp\MobileApp.Android\obj\Debug\100\android\assets\System.Core.dll
@@ -479,6 +482,7 @@ C:\Users\joshu\Documents\GitHub\COMP2003-2020-W\MobileApp\MobileApp\MobileApp.An
 C:\Users\joshu\Documents\GitHub\COMP2003-2020-W\MobileApp\MobileApp\MobileApp.Android\obj\Debug\100\android\src\crc64a25b61d9f8ee364f\TransitionUtils.java
 C:\Users\joshu\Documents\GitHub\COMP2003-2020-W\MobileApp\MobileApp\MobileApp.Android\obj\Debug\100\android\src\crc64a25b61d9f8ee364f\TransitionUtils_MatrixEvaluator.java
 C:\Users\joshu\Documents\GitHub\COMP2003-2020-W\MobileApp\MobileApp\MobileApp.Android\obj\Debug\100\android\src\crc64bcb156adcf39ed15\MainActivity.java
+C:\Users\joshu\Documents\GitHub\COMP2003-2020-W\MobileApp\MobileApp\MobileApp.Android\obj\Debug\100\android\src\crc64bcb156adcf39ed15\SearchPageRenderer.java
 C:\Users\joshu\Documents\GitHub\COMP2003-2020-W\MobileApp\MobileApp\MobileApp.Android\obj\Debug\100\android\src\crc64ee486da937c010f4\ButtonRenderer.java
 C:\Users\joshu\Documents\GitHub\COMP2003-2020-W\MobileApp\MobileApp\MobileApp.Android\obj\Debug\100\android\src\crc64ee486da937c010f4\FrameRenderer.java
 C:\Users\joshu\Documents\GitHub\COMP2003-2020-W\MobileApp\MobileApp\MobileApp.Android\obj\Debug\100\android\src\crc64ee486da937c010f4\ImageRenderer.java
@@ -575,7 +579,3 @@ C:\Users\joshu\Documents\GitHub\COMP2003-2020-W\MobileApp\MobileApp\MobileApp.An
 C:\Users\joshu\Documents\GitHub\COMP2003-2020-W\MobileApp\MobileApp\MobileApp.Android\obj\Debug\100\stamp\_GenerateJavaStubs.stamp
 C:\Users\joshu\Documents\GitHub\COMP2003-2020-W\MobileApp\MobileApp\MobileApp.Android\obj\Debug\100\stamp\_GeneratePackageManagerJava.stamp
 C:\Users\joshu\Documents\GitHub\COMP2003-2020-W\MobileApp\MobileApp\MobileApp.Android\obj\Debug\100\stamp\_ResolveLibraryProjectImports.stamp
-C:\Users\joshu\Documents\GitHub\COMP2003-2020-W\MobileApp\MobileApp\MobileApp.Android\obj\Debug\100\res\menu\mainmenu.xml
-C:\Users\joshu\Documents\GitHub\COMP2003-2020-W\MobileApp\MobileApp\MobileApp.Android\obj\Debug\100\android\src\crc64bcb156adcf39ed15\SearchPageRenderer.java
-C:\Users\joshu\Documents\GitHub\COMP2003-2020-W\MobileApp\MobileApp\MobileApp.Android\obj\Debug\100\android\assets\Newtonsoft.Json.dll
-C:\Users\joshu\Documents\GitHub\COMP2003-2020-W\MobileApp\MobileApp\MobileApp.Android\obj\Debug\100\android\assets\RestSharp.dll

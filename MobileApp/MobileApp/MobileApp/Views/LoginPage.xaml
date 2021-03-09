@@ -6,18 +6,22 @@
     <ContentPage.Content>
         <StackLayout Padding="10">
             <!--Padding="0 0 20 0"-->
-            <Label FontSize="40" HorizontalOptions="Center" Text="Login" TextColor="Black"/>
-            <Label Text="Email" FontSize="Large" TextColor="Black"/>
-            <Entry x:Name="usernameEntry" Text="{Binding username}" Placeholder="Email" FontSize="Large" TextColor="Black"/>
-            <Label Text="Password" FontSize="Large" TextColor="Black"/>
-            <Entry x:Name="passwordEntry" Text="{Binding password}" Placeholder="Password" FontSize="Large" IsPassword="True" TextColor="Black"/>
-            
+            <Label FontSize="50" HorizontalOptions="Center" Text="Login" TextColor="Black" Margin="0,50,0,100"/>
+            <!--<Label Text="Email" FontSize="Large" TextColor="Black"/>-->
+            <Frame CornerRadius="20" BorderColor="LightGray" HasShadow="True" Padding="10,0"  Margin="0,10">
+                <Entry x:Name="usernameEntry" Text="{Binding username}" Placeholder="Email" FontSize="Large" TextColor="Black" PlaceholderColor="DarkGray"/>
+            </Frame>
+            <!--<Label Text="Password" FontSize="Large" TextColor="Black"/>-->
+            <Frame CornerRadius="20" BorderColor="LightGray" HasShadow="True" Padding="10,0" Margin="0,10">
+                <Entry x:Name="passwordEntry" Text="{Binding password}" Placeholder="Password" FontSize="Large" IsPassword="True" TextColor="Black" PlaceholderColor="DarkGray"/>
+            </Frame>
             <!--<Button Text="Login" Command="{Binding SubmitCommand}"/>-->
-            <Button Text="Login" x:Name="LoginBtn" Command="{Binding LoginCmd}"/>
+            <Button Text="Login" x:Name="LoginBtn" Command="{Binding LoginCmd}" Margin="0,10"/>
+            <BoxView Style="{StaticResource SeparatorLineStyle}" Margin="0,0,0,0"/>
             <!--<Label x:Name="messageLabel"/>-->
-            <FlexLayout Wrap="Wrap" JustifyContent="SpaceAround">
-                <Button WidthRequest="185" Text="Register" Command="{Binding GoSignUpPage}" FontSize="18"/>
-                <Button WidthRequest="185" Text="Reset Password" Command="{Binding GoResetPage}" FontSize="18"/>
+            <FlexLayout Wrap="Wrap" JustifyContent="Center" Margin="0,10">
+                <Button WidthRequest="165" Text="Register" Command="{Binding GoSignUpPage}" FontSize="18" Margin="5"/>
+                <Button WidthRequest="165" Text="Reset Password" Command="{Binding GoResetPage}" FontSize="18" Margin="5"/>
             </FlexLayout>
         </StackLayout>
     </ContentPage.Content>

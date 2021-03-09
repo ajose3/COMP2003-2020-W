@@ -32,8 +32,7 @@
             <Style TargetType="Button">
                 <Setter Property="TextColor" Value="White"></Setter>
                 <Setter Property="FontSize" Value="20"></Setter>
-                <Setter Property="CornerRadius" Value="10"></Setter>
-                <Setter Property="VerticalOptions" Value="CenterAndExpand"></Setter>
+                <Setter Property="CornerRadius" Value="15"></Setter>
                 <Setter Property="VisualStateManager.VisualStateGroups">
                     <VisualStateGroupList>
                         <VisualStateGroup x:Name="CommonStates">

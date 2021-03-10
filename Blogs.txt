@@ -142,3 +142,12 @@ Week 16 (01/03/2021-05/03/2021):
 On week 16 we had our regular zoom meeting. We first discussed how we got on with last week’s tasks for the people we then assigned an extra person to help with the tasks that could not be completed. 
 Once we had all agreed on the next steps, we needed to take in terms of what type of AI we would build, and which parts of the final report would need to be written to include all the new features to the program. 
 We then assigned new tasks to the people who had completed their previous tasks mainly starting to build the AI, writing the report, and cleaning up our interface with animations and so on. 
+
+Week 17 (8/3/21 – 12/3/21):
+
+During week 17, we once again conducted a weekly group meeting. 
+We first discussed progress made from last week’s tasks and consider how we should move forward. 
+All tasks from last week had been successfully completed allowing all members to receive new tasks to work on. 
+The main focus in our project had become putting increasing effort on the recommender system and completing all interfaces for our e-commerce site. 
+To achieve this, between the six of us, the tasks assigned were: to create the remaining views for the site, amend some SQL tables and looking into storing our products.
+We looked over our assigned tasks, ensuring everyone was on track and sure of their given task, and the meeting was concluded.

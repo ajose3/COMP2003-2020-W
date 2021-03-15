@@ -845,6 +845,28 @@ SELECT @Out AS 'OutputMessage';
 --------
 
 
+--- Updating Average Rating every time a new review is made.
+CREATE TRIGGER dbo.Update_Product_Rating
+ON dbo.Reviews
+AFTER INSERT, DELETE
+AS
+BEGIN
+DECLARE @Product_ID INT;
+SET @Product_ID = ( SELECT Product_ID from inserted)
+EXEC dbo.Calculate_Insert_Average
+END;
+
+CREATE PROCEDURE Calculate_Insert_Average (@Product_ID int, @Current_Rating int)
+AS
+Set @Current_Rating = (SELECT AVG(Rating) 
+FROM dbo.Reviews
+Where Product_ID = @Product_ID)
+UPDATE dbo.Products
+SET AVG_Rating = @Current_Rating
+WHERE Product_ID = @Product_ID
+
+---------
+
 
 
 

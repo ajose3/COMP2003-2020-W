@@ -151,3 +151,16 @@ All tasks from last week had been successfully completed allowing all members to
 The main focus in our project had become putting increasing effort on the recommender system and completing all interfaces for our e-commerce site. 
 To achieve this, between the six of us, the tasks assigned were: to create the remaining views for the site, amend some SQL tables and looking into storing our products.
 We looked over our assigned tasks, ensuring everyone was on track and sure of their given task, and the meeting was concluded.
+
+Week 18 (15/03/21 - 19/03/21):
+
+We started by discussing and evaluating the progress made in the previous week, identifying areas of unforeseen difficulty and worked together as a group to determine a plan to rectify the issues.
+We found that some of the tasks from the previous week would require more time to complete.
+
+As one of our main focuses recently has been the recommender system, we started by discussing the database.
+In particular we focused on which aspects of our existing data we need to keep, and which could be removed.
+As a result of this, we were able to identify some tasks for this week, such as making the necessary alterations to the tables, and passing in the data.
+
+Another main area of focus has been the mobile application.
+In evaluation of the progress made in the previous week, we decided to continue work on the search and orders pages.
+Reflecting on the previous week, we found that many members were having difficulties with the software for mobile development; therefore, we discussed the issues and worked together to ensure that all team members have their software working and correctly setup for such development.

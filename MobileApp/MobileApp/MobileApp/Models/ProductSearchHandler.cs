@@ -38,5 +38,13 @@ namespace MobileApp.Models
 
             await Shell.Current.GoToAsync($"productdetails?id={((Product)item).Id}");
         }
+
+        protected override async void OnQueryConfirmed()
+        {
+            //await Shell.Current.DisplayAlert("Query Confirmed", null, "OK");
+            // take to search page
+            //await Shell.Current.GoToAsync("searchPage");
+            await Shell.Current.GoToAsync($"searchPage?query={Query}");
+        }
     }
 }

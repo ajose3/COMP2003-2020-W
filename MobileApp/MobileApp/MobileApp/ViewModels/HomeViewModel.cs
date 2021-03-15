@@ -14,5 +14,10 @@ namespace MobileApp.ViewModels
 
             //OpenWebCommand = new Command(async () => await Browser.OpenAsync("https://aka.ms/xamarin-quickstart"));
         }
+
+        public ICommand PerformSearch => new Command<string>((string query) =>
+        {
+            Shell.Current.DisplayAlert("Clicked Search", null, "OK");
+        });
     }
 }

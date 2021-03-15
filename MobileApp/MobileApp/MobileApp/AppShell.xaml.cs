@@ -30,6 +30,7 @@ namespace MobileApp
             Routing.RegisterRoute("loginPage", typeof(LoginPage));
             Routing.RegisterRoute("successPage", typeof(SuccessPage));
             Routing.RegisterRoute("editDetailsPage", typeof(EditDetailsPage));
+            Routing.RegisterRoute("searchPage", typeof(SearchPage));
 
 
             foreach (var item in routes)

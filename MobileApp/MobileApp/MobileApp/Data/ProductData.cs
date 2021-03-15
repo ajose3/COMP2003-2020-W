@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Linq;
 using System.Text;
 
 namespace MobileApp.Data
@@ -81,7 +82,26 @@ namespace MobileApp.Data
 
             //CarouselProducts = new ObservableCollection<Product>(Products);
 
+
         }
+
+        /*// filter products
+        public static IList<Product> FilterProductsByQuery(string query)
+        {
+            List<Product> filteredProducts = new List<Product>();
+
+            foreach (var Product in Products)
+            {
+                if(Product.Name.Contains(query))
+                {
+                    filteredProducts.Add(Product);
+                }
+            }
+
+            return filteredProducts;
+        }*/
+
+
     }
 
 }

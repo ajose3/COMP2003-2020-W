@@ -30,12 +30,11 @@
         <vm:HomeViewModel/>
     </ContentPage.BindingContext>
 
-
     <Shell.SearchHandler>
-        <controls:ProductSearchHandler
+        <controls:ProductSearchHandler x:Name="searchBar"
             Placeholder="Enter search term"
-                     ShowsResults="true"
-                     DisplayMemberName="Name">
+            ShowsResults="true"
+            DisplayMemberName="Name">
             <controls:ProductSearchHandler.ItemTemplate>
                 <DataTemplate>
                     <Grid Padding="10" HeightRequest="50">

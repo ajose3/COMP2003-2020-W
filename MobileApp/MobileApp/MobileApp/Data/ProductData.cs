@@ -85,22 +85,6 @@ namespace MobileApp.Data
 
         }
 
-        /*// filter products
-        public static IList<Product> FilterProductsByQuery(string query)
-        {
-            List<Product> filteredProducts = new List<Product>();
-
-            foreach (var Product in Products)
-            {
-                if(Product.Name.Contains(query))
-                {
-                    filteredProducts.Add(Product);
-                }
-            }
-
-            return filteredProducts;
-        }*/
-
 
     }
 

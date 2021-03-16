@@ -15,7 +15,7 @@
                             Margin="5"
                             BackgroundColor="#f7f7f7"
                             ItemsLayout="VerticalList"
-                            ItemsSource="{Binding Source={RelativeSource AncestorType={x:Type vm:SearchViewModel}},Path=FilteredProducts}"
+                            ItemsSource="{Binding FilteredProducts}"
                             ItemTemplate="{StaticResource ProductTemplate}"
                             SelectionMode="Single"
                             SelectionChanged="OnCollectionViewSelectionChanged"

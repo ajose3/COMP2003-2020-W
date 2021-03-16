@@ -27,7 +27,8 @@ namespace MobileApp.ViewModels
             {
                 searchQuery = Uri.UnescapeDataString(value);
                 OnPropertyChanged("searchQuery");
-                FilteredProducts = ProductData.Products;
+                FilteredProducts = ProductData.Products.Where(x => x.Name.ToLower().Contains(searchQuery.ToLower())).ToList();
+                OnPropertyChanged("FilteredProducts");
             }
         }
 

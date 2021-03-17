@@ -1,14 +1,14 @@
 {
   "version": 2,
-  "dgSpecHash": "BPs8EVnbjbNtgVT58I3smXGzopxjHIpNLyZLRzHn+XihG6xpYusKnAs52ShaVYdvC0F9YTGzJJK9gHJgF1dIag==",
+  "dgSpecHash": "HGZy+LUmWNI7z1nwyA3QYnJbY8O1SnXUCvuKEwvurvxKc8m2tuJoB95a38sdTh7I+p/5/lN0KVYmkwXshSUwoA==",
   "success": true,
-  "projectFilePath": "C:\\Users\\joshu\\Documents\\GitHub\\COMP2003-2020-W\\MobileApp\\MobileApp\\MobileApp.iOS\\MobileApp.iOS.csproj",
+  "projectFilePath": "/Users/alistair/Documents/GitHub/COMP2003-2020-W/MobileApp/MobileApp/MobileApp.iOS/MobileApp.iOS.csproj",
   "expectedPackageFiles": [
-    "C:\\Users\\joshu\\.nuget\\packages\\newtonsoft.json\\12.0.3\\newtonsoft.json.12.0.3.nupkg.sha512",
-    "C:\\Users\\joshu\\.nuget\\packages\\restsharp\\106.11.7\\restsharp.106.11.7.nupkg.sha512",
-    "C:\\Users\\joshu\\.nuget\\packages\\system.numerics.vectors\\4.5.0\\system.numerics.vectors.4.5.0.nupkg.sha512",
-    "C:\\Users\\joshu\\.nuget\\packages\\xamarin.essentials\\1.6.0\\xamarin.essentials.1.6.0.nupkg.sha512",
-    "C:\\Users\\joshu\\.nuget\\packages\\xamarin.forms\\5.0.0.1874\\xamarin.forms.5.0.0.1874.nupkg.sha512"
+    "/Users/alistair/.nuget/packages/newtonsoft.json/12.0.3/newtonsoft.json.12.0.3.nupkg.sha512",
+    "/Users/alistair/.nuget/packages/restsharp/106.11.7/restsharp.106.11.7.nupkg.sha512",
+    "/Users/alistair/.nuget/packages/system.numerics.vectors/4.5.0/system.numerics.vectors.4.5.0.nupkg.sha512",
+    "/Users/alistair/.nuget/packages/xamarin.essentials/1.6.0/xamarin.essentials.1.6.0.nupkg.sha512",
+    "/Users/alistair/.nuget/packages/xamarin.forms/5.0.0.1874/xamarin.forms.5.0.0.1874.nupkg.sha512"
   ],
   "logs": []
 }

@@ -13,7 +13,7 @@
 namespace MobileApp.Views {
     
     
-    [global::Xamarin.Forms.Xaml.XamlFilePathAttribute("Views\\CheckoutPage.xaml")]
+    [global::Xamarin.Forms.Xaml.XamlFilePathAttribute("Views/CheckoutPage.xaml")]
     public partial class CheckoutPage : global::Xamarin.Forms.ContentPage {
         
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Xamarin.Forms.Build.Tasks.XamlG", "2.0.0.0")]

@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Linq;
 using System.Text;
 
 namespace MobileApp.Data
@@ -81,7 +82,10 @@ namespace MobileApp.Data
 
             //CarouselProducts = new ObservableCollection<Product>(Products);
 
+
         }
+
+
     }
 
 }

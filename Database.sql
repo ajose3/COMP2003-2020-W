@@ -471,7 +471,7 @@ SELECT @Out AS 'OutputMessage';
 CREATE PROCEDURE AdminDeleteCustomer
 @Token VARCHAR(25),
 @Customer_Deleting_ID INT,
-@Success BIT OUTPUT
+@ResponseMessage INT OUTPUT
 AS
 BEGIN
 	BEGIN TRANSACTION
@@ -481,20 +481,20 @@ BEGIN
 				IF EXISTS(SELECT * FROM Customer WHERE Customer_ID = @Customer_ID AND Admin = 1)
 					BEGIN
 						Delete Customer WHERE Customer_ID = @Customer_Deleting_ID AND Admin = 0;
-						SELECT @Success = 1;
+						SELECT @ResponseMessage = 200;
 					END
 				ELSE
 					BEGIN
-						SELECT @Success = 0;
+						SELECT @ResponseMessage = 401;
 					END
 			END
 		ELSE
 			BEGIN
-				SELECT @Success = 0;
+				SELECT @ResponseMessage = 400;
 			END
 	IF @@ERROR != 0
 		BEGIN
-			SELECT @Success = 0;
+			SELECT @ResponseMessage = 500;
 			ROLLBACK TRANSACTION
 		END
 	ELSE
@@ -503,8 +503,8 @@ END
 GO
 
 -- how to run
-DECLARE @Out as BIT; 
-EXEC AdminDeleteCustomer @Token = 'FD-48BA-8080-EE76E5F9FAEC', @Customer_Deleting_ID = 2, @Success = @Out OUTPUT; 
+DECLARE @Out as INT; 
+EXEC AdminDeleteCustomer @Token = 'FD-48BA-8080-EE76E5F9FAEC', @Customer_Deleting_ID = 2, @ResponseMessage = @Out OUTPUT; 
 SELECT @Out AS 'OutputMessage'; 
 --------
 
@@ -516,7 +516,7 @@ CREATE PROCEDURE AddOrder
 @Token VARCHAR(25),
 @Quantity INT,
 @Product_ID INT,
-@Success BIT OUTPUT
+@ResponseMessage INT OUTPUT
 AS
 BEGIN
 	BEGIN TRANSACTION
@@ -535,16 +535,16 @@ BEGIN
 				WHERE
 				Product_ID = @Product_ID;
 				
-				SELECT @Success = 1;
+				SELECT @ResponseMessage = 200;
 			END
 		ELSE
 			BEGIN
-				SELECT @Success = 0;
+				SELECT @ResponseMessage = 401;
 			END
 			
 	IF @@ERROR != 0
 		BEGIN
-			SELECT @Success = 0;
+			SELECT @ResponseMessage = 500;
 			ROLLBACK TRANSACTION
 		END
 	ELSE
@@ -553,8 +553,8 @@ END
 GO
 
 -- how to run
-DECLARE @Out as BIT; 
-EXEC AddOrder @Token = 'FD-48BA-8080-EE76E5F9FAEC', @Quantity = 3, @Product_ID = 1, @Success = @Out OUTPUT; 
+DECLARE @Out as INT; 
+EXEC AddOrder @Token = 'FD-48BA-8080-EE76E5F9FAEC', @Quantity = 3, @Product_ID = 1, @ResponseMessage = @Out OUTPUT; 
 SELECT @Out AS 'OutputMessage'; 
 --------
 
@@ -563,7 +563,7 @@ SELECT @Out AS 'OutputMessage';
 CREATE PROCEDURE CancelOrder
 @Token VARCHAR(25),
 @Order_ID INT,
-@Success BIT OUTPUT
+@ResponseMessage INT OUTPUT
 AS
 BEGIN
 	BEGIN TRANSACTION
@@ -585,23 +585,23 @@ BEGIN
 						WHERE
 						Product_ID = @Product_ID;
 						
-						SELECT @Success = 1;
+						SELECT @ResponseMessage = 200;
 					END
 				ELSE
 					BEGIN
 					--order does not exist
-						SELECT @Success = 0;
+						SELECT @ResponseMessage = 401;
 					END
 			END
 		ELSE
 			BEGIN
 			--user not logged in
-				SELECT @Success = 0;
+				SELECT @ResponseMessage = 400;
 			END
 
 	IF @@ERROR != 0
 		BEGIN
-			SELECT @Success = 0;
+			SELECT @ResponseMessage = 500;
 			ROLLBACK TRANSACTION
 		END
 	ELSE
@@ -610,8 +610,8 @@ END
 GO
 
 -- how to run
-DECLARE @Out as BIT; 
-EXEC CancelOrder @Token = 'D1-46D3-953F-D28AD246A235', @Order_ID = 1, @Success = @Out OUTPUT; 
+DECLARE @Out as INT; 
+EXEC CancelOrder @Token = 'D1-46D3-953F-D28AD246A235', @Order_ID = 1, @ResponseMessage = @Out OUTPUT; 
 SELECT @Out AS 'OutputMessage'; 
 --------
 
@@ -622,7 +622,7 @@ CREATE PROCEDURE CancelOrderAdmin
 @Token VARCHAR(25),
 @Order_ID INT,
 @Customer_ID
-@Success BIT OUTPUT
+@ResponseMessage INT OUTPUT
 AS
 BEGIN
 	BEGIN TRANSACTION
@@ -648,31 +648,31 @@ BEGIN
 						WHERE
 						Product_ID = @Product_ID;
 						
-						SELECT @Success = 1;
+						SELECT @ResponseMessage = 200;
 					END
 				ELSE
 					BEGIN
 					--order does not exist
-						SELECT @Success = 0;
+						SELECT @ResponseMessage = 401;
 					END
 				END
 				
 				ELSE 
 					BEGIN
 					
-					SELECT @Success = 0;
+					SELECT @ResponseMessage = 401;
 					
 					END
 			END
 		ELSE
 			BEGIN
 			--user not logged in
-				SELECT @Success = 0;
+				SELECT @ResponseMessage = 400;
 			END
 
 	IF @@ERROR != 0
 		BEGIN
-			SELECT @Success = 0;
+			SELECT @ResponseMessage = 500;
 			ROLLBACK TRANSACTION
 		END
 	ELSE
@@ -688,10 +688,10 @@ CREATE PROCEDURE AddProduct
 @Product_Name VARCHAR(50),
 @Image_Url TEXT,
 @Stock INT,
-@Catagory VARCHAR(50),
+@Category VARCHAR(50),
 @Price MONEY,
 @Description TEXT,
-@Success BIT OUTPUT
+@ResponseMessage INT OUTPUT
 AS
 BEGIN
 	BEGIN TRANSACTION
@@ -704,33 +704,33 @@ BEGIN
 						IF EXISTS(SELECT * FROM Products WHERE Product_Name = @Product_Name)
 							BEGIN
 								--product name already exists
-								SELECT Success = 0;
+								SELECT @ResponseMessage = 409;
 							END
 						ELSE
 							BEGIN
 								INSERT INTO Products
-								(Product_Name, Image_Url, Stock, Catagory, Price, Description)
+								(Product_Name, Image_Url, Stock, Category, Price, Description)
 								VALUES
-								(@Product_Name, @Image_Url, @Stock, @Catagory, @Price, @Description)
+								(@Product_Name, @Image_Url, @Stock, @Category, @Price, @Description)
 								
-								SELECT @Success = 1;
+								SELECT @ResponseMessage = 200;
 							END
 					END
 				ELSE
 					BEGIN
 						--USER NOT ADMIN
-						SELECT @Success = 0;
+						SELECT @ResponseMessage = 401;
 					END
 				
 			END
 		ELSE
 			BEGIN
 				--Not Logged in
-				SELECT @Success = 0;
+				SELECT @ResponseMessage = 400;
 			END
 	IF @@ERROR != 0
 		BEGIN
-			SELECT @Success = 0;
+			SELECT @ResponseMessage = 500;
 			ROLLBACK TRANSACTION
 		END
 	ELSE
@@ -739,8 +739,8 @@ END
 GO
 
 -- how to run
-DECLARE @Out as BIT; 
-EXEC AddProduct @Token = 'FD-48BA-8080-EE76E5F9FAEC', @Product_Name = 'P Name', @Image_Url = 'url goes here', @Stock = 10, @Catagory='TV', @Price='10.11', @Description = "description", @Success = @Out OUTPUT; 
+DECLARE @Out as INT; 
+EXEC AddProduct @Token = 'FD-48BA-8080-EE76E5F9FAEC', @Product_Name = 'P Name', @Image_Url = 'url goes here', @Stock = 10, @Catagory='TV', @Price='10.11', @Description = "description", @ResponseMessage = @Out OUTPUT; 
 SELECT @Out AS 'OutputMessage'; 
 --------
 
@@ -749,7 +749,7 @@ SELECT @Out AS 'OutputMessage';
 CREATE PROCEDURE DeleteProduct
 @Token VARCHAR(25),
 @Product_ID INT,
-@Success BIT OUTPUT
+@ResponseMessage INT OUTPUT
 AS
 BEGIN
 	BEGIN TRANSACTION
@@ -763,29 +763,29 @@ BEGIN
 							BEGIN					
 								DELETE FROM Products WHERE Product_ID = @Product_ID
 								
-								SELECT @Success = 1;
+								SELECT @ResponseMessage = 200;
 							END
 						ELSE
 							BEGIN
 							--product does not exist
-								SELECT @Success = 0;
+								SELECT @ResponseMessage = 401;
 							END
 					END
 				ELSE
 					BEGIN
 					--user not admin
-						SELECT @Success = 0;
+						SELECT @ResponseMessage = 401;
 					END
 			END
 		ELSE
 			BEGIN
 			--user not logged in
-				SELECT @Success = 0;
+				SELECT @ResponseMessage = 400;
 			END
 
 	IF @@ERROR != 0
 		BEGIN
-			SELECT @Success = 0;
+			SELECT @ResponseMessage = 500;
 			ROLLBACK TRANSACTION
 		END
 	ELSE
@@ -794,8 +794,8 @@ END
 GO
 
 -- how to run
-DECLARE @Out as BIT; 
-EXEC DeleteProduct @Token = 'FD-48BA-8080-EE76E5F9FAEC', @Product_ID = 1, @Success = @Out OUTPUT; 
+DECLARE @Out as INT; 
+EXEC DeleteProduct @Token = 'FD-48BA-8080-EE76E5F9FAEC', @Product_ID = 1, @ResponseMessage = @Out OUTPUT; 
 SELECT @Out AS 'OutputMessage'; 
 --------
 
@@ -808,11 +808,11 @@ CREATE PROCEDURE EditProduct
 @Product_Name VARCHAR(50),
 @Image_Url TEXT,
 @Stock INT,
-@Catagory VARCHAR(50),
+@Category VARCHAR(50),
 @Total_Sold INT,
 @Price MONEY,
 @Description TEXT,
-@Success BIT OUTPUT
+@ResponseMessage INT OUTPUT
 AS
 BEGIN
 	BEGIN TRANSACTION
@@ -825,32 +825,32 @@ BEGIN
 						IF EXISTS(SELECT * FROM Products WHERE Product_ID = @Product_ID)
 							BEGIN													
 								UPDATE Products
-								SET Product_Name = @Product_Name, Image_Url = Image_Url, Stock = @Stock, Catagory = @Catagory, Total_Sold = @Total_Sold, Price = @Price, Description = @Description
+								SET Product_Name = @Product_Name, Image_Url = Image_Url, Stock = @Stock, Category = @Category, Total_Sold = @Total_Sold, Price = @Price, Description = @Description
 								WHERE Product_ID = @Product_ID;
 								
-								SELECT @Success = 1;
+								SELECT @ResponseMessage = 200;
 							END
 						ELSE
 							BEGIN
 							--product does not exist
-								SELECT @Success = 0;
+								SELECT @ResponseMessage = 401;
 							END
 					END
 				ELSE
 					BEGIN
 					--user not admin
-						SELECT @Success = 0;
+						SELECT @ResponseMessage = 401;
 					END
 			END
 		ELSE
 			BEGIN
 			--user not logged in
-				SELECT @Success = 0;
+				SELECT @ResponseMessage = 400;
 			END
 
 	IF @@ERROR != 0
 		BEGIN
-			SELECT @Success = 0;
+			SELECT @ResponseMessage = 500;
 			ROLLBACK TRANSACTION
 		END
 	ELSE
@@ -859,8 +859,8 @@ END
 GO
 
 -- how to run
-DECLARE @Out as BIT; 
-EXEC EditProduct @Token = 'FD-48BA-8080-EE76E5F9FAEC', @Product_ID = 1, @Product_Name = 'Changed the name', @Image_Url = 'The url has changed', @Stock=100, @Catagory='Phone', @Total_Sold=11, @Price= 12.00, @Description = "description", @Success = @Out OUTPUT; 
+DECLARE @Out as INT; 
+EXEC EditProduct @Token = 'FD-48BA-8080-EE76E5F9FAEC', @Product_ID = 1, @Product_Name = 'Changed the name', @Image_Url = 'The url has changed', @Stock=100, @Catagory='Phone', @Total_Sold=11, @Price= 12.00, @Description = "description", @ResponseMessage = @Out OUTPUT; 
 SELECT @Out AS 'OutputMessage';
 --------
 
@@ -889,23 +889,23 @@ BEGIN
 						VALUES
 						(@Product_ID, @Customer_ID, @Rating, @Title, @Description);
 						
-						SELECT @Success = 1;
+						SELECT @ResponseMessage = 200;
 					END
 				ELSE
 					BEGIN
 					--Product does not exist
-						SELECT @Success = 0;
+						SELECT @ResponseMessage = 401;
 					END
 			END
 		ELSE
 			BEGIN
 			--user not logged in
-				SELECT @Success = 0;
+				SELECT @ResponseMessage = 400;
 			END
 			
 	IF @@ERROR != 0
 		BEGIN
-			SELECT @Success = 0;
+			SELECT @ResponseMessage = 500;
 			ROLLBACK TRANSACTION
 		END
 	ELSE

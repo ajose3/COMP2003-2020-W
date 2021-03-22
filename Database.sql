@@ -1,8 +1,8 @@
 /*Create users table*/
 CREATE TABLE Customer(
 Customer_ID int IDENTITY(1,1) PRIMARY KEY,
-First_Name VARCHAR(50),
-Last_Name VARCHAR(50),
+First_Name VARCHAR(50) NOT NULL,
+Last_Name VARCHAR(50) NOT NULL,
 Email_Address VARCHAR(320) NOT NULL,
 Password VARCHAR(50) NOT NULL CHECK (DATALENGTH(Password) > 5),
 Age INT,
@@ -50,7 +50,8 @@ CREATE TABLE Reviews(
 Product_ID INT NOT NULL,
 Customer_ID INT NOT NULL,
 Rating TINYINT NOT NULL CHECK(0 < Rating AND Rating <= 5),
-Description TEXT NOT NULL,
+Title VARCHAR(50),
+Description TEXT,
 PRIMARY KEY (Product_ID, Customer_ID),
 FOREIGN KEY (Customer_ID) REFERENCES Customer(Customer_ID),
 FOREIGN KEY (Product_ID) REFERENCES Products(Product_ID)
@@ -92,12 +93,12 @@ BEGIN
 			END
 		ELSE
 			BEGIN
-				SELECT @Token = 0;
+				SELECT @Token = 208;
 			END
 		
 		IF @@ERROR != 0
 			BEGIN
-				SELECT @Token = 0;
+				SELECT @Token = 500;
 				ROLLBACK TRANSACTION
 			END
 		ELSE
@@ -122,14 +123,14 @@ CREATE PROCEDURE RegisterCustomer
 @Gender BIT,
 @Address TEXT,
 @Phone_Number VARCHAR(11),
-@Success BIT OUTPUT
+@ResponseMessage INT OUTPUT
 AS
 BEGIN
 	BEGIN TRANSACTION
 		IF EXISTS (SELECT * FROM Customer WHERE Email_Address = @Email)
 			BEGIN
 			--an account with this email already exists
-				SELECT @Success = 0;
+				SELECT @ResponseMessage = 208;
 			END
 		ELSE
 			BEGIN
@@ -137,11 +138,11 @@ BEGIN
 				(First_Name, Last_Name, Email_Address, Password, Age, Gender, Address, Phone_Number)
 				VALUES
 				(@First_Name, @Last_Name, @Email, @Password, @Age, @Gender, @Address, @Phone_Number);
-				SELECT @Success = 1;
+				SELECT @ResponseMessage = 200;
 			END
 		IF @@ERROR != 0
 			BEGIN
-				SELECT @Success = 0;
+				SELECT @ResponseMessage = 500;
 				ROLLBACK TRANSACTION
 			END
 		ELSE
@@ -152,7 +153,7 @@ GO
 
 -- how to run
 DECLARE @Out as BIT
-exec RegisterCustomer @First_Name = 'bob', @Last_Name = 'bobby', @Email = 'email6', @Password = 'password', @Age = '5', @Gender = 1, @Address = 'address goes here', @Phone_Number = '07932153300', @success = @Out OUTPUT;
+exec RegisterCustomer @First_Name = 'bob', @Last_Name = 'bobby', @Email = 'email6', @Password = 'password', @Age = '5', @Gender = 1, @Address = 'address goes here', @Phone_Number = '07932153300', @ResponseMessage = @Out OUTPUT;
 SELECT @OUT AS 'Outputmessage';
 --------
 
@@ -170,7 +171,7 @@ CREATE PROCEDURE EditCustomer
 @Gender BIT,
 @Address TEXT,
 @PhoneNumber VARCHAR(11),
-@Success BIT OUTPUT
+@ResponseMessage INT OUTPUT
 AS
 BEGIN
 	IF EXISTS (SELECT Customer_ID FROM Sessions WHERE Token = @Token AND CURRENT_TIMESTAMP <= ExpiryTime)
@@ -179,31 +180,31 @@ BEGIN
 			IF EXISTS(SELECT * FROM Customer WHERE (Customer_ID != @Customer_ID AND Email_Address = @Email))
 				BEGIN
 				--an account with this email already exists
-					SELECT @Success = 0;
+					SELECT @ResponseMessage = 208;
 				END
 			ELSE
 				BEGIN
 					UPDATE Customer SET First_Name = @FirstName, Last_Name = @LastName, Email_Address = @Email, Password = @Password, Age = @Age, Gender = @Gender, Address = @Address, Phone_Number = @PhoneNumber WHERE Customer_ID = @Customer_ID AND Admin = 0;
-					SELECT @Success = 1;
+					SELECT @ResponseMessage = 200;
 				END
 		END
 	ELSE
 		BEGIN
 		--customer not logged in
-			SELECT @Success = 0;
+			SELECT @ResponseMessage = 400;
 		END
 END
 GO
 
 -- how to run
 DECLARE @Out as BIT; 
-EXEC EditCustomer @Token = '8E-433D-BCB4-A596E369001C', @FirstName = 'This has', @LastName = 'been changed', @Email = 'email501', @Password = '^?H??(\u0004qQ??o??)s`=\rj???*\u0011?r\u001d\u0015B?', @Age = '34', @Gender = 1, @Address = 'address string 5', @PhoneNumber = '01454234', @Success = @Out OUTPUT; 
+EXEC EditCustomer @Token = '8E-433D-BCB4-A596E369001C', @FirstName = 'This has', @LastName = 'been changed', @Email = 'email501', @Password = '^?H??(\u0004qQ??o??)s`=\rj???*\u0011?r\u001d\u0015B?', @Age = '34', @Gender = 1, @Address = 'address string 5', @PhoneNumber = '01454234', @ResponseMessage = @Out OUTPUT; 
 SELECT @Out AS 'OutputMessage'; 
 --------
 
 --Edit user as admin
 
-CREATE PROCEDURE EditCustomer
+CREATE PROCEDURE AdminEditCustomer
 @Token VARCHAR(25),
 @Customer_ID INT,
 @FirstName VARCHAR(50),
@@ -214,7 +215,7 @@ CREATE PROCEDURE EditCustomer
 @Gender BIT,
 @Address TEXT,
 @PhoneNumber VARCHAR(11),
-@Success BIT OUTPUT
+@ResponseMessage INT OUTPUT
 AS
 BEGIN
 	IF EXISTS (SELECT Customer_ID FROM Sessions WHERE Token = @Token AND CURRENT_TIMESTAMP <= ExpiryTime)
@@ -222,33 +223,29 @@ BEGIN
 			Declare @Admin_ID AS INT = (SELECT Customer_ID FROM Sessions WHERE Token = @Token);
 			
 			IF EXISTS(SELECT * FROM Customer WHERE Customer_ID = @Admin_ID AND Admin = 1)
-			
-			BEGIN
-			
-			IF EXISTS(SELECT * FROM Customer WHERE (Customer_ID != @Customer_ID AND Email_Address = @Email))
 				BEGIN
-				--an account with this email already exists
-					SELECT @Success = 0;
+					IF EXISTS(SELECT * FROM Customer WHERE (Customer_ID != @Customer_ID AND Email_Address = @Email))
+						BEGIN
+						--an account with this email already exists
+							SELECT @ResponseMessage = 208;
+						END
+					ELSE
+						BEGIN
+							UPDATE Customer SET First_Name = @FirstName, Last_Name = @LastName, Email_Address = @Email, Password = @Password, Age = @Age, Gender = @Gender, Address = @Address, Phone_Number = @PhoneNumber WHERE Customer_ID = @Customer_ID AND Admin = 0;
+							SELECT @ResponseMessage = 200;
+						END
 				END
 			ELSE
 				BEGIN
-					UPDATE Customer SET First_Name = @FirstName, Last_Name = @LastName, Email_Address = @Email, Password = @Password, Age = @Age, Gender = @Gender, Address = @Address, Phone_Number = @PhoneNumber WHERE Customer_ID = @Customer_ID AND Admin = 0;
-					SELECT @Success = 1;
+				
+					SELECT @ResponseMessage = 401;
+				
 				END
-			END
-			
-			ELSE
-			
-			BEGIN
-			
-				SELECT @Success = 0;
-			
-			END
 		END
 	ELSE
 		BEGIN
 		--customer not logged in
-			SELECT @Success = 0;
+			SELECT @ResponseMessage = 400;
 		END
 END
 GO
@@ -258,7 +255,7 @@ GO
 CREATE PROCEDURE ChangePassword
 @Token VARCHAR(25),
 @NewPassword VARCHAR(50),
-@Success BIT OUTPUT
+@ResponseMessage INT OUTPUT
 AS
 BEGIN
 	BEGIN TRANSACTION
@@ -269,22 +266,22 @@ BEGIN
 					BEGIN
 						UPDATE Customer SET Password = @NewPassword WHERE Customer_ID = @Customer_ID AND Admin = 0;
 
-						SELECT @Success = 1;
+						SELECT @ResponseMessage = 200;
 					END
 				ELSE
 					BEGIN
 						--customer does not exist
-						SELECT @Success = 0;
+						SELECT @ResponseMessage = 401;
 					END
 			END
 		ELSE
 			BEGIN
 			--user not logged in
-				SELECT @Success = 0;
+				SELECT @ResponseMessage = 400;
 			END	
 	IF @@ERROR != 0
 	BEGIN
-		SELECT @Success = 0;
+		SELECT @ResponseMessage = 500;
 		ROLLBACK TRANSACTION
 	END
 	ELSE
@@ -294,7 +291,7 @@ GO
 
 -- how to run
 DECLARE @Out as BIT; 
-EXEC ChangePassword @Token = 'FD-48BA-8080-EE76E5F9FAEC', @NewPassword = 'password', @Success = @Out OUTPUT; 
+EXEC ChangePassword @Token = 'FD-48BA-8080-EE76E5F9FAEC', @NewPassword = 'password', @ResponseMessage = @Out OUTPUT; 
 SELECT @Out AS 'OutputMessage';
 --------
 
@@ -302,7 +299,7 @@ SELECT @Out AS 'OutputMessage';
 --Delete User
 CREATE PROCEDURE DeleteCustomer
 @Token VARCHAR(25),
-@Success BIT OUTPUT
+@ResponseMessage INT OUTPUT
 AS
 BEGIN
 	IF EXISTS (SELECT Customer_ID FROM Sessions WHERE Token = @Token AND CURRENT_TIMESTAMP <= ExpiryTime)
@@ -311,18 +308,18 @@ BEGIN
 			IF EXISTS(SELECT * FROM Customer WHERE Customer_ID = @Customer_ID AND Admin = 0)
 				BEGIN
 					Delete customer WHERE Customer_ID = @Customer_ID AND Admin = 0;
-					SELECT @Success = 1;
+					SELECT @ResponseMessage = 200;
 				END
 			ELSE
 				BEGIN
-				--user customer does not exist or is an admin
-					SELECT @Success = 0;
+					--customer does not exist or is an admin
+					SELECT @ResponseMessage = 401;
 				END
 		END
 	ELSE
 		BEGIN
-		--user not logged in
-			SELECT @Success = 0;
+			--not logged in
+			SELECT @ResponseMessage = 400 ;
 		END
 END
 GO
@@ -334,7 +331,7 @@ SELECT @Out AS 'OutputMessage';
 --------
 
 --Delete Customer Admin
-CREATE PROCEDURE DeleteCustomerAdmin
+CREATE PROCEDURE AdminDeleteCustomer
 @Token VARCHAR(25),
 @Customer_ID_Delete INT,
 @Success BIT OUTPUT
@@ -346,18 +343,18 @@ BEGIN
 			IF EXISTS(SELECT * FROM Customer WHERE Customer_ID = @Customer_ID AND Admin = 1)
 				BEGIN
 					Delete customer WHERE Customer_ID = @Customer_ID_Delete AND Admin = 0;
-					SELECT @Success = 1;
+					SELECT @Success = 200;
 				END
 			ELSE
 				BEGIN
 				--user customer does not exist or is an admin
-					SELECT @Success = 0;
+					SELECT @Success = 401;
 				END
 		END
 	ELSE
 		BEGIN
 		--user not logged in
-			SELECT @Success = 0;
+			SELECT @Success = 400;
 		END
 END
 GO
@@ -375,7 +372,7 @@ CREATE PROCEDURE RegisterAdmin
 @Gender BIT,
 @Address TEXT,
 @Phone_Number VARCHAR(11),
-@Success BIT OUTPUT
+@ResponseMessage BIT OUTPUT
 AS
 BEGIN
 	BEGIN TRANSACTION
@@ -387,7 +384,7 @@ BEGIN
 						IF EXISTS (SELECT * FROM Customer WHERE Email_Address = @Email)
 							BEGIN
 							--an account with this email already exists
-								SELECT @Success = 0;
+								SELECT @ResponseMessage = 208;
 							END
 						ELSE
 							BEGIN
@@ -395,23 +392,23 @@ BEGIN
 								(First_Name, Last_Name, Email_Address, Password, Age, Gender, Address, Phone_Number, Admin)
 								VALUES
 								(@First_Name, @Last_Name, @Email, @Password, @Age, @Gender, @Address, @Phone_Number, 1);
-								SELECT @Success = 1;
+								SELECT @ResponseMessage = 200;
 							END
 					END
 				ELSE
 					BEGIN
-					--not admin
-						SELECT Success = 0
+						--not admin
+						SELECT ResponseMessage = 401;
 					END
 			END
 		ELSE
 			BEGIN
-			--not logged in
-				SELECT @Success = 0;
+				--not logged in
+				SELECT @ResponseMessage = 400;
 			END
 		IF @@ERROR != 0
 			BEGIN
-				SELECT @Success = 0;
+				SELECT @ResponseMessage = 500;
 				ROLLBACK TRANSACTION
 			END
 		ELSE
@@ -450,12 +447,12 @@ BEGIN
 			END
 		ELSE
 			BEGIN
-				SELECT @Token = 1;
+				SELECT @Token = 208;
 			END
 		
 		IF @@ERROR != 0
 			BEGIN
-				SELECT @Token = 0;
+				SELECT @Token = 500;
 				ROLLBACK TRANSACTION
 			END
 		ELSE
@@ -465,7 +462,7 @@ Go
 
 -- how to run
 DECLARE @Out as VARCHAR(25); 
-EXEC ValidateAdmin @Email = 'Email@Admin.com', @Password = 'password', @Token = @Out OUTPUT; 
+EXEC ValidateAdmin @Email = 'Email@Admin.com', @Password = 'password', @ResponseMessage = @Out OUTPUT; 
 SELECT @Out AS 'OutputMessage'; 
 --------
 
@@ -875,6 +872,7 @@ CREATE PROCEDURE WriteReview
 @Token VARCHAR(25),
 @Rating INT,
 @Product_ID INT,
+@Title VARCHAR(50),
 @Description TEXT,
 @Success BIT OUTPUT
 AS
@@ -887,9 +885,9 @@ BEGIN
 						DECLARE @Customer_ID AS INT = (SELECT Customer_ID FROM Sessions WHERE Token = @Token);
 						
 						INSERT INTO Reviews
-						(Product_ID, Customer_ID, Rating, Description)
+						(Product_ID, Customer_ID, Rating, Title, Description)
 						VALUES
-						(@Product_ID, @Customer_ID, @Rating, @Description);
+						(@Product_ID, @Customer_ID, @Rating, @Title, @Description);
 						
 						SELECT @Success = 1;
 					END
@@ -941,19 +939,22 @@ ON dbo.Reviews
 AFTER INSERT, DELETE
 AS
 BEGIN
-DECLARE @Product_ID INT;
-SET @Product_ID = ( SELECT Product_ID from inserted)
-EXEC dbo.Calculate_Insert_Average
+	DECLARE @Product_ID INT;
+	SET @Product_ID = ( SELECT Product_ID from inserted)
+	EXEC dbo.Calculate_Insert_Average
 END;
 
 CREATE PROCEDURE Calculate_Insert_Average (@Product_ID int, @Current_Rating int)
 AS
-Set @Current_Rating = (SELECT AVG(Rating) 
-FROM dbo.Reviews
-Where Product_ID = @Product_ID)
-UPDATE dbo.Products
-SET AVG_Rating = @Current_Rating
-WHERE Product_ID = @Product_ID
+BEGIN
+	Set @Current_Rating = (SELECT AVG(Rating) 
+	FROM dbo.Reviews
+	Where Product_ID = @Product_ID)
+	UPDATE dbo.Products
+	SET AVG_Rating = @Current_Rating
+	WHERE Product_ID = @Product_ID
+END
+Go
 
 ---------
 

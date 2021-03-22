@@ -201,6 +201,58 @@ EXEC EditCustomer @Token = '8E-433D-BCB4-A596E369001C', @FirstName = 'This has',
 SELECT @Out AS 'OutputMessage'; 
 --------
 
+--Edit user as admin
+
+CREATE PROCEDURE EditCustomer
+@Token VARCHAR(25),
+@Customer_ID INT,
+@FirstName VARCHAR(50),
+@LastName VARCHAR(50),
+@Email VARCHAR(320),
+@Password VARCHAR(50),
+@Age INT,
+@Gender BIT,
+@Address TEXT,
+@PhoneNumber VARCHAR(11),
+@Success BIT OUTPUT
+AS
+BEGIN
+	IF EXISTS (SELECT Customer_ID FROM Sessions WHERE Token = @Token AND CURRENT_TIMESTAMP <= ExpiryTime)
+		BEGIN
+			Declare @Admin_ID AS INT = (SELECT Customer_ID FROM Sessions WHERE Token = @Token);
+			
+			IF EXISTS(SELECT * FROM Customer WHERE Customer_ID = @Admin_ID AND Admin = 1)
+			
+			BEGIN
+			
+			IF EXISTS(SELECT * FROM Customer WHERE (Customer_ID != @Customer_ID AND Email_Address = @Email))
+				BEGIN
+				--an account with this email already exists
+					SELECT @Success = 0;
+				END
+			ELSE
+				BEGIN
+					UPDATE Customer SET First_Name = @FirstName, Last_Name = @LastName, Email_Address = @Email, Password = @Password, Age = @Age, Gender = @Gender, Address = @Address, Phone_Number = @PhoneNumber WHERE Customer_ID = @Customer_ID AND Admin = 0;
+					SELECT @Success = 1;
+				END
+			END
+			
+			ELSE
+			
+			BEGIN
+			
+				SELECT @Success = 0;
+			
+			END
+		END
+	ELSE
+		BEGIN
+		--customer not logged in
+			SELECT @Success = 0;
+		END
+END
+GO
+
 --Change password
 
 CREATE PROCEDURE ChangePassword
@@ -280,6 +332,35 @@ DECLARE @Out as BIT;
 EXEC DeleteCustomer @Token = 'FD-48BA-8080-EE76E5F9FAEC', @Success = @Out OUTPUT; 
 SELECT @Out AS 'OutputMessage'; 
 --------
+
+--Delete Customer Admin
+CREATE PROCEDURE DeleteCustomerAdmin
+@Token VARCHAR(25),
+@Customer_ID_Delete INT,
+@Success BIT OUTPUT
+AS
+BEGIN
+	IF EXISTS (SELECT Customer_ID FROM Sessions WHERE Token = @Token AND CURRENT_TIMESTAMP <= ExpiryTime)
+		BEGIN
+			Declare @Admin_ID AS INT = (SELECT Customer_ID FROM Sessions WHERE Token = @Token);
+			IF EXISTS(SELECT * FROM Customer WHERE Customer_ID = @Customer_ID AND Admin = 1)
+				BEGIN
+					Delete customer WHERE Customer_ID = @Customer_ID_Delete AND Admin = 0;
+					SELECT @Success = 1;
+				END
+			ELSE
+				BEGIN
+				--user customer does not exist or is an admin
+					SELECT @Success = 0;
+				END
+		END
+	ELSE
+		BEGIN
+		--user not logged in
+			SELECT @Success = 0;
+		END
+END
+GO
 
 ------Admin ---------
 
@@ -536,6 +617,71 @@ DECLARE @Out as BIT;
 EXEC CancelOrder @Token = 'D1-46D3-953F-D28AD246A235', @Order_ID = 1, @Success = @Out OUTPUT; 
 SELECT @Out AS 'OutputMessage'; 
 --------
+
+
+--cancel order as admin --------
+
+CREATE PROCEDURE CancelOrderAdmin
+@Token VARCHAR(25),
+@Order_ID INT,
+@Customer_ID
+@Success BIT OUTPUT
+AS
+BEGIN
+	BEGIN TRANSACTION
+		IF EXISTS(SELECT * FROM Sessions WHERE Token = @Token AND CURRENT_TIMESTAMP <= ExpiryTime)
+			BEGIN
+				DECLARE @Admin_ID AS INT = (SELECT Customer_ID FROM Sessions WHERE Token = @Token)
+				
+				IF EXISTS(SELECT * FROM Customer WHERE @Admin_ID = Customer_ID AND Admin=1)
+				
+				BEGIN
+				
+				IF EXISTS(SELECT * FROM Orders WHERE Order_ID = @Order_ID AND Customer_ID = @Customer_ID)
+					BEGIN
+						DECLARE @Quantity AS INT = (SELECT Quantity FROM Orders WHERE Order_ID = @Order_ID)
+						
+						DECLARE @Product_ID AS INT = (SELECT Product_ID FROM Orders WHERE Order_ID = @Order_ID)
+						
+						DELETE FROM Orders WHERE Order_ID = @Order_ID AND Customer_ID = @Customer_ID
+						
+						UPDATE Products
+						SET 
+						Stock = (Stock + @Quantity), Total_Sold = (Total_Sold - @Quantity)
+						WHERE
+						Product_ID = @Product_ID;
+						
+						SELECT @Success = 1;
+					END
+				ELSE
+					BEGIN
+					--order does not exist
+						SELECT @Success = 0;
+					END
+				END
+				
+				ELSE 
+					BEGIN
+					
+					SELECT @Success = 0;
+					
+					END
+			END
+		ELSE
+			BEGIN
+			--user not logged in
+				SELECT @Success = 0;
+			END
+
+	IF @@ERROR != 0
+		BEGIN
+			SELECT @Success = 0;
+			ROLLBACK TRANSACTION
+		END
+	ELSE
+		COMMIT TRANSACTION
+END
+GO
 
 
 --add product

@@ -1,6 +1,7 @@
 FormsViewGroup.dll
 Xamarin.AndroidX.Activity.dll
 Xamarin.AndroidX.Annotation.dll
+Xamarin.AndroidX.Annotation.Experimental.dll
 Xamarin.AndroidX.AppCompat.AppCompatResources.dll
 Xamarin.AndroidX.AppCompat.dll
 Xamarin.AndroidX.Arch.Core.Common.dll
@@ -71,6 +72,7 @@ androidx.coordinatorlayout.coordinatorlayout.aar
 androidx.cardview.cardview.aar
 androidx.appcompat.appcompat-resources.aar
 androidx.appcompat.appcompat.aar
+androidx.annotation.annotation-experimental.aar
 com.google.android.material.material.aar
 androidx.swiperefreshlayout.swiperefreshlayout.aar
 androidx.slidingpanelayout.slidingpanelayout.aar

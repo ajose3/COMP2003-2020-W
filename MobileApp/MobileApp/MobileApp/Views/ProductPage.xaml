@@ -82,8 +82,8 @@
                         PeekAreaInsets="100"
                         IndicatorView="indicatorview"
                         HeightRequest="250"
-                        CurrentItem="OnCollectionViewSelectionChanged"
                         >
+
                     <CarouselView.ItemTemplate>
                         <DataTemplate>
                             <StackLayout>

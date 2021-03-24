@@ -865,6 +865,12 @@ xamarin.forms.platform.android.appcompat.TabbedPageRenderer;crc64720bb2db43a66fe
 Xamarin.Forms.Platform.Android.AppCompat.ViewRenderer`2, Xamarin.Forms.Platform.Android;crc64720bb2db43a66fe9.ViewRenderer_2
 Xamarin.Forms.Platform.Android.AppCompat.ViewRenderer`2;crc64720bb2db43a66fe9.ViewRenderer_2
 xamarin.forms.platform.android.appcompat.ViewRenderer_2;crc64720bb2db43a66fe9.ViewRenderer_2
+Google.Android.Material.Slider.IBaseOnChangeListenerImplementor, Xamarin.Google.Android.Material;mono.com.google.android.material.slider.BaseOnChangeListenerImplementor
+Google.Android.Material.Slider.IBaseOnChangeListenerImplementor;mono.com.google.android.material.slider.BaseOnChangeListenerImplementor
+mono.com.google.android.material.slider.BaseOnChangeListenerImplementor;mono.com.google.android.material.slider.BaseOnChangeListenerImplementor
+Google.Android.Material.Slider.IBaseOnSliderTouchListenerImplementor, Xamarin.Google.Android.Material;mono.com.google.android.material.slider.BaseOnSliderTouchListenerImplementor
+Google.Android.Material.Slider.IBaseOnSliderTouchListenerImplementor;mono.com.google.android.material.slider.BaseOnSliderTouchListenerImplementor
+mono.com.google.android.material.slider.BaseOnSliderTouchListenerImplementor;mono.com.google.android.material.slider.BaseOnSliderTouchListenerImplementor
 Google.Android.Material.Shape.ShapeAppearancePathProvider+IPathListenerImplementor, Xamarin.Google.Android.Material;mono.com.google.android.material.shape.ShapeAppearancePathProvider_PathListenerImplementor
 Google.Android.Material.Shape.ShapeAppearancePathProvider.IPathListenerImplementor;mono.com.google.android.material.shape.ShapeAppearancePathProvider_PathListenerImplementor
 mono.com.google.android.material.shape.ShapeAppearancePathProvider_PathListenerImplementor;mono.com.google.android.material.shape.ShapeAppearancePathProvider_PathListenerImplementor

@@ -13,7 +13,6 @@ namespace MobileApp.Models
 
         public Product()
         {
-
         }
 
         public Product(int theId, string theName, string theDescription, float thePrice, string theImageUrl, int theStock)

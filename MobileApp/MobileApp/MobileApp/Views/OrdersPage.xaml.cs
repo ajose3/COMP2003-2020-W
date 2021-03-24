@@ -1,4 +1,5 @@
-﻿using System;
+﻿using MobileApp.ViewModels;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -15,6 +16,7 @@ namespace MobileApp.Views
         public OrdersPage()
         {
             InitializeComponent();
+            BindingContext = new OrdersViewModel();
         }
     }
 }

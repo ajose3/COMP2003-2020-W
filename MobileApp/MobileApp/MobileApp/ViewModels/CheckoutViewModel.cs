@@ -31,6 +31,8 @@ namespace MobileApp.ViewModels
                 // decrease stock for product in ProductData
                 ProductData.Products.Where(i => i.Id == Product.Id).FirstOrDefault().Stock -= 1;
                 //Shell.Current.DisplayAlert("Updated stock", string.Format("{0}", ProductData.Products.Where(i => i.Id == Product.Id).FirstOrDefault().Stock), "OK");
+                //  add product to orders
+                OrderData.AddToOrder(Product);
             }
 
             // clear basket

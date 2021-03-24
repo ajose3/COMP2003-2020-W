@@ -117,6 +117,61 @@
                     </Frame>
                 </Grid>
             </DataTemplate>
+            
+            <DataTemplate x:Key="OrderTemplate">
+                <Grid Padding="0,5">
+                    <Frame BorderColor="#D8DAE0" CornerRadius="20" HasShadow="True">
+                        <Grid Padding="0">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="Auto"/>
+                            </Grid.RowDefinitions>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="100"/>
+                                <ColumnDefinition Width="7*"/>
+                                <ColumnDefinition Width="5*"/>
+                                <ColumnDefinition Width="7*"/>
+                            </Grid.ColumnDefinitions>
+                            <Image Grid.RowSpan="3"
+                               Source="{Binding ImageUrl}" 
+                               Aspect="AspectFit"
+                               HeightRequest="80"/>
+                            <Label Margin="10,0,0,0" Grid.Column="1" Grid.ColumnSpan="3"
+                               Text="{Binding Name}" 
+                               FontAttributes="Bold" 
+                               TextColor="Black"
+                               FontSize="20"/>
+                            <Label Margin="10,0,0,0" Grid.Row="1" Grid.Column="1" 
+                                   Text="{Binding Price, StringFormat='£{0}'}" 
+                                   TextColor="DarkGray"
+                                   FontSize="20"/>
+                            <Label Margin="0,0,0,0" Grid.Row="1" Grid.Column="2" 
+                                   Text="{Binding Quantity, StringFormat='Qty: {0} '}" 
+                                   TextColor="DarkGray"
+                                   FontSize="20"/>
+                            <Label Margin="10,0,0,0" Grid.Column="1" Grid.Row="2" 
+                                   Text="{Binding Total, StringFormat='Total: {0}'}"
+                                   TextColor="DarkGray"
+                                   FontSize="20"/>
+                            <!--<FlexLayout Grid.Column="2" Grid.Row="1" Grid.ColumnSpan="2">
+                                <Label Text="Price: £" TextColor="DarkGray" FontSize="20"/>
+                                <Label Text="{Binding Price}" 
+                                   VerticalOptions="End" 
+                                   TextColor="DarkGray"
+                                   FontSize="20"
+                                   HorizontalTextAlignment="End"/>
+                            </FlexLayout>-->
+
+                            <Label Margin="10,0,0,0" Grid.Column="1" Grid.Row="3" Grid.ColumnSpan="3"
+                                   Text="{Binding Date, StringFormat='Ordered: {0:dd MM yyyy}'}" 
+                                   TextColor="DarkGray"
+                                   FontSize="20"/>
+                        </Grid>
+                    </Frame>
+                </Grid>
+            </DataTemplate>
             <!--<DataTemplate x:Key="ProductSearchTemplate">
                 <Grid Padding="10" HeightRequest="50">
                     <Grid.ColumnDefinitions>

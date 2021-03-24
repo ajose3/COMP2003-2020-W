@@ -4,6 +4,7 @@ using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using MobileApp.Models;
 using MobileApp.ViewModels;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
@@ -23,6 +24,13 @@ namespace MobileApp.Views
         double lastPanY = 0;
         bool isBackdropTapEnabled = true;
 
+        //handle carousel view tap
+        async void CarouselItem_Tapped(object sender, EventArgs e)
+        {
+            var i = sender as StackLayout;
+            var productId2 = i.FindByName<Label>("ProductID").Text;
+            await Shell.Current.GoToAsync($"productdetails?id={productId2}");
+        }
 
         async void WriteReview_Clicked(object sender, EventArgs e)
         {

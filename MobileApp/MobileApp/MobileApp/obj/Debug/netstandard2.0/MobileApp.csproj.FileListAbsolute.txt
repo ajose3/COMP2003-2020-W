@@ -125,3 +125,4 @@ C:\Git\COMP2003-2020-W\COMP2003-2020-W\MobileApp\MobileApp\MobileApp\obj\Debug\n
 C:\Git\COMP2003-2020-W\COMP2003-2020-W\MobileApp\MobileApp\MobileApp\obj\Debug\netstandard2.0\MobileApp.dll
 C:\Git\COMP2003-2020-W\COMP2003-2020-W\MobileApp\MobileApp\MobileApp\obj\Debug\netstandard2.0\ref\MobileApp.dll
 C:\Git\COMP2003-2020-W\COMP2003-2020-W\MobileApp\MobileApp\MobileApp\obj\Debug\netstandard2.0\MobileApp.pdb
+C:\Git\COMP2003-2020-W\COMP2003-2020-W\MobileApp\MobileApp\MobileApp\obj\Debug\netstandard2.0\Views\OrdersPage.xaml.g.cs

@@ -36,9 +36,7 @@
     
     <ContentPage.Content>
         <Grid>
-            
-        
-        <ScrollView>
+            <ScrollView>
             <StackLayout Margin="10">
 
                 <Frame BorderColor="#D8DAE0" CornerRadius="20" HasShadow="True">
@@ -70,12 +68,71 @@
                     <Button Text="Buy Now!" Grid.Column="0" Grid.Row="0" Command="{Binding BuyNowCmd}"/>
                     <Button Text="Add To Basket" Grid.Column="1" Grid.Row="0" Command="{Binding AddToBasketCmd}"/>
                 </Grid>
+                <BoxView Style="{StaticResource SeparatorLineStyle}"/>
                 <Label Text="Description" TextColor="Black" FontSize="30"/>
                 <Label Text= "{Binding Description}"
                        Style="{DynamicResource BodyStyle}" TextColor="Black" FontSize="24"/>
 
+                <BoxView Style="{StaticResource SeparatorLineStyle}"/>
 
-                <!-- separator line -->
+                <Label Text="Recommended" TextColor="Black" FontSize="30"/>
+                <!--Carousel -> itemSource is list of all products change to recomeneded product list-->
+                <CarouselView ItemsSource="{x:Static data:RecommendedProducts.RecProducts}"
+                        Margin="0,5,0,0"
+                        PeekAreaInsets="100"
+                        IndicatorView="indicatorview"
+                        HeightRequest="250"
+                        CurrentItem="OnCollectionViewSelectionChanged"
+                        >
+                    <CarouselView.ItemTemplate>
+                        <DataTemplate>
+                            <StackLayout>
+                                <Frame HasShadow="True"
+                                BorderColor="LightGray" CornerRadius="5"
+                                Margin="4,2" Padding="0,10"
+                                HeightRequest="220" WidthRequest="250">
+                                    <StackLayout Margin="0" Padding="0">
+                                        <StackLayout.GestureRecognizers>
+                                                <!--<TapGestureRecognizer Command="{Binding selectCarouselItem}" CommandParameter="{Binding Id}" />-->
+                                                <TapGestureRecognizer Tapped="CarouselItem_Tapped" />
+                                        </StackLayout.GestureRecognizers>
+                                        <Label Text="{Binding Id}" IsVisible="false" x:Name="ProductID"/>
+                                        <Image Source="{Binding ImageUrl}" 
+                                        Aspect="AspectFit"
+                                        HeightRequest="125"
+                                        VerticalOptions="Start"
+                                        HorizontalOptions="Center" />
+                                        <BoxView Style="{StaticResource SeparatorLineStyle}" Margin="0,0,0,0"/>
+                                        <Label Text="{Binding Name}" 
+                                        FontAttributes="Bold"
+                                        FontSize="28"
+                                        HorizontalOptions="Center"
+                                        VerticalOptions="Center" TextColor="Black"/>
+
+                                        <FlexLayout HorizontalOptions="Center" JustifyContent="Center">
+                                            <Label Text="Price: £"
+                                            FontSize="24"
+                                            TextColor="Black"/>
+                                            <Label Text="{Binding Price}"
+                                            MaxLines="5"
+                                            LineBreakMode="TailTruncation"
+                                            FontSize="24"
+                                            TextColor="Black"/>
+                                        </FlexLayout>
+                                    </StackLayout>
+                                </Frame>
+                            </StackLayout>
+                        </DataTemplate>
+                    </CarouselView.ItemTemplate>
+                </CarouselView>
+                <IndicatorView
+                x:Name="indicatorview"
+                Margin="0,10,0,0"
+                IndicatorColor="LightGray"
+                IndicatorSize="10"
+                SelectedIndicatorColor="Black" />
+
+                    <!-- separator line -->
                 <BoxView Style="{StaticResource SeparatorLineStyle}"/>
 
                 <Label Text="Reviews" TextColor="Black" FontSize="30"/>

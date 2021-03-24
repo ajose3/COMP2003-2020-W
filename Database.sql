@@ -1,14 +1,14 @@
 /*Create users table*/
 CREATE TABLE Customer(
-Customer_ID int IDENTITY(1,1) PRIMARY KEY,
-First_Name VARCHAR(50) NOT NULL,
-Last_Name VARCHAR(50) NOT NULL,
-Email_Address VARCHAR(320) NOT NULL,
+CustomerID int IDENTITY(1,1) PRIMARY KEY,
+FirstName VARCHAR(50) NOT NULL,
+LastName VARCHAR(50) NOT NULL,
+EmailAddress VARCHAR(320) NOT NULL,
 Password VARCHAR(50) NOT NULL CHECK (DATALENGTH(Password) > 5),
 Age INT,
 Gender bit,
 Address TEXT,
-Phone_Number VARCHAR(11),
+PhoneNumber VARCHAR(11),
 Admin BIT DEFAULT 0 NOT NULL
 );
 
@@ -16,53 +16,53 @@ Admin BIT DEFAULT 0 NOT NULL
 /*Create sessions table*/
 CREATE TABLE Sessions(
 Session_ID int IDENTITY(1,1) PRIMARY KEY,
-Customer_ID int NOT NULL,
+CustomerID int NOT NULL,
 Token VARCHAR(50) NOT NULL,
 ExpiryTime DATETIME NOT NULL,
-FOREIGN KEY (Customer_ID) REFERENCES Customer(Customer_ID)
+FOREIGN KEY (CustomerID) REFERENCES Customer(CustomerID)
 ON DELETE CASCADE
 );
 
 CREATE TABLE Orders(
-Order_ID INT IDENTITY(1,1) PRIMARY KEY,
-Time_Ordered DATETIME NOT NULL,
+OrderID INT IDENTITY(1,1) PRIMARY KEY,
+TimeOrdered DATETIME NOT NULL,
 Quantity INT NOT NULL,
-Product_ID INT NOT NULL,
-Customer_ID INT NOT NULL,
-FOREIGN KEY (Customer_ID) REFERENCES Customer(Customer_ID)
+ProductID INT NOT NULL,
+CustomerID INT NOT NULL,
+FOREIGN KEY (CustomerID) REFERENCES Customer(CustomerID)
 ON DELETE CASCADE,
-FOREIGN KEY (Product_ID) REFERENCES Products(Product_ID)
+FOREIGN KEY (ProductID) REFERENCES Products(ProductID)
 );
 
 
 CREATE TABLE Products(
-Product_ID INT IDENTITY(1,1) PRIMARY KEY,
-Product_Name VARCHAR(50) NOT NULL,
-Image_Url TEXT,
+ProductID INT IDENTITY(1,1) PRIMARY KEY,
+ProductName VARCHAR(50) NOT NULL,
+ImageUrl TEXT,
 Stock INT NOT NULL,
 Catagory VARCHAR(50) NOT NULL,
-Total_Sold INT DEFAULT 0 NOT NULL,
+TotalSold INT DEFAULT 0 NOT NULL,
 Price MONEY NOT NULL,
 Description TEXT
 );
 
 CREATE TABLE Reviews(
-Product_ID INT NOT NULL,
-Customer_ID INT NOT NULL,
+ProductID INT NOT NULL,
+CustomerID INT NOT NULL,
 Rating TINYINT NOT NULL CHECK(0 < Rating AND Rating <= 5),
 Title VARCHAR(50),
 Description TEXT,
-PRIMARY KEY (Product_ID, Customer_ID),
-FOREIGN KEY (Customer_ID) REFERENCES Customer(Customer_ID),
-FOREIGN KEY (Product_ID) REFERENCES Products(Product_ID)
+PRIMARY KEY (ProductID, CustomerID),
+FOREIGN KEY (CustomerID) REFERENCES Customer(CustomerID),
+FOREIGN KEY (ProductID) REFERENCES Products(ProductID)
 ON DELETE CASCADE
 );
 --Views-------------------------------------------------------------------------------------------------------
 
-CREATE VIEW [dbo].[Top_Rated] AS 
-SELECT Ratings.Rating , Products.Product_Name, Ratings.Product_ID
+CREATE VIEW [dbo].[TopRated] AS 
+SELECT Ratings.Rating , Products.ProductName, Ratings.ProductID
 FROM Ratings
-INNER JOIN Products ON Products.Product_ID = Ratings.Product_ID;
+INNER JOIN Products ON Products.ProductID = Ratings.ProductID;
 GO
 
 --------------------------------------------------------------------------------------------------------------
@@ -78,15 +78,15 @@ CREATE PROCEDURE ValidateCustomer
 AS
 BEGIN
 	BEGIN TRANSACTION
-		IF EXISTS (SELECT * FROM Customer WHERE Email_Address = @Email AND Password = @Password)
+		IF EXISTS (SELECT * FROM Customer WHERE EmailAddress = @Email AND Password = @Password)
 			BEGIN
-				DECLARE @CustomerID AS INT = (SELECT Customer_ID FROM Customer WHERE Email_Address = @Email AND Password = @Password);
+				DECLARE @CustomerID AS INT = (SELECT CustomerID FROM Customer WHERE EmailAddress = @Email AND Password = @Password);
 				
 				DECLARE @TheToken AS VARCHAR(50) = CONVERT(VARCHAR(30), RIGHT(NEWID(), 25));
 				
 				DECLARE @ExpiryTime AS DATETIME = (SELECT DATEADD(hour, 1, CURRENT_TIMESTAMP) AS DateAdd);
 
-				Insert INTO Sessions (Customer_ID, Token, ExpiryTime) VALUES (@CustomerID, @TheToken, @ExpiryTime);
+				Insert INTO Sessions (CustomerID, Token, ExpiryTime) VALUES (@CustomerID, @TheToken, @ExpiryTime);
 				
 				SELECT @Token = @TheToken;
 			
@@ -115,19 +115,19 @@ SELECT @OUT AS 'Outmessage';
 
 
 CREATE PROCEDURE RegisterCustomer
-@First_Name VARCHAR(50), 
-@Last_Name VARCHAR(50),
+@FirstName VARCHAR(50), 
+@LastName VARCHAR(50),
 @Email VARCHAR(320),
 @Password VARCHAR(50),
 @Age INT,
 @Gender BIT,
 @Address TEXT,
-@Phone_Number VARCHAR(11),
+@PhoneNumber VARCHAR(11),
 @ResponseMessage INT OUTPUT
 AS
 BEGIN
 	BEGIN TRANSACTION
-		IF EXISTS (SELECT * FROM Customer WHERE Email_Address = @Email)
+		IF EXISTS (SELECT * FROM Customer WHERE EmailAddress = @Email)
 			BEGIN
 			--an account with this email already exists
 				SELECT @ResponseMessage = 208;
@@ -135,9 +135,9 @@ BEGIN
 		ELSE
 			BEGIN
 				INSERT INTO Customer
-				(First_Name, Last_Name, Email_Address, Password, Age, Gender, Address, Phone_Number)
+				(FirstName, LastName, EmailAddress, Password, Age, Gender, Address, PhoneNumber)
 				VALUES
-				(@First_Name, @Last_Name, @Email, @Password, @Age, @Gender, @Address, @Phone_Number);
+				(@FirstName, @LastName, @Email, @Password, @Age, @Gender, @Address, @PhoneNumber);
 				SELECT @ResponseMessage = 200;
 			END
 		IF @@ERROR != 0
@@ -153,7 +153,7 @@ GO
 
 -- how to run
 DECLARE @Out as BIT
-exec RegisterCustomer @First_Name = 'bob', @Last_Name = 'bobby', @Email = 'email6', @Password = 'password', @Age = '5', @Gender = 1, @Address = 'address goes here', @Phone_Number = '07932153300', @ResponseMessage = @Out OUTPUT;
+exec RegisterCustomer @FirstName = 'bob', @LastName = 'bobby', @Email = 'email6', @Password = 'password', @Age = '5', @Gender = 1, @Address = 'address goes here', @PhoneNumber = '07932153300', @ResponseMessage = @Out OUTPUT;
 SELECT @OUT AS 'Outputmessage';
 --------
 
@@ -174,17 +174,17 @@ CREATE PROCEDURE EditCustomer
 @ResponseMessage INT OUTPUT
 AS
 BEGIN
-	IF EXISTS (SELECT Customer_ID FROM Sessions WHERE Token = @Token AND CURRENT_TIMESTAMP <= ExpiryTime)
+	IF EXISTS (SELECT CustomerID FROM Sessions WHERE Token = @Token AND CURRENT_TIMESTAMP <= ExpiryTime)
 		BEGIN
-			Declare @Customer_ID AS INT = (SELECT Customer_ID FROM Sessions WHERE Token = @Token);
-			IF EXISTS(SELECT * FROM Customer WHERE (Customer_ID != @Customer_ID AND Email_Address = @Email))
+			Declare @CustomerID AS INT = (SELECT CustomerID FROM Sessions WHERE Token = @Token);
+			IF EXISTS(SELECT * FROM Customer WHERE (CustomerID != @CustomerID AND EmailAddress = @Email))
 				BEGIN
 				--an account with this email already exists
 					SELECT @ResponseMessage = 208;
 				END
 			ELSE
 				BEGIN
-					UPDATE Customer SET First_Name = @FirstName, Last_Name = @LastName, Email_Address = @Email, Password = @Password, Age = @Age, Gender = @Gender, Address = @Address, Phone_Number = @PhoneNumber WHERE Customer_ID = @Customer_ID AND Admin = 0;
+					UPDATE Customer SET FirstName = @FirstName, LastName = @LastName, EmailAddress = @Email, Password = @Password, Age = @Age, Gender = @Gender, Address = @Address, PhoneNumber = @PhoneNumber WHERE CustomerID = @CustomerID AND Admin = 0;
 					SELECT @ResponseMessage = 200;
 				END
 		END
@@ -206,7 +206,7 @@ SELECT @Out AS 'OutputMessage';
 
 CREATE PROCEDURE AdminEditCustomer
 @Token VARCHAR(25),
-@Customer_ID INT,
+@CustomerID INT,
 @FirstName VARCHAR(50),
 @LastName VARCHAR(50),
 @Email VARCHAR(320),
@@ -218,20 +218,20 @@ CREATE PROCEDURE AdminEditCustomer
 @ResponseMessage INT OUTPUT
 AS
 BEGIN
-	IF EXISTS (SELECT Customer_ID FROM Sessions WHERE Token = @Token AND CURRENT_TIMESTAMP <= ExpiryTime)
+	IF EXISTS (SELECT CustomerID FROM Sessions WHERE Token = @Token AND CURRENT_TIMESTAMP <= ExpiryTime)
 		BEGIN
-			Declare @Admin_ID AS INT = (SELECT Customer_ID FROM Sessions WHERE Token = @Token);
+			Declare @AdminID AS INT = (SELECT CustomerID FROM Sessions WHERE Token = @Token);
 			
-			IF EXISTS(SELECT * FROM Customer WHERE Customer_ID = @Admin_ID AND Admin = 1)
+			IF EXISTS(SELECT * FROM Customer WHERE CustomerID = @AdminID AND Admin = 1)
 				BEGIN
-					IF EXISTS(SELECT * FROM Customer WHERE (Customer_ID != @Customer_ID AND Email_Address = @Email))
+					IF EXISTS(SELECT * FROM Customer WHERE (CustomerID != @CustomerID AND EmailAddress = @Email))
 						BEGIN
 						--an account with this email already exists
 							SELECT @ResponseMessage = 208;
 						END
 					ELSE
 						BEGIN
-							UPDATE Customer SET First_Name = @FirstName, Last_Name = @LastName, Email_Address = @Email, Password = @Password, Age = @Age, Gender = @Gender, Address = @Address, Phone_Number = @PhoneNumber WHERE Customer_ID = @Customer_ID AND Admin = 0;
+							UPDATE Customer SET FirstName = @FirstName, LastName = @LastName, EmailAddress = @Email, Password = @Password, Age = @Age, Gender = @Gender, Address = @Address, PhoneNumber = @PhoneNumber WHERE CustomerID = @CustomerID AND Admin = 0;
 							SELECT @ResponseMessage = 200;
 						END
 				END
@@ -259,12 +259,12 @@ CREATE PROCEDURE ChangePassword
 AS
 BEGIN
 	BEGIN TRANSACTION
-		IF EXISTS(SELECT Customer_ID FROM Sessions WHERE Token = @Token AND CURRENT_TIMESTAMP <= ExpiryTime)
+		IF EXISTS(SELECT CustomerID FROM Sessions WHERE Token = @Token AND CURRENT_TIMESTAMP <= ExpiryTime)
 			BEGIN
-				Declare @Customer_ID AS INT = (SELECT Customer_ID FROM Sessions WHERE Token = @Token);
-				IF EXISTS(SELECT * FROM Customer WHERE Customer_ID = @Customer_ID AND Admin = 0)
+				Declare @CustomerID AS INT = (SELECT CustomerID FROM Sessions WHERE Token = @Token);
+				IF EXISTS(SELECT * FROM Customer WHERE CustomerID = @CustomerID AND Admin = 0)
 					BEGIN
-						UPDATE Customer SET Password = @NewPassword WHERE Customer_ID = @Customer_ID AND Admin = 0;
+						UPDATE Customer SET Password = @NewPassword WHERE CustomerID = @CustomerID AND Admin = 0;
 
 						SELECT @ResponseMessage = 200;
 					END
@@ -302,12 +302,12 @@ CREATE PROCEDURE DeleteCustomer
 @ResponseMessage INT OUTPUT
 AS
 BEGIN
-	IF EXISTS (SELECT Customer_ID FROM Sessions WHERE Token = @Token AND CURRENT_TIMESTAMP <= ExpiryTime)
+	IF EXISTS (SELECT CustomerID FROM Sessions WHERE Token = @Token AND CURRENT_TIMESTAMP <= ExpiryTime)
 		BEGIN
-			Declare @Customer_ID AS INT = (SELECT Customer_ID FROM Sessions WHERE Token = @Token);
-			IF EXISTS(SELECT * FROM Customer WHERE Customer_ID = @Customer_ID AND Admin = 0)
+			Declare @CustomerID AS INT = (SELECT CustomerID FROM Sessions WHERE Token = @Token);
+			IF EXISTS(SELECT * FROM Customer WHERE CustomerID = @CustomerID AND Admin = 0)
 				BEGIN
-					Delete customer WHERE Customer_ID = @Customer_ID AND Admin = 0;
+					Delete customer WHERE CustomerID = @CustomerID AND Admin = 0;
 					SELECT @ResponseMessage = 200;
 				END
 			ELSE
@@ -333,16 +333,16 @@ SELECT @Out AS 'OutputMessage';
 --Delete Customer Admin
 CREATE PROCEDURE AdminDeleteCustomer
 @Token VARCHAR(25),
-@Customer_ID_Delete INT,
+@CustomerIDDelete INT,
 @Success BIT OUTPUT
 AS
 BEGIN
-	IF EXISTS (SELECT Customer_ID FROM Sessions WHERE Token = @Token AND CURRENT_TIMESTAMP <= ExpiryTime)
+	IF EXISTS (SELECT CustomerID FROM Sessions WHERE Token = @Token AND CURRENT_TIMESTAMP <= ExpiryTime)
 		BEGIN
-			Declare @Admin_ID AS INT = (SELECT Customer_ID FROM Sessions WHERE Token = @Token);
-			IF EXISTS(SELECT * FROM Customer WHERE Customer_ID = @Customer_ID AND Admin = 1)
+			Declare @AdminID AS INT = (SELECT CustomerID FROM Sessions WHERE Token = @Token);
+			IF EXISTS(SELECT * FROM Customer WHERE CustomerID = @CustomerID AND Admin = 1)
 				BEGIN
-					Delete customer WHERE Customer_ID = @Customer_ID_Delete AND Admin = 0;
+					Delete customer WHERE CustomerID = @CustomerIDDelete AND Admin = 0;
 					SELECT @Success = 200;
 				END
 			ELSE
@@ -364,24 +364,24 @@ GO
 --Register Admin
 CREATE PROCEDURE RegisterAdmin
 @Token VARCHAR(25),
-@First_Name VARCHAR(50), 
-@Last_Name VARCHAR(50),
+@FirstName VARCHAR(50), 
+@LastName VARCHAR(50),
 @Email VARCHAR(320),
 @Password VARCHAR(50),
 @Age INT,
 @Gender BIT,
 @Address TEXT,
-@Phone_Number VARCHAR(11),
+@PhoneNumber VARCHAR(11),
 @ResponseMessage BIT OUTPUT
 AS
 BEGIN
 	BEGIN TRANSACTION
-		IF EXISTS (SELECT Customer_ID FROM Sessions WHERE Token = @Token AND CURRENT_TIMESTAMP <= ExpiryTime)
+		IF EXISTS (SELECT CustomerID FROM Sessions WHERE Token = @Token AND CURRENT_TIMESTAMP <= ExpiryTime)
 			BEGIN
-				DECLARE @Customer_ID AS INT = (SELECT Customer_ID FROM Sessions WHERE Token = @Token AND CURRENT_TIMESTAMP <= ExpiryTime);
-				IF EXISTS(SELECT * FROM Customer WHERE Customer_ID = @Customer_ID AND Admin = 1)
+				DECLARE @CustomerID AS INT = (SELECT CustomerID FROM Sessions WHERE Token = @Token AND CURRENT_TIMESTAMP <= ExpiryTime);
+				IF EXISTS(SELECT * FROM Customer WHERE CustomerID = @CustomerID AND Admin = 1)
 					BEGIN
-						IF EXISTS (SELECT * FROM Customer WHERE Email_Address = @Email)
+						IF EXISTS (SELECT * FROM Customer WHERE EmailAddress = @Email)
 							BEGIN
 							--an account with this email already exists
 								SELECT @ResponseMessage = 208;
@@ -389,9 +389,9 @@ BEGIN
 						ELSE
 							BEGIN
 								INSERT INTO Customer
-								(First_Name, Last_Name, Email_Address, Password, Age, Gender, Address, Phone_Number, Admin)
+								(FirstName, LastName, EmailAddress, Password, Age, Gender, Address, PhoneNumber, Admin)
 								VALUES
-								(@First_Name, @Last_Name, @Email, @Password, @Age, @Gender, @Address, @Phone_Number, 1);
+								(@FirstName, @LastName, @Email, @Password, @Age, @Gender, @Address, @PhoneNumber, 1);
 								SELECT @ResponseMessage = 200;
 							END
 					END
@@ -419,7 +419,7 @@ GO
 
 -- how to run
 DECLARE @Out as BIT
-exec RegisterAdmin @Token = 'FD-48BA-8080-EE76E5F9FAEC', @First_Name = 'bob', @Last_Name = 'bobby', @Email = 'email3@admin.com', @Password = 'password', @Age = '5', @Gender = 1, @Address = 'address goes here', @Phone_Number = '07932153300', @success = @Out OUTPUT;
+exec RegisterAdmin @Token = 'FD-48BA-8080-EE76E5F9FAEC', @FirstName = 'bob', @LastName = 'bobby', @Email = 'email3@admin.com', @Password = 'password', @Age = '5', @Gender = 1, @Address = 'address goes here', @PhoneNumber = '07932153300', @success = @Out OUTPUT;
 SELECT @OUT AS 'Outputmessage';
 --------
 
@@ -432,15 +432,15 @@ CREATE PROCEDURE ValidateAdmin
 AS
 BEGIN
 	BEGIN TRANSACTION
-		IF EXISTS (SELECT * FROM Customer WHERE Email_Address = @Email AND Password = @Password AND Admin = 1)
+		IF EXISTS (SELECT * FROM Customer WHERE EmailAddress = @Email AND Password = @Password AND Admin = 1)
 			BEGIN
-				DECLARE @CustomerID AS INT = (SELECT Customer_ID FROM Customer WHERE Email_Address = @Email AND Password = @Password AND Admin = 1);
+				DECLARE @CustomerID AS INT = (SELECT CustomerID FROM Customer WHERE EmailAddress = @Email AND Password = @Password AND Admin = 1);
 				
 				DECLARE @TheToken AS VARCHAR(50) = CONVERT(VARCHAR(30), RIGHT(NEWID(), 25));
 				
 				DECLARE @ExpiryTime AS DATETIME = (SELECT DATEADD(hour, 1, CURRENT_TIMESTAMP) AS DateAdd);
 
-				Insert INTO Sessions (Customer_ID, Token, ExpiryTime) VALUES (@CustomerID, @TheToken, @ExpiryTime);
+				Insert INTO Sessions (CustomerID, Token, ExpiryTime) VALUES (@CustomerID, @TheToken, @ExpiryTime);
 				
 				SELECT @Token = @TheToken;
 			
@@ -470,17 +470,17 @@ SELECT @Out AS 'OutputMessage';
 --Admin Delete Customer
 CREATE PROCEDURE AdminDeleteCustomer
 @Token VARCHAR(25),
-@Customer_Deleting_ID INT,
+@CustomerDeletingID INT,
 @ResponseMessage INT OUTPUT
 AS
 BEGIN
 	BEGIN TRANSACTION
-		IF EXISTS (SELECT Customer_ID FROM Sessions WHERE Token = @Token AND CURRENT_TIMESTAMP <= ExpiryTime)
+		IF EXISTS (SELECT CustomerID FROM Sessions WHERE Token = @Token AND CURRENT_TIMESTAMP <= ExpiryTime)
 			BEGIN
-				Declare @Customer_ID AS INT = (SELECT Customer_ID FROM Sessions WHERE Token = @Token);
-				IF EXISTS(SELECT * FROM Customer WHERE Customer_ID = @Customer_ID AND Admin = 1)
+				Declare @CustomerID AS INT = (SELECT CustomerID FROM Sessions WHERE Token = @Token);
+				IF EXISTS(SELECT * FROM Customer WHERE CustomerID = @CustomerID AND Admin = 1)
 					BEGIN
-						Delete Customer WHERE Customer_ID = @Customer_Deleting_ID AND Admin = 0;
+						Delete Customer WHERE CustomerID = @CustomerDeletingID AND Admin = 0;
 						SELECT @ResponseMessage = 200;
 					END
 				ELSE
@@ -504,7 +504,7 @@ GO
 
 -- how to run
 DECLARE @Out as INT; 
-EXEC AdminDeleteCustomer @Token = 'FD-48BA-8080-EE76E5F9FAEC', @Customer_Deleting_ID = 2, @ResponseMessage = @Out OUTPUT; 
+EXEC AdminDeleteCustomer @Token = 'FD-48BA-8080-EE76E5F9FAEC', @CustomerDeletingID = 2, @ResponseMessage = @Out OUTPUT; 
 SELECT @Out AS 'OutputMessage'; 
 --------
 
@@ -515,25 +515,25 @@ SELECT @Out AS 'OutputMessage';
 CREATE PROCEDURE AddOrder
 @Token VARCHAR(25),
 @Quantity INT,
-@Product_ID INT,
+@ProductID INT,
 @ResponseMessage INT OUTPUT
 AS
 BEGIN
 	BEGIN TRANSACTION
 		IF EXISTS (SELECT * FROM Sessions WHERE Token = @Token AND CURRENT_TIMESTAMP <= ExpiryTime)
 			BEGIN
-				DECLARE @Customer_ID AS INT = (SELECT Customer_ID FROM Sessions WHERE Token = @Token);
+				DECLARE @CustomerID AS INT = (SELECT CustomerID FROM Sessions WHERE Token = @Token);
 				
 				INSERT INTO Orders
-				(Time_Ordered, Quantity, Product_ID, Customer_ID)
+				(TimeOrdered, Quantity, ProductID, CustomerID)
 				VALUES
-				(CURRENT_TIMESTAMP, @Quantity, @Product_ID, @Customer_ID);
+				(CURRENT_TIMESTAMP, @Quantity, @ProductID, @CustomerID);
 				
 				UPDATE Products
 				SET 
-				Stock = (Stock - @Quantity), Total_Sold = (Total_Sold + @Quantity)
+				Stock = (Stock - @Quantity), TotalSold = (TotalSold + @Quantity)
 				WHERE
-				Product_ID = @Product_ID;
+				ProductID = @ProductID;
 				
 				SELECT @ResponseMessage = 200;
 			END
@@ -554,7 +554,7 @@ GO
 
 -- how to run
 DECLARE @Out as INT; 
-EXEC AddOrder @Token = 'FD-48BA-8080-EE76E5F9FAEC', @Quantity = 3, @Product_ID = 1, @ResponseMessage = @Out OUTPUT; 
+EXEC AddOrder @Token = 'FD-48BA-8080-EE76E5F9FAEC', @Quantity = 3, @ProductID = 1, @ResponseMessage = @Out OUTPUT; 
 SELECT @Out AS 'OutputMessage'; 
 --------
 
@@ -562,28 +562,28 @@ SELECT @Out AS 'OutputMessage';
 
 CREATE PROCEDURE CancelOrder
 @Token VARCHAR(25),
-@Order_ID INT,
+@OrderID INT,
 @ResponseMessage INT OUTPUT
 AS
 BEGIN
 	BEGIN TRANSACTION
 		IF EXISTS(SELECT * FROM Sessions WHERE Token = @Token AND CURRENT_TIMESTAMP <= ExpiryTime)
 			BEGIN
-				DECLARE @Customer_ID AS INT = (SELECT Customer_ID FROM Sessions WHERE Token = @Token)
+				DECLARE @CustomerID AS INT = (SELECT CustomerID FROM Sessions WHERE Token = @Token)
 				
-				IF EXISTS(SELECT * FROM Orders WHERE Order_ID = @Order_ID AND Customer_ID = @Customer_ID)
+				IF EXISTS(SELECT * FROM Orders WHERE OrderID = @OrderID AND CustomerID = @CustomerID)
 					BEGIN
-						DECLARE @Quantity AS INT = (SELECT Quantity FROM Orders WHERE Order_ID = @Order_ID)
+						DECLARE @Quantity AS INT = (SELECT Quantity FROM Orders WHERE OrderID = @OrderID)
 						
-						DECLARE @Product_ID AS INT = (SELECT Product_ID FROM Orders WHERE Order_ID = @Order_ID)
+						DECLARE @ProductID AS INT = (SELECT ProductID FROM Orders WHERE OrderID = @OrderID)
 						
-						DELETE FROM Orders WHERE Order_ID = @Order_ID AND Customer_ID = @Customer_ID
+						DELETE FROM Orders WHERE OrderID = @OrderID AND CustomerID = @CustomerID
 						
 						UPDATE Products
 						SET 
-						Stock = (Stock + @Quantity), Total_Sold = (Total_Sold - @Quantity)
+						Stock = (Stock + @Quantity), TotalSold = (TotalSold - @Quantity)
 						WHERE
-						Product_ID = @Product_ID;
+						ProductID = @ProductID;
 						
 						SELECT @ResponseMessage = 200;
 					END
@@ -611,7 +611,7 @@ GO
 
 -- how to run
 DECLARE @Out as INT; 
-EXEC CancelOrder @Token = 'D1-46D3-953F-D28AD246A235', @Order_ID = 1, @ResponseMessage = @Out OUTPUT; 
+EXEC CancelOrder @Token = 'D1-46D3-953F-D28AD246A235', @OrderID = 1, @ResponseMessage = @Out OUTPUT; 
 SELECT @Out AS 'OutputMessage'; 
 --------
 
@@ -620,33 +620,33 @@ SELECT @Out AS 'OutputMessage';
 
 CREATE PROCEDURE CancelOrderAdmin
 @Token VARCHAR(25),
-@Order_ID INT,
-@Customer_ID
+@OrderID INT,
+@CustomerID
 @ResponseMessage INT OUTPUT
 AS
 BEGIN
 	BEGIN TRANSACTION
 		IF EXISTS(SELECT * FROM Sessions WHERE Token = @Token AND CURRENT_TIMESTAMP <= ExpiryTime)
 			BEGIN
-				DECLARE @Admin_ID AS INT = (SELECT Customer_ID FROM Sessions WHERE Token = @Token)
+				DECLARE @AdminID AS INT = (SELECT CustomerID FROM Sessions WHERE Token = @Token)
 				
-				IF EXISTS(SELECT * FROM Customer WHERE @Admin_ID = Customer_ID AND Admin=1)
+				IF EXISTS(SELECT * FROM Customer WHERE @AdminID = CustomerID AND Admin=1)
 				
 				BEGIN
 				
-				IF EXISTS(SELECT * FROM Orders WHERE Order_ID = @Order_ID AND Customer_ID = @Customer_ID)
+				IF EXISTS(SELECT * FROM Orders WHERE OrderID = @OrderID AND CustomerID = @CustomerID)
 					BEGIN
-						DECLARE @Quantity AS INT = (SELECT Quantity FROM Orders WHERE Order_ID = @Order_ID)
+						DECLARE @Quantity AS INT = (SELECT Quantity FROM Orders WHERE OrderID = @OrderID)
 						
-						DECLARE @Product_ID AS INT = (SELECT Product_ID FROM Orders WHERE Order_ID = @Order_ID)
+						DECLARE @ProductID AS INT = (SELECT ProductID FROM Orders WHERE OrderID = @OrderID)
 						
-						DELETE FROM Orders WHERE Order_ID = @Order_ID AND Customer_ID = @Customer_ID
+						DELETE FROM Orders WHERE OrderID = @OrderID AND CustomerID = @CustomerID
 						
 						UPDATE Products
 						SET 
-						Stock = (Stock + @Quantity), Total_Sold = (Total_Sold - @Quantity)
+						Stock = (Stock + @Quantity), TotalSold = (TotalSold - @Quantity)
 						WHERE
-						Product_ID = @Product_ID;
+						ProductID = @ProductID;
 						
 						SELECT @ResponseMessage = 200;
 					END
@@ -685,8 +685,8 @@ GO
 
 CREATE PROCEDURE AddProduct
 @Token VARCHAR(25),
-@Product_Name VARCHAR(50),
-@Image_Url TEXT,
+@ProductName VARCHAR(50),
+@ImageUrl TEXT,
 @Stock INT,
 @Category VARCHAR(50),
 @Price MONEY,
@@ -697,11 +697,11 @@ BEGIN
 	BEGIN TRANSACTION
 		IF EXISTS(SELECT * FROM Sessions WHERE Token = @Token AND CURRENT_TIMESTAMP <= ExpiryTime)
 			BEGIN
-				DECLARE @Customer_ID AS INT = (SELECT Customer_ID FROM Sessions WHERE Token = @Token);
+				DECLARE @CustomerID AS INT = (SELECT CustomerID FROM Sessions WHERE Token = @Token);
 				
-				IF EXISTS(SELECT * FROM Customer WHERE Customer_ID = @Customer_ID AND Admin = 1)
+				IF EXISTS(SELECT * FROM Customer WHERE CustomerID = @CustomerID AND Admin = 1)
 					BEGIN
-						IF EXISTS(SELECT * FROM Products WHERE Product_Name = @Product_Name)
+						IF EXISTS(SELECT * FROM Products WHERE ProductName = @ProductName)
 							BEGIN
 								--product name already exists
 								SELECT @ResponseMessage = 409;
@@ -709,9 +709,9 @@ BEGIN
 						ELSE
 							BEGIN
 								INSERT INTO Products
-								(Product_Name, Image_Url, Stock, Category, Price, Description)
+								(ProductName, ImageUrl, Stock, Category, Price, Description)
 								VALUES
-								(@Product_Name, @Image_Url, @Stock, @Category, @Price, @Description)
+								(@ProductName, @ImageUrl, @Stock, @Category, @Price, @Description)
 								
 								SELECT @ResponseMessage = 200;
 							END
@@ -740,7 +740,7 @@ GO
 
 -- how to run
 DECLARE @Out as INT; 
-EXEC AddProduct @Token = 'FD-48BA-8080-EE76E5F9FAEC', @Product_Name = 'P Name', @Image_Url = 'url goes here', @Stock = 10, @Catagory='TV', @Price='10.11', @Description = "description", @ResponseMessage = @Out OUTPUT; 
+EXEC AddProduct @Token = 'FD-48BA-8080-EE76E5F9FAEC', @ProductName = 'P Name', @ImageUrl = 'url goes here', @Stock = 10, @Catagory='TV', @Price='10.11', @Description = "description", @ResponseMessage = @Out OUTPUT; 
 SELECT @Out AS 'OutputMessage'; 
 --------
 
@@ -748,20 +748,20 @@ SELECT @Out AS 'OutputMessage';
 
 CREATE PROCEDURE DeleteProduct
 @Token VARCHAR(25),
-@Product_ID INT,
+@ProductID INT,
 @ResponseMessage INT OUTPUT
 AS
 BEGIN
 	BEGIN TRANSACTION
 		IF EXISTS (SELECT * FROM Sessions WHERE Token = @Token AND CURRENT_TIMESTAMP <= ExpiryTime)
 			BEGIN
-				DECLARE @ID AS INT = (SELECT Customer_ID FROM Sessions WHERE Token = @Token);
+				DECLARE @ID AS INT = (SELECT CustomerID FROM Sessions WHERE Token = @Token);
 				
-				IF EXISTS (SELECT * FROM Customer WHERE Customer_ID = @ID AND Admin = 1)
+				IF EXISTS (SELECT * FROM Customer WHERE CustomerID = @ID AND Admin = 1)
 					BEGIN
-						IF EXISTS(SELECT * FROM Products WHERE Product_ID = @Product_ID)
+						IF EXISTS(SELECT * FROM Products WHERE ProductID = @ProductID)
 							BEGIN					
-								DELETE FROM Products WHERE Product_ID = @Product_ID
+								DELETE FROM Products WHERE ProductID = @ProductID
 								
 								SELECT @ResponseMessage = 200;
 							END
@@ -795,7 +795,7 @@ GO
 
 -- how to run
 DECLARE @Out as INT; 
-EXEC DeleteProduct @Token = 'FD-48BA-8080-EE76E5F9FAEC', @Product_ID = 1, @ResponseMessage = @Out OUTPUT; 
+EXEC DeleteProduct @Token = 'FD-48BA-8080-EE76E5F9FAEC', @ProductID = 1, @ResponseMessage = @Out OUTPUT; 
 SELECT @Out AS 'OutputMessage'; 
 --------
 
@@ -804,12 +804,12 @@ SELECT @Out AS 'OutputMessage';
 
 CREATE PROCEDURE EditProduct
 @Token VARCHAR(25),
-@Product_ID INT,
-@Product_Name VARCHAR(50),
-@Image_Url TEXT,
+@ProductID INT,
+@ProductName VARCHAR(50),
+@ImageUrl TEXT,
 @Stock INT,
 @Category VARCHAR(50),
-@Total_Sold INT,
+@TotalSold INT,
 @Price MONEY,
 @Description TEXT,
 @ResponseMessage INT OUTPUT
@@ -818,15 +818,15 @@ BEGIN
 	BEGIN TRANSACTION
 		IF EXISTS (SELECT * FROM Sessions WHERE Token = @Token AND CURRENT_TIMESTAMP <= ExpiryTime)
 			BEGIN
-				DECLARE @ID AS INT = (SELECT Customer_ID FROM Sessions WHERE Token = @Token);
+				DECLARE @ID AS INT = (SELECT CustomerID FROM Sessions WHERE Token = @Token);
 				
-				IF EXISTS (SELECT * FROM Customer WHERE Customer_ID = @ID AND Admin = 1)
+				IF EXISTS (SELECT * FROM Customer WHERE CustomerID = @ID AND Admin = 1)
 					BEGIN
-						IF EXISTS(SELECT * FROM Products WHERE Product_ID = @Product_ID)
+						IF EXISTS(SELECT * FROM Products WHERE ProductID = @ProductID)
 							BEGIN													
 								UPDATE Products
-								SET Product_Name = @Product_Name, Image_Url = Image_Url, Stock = @Stock, Category = @Category, Total_Sold = @Total_Sold, Price = @Price, Description = @Description
-								WHERE Product_ID = @Product_ID;
+								SET ProductName = @ProductName, ImageUrl = @ImageUrl, Stock = @Stock, Category = @Category, TotalSold = @TotalSold, Price = @Price, Description = @Description
+								WHERE ProductID = @ProductID;
 								
 								SELECT @ResponseMessage = 200;
 							END
@@ -860,7 +860,7 @@ GO
 
 -- how to run
 DECLARE @Out as INT; 
-EXEC EditProduct @Token = 'FD-48BA-8080-EE76E5F9FAEC', @Product_ID = 1, @Product_Name = 'Changed the name', @Image_Url = 'The url has changed', @Stock=100, @Catagory='Phone', @Total_Sold=11, @Price= 12.00, @Description = "description", @ResponseMessage = @Out OUTPUT; 
+EXEC EditProduct @Token = 'FD-48BA-8080-EE76E5F9FAEC', @ProductID = 1, @ProductName = 'Changed the name', @ImageUrl = 'The url has changed', @Stock=100, @Catagory='Phone', @TotalSold=11, @Price= 12.00, @Description = "description", @ResponseMessage = @Out OUTPUT; 
 SELECT @Out AS 'OutputMessage';
 --------
 
@@ -871,7 +871,7 @@ SELECT @Out AS 'OutputMessage';
 CREATE PROCEDURE WriteReview
 @Token VARCHAR(25),
 @Rating INT,
-@Product_ID INT,
+@ProductID INT,
 @Title VARCHAR(50),
 @Description TEXT,
 @Success BIT OUTPUT
@@ -880,14 +880,14 @@ BEGIN
 	BEGIN TRANSACTION
 		IF EXISTS (SELECT * FROM Sessions WHERE Token = @Token AND CURRENT_TIMESTAMP <= ExpiryTime)
 			BEGIN
-				IF Exists(SELECT * FROM Products WHERE Product_ID = @Product_ID)
+				IF Exists(SELECT * FROM Products WHERE ProductID = @ProductID)
 					BEGIN
-						DECLARE @Customer_ID AS INT = (SELECT Customer_ID FROM Sessions WHERE Token = @Token);
+						DECLARE @CustomerID AS INT = (SELECT CustomerID FROM Sessions WHERE Token = @Token);
 						
 						INSERT INTO Reviews
-						(Product_ID, Customer_ID, Rating, Title, Description)
+						(ProductID, CustomerID, Rating, Title, Description)
 						VALUES
-						(@Product_ID, @Customer_ID, @Rating, @Title, @Description);
+						(@ProductID, @CustomerID, @Rating, @Title, @Description);
 						
 						SELECT @ResponseMessage = 200;
 					END
@@ -920,39 +920,39 @@ AS
 BEGIN
 	IF EXISTS(SELECT * FROM Sessions WHERE Token = @Token AND CURRENT_TIMESTAMP <= ExpiryTime)
 		BEGIN
-			DECLARE @Customer_ID AS INT = (SELECT Customer_ID FROM Sessions WHERE Token = @Token);
-			SELECT * FROM Customer WHERE Customer_ID = @Customer_ID;
+			DECLARE @CustomerID AS INT = (SELECT CustomerID FROM Sessions WHERE Token = @Token);
+			SELECT * FROM Customer WHERE CustomerID = @CustomerID;
 		END
 END
 GO
 
 -- how to run
 DECLARE @Out as BIT; 
-EXEC WriteReview @Token = '00-4B68-A7CA-EA85320CB2ED', @Rating = 3, @Product_ID = 2, @Description = 'this is the description', @Success = @Out OUTPUT; 
+EXEC WriteReview @Token = '00-4B68-A7CA-EA85320CB2ED', @Rating = 3, @ProductID = 2, @Description = 'this is the description', @Success = @Out OUTPUT; 
 SELECT @Out AS 'OutputMessage';
 --------
 
 
 --- Updating Average Rating every time a new review is made.
-CREATE TRIGGER dbo.Update_Product_Rating
+CREATE TRIGGER dbo.UpdateProductRating
 ON dbo.Reviews
 AFTER INSERT, DELETE
 AS
 BEGIN
-	DECLARE @Product_ID INT;
-	SET @Product_ID = ( SELECT Product_ID from inserted)
-	EXEC dbo.Calculate_Insert_Average
+	DECLARE @ProductID INT;
+	SET @ProductID = ( SELECT ProductID from inserted)
+	EXEC dbo.CalculateInsertAverage
 END;
 
-CREATE PROCEDURE Calculate_Insert_Average (@Product_ID int, @Current_Rating int)
+CREATE PROCEDURE CalculateInsertAverage (@ProductID int, @CurrentRating int)
 AS
 BEGIN
-	Set @Current_Rating = (SELECT AVG(Rating) 
+	Set @CurrentRating = (SELECT AVG(Rating) 
 	FROM dbo.Reviews
-	Where Product_ID = @Product_ID)
+	Where ProductID = @ProductID)
 	UPDATE dbo.Products
-	SET AVG_Rating = @Current_Rating
-	WHERE Product_ID = @Product_ID
+	SET AVGRating = @CurrentRating
+	WHERE ProductID = @ProductID
 END
 Go
 

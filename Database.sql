@@ -338,40 +338,7 @@ EXEC DeleteCustomer @Token = 'FD-48BA-8080-EE76E5F9FAEC', @ResponseMessage = @Ou
 SELECT @Out AS 'OutputMessage'; 
 --------
 
---Delete Customer Admin
-CREATE PROCEDURE AdminDeleteCustomer
-@Token VARCHAR(25),
-@CustomerIDDelete INT,
-@ResponseMessage INT OUTPUT
-AS
-BEGIN
-	IF EXISTS (SELECT CustomerID FROM Sessions WHERE Token = @Token AND CURRENT_TIMESTAMP <= ExpiryTime)
-		BEGIN
-			Declare @AdminID AS INT = (SELECT CustomerID FROM Sessions WHERE Token = @Token);
-			IF EXISTS(SELECT * FROM Customer WHERE CustomerID = @CustomerID AND Admin = 1)
-				BEGIN
-					Delete customer WHERE CustomerID = @CustomerIDDelete AND Admin = 0;
-					SELECT @ResponseMessage = 200;
-				END
-			ELSE
-				BEGIN
-				--user customer does not exist or is an admin
-					SELECT @ResponseMessage = 401;
-				END
-		END
-	ELSE
-		BEGIN
-		--user not logged in
-			SELECT @ResponseMessage = 400;
-		END
-END
-GO
 
--- how to run
-DECLARE @Out as INT; 
-EXEC DeleteCustomer @Token = 'FD-48BA-8080-EE76E5F9FAEC', @CustomerIDDelete = 1, @ResponseMessage = @Out OUTPUT; 
-SELECT @Out AS 'OutputMessage'; 
---------
 
 ------Admin ---------
 

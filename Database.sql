@@ -43,7 +43,8 @@ Stock INT NOT NULL,
 Category VARCHAR(50) NOT NULL,
 TotalSold INT DEFAULT 0 NOT NULL,
 Price MONEY NOT NULL,
-Description TEXT
+Description TEXT,
+AvgRating FLOAT
 );
 
 CREATE TABLE Reviews(

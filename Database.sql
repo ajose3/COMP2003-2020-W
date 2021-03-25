@@ -946,7 +946,7 @@ GO
 
 -- how to run
 DECLARE @Out as INT; 
-EXEC WriteReview @Token = '00-4B68-A7CA-EA85320CB2ED', @Rating = 3, @ProductID = 2, @Description = 'this is the description', @ResponseMessage = @Out OUTPUT; 
+EXEC WriteReview @Token = '00-4B68-A7CA-EA85320CB2ED', @Title = "title, @Rating = 3, @ProductID = 2, @Description = 'this is the description', @ResponseMessage = @Out OUTPUT; 
 SELECT @Out AS 'OutputMessage';
 --------
 

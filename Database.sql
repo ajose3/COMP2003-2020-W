@@ -250,6 +250,13 @@ BEGIN
 END
 GO
 
+
+-- how to run
+DECLARE @Out as BIT; 
+EXEC EditCustomer @Token = '8E-433D-BCB4-A596E369001C', @CustomerID = 1, @FirstName = 'This has', @LastName = 'been changed', @Email = 'email501', @Password = '^?H??(\u0004qQ??o??)s`=\rj???*\u0011?r\u001d\u0015B?', @Age = '34', @Gender = 1, @Address = 'address string 5', @PhoneNumber = '01454234', @ResponseMessage = @Out OUTPUT; 
+SELECT @Out AS 'OutputMessage'; 
+--------
+
 --Change password
 
 CREATE PROCEDURE ChangePassword
@@ -325,8 +332,8 @@ END
 GO
 
 -- how to run
-DECLARE @Out as BIT; 
-EXEC DeleteCustomer @Token = 'FD-48BA-8080-EE76E5F9FAEC', @Success = @Out OUTPUT; 
+DECLARE @Out as INT; 
+EXEC DeleteCustomer @Token = 'FD-48BA-8080-EE76E5F9FAEC', @ResponseMessage = @Out OUTPUT; 
 SELECT @Out AS 'OutputMessage'; 
 --------
 
@@ -334,7 +341,7 @@ SELECT @Out AS 'OutputMessage';
 CREATE PROCEDURE AdminDeleteCustomer
 @Token VARCHAR(25),
 @CustomerIDDelete INT,
-@Success BIT OUTPUT
+@ResponseMessage INT OUTPUT
 AS
 BEGIN
 	IF EXISTS (SELECT CustomerID FROM Sessions WHERE Token = @Token AND CURRENT_TIMESTAMP <= ExpiryTime)
@@ -343,21 +350,27 @@ BEGIN
 			IF EXISTS(SELECT * FROM Customer WHERE CustomerID = @CustomerID AND Admin = 1)
 				BEGIN
 					Delete customer WHERE CustomerID = @CustomerIDDelete AND Admin = 0;
-					SELECT @Success = 200;
+					SELECT @ResponseMessage = 200;
 				END
 			ELSE
 				BEGIN
 				--user customer does not exist or is an admin
-					SELECT @Success = 401;
+					SELECT @ResponseMessage = 401;
 				END
 		END
 	ELSE
 		BEGIN
 		--user not logged in
-			SELECT @Success = 400;
+			SELECT @ResponseMessage = 400;
 		END
 END
 GO
+
+-- how to run
+DECLARE @Out as INT; 
+EXEC DeleteCustomer @Token = 'FD-48BA-8080-EE76E5F9FAEC', @CustomerIDDelete = 1, @ResponseMessage = @Out OUTPUT; 
+SELECT @Out AS 'OutputMessage'; 
+--------
 
 ------Admin ---------
 
@@ -621,7 +634,7 @@ SELECT @Out AS 'OutputMessage';
 CREATE PROCEDURE CancelOrderAdmin
 @Token VARCHAR(25),
 @OrderID INT,
-@CustomerID
+@CustomerID INT,
 @ResponseMessage INT OUTPUT
 AS
 BEGIN
@@ -680,6 +693,11 @@ BEGIN
 END
 GO
 
+-- how to run
+DECLARE @Out as INT; 
+EXEC CancelOrder @Token = 'D1-46D3-953F-D28AD246A235', @OrderID = 1, @CustomerID = 1, @ResponseMessage = @Out OUTPUT; 
+SELECT @Out AS 'OutputMessage'; 
+--------
 
 --add product
 

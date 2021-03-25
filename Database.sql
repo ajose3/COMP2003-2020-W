@@ -152,7 +152,7 @@ END
 GO
 
 -- how to run
-DECLARE @Out as BIT
+DECLARE @Out as INT
 exec RegisterCustomer @FirstName = 'bob', @LastName = 'bobby', @Email = 'email6', @Password = 'password', @Age = '5', @Gender = 1, @Address = 'address goes here', @PhoneNumber = '07932153300', @ResponseMessage = @Out OUTPUT;
 SELECT @OUT AS 'Outputmessage';
 --------
@@ -197,7 +197,7 @@ END
 GO
 
 -- how to run
-DECLARE @Out as BIT; 
+DECLARE @Out as INT; 
 EXEC EditCustomer @Token = '8E-433D-BCB4-A596E369001C', @FirstName = 'This has', @LastName = 'been changed', @Email = 'email501', @Password = '^?H??(\u0004qQ??o??)s`=\rj???*\u0011?r\u001d\u0015B?', @Age = '34', @Gender = 1, @Address = 'address string 5', @PhoneNumber = '01454234', @ResponseMessage = @Out OUTPUT; 
 SELECT @Out AS 'OutputMessage'; 
 --------
@@ -252,7 +252,7 @@ GO
 
 
 -- how to run
-DECLARE @Out as BIT; 
+DECLARE @Out as INT; 
 EXEC EditCustomer @Token = '8E-433D-BCB4-A596E369001C', @CustomerID = 1, @FirstName = 'This has', @LastName = 'been changed', @Email = 'email501', @Password = '^?H??(\u0004qQ??o??)s`=\rj???*\u0011?r\u001d\u0015B?', @Age = '34', @Gender = 1, @Address = 'address string 5', @PhoneNumber = '01454234', @ResponseMessage = @Out OUTPUT; 
 SELECT @Out AS 'OutputMessage'; 
 --------
@@ -297,7 +297,7 @@ END
 GO
 
 -- how to run
-DECLARE @Out as BIT; 
+DECLARE @Out as INT; 
 EXEC ChangePassword @Token = 'FD-48BA-8080-EE76E5F9FAEC', @NewPassword = 'password', @ResponseMessage = @Out OUTPUT; 
 SELECT @Out AS 'OutputMessage';
 --------
@@ -385,7 +385,7 @@ CREATE PROCEDURE RegisterAdmin
 @Gender BIT,
 @Address TEXT,
 @PhoneNumber VARCHAR(11),
-@ResponseMessage BIT OUTPUT
+@ResponseMessage INT OUTPUT
 AS
 BEGIN
 	BEGIN TRANSACTION
@@ -431,7 +431,7 @@ END
 GO
 
 -- how to run
-DECLARE @Out as BIT
+DECLARE @Out as INT
 exec RegisterAdmin @Token = 'FD-48BA-8080-EE76E5F9FAEC', @FirstName = 'bob', @LastName = 'bobby', @Email = 'email3@admin.com', @Password = 'password', @Age = '5', @Gender = 1, @Address = 'address goes here', @PhoneNumber = '07932153300', @success = @Out OUTPUT;
 SELECT @OUT AS 'Outputmessage';
 --------

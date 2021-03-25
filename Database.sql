@@ -758,7 +758,7 @@ GO
 
 -- how to run
 DECLARE @Out as INT; 
-EXEC AddProduct @Token = 'FD-48BA-8080-EE76E5F9FAEC', @ProductName = 'P Name', @ImageUrl = 'url goes here', @Stock = 10, @Catagory='TV', @Price='10.11', @Description = "description", @ResponseMessage = @Out OUTPUT; 
+EXEC AddProduct @Token = 'FD-48BA-8080-EE76E5F9FAEC', @ProductName = 'P Name', @ImageUrl = 'url goes here', @Stock = 10, @Category='TV', @Price='10.11', @Description = "description", @ResponseMessage = @Out OUTPUT; 
 SELECT @Out AS 'OutputMessage'; 
 --------
 
@@ -878,7 +878,7 @@ GO
 
 -- how to run
 DECLARE @Out as INT; 
-EXEC EditProduct @Token = 'FD-48BA-8080-EE76E5F9FAEC', @ProductID = 1, @ProductName = 'Changed the name', @ImageUrl = 'The url has changed', @Stock=100, @Catagory='Phone', @TotalSold=11, @Price= 12.00, @Description = "description", @ResponseMessage = @Out OUTPUT; 
+EXEC EditProduct @Token = 'FD-48BA-8080-EE76E5F9FAEC', @ProductID = 1, @ProductName = 'Changed the name', @ImageUrl = 'The url has changed', @Stock=100, @Category='Phone', @TotalSold=11, @Price= 12.00, @Description = "description", @ResponseMessage = @Out OUTPUT; 
 SELECT @Out AS 'OutputMessage';
 --------
 
@@ -892,7 +892,7 @@ CREATE PROCEDURE WriteReview
 @ProductID INT,
 @Title VARCHAR(50),
 @Description TEXT,
-@Success BIT OUTPUT
+@ResponseMessage INT OUTPUT
 AS
 BEGIN
 	BEGIN TRANSACTION
@@ -945,8 +945,8 @@ END
 GO
 
 -- how to run
-DECLARE @Out as BIT; 
-EXEC WriteReview @Token = '00-4B68-A7CA-EA85320CB2ED', @Rating = 3, @ProductID = 2, @Description = 'this is the description', @Success = @Out OUTPUT; 
+DECLARE @Out as INT; 
+EXEC WriteReview @Token = '00-4B68-A7CA-EA85320CB2ED', @Rating = 3, @ProductID = 2, @Description = 'this is the description', @ResponseMessage = @Out OUTPUT; 
 SELECT @Out AS 'OutputMessage';
 --------
 

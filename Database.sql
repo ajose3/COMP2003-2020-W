@@ -254,7 +254,7 @@ GO
 
 -- how to run
 DECLARE @Out as INT; 
-EXEC EditCustomer @Token = '8E-433D-BCB4-A596E369001C', @CustomerID = 1, @FirstName = 'This has', @LastName = 'been changed', @Email = 'email501', @Password = '^?H??(\u0004qQ??o??)s`=\rj???*\u0011?r\u001d\u0015B?', @Age = '34', @Gender = 1, @Address = 'address string 5', @PhoneNumber = '01454234', @ResponseMessage = @Out OUTPUT; 
+EXEC AdminEditCustomer @Token = '8E-433D-BCB4-A596E369001C', @CustomerID = 1, @FirstName = 'This has', @LastName = 'been changed', @Email = 'email501', @Password = '^?H??(\u0004qQ??o??)s`=\rj???*\u0011?r\u001d\u0015B?', @Age = '34', @Gender = 1, @Address = 'address string 5', @PhoneNumber = '01454234', @ResponseMessage = @Out OUTPUT; 
 SELECT @Out AS 'OutputMessage'; 
 --------
 

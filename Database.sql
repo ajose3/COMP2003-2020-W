@@ -475,7 +475,7 @@ Go
 
 -- how to run
 DECLARE @Out as VARCHAR(25); 
-EXEC ValidateAdmin @Email = 'Email@Admin.com', @Password = 'password', @ResponseMessage = @Out OUTPUT; 
+EXEC ValidateAdmin @Email = 'Email@Admin.com', @Password = 'password', @Token = @Out OUTPUT; 
 SELECT @Out AS 'OutputMessage'; 
 --------
 

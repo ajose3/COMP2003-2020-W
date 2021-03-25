@@ -40,7 +40,7 @@ ProductID INT IDENTITY(1,1) PRIMARY KEY,
 ProductName VARCHAR(50) NOT NULL,
 ImageUrl TEXT,
 Stock INT NOT NULL,
-Catagory VARCHAR(50) NOT NULL,
+Category VARCHAR(50) NOT NULL,
 TotalSold INT DEFAULT 0 NOT NULL,
 Price MONEY NOT NULL,
 Description TEXT
@@ -695,7 +695,7 @@ GO
 
 -- how to run
 DECLARE @Out as INT; 
-EXEC CancelOrder @Token = 'D1-46D3-953F-D28AD246A235', @OrderID = 1, @CustomerID = 1, @ResponseMessage = @Out OUTPUT; 
+EXEC CancelOrderAdmin @Token = 'D1-46D3-953F-D28AD246A235', @OrderID = 1, @CustomerID = 1, @ResponseMessage = @Out OUTPUT; 
 SELECT @Out AS 'OutputMessage'; 
 --------
 

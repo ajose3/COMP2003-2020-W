@@ -164,3 +164,12 @@ As a result of this, we were able to identify some tasks for this week, such as 
 Another main area of focus has been the mobile application.
 In evaluation of the progress made in the previous week, we decided to continue work on the search and orders pages.
 Reflecting on the previous week, we found that many members were having difficulties with the software for mobile development; therefore, we discussed the issues and worked together to ensure that all team members have their software working and correctly setup for such development.
+
+Week 19 (21/03/21 - 29/03/21): 
+
+As always, we began by discussing our progress on the previous weeks task and talked about that tasks we wanted to work on this week. 
+Most of this week’s tasks are extended from the previous weeks as they are large and important elements of our project. 
+we further discussed the use of a library for our API and how perhaps we could implement it.  
+Our recommendation system still needs more time spent on as well as finishing the API and scaffolding the tables. 
+So, these tasks were split amongst the group. We aim for the next week to be almost done with these tasks. 
+

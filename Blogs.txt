@@ -173,3 +173,15 @@ we further discussed the use of a library for our API and how perhaps we could i
 Our recommendation system still needs more time spent on as well as finishing the API and scaffolding the tables. 
 So, these tasks were split amongst the group. We aim for the next week to be almost done with these tasks. 
 
+Week 20 (29/03/2021 – 16/04/2021):
+
+The group had a meeting on Zoom this week. We reviewed the tasks set from last week and analysed how members got along. 
+The team decided to have the next meeting after the Easter holidays but if members need help, they will reach out. 
+We set out tasks for the team to do over the holidays. 
+Most of the database is completed and only few things will need to be added. 
+This is all documented in GitHub. 
+Two members are continuing working on the recommender system. 
+From no idea on how to start on the recommending system, the two members worked together to think about how to get around it and now they have a clear idea on how to do it. Another member will continue working with the API on the admin interface and the admin interface in general. 
+Also, one person will continue to finalise the mobile app. 
+In addition, two members will work on the details page for each product and make possibilities such as to check stock, order stock. 
+Overall, the whole group thinks that we are in a good position with the whole project.

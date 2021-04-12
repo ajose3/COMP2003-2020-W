@@ -19,6 +19,8 @@
             <Label Text="{Binding Gender, StringFormat='Gender: {0}'} " FontSize="25" TextColor="Black"/>
 
             <Button Text="Edit Details" Font="25" Command="{Binding GoToEditPage}"/>
+            <Button Text="Change Password" Font="25" Command="{Binding GoToEditPasswordPage}"/>
+
 
             <!--map username to current user-->
             <!--<Label Text="{Binding UserName}" TextColor="Black" FontSize="Large"/>-->

@@ -20,7 +20,7 @@
             <BoxView Style="{StaticResource SeparatorLineStyle}" Margin="0,0,0,0"/>
             <!--<Label x:Name="messageLabel"/>-->
             <FlexLayout Wrap="Wrap" JustifyContent="Center" Margin="0,10">
-                <Button WidthRequest="165" Text="Register" Command="{Binding GoSignUpPage}" FontSize="18" Margin="5"/>
+                <Button WidthRequest="165" Text="Sign Up" Command="{Binding GoSignUpPage}" FontSize="18" Margin="5"/>
                 <Button WidthRequest="165" Text="Reset Password" Command="{Binding GoResetPage}" FontSize="18" Margin="5"/>
             </FlexLayout>
         </StackLayout>

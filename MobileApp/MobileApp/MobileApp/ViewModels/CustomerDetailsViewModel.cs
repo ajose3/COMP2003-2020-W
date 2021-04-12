@@ -127,6 +127,11 @@ namespace MobileApp.ViewModels
             Shell.Current.GoToAsync("editDetailsPage");
         });
 
+        public ICommand GoToEditPasswordPage => new Command(() =>
+        {
+            Shell.Current.GoToAsync("editPasswordPage");
+        });
+
         protected virtual void OnPropertyChanged(string propertyName)
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));

@@ -6,32 +6,51 @@
         <ScrollView>
             <StackLayout Padding="10">
                 <!--Padding="0 0 20 0"-->
-                <Label FontSize="40" HorizontalOptions="Center" Text="SignUp"/>
+                <Label FontSize="40" HorizontalOptions="Center" Text="Edit Detials"/>
 
                 <Label Text="Email" FontSize="Large"/>
-                <Entry x:Name="usernameEntry" Text="{Binding Email}" Placeholder="Email" FontSize="Large"/>
-                <Label Text="Password" FontSize="Large"/>
+                <Frame CornerRadius="20" BorderColor="LightGray" HasShadow="True" Padding="10,0"  Margin="0,10">
+                    <Entry x:Name="usernameEntry" Text="{Binding Email}" Placeholder="Email" FontSize="Large"/>
+                </Frame>
+                <!--<Label Text="Password" FontSize="Large"/>
                 <Entry x:Name="passwordEntry" Text="{Binding Password}" Placeholder="Password" FontSize="Large" IsPassword="True"/>
                 <Label Text="Confirm Password" FontSize="Large"/>
-                <Entry x:Name="passwordConfirmEntry" Text="{Binding Password}" Placeholder="Confirm password" FontSize="Large" IsPassword="True"/>
+                <Entry x:Name="passwordConfirmEntry" Text="{Binding Password}" Placeholder="Confirm password" FontSize="Large" IsPassword="True"/>-->
 
                 <Label Text="First Name" FontSize="Large"/>
-                <Entry x:Name="firstNameEntry" Text="{Binding FirstName}" Placeholder="First name" FontSize="Large"/>
+                <Frame CornerRadius="20" BorderColor="LightGray" HasShadow="True" Padding="10,0"  Margin="0,10">
+                    <Entry x:Name="firstNameEntry" Text="{Binding FirstName}" Placeholder="First name" FontSize="Large"/>
+                </Frame>
+                
                 <Label Text="Last Name" FontSize="Large"/>
-                <Entry x:Name="lastNameEntry" Text="{Binding LastName}" Placeholder="Last Name" FontSize="Large"/>
+                <Frame CornerRadius="20" BorderColor="LightGray" HasShadow="True" Padding="10,0"  Margin="0,10">
+                    <Entry x:Name="lastNameEntry" Text="{Binding LastName}" Placeholder="Last Name" FontSize="Large"/>
+                </Frame>
+                
                 <Label Text="Age" FontSize="Large"/>
-                <Entry x:Name="ageEntry" Text="{Binding Age}" Placeholder="Age" FontSize="Large"/>
+                <Frame CornerRadius="20" BorderColor="LightGray" HasShadow="True" Padding="10,0"  Margin="0,10">
+                    <Entry x:Name="ageEntry" Text="{Binding Age}" Placeholder="Age" FontSize="Large"/>
+                </Frame>
+                
                 <Label Text="Gender" FontSize="Large"/>
-                <Picker x:Name="gender" HorizontalOptions="FillAndExpand" SelectedItem="{Binding Gender}">
-                    <Picker.Items>
-                        <x:String>Male</x:String>
-                        <x:String>Female</x:String>
-                    </Picker.Items>
-                </Picker>
+                <Frame CornerRadius="20" BorderColor="LightGray" HasShadow="True" Padding="10,0"  Margin="0,10">
+                    <Picker x:Name="gender" HorizontalOptions="FillAndExpand" SelectedItem="{Binding Gender}">
+                        <Picker.Items>
+                            <x:String>Male</x:String>
+                            <x:String>Female</x:String>
+                        </Picker.Items>
+                    </Picker>
+                </Frame>
+                
                 <Label Text="Address" FontSize="Large"/>
-                <Entry x:Name="addressEntry" Text="{Binding PhoneNumber}" Placeholder="Address" FontSize="Large"/>
+                <Frame CornerRadius="20" BorderColor="LightGray" HasShadow="True" Padding="10,0"  Margin="0,10">
+                    <Entry x:Name="addressEntry" Text="{Binding PhoneNumber}" Placeholder="Address" FontSize="Large"/>
+                </Frame>
+                
                 <Label Text="Phone Number" FontSize="Large"/>
-                <Entry x:Name="phoneNumberEntry" Text="{Binding Address}" Placeholder="Phone Number" FontSize="Large"/>
+                <Frame CornerRadius="20" BorderColor="LightGray" HasShadow="True" Padding="10,0"  Margin="0,10">
+                    <Entry x:Name="phoneNumberEntry" Text="{Binding Address}" Placeholder="Phone Number" FontSize="Large"/>
+                </Frame>
 
                 <Button Text="Update User"/>
             </StackLayout>

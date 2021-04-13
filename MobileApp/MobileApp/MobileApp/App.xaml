@@ -1,7 +1,8 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <Application xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="MobileApp.App">
+             x:Class="MobileApp.App"
+             xmlns:viewModels="clr-namespace:MobileApp.ViewModels">
     <!--
         Define global resources and styles here, that apply to all pages in your app.
     -->
@@ -120,7 +121,7 @@
 
             <DataTemplate x:Key="BasketTemplate">
                 <Grid Padding="5">
-                    <Frame BorderColor="#D8DAE0" CornerRadius="20" HasShadow="True">
+                    <Frame BorderColor="#D8DAE0" CornerRadius="20" HasShadow="True" Padding="4,10">
                         <Grid Padding="0">
                             <Grid.RowDefinitions>
                                 <RowDefinition Height="Auto"/>
@@ -128,7 +129,7 @@
                                 <!--<RowDefinition Height="5"/>-->
                             </Grid.RowDefinitions>
                             <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="110"/>
+                                <ColumnDefinition Width="*"/>
                                 <ColumnDefinition Width="*"/>
                                 <ColumnDefinition Width="*"/>
                             </Grid.ColumnDefinitions>
@@ -137,7 +138,7 @@
                                Source="{Binding ImageUrl}" 
                                Aspect="AspectFit"
                                HeightRequest="80"/>
-                            <Label Margin="10,0,0,0" Grid.Column="1"
+                            <Label Margin="10,0,0,0" Grid.Column="1" Grid.ColumnSpan="2"
                                Text="{Binding Name}" 
                                FontAttributes="Bold" 
                                TextColor="Black"
@@ -150,11 +151,18 @@
                                    FontSize="24"
                                    HorizontalTextAlignment="End"/>
                             </FlexLayout>
-                            <Label Margin="10,0,0,0" Grid.Column="2" Grid.Row="0"
-                               Text="{StaticResource IconBin}"
-                               FontFamily="FA-S" 
-                               TextColor="Red"
-                               FontSize="28"/>
+                            <Button Margin="0,0,0,0" Grid.Column="2" Grid.Row="0"
+                                    Text="{StaticResource IconBin}"
+                                    FontFamily="FA-S" 
+                                    TextColor="Red"
+                                    FontSize="24"
+                                    VerticalOptions="Start"
+                                    HorizontalOptions="End"
+                                    Padding="0"
+                                    WidthRequest="50"
+                                    BackgroundColor="Transparent"
+                                    Command="{Binding Source={RelativeSource AncestorType={x:Type viewModels:CheckoutViewModel}},Path=RemoveProductCommand}"
+                                    CommandParameter="{Binding .}"/>
 
                             <!-- separator line -->
                             <!--<BoxView Grid.Row="2" Grid.ColumnSpan="3" Margin="0" Color="{StaticResource GridLineColor}" Style="{StaticResource SeparatorLineStyle}"/>-->

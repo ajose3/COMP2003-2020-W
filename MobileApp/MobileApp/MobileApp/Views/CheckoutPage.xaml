@@ -10,7 +10,7 @@
     </ContentPage.BindingContext>
 
     <ContentPage.Content>
-        <StackLayout Margin="20">
+        <StackLayout Margin="10">
             <!-- page title -->
             <Label Text="Checkout"
                     HorizontalOptions="Start" 
@@ -24,16 +24,18 @@
             </FlexLayout>
 
             <!-- collection view of all products in basket -->
-            <CollectionView
+            <RefreshView IsRefreshing="{Binding IsRefreshing}"
+                                Command="{Binding RefreshCommand}">
+                <CollectionView
                 Margin="0,10,0,0"
-                x:Name="ItemsCollectionView"
                 ItemsLayout="VerticalList"
                 VerticalOptions="Start"
-                ItemsSource="{x:Static data:Basket.Products}"
+                ItemsSource="{Binding basket}"
                 ItemTemplate="{StaticResource BasketTemplate}"
                 SelectionMode="Single"
-                SelectionChanged="OnCollectionViewSelectionChanged"/>
-
+                />
+            </RefreshView>
+            <!--ItemsSource="{x:Static data:Basket.Products}"-->
             <!-- separator line -->
             <BoxView Style="{StaticResource SeparatorLineStyle}"/>
 

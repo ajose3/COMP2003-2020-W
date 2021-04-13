@@ -96,9 +96,8 @@
                         </Grid>
                     </Frame>
                 </Grid>
-
-
             </DataTemplate>
+            
             <DataTemplate x:Key="ReviewTemplate">
                 <Grid Padding="5">
                     <Frame BorderColor="#D8DAE0" CornerRadius="20" HasShadow="True" HeightRequest="120">
@@ -117,44 +116,158 @@
                     </Frame>
                 </Grid>
             </DataTemplate>
-            
-            <DataTemplate x:Key="OrderTemplate">
-                <Grid Padding="0,5">
+
+
+            <DataTemplate x:Key="BasketTemplate">
+                <Grid Padding="5">
                     <Frame BorderColor="#D8DAE0" CornerRadius="20" HasShadow="True">
                         <Grid Padding="0">
                             <Grid.RowDefinitions>
                                 <RowDefinition Height="Auto"/>
                                 <RowDefinition Height="Auto"/>
-                                <RowDefinition Height="Auto"/>
-                                <RowDefinition Height="Auto"/>
+                                <!--<RowDefinition Height="5"/>-->
                             </Grid.RowDefinitions>
                             <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="100"/>
-                                <ColumnDefinition Width="7*"/>
-                                <ColumnDefinition Width="5*"/>
-                                <ColumnDefinition Width="7*"/>
+                                <ColumnDefinition Width="110"/>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="*"/>
                             </Grid.ColumnDefinitions>
-                            <Image Grid.RowSpan="3"
+                            <!-- scale image to fit the view (won't be cropped to fill view) -->
+                            <Image Grid.RowSpan="2"
                                Source="{Binding ImageUrl}" 
                                Aspect="AspectFit"
                                HeightRequest="80"/>
-                            <Label Margin="10,0,0,0" Grid.Column="1" Grid.ColumnSpan="3"
+                            <Label Margin="10,0,0,0" Grid.Column="1"
                                Text="{Binding Name}" 
                                FontAttributes="Bold" 
                                TextColor="Black"
-                               FontSize="20"/>
-                            <Label Margin="10,0,0,0" Grid.Row="1" Grid.Column="1" 
-                                   Text="{Binding Price, StringFormat='£{0}'}" 
+                               FontSize="28"/>
+                            <FlexLayout Margin="10,0,0,0" Grid.Column="1" Grid.Row="1" Grid.ColumnSpan="2">
+                                <Label Text="Price: £" TextColor="DarkGray" FontSize="24"/>
+                                <Label Text="{Binding Price}" 
+                                   VerticalOptions="End" 
+                                   TextColor="DarkGray"
+                                   FontSize="24"
+                                   HorizontalTextAlignment="End"/>
+                            </FlexLayout>
+                            <Label Margin="10,0,0,0" Grid.Column="2" Grid.Row="0"
+                               Text="{StaticResource IconBin}"
+                               FontFamily="FA-S" 
+                               TextColor="Red"
+                               FontSize="28"/>
+
+                            <!-- separator line -->
+                            <!--<BoxView Grid.Row="2" Grid.ColumnSpan="3" Margin="0" Color="{StaticResource GridLineColor}" Style="{StaticResource SeparatorLineStyle}"/>-->
+                        </Grid>
+                    </Frame>
+                </Grid>
+            </DataTemplate>
+
+            <DataTemplate x:Key="OrderTemplate">
+                <Grid Padding="0,5">
+                    <Frame BorderColor="#D8DAE0" CornerRadius="20" HasShadow="True">
+                        <Grid Padding="0">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height=".5*"/>
+                                <RowDefinition Height=".2*"/>
+                                <RowDefinition Height="2*"/>
+                                <!--<RowDefinition Height="Auto"/>-->
+                                <!--<RowDefinition Height="Auto"/>-->
+                            </Grid.RowDefinitions>
+                            <Grid.ColumnDefinitions>
+                                <!--<ColumnDefinition Width="100"/>
+                                <ColumnDefinition Width="7*"/>
+                                <ColumnDefinition Width="5*"/>
+                                <ColumnDefinition Width="7*"/>-->
+                                <ColumnDefinition Width="1*"/>
+                                <ColumnDefinition Width="1*"/>
+                                <ColumnDefinition Width="1*"/>
+                                <ColumnDefinition Width="1*"/>
+                                <!--<ColumnDefinition Width="3*"/>-->
+                                <ColumnDefinition Width="1*"/>
+                                <ColumnDefinition Width="1*"/>
+                                <ColumnDefinition Width="1*"/>
+
+                            </Grid.ColumnDefinitions>
+                            <Label Margin="0,0,0,0" Padding="0" Grid.Column="0" Grid.Row="0" Grid.ColumnSpan="4"
+                                   Text="{Binding OrderDate, StringFormat='Ordered: {0:dd/MM/yy}'}" 
                                    TextColor="DarkGray"
                                    FontSize="20"/>
-                            <Label Margin="0,0,0,0" Grid.Row="1" Grid.Column="2" 
+                            <Label Margin="0,0,0,0" Padding="0" Grid.Column="4" Grid.Row="0" Grid.ColumnSpan="3"
+                                   Text="{Binding Total, StringFormat='Total: £{0}'}" 
+                                   TextColor="DarkGray"
+                                   FontSize="20"/>
+                            <BoxView Style="{StaticResource SeparatorLineStyle}"
+                                     Grid.Row="1"
+                                     Grid.ColumnSpan="7"/>
+                            <!--<Image />-->
+                            <Image 
+                                Grid.Column="0"
+                                Grid.Row="2"
+                                Grid.ColumnSpan="2"
+                                Source="{Binding theOrders[0].ImageUrl}" 
+                                Aspect="AspectFit"/>
+                            <Image 
+                                Grid.Column="2"
+                                Grid.Row="2"
+                                Grid.ColumnSpan="2"
+                                Source="{Binding theOrders[1].ImageUrl}" 
+                                Aspect="AspectFit"
+                                />
+                            <Image 
+                                Grid.Column="4"
+                                Grid.Row="2"
+                                Grid.ColumnSpan="2"
+                                Source="{Binding theOrders[2].ImageUrl}" 
+                                Aspect="AspectFit"
+                                />
+
+                            <Frame  Grid.Column="6" Grid.Row="2"
+                                    Margin="0"
+                                    Padding="0"
+                                    BorderColor="Transparent"
+                                    BackgroundColor="#50000000"
+                                    CornerRadius="50"
+                                    HeightRequest="40"
+                                    WidthRequest="40"
+                                    IsClippedToBounds="True"
+                                    HorizontalOptions="End"
+                                    VerticalOptions="End">
+                                <Label
+                                    Text="{Binding theOrders.Count}" 
+                                    FontAttributes="Bold" 
+                                    Margin="0"
+                                    Padding="0"
+                                    TextColor="Black"
+                                    FontSize="25"
+                                    HorizontalOptions="Center"
+                                    VerticalOptions="Center"
+                                    HorizontalTextAlignment="Center"
+                                    VerticalTextAlignment="Center"
+                                   />
+                            </Frame>
+
+                            <!--<Image Grid.RowSpan="2"
+                               Source="{Binding ImageUrl}" 
+                               Aspect="AspectFit"
+                               HeightRequest="80"/>-->
+                            <!--<Label Margin="10,0,0,0" Grid.Column="1" Grid.ColumnSpan="3"
+                               Text="{Binding Name}" 
+                               FontAttributes="Bold" 
+                               TextColor="Black"
+                               FontSize="25"/>-->
+                            <!--<Label Margin="10,0,0,0" Grid.Row="1" Grid.Column="1" 
+                                   Text="{Binding Price, StringFormat='£{0}'}" 
+                                   TextColor="DarkGray"
+                                   FontSize="20"/>-->
+                            <!--<Label Margin="0,0,0,0" Grid.Row="1" Grid.Column="2" 
                                    Text="{Binding Quantity, StringFormat='Qty: {0} '}" 
                                    TextColor="DarkGray"
                                    FontSize="20"/>
                             <Label Margin="10,0,0,0" Grid.Column="1" Grid.Row="2" 
                                    Text="{Binding Total, StringFormat='Total: {0}'}"
                                    TextColor="DarkGray"
-                                   FontSize="20"/>
+                                   FontSize="20"/>-->
                             <!--<FlexLayout Grid.Column="2" Grid.Row="1" Grid.ColumnSpan="2">
                                 <Label Text="Price: £" TextColor="DarkGray" FontSize="20"/>
                                 <Label Text="{Binding Price}" 
@@ -164,33 +277,27 @@
                                    HorizontalTextAlignment="End"/>
                             </FlexLayout>-->
 
-                            <Label Margin="10,0,0,0" Grid.Column="1" Grid.Row="3" Grid.ColumnSpan="3"
-                                   Text="{Binding Date, StringFormat='Ordered: {0:dd MM yyyy}'}" 
+                            <!--<Label Margin="10,0,0,0" Grid.Column="1" Grid.Row="1" Grid.ColumnSpan="3"
+                                   Text="{Binding OrderDate, StringFormat='Ordered: {0:dd/MM/yyyy}'}" 
                                    TextColor="DarkGray"
-                                   FontSize="20"/>
+                                   FontSize="20"/>-->
+                            <!--<Label Margin="10,0,0,0" Grid.Column="1" Grid.ColumnSpan="3"
+                               Text="{Binding Total}" 
+                               FontAttributes="Bold" 
+                               TextColor="Black"
+                               FontSize="25"/>-->
+
+
                         </Grid>
                     </Frame>
                 </Grid>
             </DataTemplate>
-            <!--<DataTemplate x:Key="ProductSearchTemplate">
-                <Grid Padding="10" HeightRequest="50">
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="0.15*"/>
-                        <ColumnDefinition Width="0.85*"/>
-                    </Grid.ColumnDefinitions>
-                    <Image Source="{Binding ImageUrl}" 
-                       Aspect="AspectFill"
-                       HeightRequest="40" 
-                       WidthRequest="40"/>
-                    <Label Grid.Column="1" 
-                       Text="{Binding Name}" 
-                       FontAttributes="Bold"/>
-                </Grid>
-            </DataTemplate>-->
+
             <x:String x:Key="IconStar">&#xf005;</x:String>
             <x:String x:Key="IconUser">&#xf007;</x:String>
             <x:String x:Key="IconHome">&#xf015;</x:String>
             <x:String x:Key="IconPower">&#xf011;</x:String>
+            <x:String x:Key="IconBin">&#xf2ed;</x:String>
         </ResourceDictionary>        
     </Application.Resources>
 </Application>

@@ -40,7 +40,7 @@ namespace MobileApp.ViewModels
             string returnValue = await webDataService.PostRegisterCustomer(user);
             if (returnValue == "true")
             {
-                Shell.Current.GoToAsync("successPage");
+                await Shell.Current.GoToAsync("successPage");
             }
         });
 

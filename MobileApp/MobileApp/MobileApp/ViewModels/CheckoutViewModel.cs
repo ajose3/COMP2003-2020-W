@@ -33,6 +33,7 @@ namespace MobileApp.ViewModels
                 //Shell.Current.DisplayAlert("Updated stock", string.Format("{0}", ProductData.Products.Where(i => i.Id == Product.Id).FirstOrDefault().Stock), "OK");
                 //  add product to orders
                 OrderData.AddToOrder(Product);
+                //OrderData.LoadOrders();
             }
 
             // clear basket

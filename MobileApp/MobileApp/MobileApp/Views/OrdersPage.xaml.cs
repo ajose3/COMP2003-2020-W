@@ -13,6 +13,7 @@ namespace MobileApp.Views
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class OrdersPage : ContentPage
     {
+        
         public OrdersPage()
         {
             InitializeComponent();

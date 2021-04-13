@@ -30,7 +30,7 @@
                 ItemsLayout="VerticalList"
                 VerticalOptions="Start"
                 ItemsSource="{x:Static data:Basket.Products}"
-                ItemTemplate="{StaticResource ProductTemplate}"
+                ItemTemplate="{StaticResource BasketTemplate}"
                 SelectionMode="Single"
                 SelectionChanged="OnCollectionViewSelectionChanged"/>
 

@@ -82,7 +82,7 @@
     <FlyoutItem Title="Home">
         <FlyoutItem.Icon>
             <FontImageSource
-                Glyph="{StaticResource IconPower}" FontFamily="FA-R"/>
+                Glyph="{StaticResource IconHome}" FontFamily="FA-S"/>
         </FlyoutItem.Icon>
         <ShellContent Route="HomePage" ContentTemplate="{DataTemplate local:HomePage}"/>
     </FlyoutItem>

@@ -32,6 +32,7 @@ namespace MobileApp
             Routing.RegisterRoute("editDetailsPage", typeof(EditDetailsPage));
             Routing.RegisterRoute("editPasswordPage", typeof(EditPasswordPage));
             Routing.RegisterRoute("searchPage", typeof(SearchPage));
+            Routing.RegisterRoute("orderDetailsPage", typeof(OrderDetailsPage));
 
 
             foreach (var item in routes)

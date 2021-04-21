@@ -19,6 +19,7 @@
                 HorizontalOptions="Center"
                 ItemsSource="{Binding Orders}"
                 ItemTemplate="{StaticResource OrderTemplate}"
+                SelectedItem="{Binding SelectedOrder, Mode=TwoWay}"
                 SelectionMode="Single"
                 />
             <!--ItemsSource="{x:Static data:OrderData.GroupedOrders}"-->

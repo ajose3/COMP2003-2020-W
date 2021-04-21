@@ -1,0 +1,21 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" xmlns:viewmodels="clr-namespace:MobileApp.ViewModels" x:DataType="viewmodels:OrderDetailsViewModel"
+             x:Class="MobileApp.Views.OrderDetailsPage">
+    <ContentPage.Content>
+        <StackLayout>
+            <Label Text="Order Details" FontSize="30" Padding="10,5,0,0"/>
+            <Label Text="{Binding orderDate}" FontSize="24" Padding="10,0"/>
+            <CollectionView Margin="0"
+                            BackgroundColor="#f7f7f7"
+                            ItemsLayout="VerticalList"
+                            ItemsSource="{Binding OrdersInGroup}"
+                            ItemTemplate="{StaticResource ProductTemplate}"
+                            SelectionMode="Single">
+                <!--SelectionChanged="OnCollectionViewSelectionChanged"-->
+
+            </CollectionView>
+
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

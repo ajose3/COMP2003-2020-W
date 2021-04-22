@@ -1,6 +1,7 @@
 ﻿using MobileApp.Models;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 
 namespace MobileApp.Data
@@ -76,7 +77,6 @@ namespace MobileApp.Data
         public static List<Order> loadOrdersByDate(DateTime requestedDate)
         {
             List<Order> requestedOrder = new List<Order>();
-            //RequestedOrder = new List<Order>();
             foreach (var order in Orders)
             {
                 DateTime a = order.Date.Date;
@@ -86,7 +86,6 @@ namespace MobileApp.Data
                 }
             }
             return requestedOrder;
-            //return Orders;
         }
     }
 }

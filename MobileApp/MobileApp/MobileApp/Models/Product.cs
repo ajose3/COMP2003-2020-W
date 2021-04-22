@@ -24,5 +24,15 @@ namespace MobileApp.Models
             ImageUrl = theImageUrl;
             Stock = theStock;
         }
+
+        public Product(CheckOutProduct product)
+        {
+            Id = product.Id;
+            Name = product.Name;
+            Description = product.Description;
+            Price = product.Price;
+            ImageUrl = product.ImageUrl;
+            Stock = product.Stock;
+        }
     }
 }

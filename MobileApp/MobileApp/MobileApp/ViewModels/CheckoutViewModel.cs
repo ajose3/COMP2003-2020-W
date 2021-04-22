@@ -21,7 +21,9 @@ namespace MobileApp.ViewModels
             loadBasket();
             OnPropertyChanged("basket");
         }
-        public List<Product> basket { get; set; }
+        //public List<Product> basket { get; set; }
+        public List<CheckOutProduct> basket { get; set; }
+
         public int NumItems { get; set; }
         public float TotalPrice { get; set; }
 
@@ -29,8 +31,10 @@ namespace MobileApp.ViewModels
 
         public void loadBasket()
         {
-            basket = Basket.loadBasket();
-            NumItems = Basket.Products.Count;
+            //basket = Basket.loadBasket();
+            basket = Basket.loadNewBasket();
+            //NumItems = Basket.Products.Count;
+            NumItems = Basket.GetNumItem();
             TotalPrice = Basket.GetTotalPrice();
             OnPropertyChanged("basket");
             OnPropertyChanged("NumItems");
@@ -57,15 +61,28 @@ namespace MobileApp.ViewModels
         {
             await Shell.Current.DisplayAlert("Clicked Pay", null, "OK");
             // for each product in basket
-            foreach (var Product in Basket.Products)
+            //foreach (var Product in Basket.Products)
+            //{
+            //    // decrease stock for product in ProductData
+            //    ProductData.Products.Where(i => i.Id == Product.Id).FirstOrDefault().Stock -= 1;
+            //    //Shell.Current.DisplayAlert("Updated stock", string.Format("{0}", ProductData.Products.Where(i => i.Id == Product.Id).FirstOrDefault().Stock), "OK");
+            //    //  add product to orders
+            //    OrderData.AddToOrder(Product);
+            //    //OrderData.LoadOrders();
+            //}
+            foreach (var Product in Basket.CheckProds)
             {
-                // decrease stock for product in ProductData
-                ProductData.Products.Where(i => i.Id == Product.Id).FirstOrDefault().Stock -= 1;
-                //Shell.Current.DisplayAlert("Updated stock", string.Format("{0}", ProductData.Products.Where(i => i.Id == Product.Id).FirstOrDefault().Stock), "OK");
-                //  add product to orders
-                OrderData.AddToOrder(Product);
-                //OrderData.LoadOrders();
+                ProductData.Products.Where(i => i.Id == Product.Id).FirstOrDefault().Stock -= 1*Product.Quantity;
+
+                Product product = new Product(Product);
+
+                for (int i = 0; i < Product.Quantity; i++)
+                {
+                    OrderData.AddToOrder(Product);
+                }
             }
+
+
 
             // clear basket
             Basket.Clear();
@@ -85,7 +102,8 @@ namespace MobileApp.ViewModels
         }
         void ExecuteRefreshCommand()
         {
-            basket = Basket.loadBasket();
+            //basket = Basket.loadBasket();
+            basket = Basket.loadNewBasket();
             OnPropertyChanged("basket");
 
             // Stop refreshing

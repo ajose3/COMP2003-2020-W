@@ -90,11 +90,14 @@
     <FlyoutItem Title="My Details">
         <ShellContent Route="UserDetailsView" ContentTemplate="{DataTemplate local:UserDetailsPage}" />
     </FlyoutItem>
-    <FlyoutItem Title="My Orders">
+    <!--<FlyoutItem Title="My Orders">
         <ShellContent Route="OrdersPage" ContentTemplate="{DataTemplate local:OrdersPage}"/>
-    </FlyoutItem>
+    </FlyoutItem>-->
 
     <!-- When the Flyout is visible this will be a menu item you can tie a click behavior to  -->
+
+    <MenuItem Text="Orders" StyleClass="MenuItemLayoutStyle" Clicked="ClickedOrdersMenuItem">
+    </MenuItem>
     
     <MenuItem Text="Basket" StyleClass="MenuItemLayoutStyle" Clicked="ClickedBasketMenuItem">
     </MenuItem>

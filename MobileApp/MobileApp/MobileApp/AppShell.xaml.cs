@@ -32,6 +32,7 @@ namespace MobileApp
             Routing.RegisterRoute("editDetailsPage", typeof(EditDetailsPage));
             Routing.RegisterRoute("editPasswordPage", typeof(EditPasswordPage));
             Routing.RegisterRoute("searchPage", typeof(SearchPage));
+            Routing.RegisterRoute("ordersPage", typeof(OrdersPage));
             Routing.RegisterRoute("orderDetailsPage", typeof(OrderDetailsPage));
 
 
@@ -84,6 +85,12 @@ namespace MobileApp
         private async void ClickedLoginMenuItem(object sender, EventArgs e)
         {
             await Shell.Current.GoToAsync("loginPage");
+            // close the menu
+            Shell.Current.FlyoutIsPresented = false;
+        }
+        private async void ClickedOrdersMenuItem(object sender, EventArgs e)
+        {
+            await Shell.Current.GoToAsync("ordersPage");
             // close the menu
             Shell.Current.FlyoutIsPresented = false;
         }

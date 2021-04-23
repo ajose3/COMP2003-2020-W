@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
 using System.Text;
+using System.Windows.Input;
 using Xamarin.Forms;
 
 namespace MobileApp.ViewModels
@@ -12,11 +13,12 @@ namespace MobileApp.ViewModels
     [QueryProperty("OrderDate", "date")]
     class OrderDetailsViewModel : INotifyPropertyChanged
     {
-        //public int OrderDate;
+        public OrderDetailsViewModel()
+        {
+        }
+
         public DateTime orderDate { get; set; }
 
-
-        //public string test { get; set; }
         public List<Order> OrdersInGroup { get; set; }
 
         public string OrderDate
@@ -25,13 +27,34 @@ namespace MobileApp.ViewModels
             set
             {
                 orderDate = Convert.ToDateTime(value);
-                //orderDate = value.OrderDate;
                 OnPropertyChanged("orderDate");
 
                 OrdersInGroup = OrderData.loadOrdersByDate(orderDate);
                 OnPropertyChanged("OrdersInGroup");
             }
         }
+
+        private Order selectItem;
+        public Order SelectItem
+        {
+            get
+            {
+                return selectItem;
+            }
+
+            set
+            {
+                if (selectItem != value)
+                {
+                    selectItem = value;
+                    OrderData.toggleBtn(selectItem);
+
+                    OrdersInGroup = OrderData.loadOrdersByDate(orderDate);
+                    OnPropertyChanged("OrdersInGroup");
+                }
+            }
+        }
+
         #region INotifyPropertyChanged
 
         public event PropertyChangedEventHandler PropertyChanged;

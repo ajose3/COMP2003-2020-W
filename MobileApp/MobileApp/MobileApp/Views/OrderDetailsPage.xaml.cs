@@ -18,5 +18,10 @@ namespace MobileApp.Views
             InitializeComponent();
             BindingContext = new OrderDetailsViewModel();
         }
+
+        private void CollectionView_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            ((CollectionView)sender).SelectedItem = null;
+        }
     }
 }

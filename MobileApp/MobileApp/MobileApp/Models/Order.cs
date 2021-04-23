@@ -7,7 +7,9 @@ namespace MobileApp.Models
     public class Order : Product
     {
         public int Quantity { get; set; }
-        public DateTime Date { get; set; }
+        public DateTime OrderDate { get; set; }
+        public DateTime DeliveryDate { get; set; }
+        public bool displayBtn { get; set; } // binded to to toggle button visablility ->
 
         public float Total { get; set; }
 
@@ -26,8 +28,12 @@ namespace MobileApp.Models
             Stock = theStock;
 
             Quantity = theQuantity;
-            Date = DateTime.Now;
+            OrderDate = DateTime.Now;
+            //add random number of days to order date
+            var rand = new Random();
+            DeliveryDate = DateTime.Now.AddDays(rand.Next(31)); 
             Total = getTotal();
+            displayBtn = false;
         }
 
 
@@ -35,6 +41,7 @@ namespace MobileApp.Models
         {
             return Price * Quantity;
         }
+
     }
 
 }

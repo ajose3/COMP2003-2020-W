@@ -41,7 +41,7 @@ namespace MobileApp.Data
                 {
                     OrdersGroup tempGroup = new OrdersGroup();
                     List<Order> tempOrderList = new List<Order>();
-                    tempGroup.OrderDate = order.Date;
+                    tempGroup.OrderDate = order.OrderDate;
                     tempOrderList.Add(order);
                     tempGroup.theOrders = tempOrderList;
                     tempGroup.Total = order.Total;
@@ -52,7 +52,7 @@ namespace MobileApp.Data
                 {
                     foreach(var group in GroupedOrders)
                     {
-                        if(group.OrderDate.Date == order.Date.Date)
+                        if(group.OrderDate.Date == order.OrderDate.Date)
                         {
                             group.theOrders.Add(order);
                             group.Total += order.Total;
@@ -62,7 +62,7 @@ namespace MobileApp.Data
                     if(isGrouped == false)
                     {
                         OrdersGroup tempGroup = new OrdersGroup();
-                        tempGroup.OrderDate = order.Date;
+                        tempGroup.OrderDate = order.OrderDate;
                         //tempGroup.theOrders.Add(order);
                         List<Order> tempOrderList = new List<Order>();
                         tempOrderList.Add(order);
@@ -79,13 +79,23 @@ namespace MobileApp.Data
             List<Order> requestedOrder = new List<Order>();
             foreach (var order in Orders)
             {
-                DateTime a = order.Date.Date;
+                DateTime a = order.OrderDate.Date;
                 if (a == requestedDate.Date)
                 {
                     requestedOrder.Add(order);
                 }
             }
             return requestedOrder;
+        }
+        public static void toggleBtn(Order selectedOrder)
+        {
+            foreach (var order in Orders)
+            {
+                if (order == selectedOrder)
+                {
+                    order.displayBtn = !(order.displayBtn);
+                }
+            }
         }
     }
 }

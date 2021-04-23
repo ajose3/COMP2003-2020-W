@@ -98,7 +98,56 @@
                     </Frame>
                 </Grid>
             </DataTemplate>
-            
+
+            <DataTemplate x:Key="OrderDetailsTemplate">
+                <Grid Padding="3">
+                    
+                    <Frame BorderColor="#D8DAE0" CornerRadius="20" HasShadow="True" Padding="10">
+                        <StackLayout>
+                            <Grid Padding="0">
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="1.05*"/>
+                                    <RowDefinition Height="*"/>
+                                    <RowDefinition Height="*"/>
+                                </Grid.RowDefinitions>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="100"/>
+                                    <!--<ColumnDefinition Width="2*"/>-->
+                                    <ColumnDefinition Width="*"/>
+                                </Grid.ColumnDefinitions>
+                                <!-- scale image to fit the view (won't be cropped to fill view) -->
+                                <Image Grid.RowSpan="3"
+                                   Source="{Binding ImageUrl}" 
+                                   Aspect="AspectFit"
+                                   HeightRequest="80"/>
+                                <Label Margin="10,0,0,0" Grid.Column="1"
+                                   Text="{Binding Name}" 
+                                   FontAttributes="Bold" 
+                                   TextColor="Black"
+                                   FontSize="23"/>
+                                <Label Margin="10,0,0,0" Grid.Column="1" Grid.Row="1"
+                                       Text="{Binding Price, StringFormat='Price: £{0}'}"
+                                       VerticalOptions="End" 
+                                       TextColor="Black"
+                                       FontSize="22"
+                                       />
+                                <Label Margin="10,0,0,0" Grid.Column="1" Grid.Row="2"
+                                       Text="{Binding DeliveryDate, StringFormat='Estimated: {0:dd/MM/yy}'}"
+                                       VerticalOptions="End" 
+                                       TextColor="Black"
+                                       FontSize="22"
+                                       />
+                                <!--<Button Grid.Column="2" Grid.Row="0" Grid.RowSpan="2" Text="Cancel Order" FontSize="18"/>-->
+
+                                <!-- separator line -->
+                                <!--<BoxView Grid.Row="2" Grid.ColumnSpan="3" Margin="0" Color="{StaticResource GridLineColor}" Style="{StaticResource SeparatorLineStyle}"/>-->
+                            </Grid>
+                            <Button x:Name="RemoveFrOrder" Text="Remove from Order" Margin="0" IsVisible="{Binding displayBtn}"/>
+                        </StackLayout>
+                    </Frame>
+                </Grid>
+            </DataTemplate>
+
             <DataTemplate x:Key="ReviewTemplate">
                 <Grid Padding="5">
                     <Frame BorderColor="#D8DAE0" CornerRadius="20" HasShadow="True" HeightRequest="120">

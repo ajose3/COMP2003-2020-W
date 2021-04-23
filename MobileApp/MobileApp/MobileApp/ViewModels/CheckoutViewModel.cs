@@ -61,15 +61,6 @@ namespace MobileApp.ViewModels
         {
             await Shell.Current.DisplayAlert("Clicked Pay", null, "OK");
             // for each product in basket
-            //foreach (var Product in Basket.Products)
-            //{
-            //    // decrease stock for product in ProductData
-            //    ProductData.Products.Where(i => i.Id == Product.Id).FirstOrDefault().Stock -= 1;
-            //    //Shell.Current.DisplayAlert("Updated stock", string.Format("{0}", ProductData.Products.Where(i => i.Id == Product.Id).FirstOrDefault().Stock), "OK");
-            //    //  add product to orders
-            //    OrderData.AddToOrder(Product);
-            //    //OrderData.LoadOrders();
-            //}
             foreach (var Product in Basket.CheckProds)
             {
                 ProductData.Products.Where(i => i.Id == Product.Id).FirstOrDefault().Stock -= 1*Product.Quantity;

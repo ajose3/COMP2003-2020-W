@@ -142,7 +142,11 @@
                                 <!-- separator line -->
                                 <!--<BoxView Grid.Row="2" Grid.ColumnSpan="3" Margin="0" Color="{StaticResource GridLineColor}" Style="{StaticResource SeparatorLineStyle}"/>-->
                             </Grid>
-                            <Button x:Name="RemoveFrOrder" Text="Remove from Order" Margin="0" IsVisible="{Binding displayBtn}"/>
+                            <Button Text="Remove from Order" Margin="0" 
+                                    IsVisible="{Binding displayBtn}"
+                                    IsEnabled="{Binding displayBtn}"
+                                    Command="{Binding Source={RelativeSource AncestorType={x:Type viewModels:OrderDetailsViewModel}},Path=RemoveFromOrder}"
+                                    CommandParameter="{Binding .}"/>
                         </StackLayout>
                     </Frame>
                 </Grid>

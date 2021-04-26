@@ -15,6 +15,12 @@
                             x:Name="collection1"
                 SelectionChanged="CollectionView_SelectionChanged"
                 SelectedItem="{Binding SelectItem, Mode=TwoWay}">
+                <CollectionView.EmptyView>
+                    <Label Text="No Orders Found"
+                           FontSize="28"
+                           TextColor="Black"
+                           HorizontalTextAlignment="Center"/>
+                </CollectionView.EmptyView>
             </CollectionView>
 
         </StackLayout>

@@ -97,5 +97,9 @@ namespace MobileApp.Data
                 }
             }
         }
+        public static void removeOrder(Order order)
+        {
+            Orders.Remove(order);
+        }
     }
 }

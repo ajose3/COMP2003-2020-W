@@ -3,18 +3,22 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" xmlns:viewmodels="clr-namespace:MobileApp.ViewModels" x:DataType="viewmodels:OrderDetailsViewModel"
              x:Class="MobileApp.Views.OrderDetailsPage">
     <ContentPage.Content>
-        <StackLayout>
-            <Label Text="Order Details" FontSize="30" Padding="10,5,0,0" TextColor="Black"/>
-            <Label Text="{Binding orderDate, StringFormat='Ordered: {0:dd/MM/yy}'}" FontSize="24" Padding="10,0"/>
+        <StackLayout Margin="10">
+            <Label Text="Order Details" FontSize="Title" 
+                   Padding="0,0,0,0" TextColor="Black"
+                   FontAttributes="Bold"/>
+            <Label Text="{Binding orderDate, StringFormat='Ordered: {0:dd/MM/yy}'}" 
+                   FontSize="Medium" Padding="0,0"
+                   TextColor="Gray"
+                  />
             <CollectionView Margin="0"
                             BackgroundColor="#f7f7f7"
                             ItemsLayout="VerticalList"
                             ItemsSource="{Binding OrdersInGroup}"
                             ItemTemplate="{StaticResource OrderDetailsTemplate}"
                             SelectionMode="Single"
-                            x:Name="collection1"
-                SelectionChanged="CollectionView_SelectionChanged"
-                SelectedItem="{Binding SelectItem, Mode=TwoWay}">
+                            SelectionChanged="CollectionView_SelectionChanged"
+                            SelectedItem="{Binding SelectItem, Mode=TwoWay}">
                 <CollectionView.EmptyView>
                     <Label Text="No Orders Found"
                            FontSize="28"

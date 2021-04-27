@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
+using MobileApp.Models;
 using MobileApp.ViewModels;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
@@ -15,9 +17,9 @@ namespace MobileApp.Views
             BindingContext = new CheckoutViewModel();
         }
 
-        public void OnCollectionViewSelectionChanged(object sender, SelectionChangedEventArgs e)
+        async void OnCollectionViewSelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-
+            ((CollectionView)sender).SelectedItem = null;
         }
     }
 }

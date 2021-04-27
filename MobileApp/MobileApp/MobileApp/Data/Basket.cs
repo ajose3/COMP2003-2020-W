@@ -6,21 +6,19 @@ namespace MobileApp.Data
 {
     public static class Basket
     {
-        //public static List<Product> Products = new List<Product>();
-        public static List<CheckOutProduct> CheckProds = new List<CheckOutProduct>();
-
+        public static List<CheckOutProduct> Products = new List<CheckOutProduct>();
         public static void AddProduct(Product product)
         {
             //Products.Add(product);
             bool isFound = false;
-            if (CheckProds.Count == 0)
+            if (Products.Count == 0)
             {
                 CheckOutProduct checkoutProd = new CheckOutProduct(product, 1);
-                CheckProds.Add(checkoutProd);
+                Products.Add(checkoutProd);
             }
             else
             {
-                foreach (var checkProd in CheckProds)
+                foreach (var checkProd in Products)
                 {
                     if (checkProd.Id == product.Id)
                     {
@@ -32,7 +30,7 @@ namespace MobileApp.Data
                 if (!isFound)
                 {
                     CheckOutProduct checkoutProd = new CheckOutProduct(product, 1);
-                    CheckProds.Add(checkoutProd);
+                    Products.Add(checkoutProd);
                 }
             }
         }
@@ -40,13 +38,13 @@ namespace MobileApp.Data
         {
             //Products.Remove(product);
 
-            foreach (var prod in CheckProds)
+            foreach (var prod in Products)
             {
                 if (prod.Id == product.Id)
                 {
                     if (prod.Quantity <= 1)
                     {
-                        CheckProds.Remove(prod);
+                        Products.Remove(prod);
                     }
                     else
                     {
@@ -61,7 +59,7 @@ namespace MobileApp.Data
         {
             float totalPrice = 0;
 
-            foreach (var Product in CheckProds)
+            foreach (var Product in Products)
             {
                 if (Product.Quantity > 1)
                 {
@@ -80,7 +78,7 @@ namespace MobileApp.Data
         {
             int num = 0;
 
-            foreach (var Product in CheckProds)
+            foreach (var Product in Products)
             {
                 if (Product.Quantity > 1)
                 {
@@ -97,36 +95,17 @@ namespace MobileApp.Data
 
         public static void Clear()
         {
-            //Products.Clear();
-            CheckProds.Clear();
+            Products.Clear();
         }
-        //public static List<Product> loadBasket()
-        //{
-        //    List<Product> inBasket = new List<Product>();
-        //    foreach (var prod in Products)
-        //    {
-        //        inBasket.Add(prod);
-        //    }
-        //    return inBasket;
-        //}
 
-        public static List<CheckOutProduct> loadNewBasket()
+        public static List<CheckOutProduct> loadBasket()
         {
             List<CheckOutProduct> inBasket = new List<CheckOutProduct>();
-            foreach (var prod in CheckProds)
+            foreach (var prod in Products)
             {
                 inBasket.Add(prod);
             }
             return inBasket;
         }
-
-
-        //public static List<CheckOutProduct> LoadCheckout()
-        //{
-        //    List<CheckOutProduct> products = new List<CheckOutProduct>();
-
-
-        //    return products;
-        //}
     }
 }

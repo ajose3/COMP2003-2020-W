@@ -13,18 +13,19 @@ namespace MobileApp.Models
         public DateTime OrderDate { get; set; }
         public double Total { get; set; }
         public List<Order> theOrders { get; set; }
-        public int Remaining { get; set; }
-    //public string[] Images { get; set; }
-        public int getRemaining()
-        {
-            if(theOrders.Count > 4)
-            {
-                return theOrders.Count - 4;
-            }
-            else
-            {
-                return 0;
-            }
-        }
+        //public string Remaining => getRemaining();
+
+        //public string getRemaining()
+        //{
+        //    if(theOrders.Count > 4)
+        //    {
+        //        string Remaining = (theOrders.Count - 4).ToString();
+        //        return Remaining + "+";
+        //    }
+        //    else
+        //    {
+        //        return "0";
+        //    }
+        //}
     }
 }

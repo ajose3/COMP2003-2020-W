@@ -139,6 +139,7 @@
                             ItemTemplate="{StaticResource ProductTemplate}"
                             SelectionMode="Single"
                             SelectionChanged="OnCollectionViewSelectionChanged"
+                            SelectedItem="{Binding SelectItem, Mode=TwoWay}"
                             ItemsUpdatingScrollMode="KeepScrollOffset"
                             >
                 <CollectionView.EmptyView>

@@ -173,8 +173,8 @@
 
 
             <DataTemplate x:Key="BasketTemplate">
-                <Grid Padding="5">
-                    <Frame BorderColor="#D8DAE0" CornerRadius="20" HasShadow="True" Padding="4,10">
+                <Grid Padding="0">
+                    <Frame BorderColor="#D8DAE0" CornerRadius="20" HasShadow="True" Padding="0,10">
                         <Grid Padding="0">
                             <Grid.RowDefinitions>
                                 <RowDefinition Height="Auto"/>
@@ -182,8 +182,8 @@
                                 <!--<RowDefinition Height="5"/>-->
                             </Grid.RowDefinitions>
                             <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="*"/>
-                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="1.2*"/>
+                                <ColumnDefinition Width="2*"/>
                                 <ColumnDefinition Width="*"/>
                             </Grid.ColumnDefinitions>
                             <!-- scale image to fit the view (won't be cropped to fill view) -->
@@ -191,32 +191,29 @@
                                Source="{Binding ImageUrl}" 
                                Aspect="AspectFit"
                                HeightRequest="80"/>
-                            <Label Margin="10,0,0,0" Grid.Column="1" Grid.ColumnSpan="2"
+                            <Label Margin="5,0,0,0" Grid.Column="1" Grid.ColumnSpan="2"
                                Text="{Binding Name}" 
                                FontAttributes="Bold" 
                                TextColor="Black"
                                FontSize="28"/>
-                            <FlexLayout Margin="10,0,0,0" Grid.Column="1" Grid.Row="1" Grid.ColumnSpan="2">
-                                <Label Text="Price: £" TextColor="DarkGray" FontSize="24"/>
-                                <Label Text="{Binding Price}" 
-                                   VerticalOptions="End" 
-                                   TextColor="DarkGray"
+                            <Label Margin="5,0,0,0" Grid.Column="1" Grid.Row="1" Grid.ColumnSpan="1" 
+                                   Text="{Binding Price,StringFormat='Price: £{0}'}"
                                    FontSize="24"
-                                   HorizontalTextAlignment="End"/>
-                                <Label Text="{Binding Quantity,StringFormat='Qty: {0}'}"
-                                       Padding="25,0,0,0"
-                                       VerticalOptions="End" 
-                                   TextColor="DarkGray"
+                                   TextColor="Black"/>
+                            <Label Margin="0,0,0,0" Grid.Column="2" Grid.Row="1" Grid.ColumnSpan="1"
+                                   Text="{Binding Quantity,StringFormat='Qty: {0}'}"
+                                   Padding="2,0,0,0"
+                                   TextColor="Black"
                                    FontSize="24"
-                                   HorizontalTextAlignment="End"/>
-                            </FlexLayout>
+                                   HorizontalTextAlignment="Center"
+                                   />
                             <Button Margin="0,0,0,0" Grid.Column="2" Grid.Row="0"
                                     Text="{StaticResource IconBin}"
                                     FontFamily="FA-S" 
                                     TextColor="Red"
                                     FontSize="24"
                                     VerticalOptions="Start"
-                                    HorizontalOptions="End"
+                                    HorizontalOptions="Center"
                                     Padding="0"
                                     WidthRequest="50"
                                     BackgroundColor="Transparent"
@@ -312,49 +309,9 @@
                                     HorizontalTextAlignment="Center"
                                     VerticalTextAlignment="Center"
                                    />
+
+                                <!--Text="{Binding theOrders.Count}"-->
                             </Frame>
-
-                            <!--<Image Grid.RowSpan="2"
-                               Source="{Binding ImageUrl}" 
-                               Aspect="AspectFit"
-                               HeightRequest="80"/>-->
-                            <!--<Label Margin="10,0,0,0" Grid.Column="1" Grid.ColumnSpan="3"
-                               Text="{Binding Name}" 
-                               FontAttributes="Bold" 
-                               TextColor="Black"
-                               FontSize="25"/>-->
-                            <!--<Label Margin="10,0,0,0" Grid.Row="1" Grid.Column="1" 
-                                   Text="{Binding Price, StringFormat='£{0}'}" 
-                                   TextColor="DarkGray"
-                                   FontSize="20"/>-->
-                            <!--<Label Margin="0,0,0,0" Grid.Row="1" Grid.Column="2" 
-                                   Text="{Binding Quantity, StringFormat='Qty: {0} '}" 
-                                   TextColor="DarkGray"
-                                   FontSize="20"/>
-                            <Label Margin="10,0,0,0" Grid.Column="1" Grid.Row="2" 
-                                   Text="{Binding Total, StringFormat='Total: {0}'}"
-                                   TextColor="DarkGray"
-                                   FontSize="20"/>-->
-                            <!--<FlexLayout Grid.Column="2" Grid.Row="1" Grid.ColumnSpan="2">
-                                <Label Text="Price: £" TextColor="DarkGray" FontSize="20"/>
-                                <Label Text="{Binding Price}" 
-                                   VerticalOptions="End" 
-                                   TextColor="DarkGray"
-                                   FontSize="20"
-                                   HorizontalTextAlignment="End"/>
-                            </FlexLayout>-->
-
-                            <!--<Label Margin="10,0,0,0" Grid.Column="1" Grid.Row="1" Grid.ColumnSpan="3"
-                                   Text="{Binding OrderDate, StringFormat='Ordered: {0:dd/MM/yyyy}'}" 
-                                   TextColor="DarkGray"
-                                   FontSize="20"/>-->
-                            <!--<Label Margin="10,0,0,0" Grid.Column="1" Grid.ColumnSpan="3"
-                               Text="{Binding Total}" 
-                               FontAttributes="Bold" 
-                               TextColor="Black"
-                               FontSize="25"/>-->
-
-
                         </Grid>
                     </Frame>
                 </Grid>

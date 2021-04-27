@@ -32,8 +32,7 @@ namespace MobileApp.ViewModels
         public void loadBasket()
         {
             //basket = Basket.loadBasket();
-            basket = Basket.loadNewBasket();
-            //NumItems = Basket.Products.Count;
+            basket = Basket.loadBasket();
             NumItems = Basket.GetNumItem();
             TotalPrice = Basket.GetTotalPrice();
             OnPropertyChanged("basket");
@@ -61,7 +60,7 @@ namespace MobileApp.ViewModels
         {
             await Shell.Current.DisplayAlert("Clicked Pay", null, "OK");
             // for each product in basket
-            foreach (var Product in Basket.CheckProds)
+            foreach (var Product in Basket.Products)
             {
                 ProductData.Products.Where(i => i.Id == Product.Id).FirstOrDefault().Stock -= 1*Product.Quantity;
 
@@ -94,11 +93,34 @@ namespace MobileApp.ViewModels
         void ExecuteRefreshCommand()
         {
             //basket = Basket.loadBasket();
-            basket = Basket.loadNewBasket();
+            basket = Basket.loadBasket();
             OnPropertyChanged("basket");
 
             // Stop refreshing
             IsRefreshing = false;
+        }
+
+        private CheckOutProduct selectItem;
+        public CheckOutProduct SelectItem
+        {
+            get
+            {
+                return selectItem;
+            }
+
+            set
+            {
+                if (selectItem != value)
+                {
+                    selectItem = value;
+
+                    int productId = selectItem.Id;
+                    // query product id as all products will need a unqiue id
+                    Shell.Current.GoToAsync($"productdetails?id={productId}");
+                    //((CollectionView)sender).SelectedItem = null;
+                    selectItem = null;
+                }
+            }
         }
 
         #region INotifyPropertyChanged

@@ -914,9 +914,62 @@ GO
 
 -- how to run
 DECLARE @Out as INT; 
-EXEC WriteReview @Token = '00-4B68-A7CA-EA85320CB2ED', @Title = "title, @Rating = 3, @ProductID = 2, @Description = 'this is the description', @ResponseMessage = @Out OUTPUT; 
+EXEC WriteReview @Token = '00-4B68-A7CA-EA85320CB2ED', @Title = 'title', @Rating = 3, @ProductID = 2, @Description = 'this is the description', @ResponseMessage = @Out OUTPUT; 
 SELECT @Out AS 'OutputMessage';
 --------
+
+
+CREATE PROCEDURE Recommending
+@Token VARCHAR(25),
+@ProductId INT
+AS
+BEGIN
+	IF EXISTS(SELECT * FROM Sessions WHERE Token = @Token AND CURRENT_TIMESTAMP <= ExpiryTime)
+		BEGIN
+			DECLARE @CustomerID AS INT = (SELECT CustomerID FROM Sessions WHERE Token = @Token);
+			
+			Declare @Rating AS FLOAT = (SELECT AvgRating from Products WHERE ProductId = @ProductId);
+
+			Declare @Category AS VARCHAR(50) = (SELECT Category from Products WHERE ProductId = @ProductId)
+
+			-- select top 5 
+
+			SELECT TOP 5* from Products WHERE AvgRating = @Rating AND Category = @Category;
+
+		END
+END
+GO
+
+
+EXEC Recommending @Token = '00-4B68-A7CA-EA85320CB2ED', @ProductId = 4; 
+
+
+-- how to run
+DECLARE @Out as INT; 
+EXEC Recommending @Token = '00-4B68-A7CA-EA85320CB2ED', @ProductId = 4, @ResponseMessage = @Out OUTPUT; 
+SELECT @Out AS 'OutputMessage';
+--------
+
+
+-- View reviews for a product
+
+CREATE VIEW ProductReviews AS 
+SELECT ProductId, CustomerID, Rating, Title, Description
+FROM Reviews
+Order By Rating;
+
+-- how to run
+SELECT * FROM [ProductReviews] --WHERE ProductIDGoesHere
+
+
+CREATE VIEW NumReviews AS 
+SELECT COUNT(ProductId)
+FROM Reviews
+--WHERE ProductID;
+
+-- how to run
+SELECT * FROM [NumReviews]
+
 
 
 --- Updating Average Rating every time a new review is made.

@@ -189,3 +189,9 @@ Overall, the whole group thinks that we are in a good position with the whole pr
 Week 21 (19/04/2021 - 23/04/2021):
 
 During this week's meeting we discussed our progress with our assignments over easter, each member had made a strong start to their respective task, but it became clear that we needed a further week to work on them all. Due to personal issues one of the group members is unable to work on the project this week so the people assigned to each task needed to be adjusted. We decided to merge the team working on the API and the people focusing on the recommender as both parts now rely on one another. The other team members will continue to work on their tasks from last week. 
+
+Week 22(26/04/2021-30/04/2021)
+
+Transformed JSON data into csv files and read into the database. 
+API testing is underway while project is being rescaffolded due to many changes over the past few months. 
+Member has retruned from personal reasons meaning group is once again at full capabilty and extra tasks could be assigned this week.

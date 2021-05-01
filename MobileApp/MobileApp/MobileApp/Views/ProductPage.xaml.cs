@@ -44,11 +44,25 @@ namespace MobileApp.Views
             }
         }
 
+        async void ReviewClicked(object sender, SelectionChangedEventArgs e)
+        {
+            if (Backdrop.Opacity == 0)
+            {
+                await OpenDetailsDrawer();
+            }
+            else
+            {
+                await OpenDetailsDrawer();
+            }
+            ((CollectionView)sender).SelectedItem = null;
+        }
+
         async void TapGestureRecognizer_Tapped(object sender, EventArgs e)
         {
             if (isBackdropTapEnabled)
             {
                 await CloseDrawer();
+                await CloseDetailsDrawer();
             }
         }
 
@@ -100,6 +114,25 @@ namespace MobileApp.Views
         async void DoneReview_Clicked(object sender, EventArgs e)
         {
             await CloseDrawer();
+        }
+        async Task OpenDetailsDrawer()
+        {
+            await Task.WhenAll
+            (
+                Backdrop.FadeTo(1, length: duration),
+                BottomReviewDetails.TranslateTo(0, openY, length: duration, easing: Easing.SinIn)
+            );
+            Backdrop.InputTransparent = false;
+        }
+
+        async Task CloseDetailsDrawer()
+        {
+            await Task.WhenAll
+            (
+                Backdrop.FadeTo(0, length: duration),
+                BottomReviewDetails.TranslateTo(0, 540, length: duration, easing: Easing.SinIn)
+            );
+            Backdrop.InputTransparent = true;
         }
     }
 }

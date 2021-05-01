@@ -66,7 +66,8 @@
 
     <ScrollView>
         <StackLayout Margin="0">
-            <Label Margin="10,10" Text="Recommended Products" CharacterSpacing="0.5" FontSize="30" TextColor="Black" FontAttributes="Bold"/>
+            <Label Margin="10,10,0,0" Text="EbAzon" CharacterSpacing="0.5" FontSize="28" TextColor="Black" FontAttributes="Bold"></Label>
+            <Label Margin="10,0,0,0" Text="Recommended" CharacterSpacing="0.5" FontSize="24" TextColor="Black" FontAttributes="Bold"/>
             <!--Carousel -> itemSource is list of all products change to recomeneded product list-->
             <CarouselView ItemsSource="{x:Static data:RecommendedProducts.RecProducts}"
                           Margin="0,5,0,0"
@@ -103,8 +104,9 @@
                         </StackLayout.GestureRecognizers>
                         <Label Text="Trending Today"
                                 FontAttributes="Bold"
-                                FontSize="26"
+                                FontSize="24"
                                 HorizontalOptions="Center"
+                                HorizontalTextAlignment="Center"
                                 VerticalOptions="Center" TextColor="Black"/>
                         <BoxView Style="{StaticResource SeparatorLineStyle}" Margin="0,0,0,0"/>
                         <Image Source="{Binding TrendingToday.ImageUrl}" 
@@ -136,11 +138,13 @@
                         <StackLayout.GestureRecognizers>
                             <TapGestureRecognizer Command="{Binding SelectFeature}" CommandParameter="{Binding Featured.Id}" />
                         </StackLayout.GestureRecognizers>
-                        <Label Text="Featured"
+                        <Label Text="Featured Today"
                                 FontAttributes="Bold"
-                                FontSize="26"
+                                FontSize="24"
                                 HorizontalOptions="Center"
-                                VerticalOptions="Center" TextColor="Black"
+                                VerticalOptions="Center" 
+                               TextColor="Black"
+                               HorizontalTextAlignment="Center"
                                />
                         <BoxView Style="{StaticResource SeparatorLineStyle}" Margin="0,0,0,0"/>
                         <Image Source="{Binding Featured.ImageUrl}" 

@@ -239,5 +239,27 @@ namespace MobileApp.ViewModels
             OnPropertyChanged("RStarColor4");
             OnPropertyChanged("RStarColor5");
         }
+
+        public Review selectReview { get; set; }
+        public Review SelectReview
+        {
+            get
+            {
+                return selectReview;
+            }
+
+            set
+            {
+                if (selectReview != value)
+                {
+                    if (value != null)
+                    {
+                        selectReview = value;
+                        OnPropertyChanged("selectReview");
+                    }
+                }
+            }
+        }
+
     }
 }

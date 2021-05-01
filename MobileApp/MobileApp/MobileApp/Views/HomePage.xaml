@@ -73,52 +73,7 @@
                           PeekAreaInsets="100"
                           IndicatorView="indicatorview"
                           HeightRequest="250"
-                          >
-                <!--CurrentItem="OnCollectionViewSelectionChanged"-->
-
-                <CarouselView.ItemTemplate>
-                    <DataTemplate>
-                        <StackLayout>
-                            <Frame HasShadow="True"
-                                   BorderColor="LightGray"
-                                   CornerRadius="5"
-                                   Margin="4,2"
-                                   Padding="0,10"
-                                   HeightRequest="220"
-                                   WidthRequest="250">
-                                <StackLayout Margin="0" Padding="0">
-                                    <StackLayout.GestureRecognizers>
-                                        <!--<TapGestureRecognizer Command="{Binding selectCarouselItem}" CommandParameter="{Binding Id}" />-->
-                                        <TapGestureRecognizer Tapped="CarouselItem_Tapped" />
-                                    </StackLayout.GestureRecognizers>
-                                    <Label Text="{Binding Id}" IsVisible="false" x:Name="ProductID"/>
-                                    <Image Source="{Binding ImageUrl}" 
-                                           Aspect="AspectFit"
-                                           HeightRequest="125"
-                                           VerticalOptions="Start"
-                                           HorizontalOptions="Center" />
-                                    <BoxView Style="{StaticResource SeparatorLineStyle}" Margin="0,0,0,0"/>
-                                    <Label Text="{Binding Name}" 
-                                           FontAttributes="Bold"
-                                           FontSize="28"
-                                           HorizontalOptions="Center"
-                                           VerticalOptions="Center" TextColor="Black"/>
-
-                                    <FlexLayout HorizontalOptions="Center" JustifyContent="Center">
-                                        <Label Text="Price: £"
-                                                FontSize="24"
-                                                TextColor="Black"/>
-                                        <Label Text="{Binding Price}"
-                                                MaxLines="5"
-                                                LineBreakMode="TailTruncation"
-                                                FontSize="24"
-                                                TextColor="Black"/>
-                                    </FlexLayout>
-                                </StackLayout>
-                            </Frame>
-                        </StackLayout>
-                    </DataTemplate>
-                </CarouselView.ItemTemplate>
+                          ItemTemplate="{StaticResource CarouselTemplate}">
             </CarouselView>
             <IndicatorView
                 x:Name="indicatorview"
@@ -129,6 +84,86 @@
 
             <!-- separator line -->
             <BoxView Style="{StaticResource SeparatorLineStyle}" Margin="15,25,15,10"/>
+
+            <Grid Padding="5,0">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+                <Frame HasShadow="True"
+                       BorderColor="LightGray"
+                       CornerRadius="5"
+                       Margin="2,0"
+                       Padding="0,5"
+                       Grid.Column="0"
+                       >
+                    <StackLayout Margin="0" Padding="0">
+                        <StackLayout.GestureRecognizers>
+                            <TapGestureRecognizer Command="{Binding SelectTrending}" CommandParameter="{Binding TrendingToday.Id}" />
+                        </StackLayout.GestureRecognizers>
+                        <Label Text="Trending Today"
+                                FontAttributes="Bold"
+                                FontSize="26"
+                                HorizontalOptions="Center"
+                                VerticalOptions="Center" TextColor="Black"/>
+                        <BoxView Style="{StaticResource SeparatorLineStyle}" Margin="0,0,0,0"/>
+                        <Image Source="{Binding TrendingToday.ImageUrl}" 
+                                Aspect="AspectFit"
+                                HeightRequest="125"
+                                VerticalOptions="Center"
+                                HorizontalOptions="Center"
+                               Margin="0"
+                               />
+                        <BoxView Style="{StaticResource SeparatorLineStyle}" Margin="0,0,0,0"/>
+                        <Label Text="{Binding TrendingToday.Name}" 
+                                FontAttributes="Bold"
+                                FontSize="24"
+                                HorizontalOptions="Center"
+                                VerticalOptions="Center" TextColor="Black"/>
+                        <Label Text="{Binding TrendingToday.Price, StringFormat='Price: £{0}'}"
+                               FontSize="24"
+                               HorizontalOptions="Center"
+                               VerticalOptions="Center" TextColor="Black"/>
+                    </StackLayout>
+                </Frame>
+                <Frame HasShadow="True"
+                        BorderColor="LightGray"
+                        CornerRadius="5"
+                        Margin="2,0"
+                        Padding="0,5"
+                        Grid.Column="1">
+                    <StackLayout Margin="0" Padding="0">
+                        <StackLayout.GestureRecognizers>
+                            <TapGestureRecognizer Command="{Binding SelectFeature}" CommandParameter="{Binding Featured.Id}" />
+                        </StackLayout.GestureRecognizers>
+                        <Label Text="Featured"
+                                FontAttributes="Bold"
+                                FontSize="26"
+                                HorizontalOptions="Center"
+                                VerticalOptions="Center" TextColor="Black"
+                               />
+                        <BoxView Style="{StaticResource SeparatorLineStyle}" Margin="0,0,0,0"/>
+                        <Image Source="{Binding Featured.ImageUrl}" 
+                                Aspect="AspectFit"
+                                HeightRequest="125"
+                                VerticalOptions="Start"
+                                HorizontalOptions="Center" />
+                        <BoxView Style="{StaticResource SeparatorLineStyle}" Margin="0,0,0,0"/>
+                        <Label Text="{Binding Featured.Name}" 
+                                FontAttributes="Bold"
+                                FontSize="24"
+                                HorizontalOptions="Center"
+                                VerticalOptions="Center" TextColor="Black"/>
+                        <Label Text="{Binding Featured.Price, StringFormat='Price: £{0}'}"
+                               FontSize="24"
+                               HorizontalOptions="Center"
+                               VerticalOptions="Center" TextColor="Black"/>
+                    </StackLayout>
+                </Frame>
+            </Grid>
+
+            <BoxView Style="{StaticResource SeparatorLineStyle}" Margin="15,15,15,10"/>
+
 
             <Label Margin="10,10" Text="You might like" FontSize="30" CharacterSpacing="0.5" TextColor="Black" FontAttributes="Bold"/>
             <!--collection of all items in product array-->

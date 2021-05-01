@@ -99,6 +99,41 @@
                 </Grid>
             </DataTemplate>
 
+            <DataTemplate x:Key="CarouselTemplate">
+                <StackLayout>
+                    <Frame HasShadow="True"
+                                   BorderColor="LightGray"
+                                   CornerRadius="5"
+                                   Margin="4,2"
+                                   Padding="0,10"
+                                   HeightRequest="220"
+                                   WidthRequest="250">
+                        <StackLayout Margin="0" Padding="0">
+                            <StackLayout.GestureRecognizers>
+                                <!--<TapGestureRecognizer Command="{Binding selectCarouselItem}" CommandParameter="{Binding Id}" />-->
+                                <TapGestureRecognizer Tapped="CarouselItemTapped" />
+                            </StackLayout.GestureRecognizers>
+                            <Label Text="{Binding Id}" IsVisible="false" x:Name="ProductID"/>
+                            <Image Source="{Binding ImageUrl}" 
+                                           Aspect="AspectFit"
+                                           HeightRequest="125"
+                                           VerticalOptions="Start"
+                                           HorizontalOptions="Center" />
+                            <BoxView Style="{StaticResource SeparatorLineStyle}" Margin="0,0,0,0"/>
+                            <Label Text="{Binding Name}" 
+                                           FontAttributes="Bold"
+                                           FontSize="28"
+                                           HorizontalOptions="Center"
+                                           VerticalOptions="Center" TextColor="Black"/>
+                            <Label Text="{Binding Price, StringFormat='Price: £{0}'}"
+                                           FontSize="24"
+                                           TextColor="Black"
+                                           HorizontalOptions="Center"/>
+                        </StackLayout>
+                    </Frame>
+                </StackLayout>
+            </DataTemplate>
+
             <DataTemplate x:Key="OrderDetailsTemplate">
                 <Grid Padding="3">
                     

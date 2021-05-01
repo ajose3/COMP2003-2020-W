@@ -1,4 +1,6 @@
 ﻿using System;
+using System.ComponentModel;
+using System.Runtime.CompilerServices;
 using System.Windows.Input;
 using MobileApp.Data;
 using MobileApp.Models;
@@ -7,12 +9,14 @@ using Xamarin.Forms;
 
 namespace MobileApp.ViewModels
 {
-    public class HomeViewModel : BaseViewModel
+    public class HomeViewModel : INotifyPropertyChanged
     {
-        public HomeViewModel()
+        public HomeViewModel() 
         {
-            Title = "Ebazon";
-
+            Featured = ProductData.GetFeatured();
+            OnPropertyChanged("Featured");
+            TrendingToday = ProductData.GetTrending();
+            OnPropertyChanged("TrendingToday");
             //OpenWebCommand = new Command(async () => await Browser.OpenAsync("https://aka.ms/xamarin-quickstart"));
         }
 
@@ -20,6 +24,10 @@ namespace MobileApp.ViewModels
         {
             Shell.Current.DisplayAlert("Clicked Search", null, "OK");
         });
+
+        public Product TrendingToday { get; set; }
+
+        public Product Featured { get; set; }
 
         private Product selectItem;
         public Product SelectItem
@@ -36,12 +44,31 @@ namespace MobileApp.ViewModels
                     selectItem = value;
 
                     int productId = selectItem.Id;
-                    // query product id as all products will need a unqiue id
                     Shell.Current.GoToAsync($"productdetails?id={productId}");
-                    //((CollectionView)sender).SelectedItem = null;
                     selectItem = null;
                 }
             }
         }
+
+        public ICommand SelectFeature => new Command<int>((int productId) =>
+        {
+            Shell.Current.GoToAsync($"productdetails?id={productId}");
+        });
+
+        public ICommand SelectTrending => new Command<int>((int productId) =>
+        {
+            Shell.Current.GoToAsync($"productdetails?id={productId}");
+        });
+
+        #region INotifyPropertyChanged
+
+        public event PropertyChangedEventHandler PropertyChanged;
+
+        void OnPropertyChanged([CallerMemberName] string propertyName = null)
+        {
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
+        }
+
+        #endregion
     }
 }

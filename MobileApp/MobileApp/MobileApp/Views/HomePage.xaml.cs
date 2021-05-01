@@ -1,5 +1,6 @@
 ﻿using MobileApp.Interfaces;
 using MobileApp.Models;
+using MobileApp.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
@@ -18,20 +19,9 @@ namespace MobileApp.Views
         public HomePage()
         {
             InitializeComponent();
+            BindingContext = new HomeViewModel();
             //SearchBarTextChanged += HandleSearchBarTextChanged; //Another approach to search (unfinished)
-        }
-
-        /*//Another approach to Search handlers (unfinished)
-        public event EventHandler<string> SearchBarTextChanged;
-
-        void ISearchPage.OnSearchBarTextChanged(string text) => SearchBarTextChanged?.Invoke(this, text);
-
-        void HandleSearchBarTextChanged(object sender, string searchBarText)
-        {
-            //Logic to handle updated search bar text
-        } */
-
-        
+        }       
 
 
         //collection view select

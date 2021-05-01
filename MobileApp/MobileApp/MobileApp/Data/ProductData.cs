@@ -79,10 +79,16 @@ namespace MobileApp.Data
                 ImageUrl = "https://images-na.ssl-images-amazon.com/images/I/51tWZFkT3AL._AC_SL1300_.jpg",
                 Stock = 300
             });
+        }
 
-            //CarouselProducts = new ObservableCollection<Product>(Products);
+        public static Product GetTrending()
+        {
+            return Products[2];
+        }
 
-
+        public static Product GetFeatured()
+        {
+            return Products[4];
         }
 
 

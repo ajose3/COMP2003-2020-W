@@ -28,5 +28,12 @@ namespace MobileApp
         protected override void OnResume()
         {
         }
+
+        private async void CarouselItemTapped(object sender, EventArgs e)
+        {
+            var i = sender as StackLayout;
+            var productId2 = i.FindByName<Label>("ProductID").Text;
+            await Shell.Current.GoToAsync($"productdetails?id={productId2}");
+        }
     }
 }

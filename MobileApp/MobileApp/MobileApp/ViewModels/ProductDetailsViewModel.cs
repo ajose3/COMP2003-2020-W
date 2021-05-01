@@ -14,8 +14,6 @@ using System.Threading.Tasks;
 
 namespace MobileApp.ViewModels
 {
-    //[QueryProperty("ProductName", "name")]
-    // use id rather than name as each id will need to be unique
     [QueryProperty("ProductId", "id")]
     public class ProductDetailsViewModel : INotifyPropertyChanged
     {
@@ -38,7 +36,6 @@ namespace MobileApp.ViewModels
                     Price = product.Price;
                     ImageUrl = product.ImageUrl;
                     Stock = product.Stock;
-                    //ReviewData.getReviews(Id);
                     Reviews = ReviewData.getReviews(Id);
                     AverageRating();
                     OnPropertyChanged("Id");

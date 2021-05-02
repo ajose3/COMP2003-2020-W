@@ -4,6 +4,7 @@ using System.Runtime.CompilerServices;
 using System.Windows.Input;
 using MobileApp.Data;
 using MobileApp.Models;
+using MobileApp.Services;
 using Xamarin.Essentials;
 using Xamarin.Forms;
 
@@ -24,7 +25,6 @@ namespace MobileApp.ViewModels
         {
             Shell.Current.DisplayAlert("Clicked Search", null, "OK");
         });
-
         public Product TrendingToday { get; set; }
 
         public Product Featured { get; set; }
@@ -50,12 +50,7 @@ namespace MobileApp.ViewModels
             }
         }
 
-        public ICommand SelectFeature => new Command<int>((int productId) =>
-        {
-            Shell.Current.GoToAsync($"productdetails?id={productId}");
-        });
-
-        public ICommand SelectTrending => new Command<int>((int productId) =>
+        public ICommand GoToProduct => new Command<int>((int productId) =>
         {
             Shell.Current.GoToAsync($"productdetails?id={productId}");
         });

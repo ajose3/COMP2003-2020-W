@@ -6,6 +6,7 @@ using System.Runtime.CompilerServices;
 using System.Windows.Input;
 using MobileApp.Data;
 using MobileApp.Models;
+using MobileApp.Services;
 using Xamarin.Forms;
 
 namespace MobileApp.ViewModels
@@ -21,48 +22,40 @@ namespace MobileApp.ViewModels
             loadBasket();
             OnPropertyChanged("basket");
         }
-        //public List<Product> basket { get; set; }
-        public List<CheckOutProduct> basket { get; set; }
-
+        public List<BasketProduct> basket { get; set; }
         public int NumItems { get; set; }
         public float TotalPrice { get; set; }
-
         public Command<Product> RemoveProductCommand { get; }
 
-        public void loadBasket()
+        public async void loadBasket()
         {
-            //basket = Basket.loadBasket();
-            basket = Basket.loadBasket();
-            NumItems = Basket.GetNumItem();
-            TotalPrice = Basket.GetTotalPrice();
+            var abasket = await BasketService.GetProducts();
+            basket = (List<BasketProduct>)abasket;
+            NumItems = GetNumItem();
+            TotalPrice = GetTotalPrice();
             OnPropertyChanged("basket");
             OnPropertyChanged("NumItems");
             OnPropertyChanged("TotalPrice");
         }
-        void RemoveProductTask(Product product)
+        async void RemoveProductTask(Product product)
         {
             if (product == null)
             {
                 return;
             }
-            Basket.RemoveProduct(product);
+            await BasketService.RemoveProduct(product);
             loadBasket();
-            //Tasks = TaskMockData.LoadTasks();
-            //OnPropertyChanged("Tasks");
         }
 
-        public void checkoutFunc()
-        {
-
-        }
         public ICommand RefreshCommand { get; }
         public ICommand ClickedPayBtnCmd => new Command(async () =>
         {
             await Shell.Current.DisplayAlert("Clicked Pay", null, "OK");
             // for each product in basket
-            foreach (var Product in Basket.Products)
+            loadBasket();
+            foreach (var Product in basket)
             {
-                ProductData.Products.Where(i => i.Id == Product.Id).FirstOrDefault().Stock -= 1*Product.Quantity;
+                ProductData.Products.Where(i => i.Id == Product.Id).FirstOrDefault().Stock -= Product.Quantity;
 
                 Product product = new Product(Product);
 
@@ -72,10 +65,7 @@ namespace MobileApp.ViewModels
                 }
             }
 
-
-
-            // clear basket
-            Basket.Clear();
+            await BasketService.ClearProducts();
 
             await Shell.Current.Navigation.PopToRootAsync();
         });
@@ -92,16 +82,13 @@ namespace MobileApp.ViewModels
         }
         void ExecuteRefreshCommand()
         {
-            //basket = Basket.loadBasket();
-            basket = Basket.loadBasket();
-            OnPropertyChanged("basket");
-
+            loadBasket();
             // Stop refreshing
             IsRefreshing = false;
         }
 
-        private CheckOutProduct selectItem;
-        public CheckOutProduct SelectItem
+        private BasketProduct selectItem;
+        public BasketProduct SelectItem
         {
             get
             {
@@ -117,10 +104,45 @@ namespace MobileApp.ViewModels
                     int productId = selectItem.Id;
                     // query product id as all products will need a unqiue id
                     Shell.Current.GoToAsync($"productdetails?id={productId}");
-                    //((CollectionView)sender).SelectedItem = null;
                     selectItem = null;
                 }
             }
+        }
+
+        public float GetTotalPrice()
+        {
+            float totalPrice = 0;
+
+            foreach (var Product in basket)
+            {
+                if (Product.Quantity > 1)
+                {
+                    totalPrice += Product.Price * Product.Quantity;
+                }
+                else
+                {
+                    totalPrice += Product.Price;
+                }
+            }
+            return totalPrice;
+        }
+
+        public int GetNumItem()
+        {
+            int num = 0;
+
+            foreach (var Product in basket)
+            {
+                if (Product.Quantity > 1)
+                {
+                    num += Product.Quantity;
+                }
+                else
+                {
+                    num += 1;
+                }
+            }
+            return num;
         }
 
         #region INotifyPropertyChanged

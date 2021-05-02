@@ -68,6 +68,7 @@
         <StackLayout Margin="0">
             <Label Margin="10,10,0,0" Text="EbAzon" CharacterSpacing="0.5" FontSize="28" TextColor="Black" FontAttributes="Bold"></Label>
             <Label Margin="10,0,0,0" Text="Recommended" CharacterSpacing="0.5" FontSize="24" TextColor="Black" FontAttributes="Bold"/>
+
             <!--Carousel -> itemSource is list of all products change to recomeneded product list-->
             <CarouselView ItemsSource="{x:Static data:RecommendedProducts.RecProducts}"
                           Margin="0,5,0,0"
@@ -100,7 +101,7 @@
                        >
                     <StackLayout Margin="0" Padding="0">
                         <StackLayout.GestureRecognizers>
-                            <TapGestureRecognizer Command="{Binding SelectTrending}" CommandParameter="{Binding TrendingToday.Id}" />
+                            <TapGestureRecognizer Command="{Binding GoToProduct}" CommandParameter="{Binding TrendingToday.Id}" />
                         </StackLayout.GestureRecognizers>
                         <Label Text="Trending Today"
                                 FontAttributes="Bold"
@@ -136,7 +137,7 @@
                         Grid.Column="1">
                     <StackLayout Margin="0" Padding="0">
                         <StackLayout.GestureRecognizers>
-                            <TapGestureRecognizer Command="{Binding SelectFeature}" CommandParameter="{Binding Featured.Id}" />
+                            <TapGestureRecognizer Command="{Binding GoToProduct}" CommandParameter="{Binding Featured.Id}" />
                         </StackLayout.GestureRecognizers>
                         <Label Text="Featured Today"
                                 FontAttributes="Bold"

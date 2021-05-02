@@ -11,6 +11,7 @@ using System.Runtime.CompilerServices;
 using Xamarin.Forms;
 using System.Windows.Input;
 using System.Threading.Tasks;
+using MobileApp.Services;
 
 namespace MobileApp.ViewModels
 {
@@ -144,18 +145,20 @@ namespace MobileApp.ViewModels
             return new Product(Id, Name, Description, Price, ImageUrl, Stock);
         }
 
-        public ICommand AddToBasketCmd => new Command(() =>
+        public ICommand AddToBasketCmd => new Command(async () =>
         {
             Product product = CreateProductFromAttributes();
-            Basket.AddProduct(product);
-            Shell.Current.DisplayAlert("Product added to basket", null, "OK");
+            //Basket.AddProduct(product);
+            await BasketService.AddProduct(product);
+            await Shell.Current.DisplayAlert("Product added to basket", null, "OK");
         });
 
-        public ICommand BuyNowCmd => new Command(() =>
+        public ICommand BuyNowCmd => new Command(async () =>
         {
             Product product = CreateProductFromAttributes();
-            Basket.AddProduct(product);
-            Shell.Current.GoToAsync("checkoutpage");
+            //Basket.AddProduct(product);
+            await BasketService.AddProduct(product);
+            await Shell.Current.GoToAsync("checkoutpage");
         });
 
         public ICommand WriteReview => new Command(() =>

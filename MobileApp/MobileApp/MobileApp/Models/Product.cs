@@ -25,7 +25,7 @@ namespace MobileApp.Models
             Stock = theStock;
         }
 
-        public Product(CheckOutProduct product)
+        public Product(BasketProduct product)
         {
             Id = product.Id;
             Name = product.Name;

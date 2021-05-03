@@ -8,7 +8,11 @@
     <ContentPage.BindingContext>
         <vm:CheckoutViewModel/>
     </ContentPage.BindingContext>
-
+    
+    <Shell.TitleView>
+        <Label Text="eBAZON" FontSize="Title" FontAttributes="Bold" VerticalTextAlignment="Center" Padding="0" Margin="0" TextColor="White"/>
+    </Shell.TitleView>
+    
     <ContentPage.Content>
         <StackLayout Margin="10">
             <!-- page title -->

@@ -32,41 +32,16 @@
 
     <Shell.SearchHandler>
         <controls:ProductSearchHandler x:Name="searchBar"
-            Placeholder="Enter search term"
+            Placeholder="Search for a product"
             ShowsResults="true"
-            DisplayMemberName="Name">
-            <controls:ProductSearchHandler.ItemTemplate>
-                <DataTemplate>
-                    <Grid Padding="10" HeightRequest="50">
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="0.4*" />
-                            <ColumnDefinition Width="0.6*" />
-                        </Grid.ColumnDefinitions>
-                        <Image Source="{Binding ImageUrl}"
-                                   VerticalOptions="Start"
-                                   Aspect="AspectFit"
-                                   HeightRequest="40"
-                                   WidthRequest="40" />
-                        <Label Grid.Column="1"
-                               Text="{Binding Name}"
-                               FontAttributes="Bold" />
-                    </Grid>
-                </DataTemplate>
-            </controls:ProductSearchHandler.ItemTemplate>
+            DisplayMemberName="Name"
+            ItemTemplate="{StaticResource SearchPredictTemplate}">
         </controls:ProductSearchHandler>
     </Shell.SearchHandler>
-    
-    
-    <!--<Shell.TitleView>
-        <Image Source="icon_about.png.png"
-               HorizontalOptions="Center"
-               VerticalOptions="Center" WidthRequest="50" HeightRequest="50"/>
-    </Shell.TitleView>-->
-    <!--<Shell.TabBarIsVisible Shell.TabBarIsVisible="True"/>-->
 
     <ScrollView>
         <StackLayout Margin="0">
-            <Label Margin="10,10,0,0" Text="EbAzon" CharacterSpacing="0.5" FontSize="28" TextColor="Black" FontAttributes="Bold"></Label>
+            <Label Margin="10,10,0,0" Text="eBAZON" CharacterSpacing="0.5" FontSize="28" TextColor="Black" FontAttributes="Bold"></Label>
             <Label Margin="10,0,0,0" Text="Recommended" CharacterSpacing="0.5" FontSize="24" TextColor="Black" FontAttributes="Bold"/>
 
             <!--Carousel -> itemSource is list of all products change to recomeneded product list-->

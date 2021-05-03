@@ -12,8 +12,9 @@
     <Shell.SearchHandler>
         <controls:ProductSearchHandler
             Placeholder="Search for a product"
-                     ShowsResults="true"
-                     DisplayMemberName="Name">
+            ShowsResults="true"
+            DisplayMemberName="Name"
+            ItemTemplate="{StaticResource SearchPredictTemplate}">
         </controls:ProductSearchHandler>
     </Shell.SearchHandler>
 

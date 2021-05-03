@@ -4,22 +4,22 @@
              xmlns:vm="clr-namespace:MobileApp.ViewModels"
              x:Class="MobileApp.Views.UserDetailsPage">
 
-    <!--<Shell.TitleView>
-        <Label Text="UserDetails" FontSize="Header" FontAttributes="Bold" VerticalOptions="CenterAndExpand"/>
-    </Shell.TitleView>-->
+    <Shell.TitleView>
+        <Label Text="eBAZON" FontSize="Title" FontAttributes="Bold" VerticalTextAlignment="Center" Padding="0" Margin="0" TextColor="White"/>
+    </Shell.TitleView>
     <ContentPage.Content>
         <StackLayout Spacing="15" Padding="10">
-            <Label Text="Account Details" FontSize="40" FontAttributes="Bold" TextColor="Black"/>
-            <Label x:Name="fName" Text="{Binding FirstName, StringFormat='FirstName: {0}'}" FontSize="25" TextColor="Black"/>
-            <Label Text="{Binding LastName, StringFormat='LastName: {0}'} " FontSize="25" TextColor="Black"/>
-            <Label Text="{Binding Age, StringFormat='Age: {0}'} " FontSize="25" TextColor="Black"/>
-            <Label Text="{Binding Address, StringFormat='Address: {0}'} " FontSize="25" TextColor="Black"/>
-            <Label Text="{Binding Email, StringFormat='Email: {0}'} " FontSize="25" TextColor="Black"/>
+            <Label Text="Account Details" FontSize="Title" FontAttributes="Bold" TextColor="Black"/>
+            <Label x:Name="fName" Text="{Binding FirstName, StringFormat='FirstName: {0}'}" FontSize="24" TextColor="Black"/>
+            <Label Text="{Binding LastName, StringFormat='LastName: {0}'} " FontSize="24" TextColor="Black"/>
+            <Label Text="{Binding Age, StringFormat='Age: {0}'} " FontSize="24" TextColor="Black"/>
+            <Label Text="{Binding Address, StringFormat='Address: {0}'} " FontSize="24" TextColor="Black"/>
+            <Label Text="{Binding Email, StringFormat='Email: {0}'} " FontSize="24" TextColor="Black"/>
             <!--<Label Text="{Binding Password, StringFormat='Password: {0}'} " FontSize="25"/>-->
-            <Label Text="{Binding Gender, StringFormat='Gender: {0}'} " FontSize="25" TextColor="Black"/>
+            <Label Text="{Binding Gender, StringFormat='Gender: {0}'} " FontSize="24" TextColor="Black"/>
 
-            <Button Text="Edit Details" Font="25" Command="{Binding GoToEditPage}"/>
-            <Button Text="Change Password" Font="25" Command="{Binding GoToEditPasswordPage}"/>
+            <Button Text="Edit Details" Font="24" Command="{Binding GoToEditPage}"/>
+            <Button Text="Change Password" Font="24" Command="{Binding GoToEditPasswordPage}"/>
 
 
             <!--map username to current user-->

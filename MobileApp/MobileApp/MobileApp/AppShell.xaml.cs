@@ -94,5 +94,12 @@ namespace MobileApp
             // close the menu
             Shell.Current.FlyoutIsPresented = false;
         }
+
+        private async void ClickedDetailsMenuItem(object sender, EventArgs e)
+        {
+            await Shell.Current.GoToAsync("userdetailspage");
+            // close the menu
+            Shell.Current.FlyoutIsPresented = false;
+        }
     }
 }

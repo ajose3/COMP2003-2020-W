@@ -60,6 +60,23 @@
                 <Setter Property="Color" Value="{StaticResource LineColor}"/>
             </Style>
 
+            <DataTemplate x:Key="SearchPredictTemplate">
+                <Grid Padding="10" HeightRequest="50">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="0.4*" />
+                        <ColumnDefinition Width="0.6*" />
+                    </Grid.ColumnDefinitions>
+                    <Image Source="{Binding ImageUrl}"
+                                   VerticalOptions="Start"
+                                   Aspect="AspectFit"
+                                   HeightRequest="40"
+                                   WidthRequest="40" />
+                    <Label Grid.Column="1"
+                               Text="{Binding Name}"
+                               FontAttributes="Bold" />
+                </Grid>
+            </DataTemplate>
+
             <DataTemplate x:Key="ProductTemplate">
                 <Grid Padding="5">
                     <Frame BorderColor="#D8DAE0" CornerRadius="20" HasShadow="True">

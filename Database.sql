@@ -167,7 +167,6 @@ CREATE PROCEDURE EditCustomer
 @FirstName VARCHAR(50),
 @LastName VARCHAR(50),
 @Email VARCHAR(320),
-@Password VARCHAR(50),
 @Age INT,
 @Gender BIT,
 @Address TEXT,
@@ -185,7 +184,7 @@ BEGIN
 				END
 			ELSE
 				BEGIN
-					UPDATE Customer SET FirstName = @FirstName, LastName = @LastName, EmailAddress = @Email, Password = @Password, Age = @Age, Gender = @Gender, Address = @Address, PhoneNumber = @PhoneNumber WHERE CustomerID = @CustomerID AND Admin = 0;
+					UPDATE Customer SET FirstName = @FirstName, LastName = @LastName, EmailAddress = @Email, Age = @Age, Gender = @Gender, Address = @Address, PhoneNumber = @PhoneNumber WHERE CustomerID = @CustomerID AND Admin = 0;
 					SELECT @ResponseMessage = 200;
 				END
 		END

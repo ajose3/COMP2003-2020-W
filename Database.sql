@@ -976,7 +976,7 @@ AS
 SELECT Rating, Title, Description
 FROM Reviews
 
-Create View [Orders]
+Create View [CustomerOrders]
 AS
 SELECT OrderId, TimeOrdered, Quantity, ProductID
 FROM Orders

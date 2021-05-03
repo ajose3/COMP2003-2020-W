@@ -983,9 +983,10 @@ FROM Orders
 
 CREATE View [TrendingProduct]
 AS
-SELECT ProductID, ProductName, ImageUrl, Price, Description, Category
-FROM Products
-WHERE 
+SELECT TOP 1 * 
+FROM Products 
+ORDER BY TotalSold DESC;
+ 
 
 ---Reviews
 

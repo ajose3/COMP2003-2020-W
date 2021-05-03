@@ -983,10 +983,16 @@ FROM Orders
 
 CREATE View [TrendingProduct]
 AS
-SELECT TOP 1 * 
+SELECT TOP 1 ProductID, ProductName, ImageUrl, Price, Description, Category 
 FROM Products 
 ORDER BY TotalSold DESC;
  
+
+CREATE View [FeaturedProduct]
+AS
+SELECT TOP 1 ProductID, ProductName, ImageUrl, Price, Description, Category 
+FROM Products 
+ORDER BY AvgRating DESC;
 
 ---Reviews
 

@@ -326,7 +326,7 @@ BEGIN
 	ELSE
 		BEGIN
 			--not logged in
-			SELECT @ResponseMessage = 400 ;
+			SELECT @ResponseMessage = 402 ;
 		END
 END
 GO

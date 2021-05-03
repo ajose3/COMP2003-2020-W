@@ -52,7 +52,10 @@ namespace MobileApp.Views
             }
             else
             {
-                await OpenDetailsDrawer();
+                if (((CollectionView)sender).SelectedItem != null)
+                {
+                    await CloseDetailsDrawer();
+                }
             }
             ((CollectionView)sender).SelectedItem = null;
         }
@@ -76,6 +79,7 @@ namespace MobileApp.Views
                 if (e.TotalY > 0)
                 {
                     BottomToolbar.TranslationY = openY + e.TotalY;
+                    BottomReviewDetails.TranslationY = openY + e.TotalY;
                 }
             }
             else if (e.StatusType == GestureStatus.Completed)
@@ -83,10 +87,12 @@ namespace MobileApp.Views
                 if (lastPanY < 110)
                 {
                     await OpenDrawer();
+                    await OpenDetailsDrawer();
                 }
                 else
                 {
                     await CloseDrawer();
+                    await CloseDetailsDrawer();
                 }
                 isBackdropTapEnabled = true;
             }

@@ -966,6 +966,27 @@ EXEC EditProduct @Token = 'FD-48BA-8080-EE76E5F9FAEC', @ProductID = 1, @ProductN
 SELECT @Out AS 'OutputMessage';
 --------
 
+Create View [ProductsForCustomer]
+AS
+SELECT ProductID, ProductName, ImageUrl, Price, Description, Category
+FROM Products
+
+Create View [ReviewsForProduct]
+AS
+SELECT Rating, Title, Description
+FROM Reviews
+
+Create View [Orders]
+AS
+SELECT OrderId, TimeOrdered, Quantity, ProductID
+FROM Orders
+
+CREATE View [TrendingProduct]
+AS
+SELECT ProductID, ProductName, ImageUrl, Price, Description, Category
+FROM Products
+WHERE 
+
 ---Reviews
 
 --Write review

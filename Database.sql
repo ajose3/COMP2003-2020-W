@@ -447,6 +447,39 @@ SELECT @Out AS 'OutputMessage';
 --------
 
 
+--Delete User
+CREATE PROCEDURE DeleteAdmin
+@Token VARCHAR(25),
+@ResponseMessage INT OUTPUT
+AS
+BEGIN
+	IF EXISTS (SELECT CustomerID FROM Sessions WHERE Token = @Token AND CURRENT_TIMESTAMP <= ExpiryTime)
+		BEGIN
+			Declare @CustomerID AS INT = (SELECT CustomerID FROM Sessions WHERE Token = @Token);
+			IF EXISTS(SELECT * FROM Customer WHERE CustomerID = @CustomerID AND Admin = 1)
+				BEGIN
+					Delete customer WHERE CustomerID = @CustomerID AND Admin = 1;
+					SELECT @ResponseMessage = 200;
+				END
+			ELSE
+				BEGIN
+					--customer does not exist or is an admin
+					SELECT @ResponseMessage = 401;
+				END
+		END
+	ELSE
+		BEGIN
+			--not logged in
+			SELECT @ResponseMessage = 402 ;
+		END
+END
+GO
+
+
+
+
+
+
 --Admin Delete Customer
 CREATE PROCEDURE AdminDeleteCustomer
 @Token VARCHAR(25),

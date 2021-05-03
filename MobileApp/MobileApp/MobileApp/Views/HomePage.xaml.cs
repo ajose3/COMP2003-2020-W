@@ -1,5 +1,6 @@
 ﻿using MobileApp.Interfaces;
 using MobileApp.Models;
+using MobileApp.Services;
 using MobileApp.ViewModels;
 using System;
 using System.Collections.Generic;
@@ -19,6 +20,7 @@ namespace MobileApp.Views
         public HomePage()
         {
             InitializeComponent();
+            BasketService.Init();
             BindingContext = new HomeViewModel();
             //SearchBarTextChanged += HandleSearchBarTextChanged; //Another approach to search (unfinished)
         }       

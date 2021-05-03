@@ -13,10 +13,13 @@ namespace MobileApp.Services
     public static class BasketService
     {
         static SQLiteAsyncConnection db;
-        static async Task Init()
+        public static async Task Init()
         {
             if (db != null)
+            {
+                //await db.DropTableAsync<BasketProduct>();
                 return;
+            }
 
             var databasePath = Path.Combine(FileSystem.AppDataDirectory, "Basket.db");
             

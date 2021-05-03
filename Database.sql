@@ -202,6 +202,52 @@ EXEC EditCustomer @Token = '8E-433D-BCB4-A596E369001C', @FirstName = 'This has',
 SELECT @Out AS 'OutputMessage'; 
 --------
 
+--Edit user
+
+CREATE PROCEDURE EditAdmin
+@Token VARCHAR(25),
+@FirstName VARCHAR(50),
+@LastName VARCHAR(50),
+@Email VARCHAR(320),
+@Age INT,
+@Gender BIT,
+@Address TEXT,
+@PhoneNumber VARCHAR(11),
+@ResponseMessage INT OUTPUT
+AS
+BEGIN
+	IF EXISTS (SELECT CustomerID FROM Sessions WHERE Token = @Token AND CURRENT_TIMESTAMP <= ExpiryTime)
+		BEGIN
+			IF EXISTS (SELECT CustomerID FROM Sessions WHERE Token = @Token AND Admin = 1)
+				BEGIN
+					Declare @CustomerID AS INT = (SELECT CustomerID FROM Sessions WHERE Token = @Token AND Admin = 1);
+					IF EXISTS(SELECT * FROM Customer WHERE (CustomerID != @CustomerID AND EmailAddress = @Email))
+						BEGIN
+						--an account with this email already exists
+							SELECT @ResponseMessage = 208;
+						END
+					ELSE
+						BEGIN
+							UPDATE Customer SET FirstName = @FirstName, LastName = @LastName, EmailAddress = @Email, Age = @Age, Gender = @Gender, Address = @Address, PhoneNumber = @PhoneNumber WHERE CustomerID = @CustomerID AND Admin = 1;
+							SELECT @ResponseMessage = 200;
+						END
+				END		
+			ELSE
+				BEGIN
+					-- user not admin
+					@ResponseMessage = 401
+				END	
+		END
+	ELSE
+		BEGIN
+		--customer not logged in
+			SELECT @ResponseMessage = 400;
+		END
+END
+GO
+
+
+
 --Edit user as admin
 
 CREATE PROCEDURE AdminEditCustomer
@@ -447,7 +493,7 @@ SELECT @Out AS 'OutputMessage';
 --------
 
 
---Delete User
+--Delete admin
 CREATE PROCEDURE DeleteAdmin
 @Token VARCHAR(25),
 @ResponseMessage INT OUTPUT

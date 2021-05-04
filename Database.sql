@@ -1141,6 +1141,57 @@ Go
 
 ---------
 
+CREATE PROCEDURE dbo.AddStock
+@Token VARCHAR(25),
+@ProductId INT,
+@Stock INT,
+@ResponseMessage INT OUTPUT
+AS
+BEGIN
+	BEGIN TRANSACTION
+		IF EXISTS(SELECT * FROM Sessions WHERE Token = @Token AND CURRENT_TIMESTAMP <= ExpiryTime)
+			BEGIN
+				DECLARE @CustomerID AS INT = (SELECT CustomerID FROM Sessions WHERE Token = @Token);
+				
+				IF EXISTS(SELECT * FROM Customer WHERE CustomerID = @CustomerID AND Admin = 1)
+					BEGIN
+						IF EXISTS(SELECT * FROM Products WHERE ProductId = @ProductId)
+							BEGIN
+								--product id already exists
+								SELECT @ResponseMessage = 409;
+							END
+						ELSE
+							BEGIN
+                                DECLARE @CurrentStock AS INT = (SELECT Stock FROM Products WHERE ProductId = @ProductId);
+
+
+								UPDATE dbo.Products SET Products.Stock = (@CurrentStock + @Stock)
+								WHERE Products.ProductID = @ProductId
+								
+								SELECT @ResponseMessage = 200;
+							END
+					END
+				ELSE
+					BEGIN
+						--USER NOT ADMIN
+						SELECT @ResponseMessage = 401;
+					END
+				
+			END
+		ELSE
+			BEGIN
+				--Not Logged in
+				SELECT @ResponseMessage = 400;
+			END
+	IF @@ERROR != 0
+		BEGIN
+			SELECT @ResponseMessage = 500;
+			ROLLBACK TRANSACTION
+		END
+	ELSE
+		COMMIT TRANSACTION
+END
+GO
 
 
 

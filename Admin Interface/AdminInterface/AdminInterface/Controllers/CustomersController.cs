@@ -21,7 +21,7 @@ namespace AdminInterface.Controllers
         // GET: Customers
         public async Task<IActionResult> Index()
         {
-            return View(await _context.Customers.ToListAsync());
+            return View(await _context.Customer.ToListAsync());
         }
 
         // GET: Customers/Details/5
@@ -32,7 +32,7 @@ namespace AdminInterface.Controllers
                 return NotFound();
             }
 
-            var customer = await _context.Customers
+            var customer = await _context.Customer
                 .FirstOrDefaultAsync(m => m.CustomerId == id);
             if (customer == null)
             {
@@ -53,7 +53,7 @@ namespace AdminInterface.Controllers
         // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("CustomerId,FirstName,LastName,Age,Gender,Address,EmailAddress,PhoneNumber,Password,Admin")] Customer customer)
+        public async Task<IActionResult> Create([Bind("CustomerId,FirstName,LastName,EmailAddress,Password,Age,Gender,Address,PhoneNumber,Admin")] Customer customer)
         {
             if (ModelState.IsValid)
             {
@@ -72,7 +72,7 @@ namespace AdminInterface.Controllers
                 return NotFound();
             }
 
-            var customer = await _context.Customers.FindAsync(id);
+            var customer = await _context.Customer.FindAsync(id);
             if (customer == null)
             {
                 return NotFound();
@@ -85,7 +85,7 @@ namespace AdminInterface.Controllers
         // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("CustomerId,FirstName,LastName,Age,Gender,Address,EmailAddress,PhoneNumber,Password,Admin")] Customer customer)
+        public async Task<IActionResult> Edit(int id, [Bind("CustomerId,FirstName,LastName,EmailAddress,Password,Age,Gender,Address,PhoneNumber,Admin")] Customer customer)
         {
             if (id != customer.CustomerId)
             {
@@ -123,7 +123,7 @@ namespace AdminInterface.Controllers
                 return NotFound();
             }
 
-            var customer = await _context.Customers
+            var customer = await _context.Customer
                 .FirstOrDefaultAsync(m => m.CustomerId == id);
             if (customer == null)
             {
@@ -138,15 +138,15 @@ namespace AdminInterface.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
-            var customer = await _context.Customers.FindAsync(id);
-            _context.Customers.Remove(customer);
+            var customer = await _context.Customer.FindAsync(id);
+            _context.Customer.Remove(customer);
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }
 
         private bool CustomerExists(int id)
         {
-            return _context.Customers.Any(e => e.CustomerId == id);
+            return _context.Customer.Any(e => e.CustomerId == id);
         }
     }
 }

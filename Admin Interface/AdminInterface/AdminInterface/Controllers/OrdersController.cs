@@ -21,7 +21,8 @@ namespace AdminInterface.Controllers
         // GET: Orders
         public async Task<IActionResult> Index()
         {
-            return View(await _context.Orders.ToListAsync());
+            var cOMP2003_WContext = _context.Orders.Include(o => o.Customer).Include(o => o.Product);
+            return View(await cOMP2003_WContext.ToListAsync());
         }
 
         // GET: Orders/Details/5
@@ -32,19 +33,23 @@ namespace AdminInterface.Controllers
                 return NotFound();
             }
 
-            var order = await _context.Orders
+            var orders = await _context.Orders
+                .Include(o => o.Customer)
+                .Include(o => o.Product)
                 .FirstOrDefaultAsync(m => m.OrderId == id);
-            if (order == null)
+            if (orders == null)
             {
                 return NotFound();
             }
 
-            return View(order);
+            return View(orders);
         }
 
         // GET: Orders/Create
         public IActionResult Create()
         {
+            ViewData["CustomerId"] = new SelectList(_context.Customer, "CustomerId", "EmailAddress");
+            ViewData["ProductId"] = new SelectList(_context.Products, "ProductId", "Category");
             return View();
         }
 
@@ -53,15 +58,17 @@ namespace AdminInterface.Controllers
         // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("OrderId,DateTime,Quantity")] Order order)
+        public async Task<IActionResult> Create([Bind("OrderId,TimeOrdered,Quantity,ProductId,CustomerId")] Orders orders)
         {
             if (ModelState.IsValid)
             {
-                _context.Add(order);
+                _context.Add(orders);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
-            return View(order);
+            ViewData["CustomerId"] = new SelectList(_context.Customer, "CustomerId", "EmailAddress", orders.CustomerId);
+            ViewData["ProductId"] = new SelectList(_context.Products, "ProductId", "Category", orders.ProductId);
+            return View(orders);
         }
 
         // GET: Orders/Edit/5
@@ -72,12 +79,14 @@ namespace AdminInterface.Controllers
                 return NotFound();
             }
 
-            var order = await _context.Orders.FindAsync(id);
-            if (order == null)
+            var orders = await _context.Orders.FindAsync(id);
+            if (orders == null)
             {
                 return NotFound();
             }
-            return View(order);
+            ViewData["CustomerId"] = new SelectList(_context.Customer, "CustomerId", "EmailAddress", orders.CustomerId);
+            ViewData["ProductId"] = new SelectList(_context.Products, "ProductId", "Category", orders.ProductId);
+            return View(orders);
         }
 
         // POST: Orders/Edit/5
@@ -85,9 +94,9 @@ namespace AdminInterface.Controllers
         // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("OrderId,DateTime,Quantity")] Order order)
+        public async Task<IActionResult> Edit(int id, [Bind("OrderId,TimeOrdered,Quantity,ProductId,CustomerId")] Orders orders)
         {
-            if (id != order.OrderId)
+            if (id != orders.OrderId)
             {
                 return NotFound();
             }
@@ -96,12 +105,12 @@ namespace AdminInterface.Controllers
             {
                 try
                 {
-                    _context.Update(order);
+                    _context.Update(orders);
                     await _context.SaveChangesAsync();
                 }
                 catch (DbUpdateConcurrencyException)
                 {
-                    if (!OrderExists(order.OrderId))
+                    if (!OrdersExists(orders.OrderId))
                     {
                         return NotFound();
                     }
@@ -112,7 +121,9 @@ namespace AdminInterface.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
-            return View(order);
+            ViewData["CustomerId"] = new SelectList(_context.Customer, "CustomerId", "EmailAddress", orders.CustomerId);
+            ViewData["ProductId"] = new SelectList(_context.Products, "ProductId", "Category", orders.ProductId);
+            return View(orders);
         }
 
         // GET: Orders/Delete/5
@@ -123,14 +134,16 @@ namespace AdminInterface.Controllers
                 return NotFound();
             }
 
-            var order = await _context.Orders
+            var orders = await _context.Orders
+                .Include(o => o.Customer)
+                .Include(o => o.Product)
                 .FirstOrDefaultAsync(m => m.OrderId == id);
-            if (order == null)
+            if (orders == null)
             {
                 return NotFound();
             }
 
-            return View(order);
+            return View(orders);
         }
 
         // POST: Orders/Delete/5
@@ -138,13 +151,13 @@ namespace AdminInterface.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
-            var order = await _context.Orders.FindAsync(id);
-            _context.Orders.Remove(order);
+            var orders = await _context.Orders.FindAsync(id);
+            _context.Orders.Remove(orders);
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }
 
-        private bool OrderExists(int id)
+        private bool OrdersExists(int id)
         {
             return _context.Orders.Any(e => e.OrderId == id);
         }

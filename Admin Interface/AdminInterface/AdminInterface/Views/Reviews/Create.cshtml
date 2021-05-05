@@ -1,4 +1,4 @@
-﻿@model AdminInterface.Models.Rating
+﻿@model AdminInterface.Models.Reviews
 
 @{
     ViewData["Title"] = "Create";
@@ -6,24 +6,29 @@
 
 <h1>Create</h1>
 
-<h4>Rating</h4>
+<h4>Reviews</h4>
 <hr />
 <div class="row">
     <div class="col-md-4">
         <form asp-action="Create">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <div class="form-group">
-                <label asp-for="CustomerId" class="control-label"></label>
-                <select asp-for="CustomerId" class ="form-control" asp-items="ViewBag.CustomerId"></select>
-            </div>
-            <div class="form-group">
                 <label asp-for="ProductId" class="control-label"></label>
                 <select asp-for="ProductId" class ="form-control" asp-items="ViewBag.ProductId"></select>
             </div>
             <div class="form-group">
-                <label asp-for="Rating1" class="control-label"></label>
-                <input asp-for="Rating1" class="form-control" />
-                <span asp-validation-for="Rating1" class="text-danger"></span>
+                <label asp-for="CustomerId" class="control-label"></label>
+                <select asp-for="CustomerId" class ="form-control" asp-items="ViewBag.CustomerId"></select>
+            </div>
+            <div class="form-group">
+                <label asp-for="Rating" class="control-label"></label>
+                <input asp-for="Rating" class="form-control" />
+                <span asp-validation-for="Rating" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Title" class="control-label"></label>
+                <input asp-for="Title" class="form-control" />
+                <span asp-validation-for="Title" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <label asp-for="Description" class="control-label"></label>

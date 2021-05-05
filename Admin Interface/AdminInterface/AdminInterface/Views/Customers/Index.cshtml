@@ -19,6 +19,12 @@
                 @Html.DisplayNameFor(model => model.LastName)
             </th>
             <th>
+                @Html.DisplayNameFor(model => model.EmailAddress)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Password)
+            </th>
+            <th>
                 @Html.DisplayNameFor(model => model.Age)
             </th>
             <th>
@@ -28,13 +34,7 @@
                 @Html.DisplayNameFor(model => model.Address)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.EmailAddress)
-            </th>
-            <th>
                 @Html.DisplayNameFor(model => model.PhoneNumber)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Password)
             </th>
             <th>
                 @Html.DisplayNameFor(model => model.Admin)
@@ -52,6 +52,12 @@
                 @Html.DisplayFor(modelItem => item.LastName)
             </td>
             <td>
+                @Html.DisplayFor(modelItem => item.EmailAddress)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Password)
+            </td>
+            <td>
                 @Html.DisplayFor(modelItem => item.Age)
             </td>
             <td>
@@ -61,13 +67,7 @@
                 @Html.DisplayFor(modelItem => item.Address)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.EmailAddress)
-            </td>
-            <td>
                 @Html.DisplayFor(modelItem => item.PhoneNumber)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Password)
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.Admin)
@@ -81,5 +81,3 @@
 }
     </tbody>
 </table>
-
-<script>let activePageIndex = 2;</script>

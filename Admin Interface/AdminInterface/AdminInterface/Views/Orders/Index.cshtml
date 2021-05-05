@@ -1,4 +1,4 @@
-﻿@model IEnumerable<AdminInterface.Models.Order>
+﻿@model IEnumerable<AdminInterface.Models.Orders>
 
 @{
     ViewData["Title"] = "Index";
@@ -13,10 +13,16 @@
     <thead>
         <tr>
             <th>
-                @Html.DisplayNameFor(model => model.DateTime)
+                @Html.DisplayNameFor(model => model.TimeOrdered)
             </th>
             <th>
                 @Html.DisplayNameFor(model => model.Quantity)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Customer)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Product)
             </th>
             <th></th>
         </tr>
@@ -25,10 +31,16 @@
 @foreach (var item in Model) {
         <tr>
             <td>
-                @Html.DisplayFor(modelItem => item.DateTime)
+                @Html.DisplayFor(modelItem => item.TimeOrdered)
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.Quantity)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Customer.EmailAddress)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Product.Category)
             </td>
             <td>
                 <a asp-action="Edit" asp-route-id="@item.OrderId">Edit</a> |
@@ -39,5 +51,3 @@
 }
     </tbody>
 </table>
-
-<script>let activePageIndex = 3;</script>

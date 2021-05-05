@@ -1,4 +1,4 @@
-﻿@model AdminInterface.Models.Rating
+﻿@model AdminInterface.Models.Reviews
 
 @{
     ViewData["Title"] = "Edit";
@@ -6,18 +6,23 @@
 
 <h1>Edit</h1>
 
-<h4>Rating</h4>
+<h4>Reviews</h4>
 <hr />
 <div class="row">
     <div class="col-md-4">
         <form asp-action="Edit">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-            <input type="hidden" asp-for="CustomerId" />
             <input type="hidden" asp-for="ProductId" />
+            <input type="hidden" asp-for="CustomerId" />
             <div class="form-group">
-                <label asp-for="Rating1" class="control-label"></label>
-                <input asp-for="Rating1" class="form-control" />
-                <span asp-validation-for="Rating1" class="text-danger"></span>
+                <label asp-for="Rating" class="control-label"></label>
+                <input asp-for="Rating" class="form-control" />
+                <span asp-validation-for="Rating" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Title" class="control-label"></label>
+                <input asp-for="Title" class="form-control" />
+                <span asp-validation-for="Title" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <label asp-for="Description" class="control-label"></label>

@@ -32,14 +32,14 @@ namespace AdminInterface.Controllers
                 return NotFound();
             }
 
-            var product = await _context.Products
+            var products = await _context.Products
                 .FirstOrDefaultAsync(m => m.ProductId == id);
-            if (product == null)
+            if (products == null)
             {
                 return NotFound();
             }
 
-            return View(product);
+            return View(products);
         }
 
         // GET: Products/Create
@@ -53,15 +53,15 @@ namespace AdminInterface.Controllers
         // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("ProductId,ProductName,Stock,TypeOfProduct,AmountSold,Price")] Product product)
+        public async Task<IActionResult> Create([Bind("ProductId,ProductName,ImageUrl,Stock,TotalSold,Price,Description,Category,AvgRating")] Products products)
         {
             if (ModelState.IsValid)
             {
-                _context.Add(product);
+                _context.Add(products);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
-            return View(product);
+            return View(products);
         }
 
         // GET: Products/Edit/5
@@ -72,12 +72,12 @@ namespace AdminInterface.Controllers
                 return NotFound();
             }
 
-            var product = await _context.Products.FindAsync(id);
-            if (product == null)
+            var products = await _context.Products.FindAsync(id);
+            if (products == null)
             {
                 return NotFound();
             }
-            return View(product);
+            return View(products);
         }
 
         // POST: Products/Edit/5
@@ -85,9 +85,9 @@ namespace AdminInterface.Controllers
         // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("ProductId,ProductName,Stock,TypeOfProduct,AmountSold,Price")] Product product)
+        public async Task<IActionResult> Edit(int id, [Bind("ProductId,ProductName,ImageUrl,Stock,TotalSold,Price,Description,Category,AvgRating")] Products products)
         {
-            if (id != product.ProductId)
+            if (id != products.ProductId)
             {
                 return NotFound();
             }
@@ -96,12 +96,12 @@ namespace AdminInterface.Controllers
             {
                 try
                 {
-                    _context.Update(product);
+                    _context.Update(products);
                     await _context.SaveChangesAsync();
                 }
                 catch (DbUpdateConcurrencyException)
                 {
-                    if (!ProductExists(product.ProductId))
+                    if (!ProductsExists(products.ProductId))
                     {
                         return NotFound();
                     }
@@ -112,7 +112,7 @@ namespace AdminInterface.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
-            return View(product);
+            return View(products);
         }
 
         // GET: Products/Delete/5
@@ -123,14 +123,14 @@ namespace AdminInterface.Controllers
                 return NotFound();
             }
 
-            var product = await _context.Products
+            var products = await _context.Products
                 .FirstOrDefaultAsync(m => m.ProductId == id);
-            if (product == null)
+            if (products == null)
             {
                 return NotFound();
             }
 
-            return View(product);
+            return View(products);
         }
 
         // POST: Products/Delete/5
@@ -138,13 +138,13 @@ namespace AdminInterface.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
-            var product = await _context.Products.FindAsync(id);
-            _context.Products.Remove(product);
+            var products = await _context.Products.FindAsync(id);
+            _context.Products.Remove(products);
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }
 
-        private bool ProductExists(int id)
+        private bool ProductsExists(int id)
         {
             return _context.Products.Any(e => e.ProductId == id);
         }

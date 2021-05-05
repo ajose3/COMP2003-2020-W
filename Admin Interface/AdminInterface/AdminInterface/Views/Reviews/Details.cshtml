@@ -1,4 +1,4 @@
-﻿@model AdminInterface.Models.Rating
+﻿@model AdminInterface.Models.Reviews
 
 @{
     ViewData["Title"] = "Details";
@@ -7,14 +7,20 @@
 <h1>Details</h1>
 
 <div>
-    <h4>Rating</h4>
+    <h4>Reviews</h4>
     <hr />
     <dl class="row">
         <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Rating1)
+            @Html.DisplayNameFor(model => model.Rating)
         </dt>
         <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Rating1)
+            @Html.DisplayFor(model => model.Rating)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Title)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Title)
         </dd>
         <dt class = "col-sm-2">
             @Html.DisplayNameFor(model => model.Description)
@@ -26,13 +32,13 @@
             @Html.DisplayNameFor(model => model.Customer)
         </dt>
         <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Customer.Address)
+            @Html.DisplayFor(model => model.Customer.EmailAddress)
         </dd>
         <dt class = "col-sm-2">
             @Html.DisplayNameFor(model => model.Product)
         </dt>
         <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Product.ProductName)
+            @Html.DisplayFor(model => model.Product.Category)
         </dd>
     </dl>
 </div>

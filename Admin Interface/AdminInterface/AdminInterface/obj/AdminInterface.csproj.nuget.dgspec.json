@@ -1,23 +1,25 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\joshu\\Documents\\GitHub\\COMP2003-2020-W\\Admin Interface\\AdminInterface\\AdminInterface\\AdminInterface.csproj": {}
+    "C:\\Git\\newnew\\COMP2003-2020-W\\Admin Interface\\AdminInterface\\AdminInterface\\AdminInterface.csproj": {}
   },
   "projects": {
-    "C:\\Users\\joshu\\Documents\\GitHub\\COMP2003-2020-W\\Admin Interface\\AdminInterface\\AdminInterface\\AdminInterface.csproj": {
+    "C:\\Git\\newnew\\COMP2003-2020-W\\Admin Interface\\AdminInterface\\AdminInterface\\AdminInterface.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\joshu\\Documents\\GitHub\\COMP2003-2020-W\\Admin Interface\\AdminInterface\\AdminInterface\\AdminInterface.csproj",
+        "projectUniqueName": "C:\\Git\\newnew\\COMP2003-2020-W\\Admin Interface\\AdminInterface\\AdminInterface\\AdminInterface.csproj",
         "projectName": "AdminInterface",
-        "projectPath": "C:\\Users\\joshu\\Documents\\GitHub\\COMP2003-2020-W\\Admin Interface\\AdminInterface\\AdminInterface\\AdminInterface.csproj",
+        "projectPath": "C:\\Git\\newnew\\COMP2003-2020-W\\Admin Interface\\AdminInterface\\AdminInterface\\AdminInterface.csproj",
         "packagesPath": "C:\\Users\\joshu\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\joshu\\Documents\\GitHub\\COMP2003-2020-W\\Admin Interface\\AdminInterface\\AdminInterface\\obj\\",
+        "outputPath": "C:\\Git\\newnew\\COMP2003-2020-W\\Admin Interface\\AdminInterface\\AdminInterface\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
-          "C:\\Microsoft\\Xamarin\\NuGet\\"
+          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages",
+          "C:\\Program Files (x86)\\Microsoft\\Xamarin\\NuGet\\"
         ],
         "configFilePaths": [
           "C:\\Users\\joshu\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Xamarin.Offline.config"
         ],
@@ -56,15 +58,15 @@
               "include": "Runtime, Build, Native, ContentFiles, Analyzers, BuildTransitive",
               "suppressParent": "All",
               "target": "Package",
-              "version": "[3.1.10, )"
+              "version": "[3.1.13, )"
             },
             "Microsoft.EntityFrameworkCore.sqlServer": {
               "target": "Package",
-              "version": "[3.1.10, )"
+              "version": "[3.1.13, )"
             },
             "Microsoft.VisualStudio.Web.CodeGeneration.Design": {
               "target": "Package",
-              "version": "[3.1.4, )"
+              "version": "[3.1.5, )"
             }
           },
           "imports": [
@@ -85,7 +87,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.102\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.201\\RuntimeIdentifierGraph.json"
         }
       }
     }

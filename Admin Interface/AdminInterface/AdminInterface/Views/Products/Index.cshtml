@@ -1,4 +1,4 @@
-﻿@model IEnumerable<AdminInterface.Models.Product>
+﻿@model IEnumerable<AdminInterface.Models.Products>
 
 @{
     ViewData["Title"] = "Index";
@@ -16,16 +16,25 @@
                 @Html.DisplayNameFor(model => model.ProductName)
             </th>
             <th>
+                @Html.DisplayNameFor(model => model.ImageUrl)
+            </th>
+            <th>
                 @Html.DisplayNameFor(model => model.Stock)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.TypeOfProduct)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.AmountSold)
+                @Html.DisplayNameFor(model => model.TotalSold)
             </th>
             <th>
                 @Html.DisplayNameFor(model => model.Price)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Description)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Category)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.AvgRating)
             </th>
             <th></th>
         </tr>
@@ -37,16 +46,25 @@
                 @Html.DisplayFor(modelItem => item.ProductName)
             </td>
             <td>
+                @Html.DisplayFor(modelItem => item.ImageUrl)
+            </td>
+            <td>
                 @Html.DisplayFor(modelItem => item.Stock)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.TypeOfProduct)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.AmountSold)
+                @Html.DisplayFor(modelItem => item.TotalSold)
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.Price)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Description)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Category)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.AvgRating)
             </td>
             <td>
                 <a asp-action="Edit" asp-route-id="@item.ProductId">Edit</a> |
@@ -57,5 +75,3 @@
 }
     </tbody>
 </table>
-
-<script>let activePageIndex = 4;</script>

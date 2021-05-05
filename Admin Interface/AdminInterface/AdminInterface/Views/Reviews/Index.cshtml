@@ -1,4 +1,4 @@
-﻿@model IEnumerable<AdminInterface.Models.Rating>
+﻿@model IEnumerable<AdminInterface.Models.Reviews>
 
 @{
     ViewData["Title"] = "Index";
@@ -13,7 +13,10 @@
     <thead>
         <tr>
             <th>
-                @Html.DisplayNameFor(model => model.Rating1)
+                @Html.DisplayNameFor(model => model.Rating)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Title)
             </th>
             <th>
                 @Html.DisplayNameFor(model => model.Description)
@@ -31,16 +34,19 @@
 @foreach (var item in Model) {
         <tr>
             <td>
-                @Html.DisplayFor(modelItem => item.Rating1)
+                @Html.DisplayFor(modelItem => item.Rating)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Title)
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.Description)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.Customer.Address)
+                @Html.DisplayFor(modelItem => item.Customer.EmailAddress)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.Product.ProductName)
+                @Html.DisplayFor(modelItem => item.Product.Category)
             </td>
             <td>
                 @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
@@ -51,5 +57,3 @@
 }
     </tbody>
 </table>
-
-<script>let activePageIndex = 5;</script>

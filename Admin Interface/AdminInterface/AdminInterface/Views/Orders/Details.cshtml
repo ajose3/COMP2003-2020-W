@@ -1,4 +1,4 @@
-﻿@model AdminInterface.Models.Order
+﻿@model AdminInterface.Models.Orders
 
 @{
     ViewData["Title"] = "Details";
@@ -7,20 +7,32 @@
 <h1>Details</h1>
 
 <div>
-    <h4>Order</h4>
+    <h4>Orders</h4>
     <hr />
     <dl class="row">
         <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.DateTime)
+            @Html.DisplayNameFor(model => model.TimeOrdered)
         </dt>
         <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.DateTime)
+            @Html.DisplayFor(model => model.TimeOrdered)
         </dd>
         <dt class = "col-sm-2">
             @Html.DisplayNameFor(model => model.Quantity)
         </dt>
         <dd class = "col-sm-10">
             @Html.DisplayFor(model => model.Quantity)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Customer)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Customer.EmailAddress)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Product)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Product.Category)
         </dd>
     </dl>
 </div>

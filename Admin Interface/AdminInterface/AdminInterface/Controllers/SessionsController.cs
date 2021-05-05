@@ -9,23 +9,23 @@ using AdminInterface.Models;
 
 namespace AdminInterface.Controllers
 {
-    public class RatingsController : Controller
+    public class SessionsController : Controller
     {
         private readonly COMP2003_WContext _context;
 
-        public RatingsController(COMP2003_WContext context)
+        public SessionsController(COMP2003_WContext context)
         {
             _context = context;
         }
 
-        // GET: Ratings
+        // GET: Sessions
         public async Task<IActionResult> Index()
         {
-            var cOMP2003_WContext = _context.Ratings.Include(r => r.Customer).Include(r => r.Product);
+            var cOMP2003_WContext = _context.Sessions.Include(s => s.Customer);
             return View(await cOMP2003_WContext.ToListAsync());
         }
 
-        // GET: Ratings/Details/5
+        // GET: Sessions/Details/5
         public async Task<IActionResult> Details(int? id)
         {
             if (id == null)
@@ -33,45 +33,42 @@ namespace AdminInterface.Controllers
                 return NotFound();
             }
 
-            var rating = await _context.Ratings
-                .Include(r => r.Customer)
-                .Include(r => r.Product)
-                .FirstOrDefaultAsync(m => m.CustomerId == id);
-            if (rating == null)
+            var sessions = await _context.Sessions
+                .Include(s => s.Customer)
+                .FirstOrDefaultAsync(m => m.SessionId == id);
+            if (sessions == null)
             {
                 return NotFound();
             }
 
-            return View(rating);
+            return View(sessions);
         }
 
-        // GET: Ratings/Create
+        // GET: Sessions/Create
         public IActionResult Create()
         {
-            ViewData["CustomerId"] = new SelectList(_context.Customers, "CustomerId", "Address");
-            ViewData["ProductId"] = new SelectList(_context.Products, "ProductId", "ProductName");
+            ViewData["CustomerId"] = new SelectList(_context.Customer, "CustomerId", "EmailAddress");
             return View();
         }
 
-        // POST: Ratings/Create
+        // POST: Sessions/Create
         // To protect from overposting attacks, enable the specific properties you want to bind to, for 
         // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("CustomerId,ProductId,Rating1,Description")] Rating rating)
+        public async Task<IActionResult> Create([Bind("SessionId,CustomerId,Token,ExpiryTime")] Sessions sessions)
         {
             if (ModelState.IsValid)
             {
-                _context.Add(rating);
+                _context.Add(sessions);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["CustomerId"] = new SelectList(_context.Customers, "CustomerId", "Address", rating.CustomerId);
-            ViewData["ProductId"] = new SelectList(_context.Products, "ProductId", "ProductName", rating.ProductId);
-            return View(rating);
+            ViewData["CustomerId"] = new SelectList(_context.Customer, "CustomerId", "EmailAddress", sessions.CustomerId);
+            return View(sessions);
         }
 
-        // GET: Ratings/Edit/5
+        // GET: Sessions/Edit/5
         public async Task<IActionResult> Edit(int? id)
         {
             if (id == null)
@@ -79,24 +76,23 @@ namespace AdminInterface.Controllers
                 return NotFound();
             }
 
-            var rating = await _context.Ratings.FindAsync(id);
-            if (rating == null)
+            var sessions = await _context.Sessions.FindAsync(id);
+            if (sessions == null)
             {
                 return NotFound();
             }
-            ViewData["CustomerId"] = new SelectList(_context.Customers, "CustomerId", "Address", rating.CustomerId);
-            ViewData["ProductId"] = new SelectList(_context.Products, "ProductId", "ProductName", rating.ProductId);
-            return View(rating);
+            ViewData["CustomerId"] = new SelectList(_context.Customer, "CustomerId", "EmailAddress", sessions.CustomerId);
+            return View(sessions);
         }
 
-        // POST: Ratings/Edit/5
+        // POST: Sessions/Edit/5
         // To protect from overposting attacks, enable the specific properties you want to bind to, for 
         // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("CustomerId,ProductId,Rating1,Description")] Rating rating)
+        public async Task<IActionResult> Edit(int id, [Bind("SessionId,CustomerId,Token,ExpiryTime")] Sessions sessions)
         {
-            if (id != rating.CustomerId)
+            if (id != sessions.SessionId)
             {
                 return NotFound();
             }
@@ -105,12 +101,12 @@ namespace AdminInterface.Controllers
             {
                 try
                 {
-                    _context.Update(rating);
+                    _context.Update(sessions);
                     await _context.SaveChangesAsync();
                 }
                 catch (DbUpdateConcurrencyException)
                 {
-                    if (!RatingExists(rating.CustomerId))
+                    if (!SessionsExists(sessions.SessionId))
                     {
                         return NotFound();
                     }
@@ -121,12 +117,11 @@ namespace AdminInterface.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["CustomerId"] = new SelectList(_context.Customers, "CustomerId", "Address", rating.CustomerId);
-            ViewData["ProductId"] = new SelectList(_context.Products, "ProductId", "ProductName", rating.ProductId);
-            return View(rating);
+            ViewData["CustomerId"] = new SelectList(_context.Customer, "CustomerId", "EmailAddress", sessions.CustomerId);
+            return View(sessions);
         }
 
-        // GET: Ratings/Delete/5
+        // GET: Sessions/Delete/5
         public async Task<IActionResult> Delete(int? id)
         {
             if (id == null)
@@ -134,32 +129,31 @@ namespace AdminInterface.Controllers
                 return NotFound();
             }
 
-            var rating = await _context.Ratings
-                .Include(r => r.Customer)
-                .Include(r => r.Product)
-                .FirstOrDefaultAsync(m => m.CustomerId == id);
-            if (rating == null)
+            var sessions = await _context.Sessions
+                .Include(s => s.Customer)
+                .FirstOrDefaultAsync(m => m.SessionId == id);
+            if (sessions == null)
             {
                 return NotFound();
             }
 
-            return View(rating);
+            return View(sessions);
         }
 
-        // POST: Ratings/Delete/5
+        // POST: Sessions/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
-            var rating = await _context.Ratings.FindAsync(id);
-            _context.Ratings.Remove(rating);
+            var sessions = await _context.Sessions.FindAsync(id);
+            _context.Sessions.Remove(sessions);
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }
 
-        private bool RatingExists(int id)
+        private bool SessionsExists(int id)
         {
-            return _context.Ratings.Any(e => e.CustomerId == id);
+            return _context.Sessions.Any(e => e.SessionId == id);
         }
     }
 }

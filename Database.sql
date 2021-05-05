@@ -1239,6 +1239,46 @@ END
 GO
 
 
+CREATE PROCEDURE DeleteReview
+@Token VARCHAR(25),
+@ProductID INT,
+@ResponseMessage INT OUTPUT
+AS
+BEGIN
+	BEGIN TRANSACTION
+		IF EXISTS(SELECT * FROM Sessions WHERE Token = @Token AND CURRENT_TIMESTAMP <= ExpiryTime)
+			BEGIN
+				DECLARE @CustomerID AS INT = (SELECT CustomerID FROM Sessions WHERE Token = @Token)
+				
+				IF EXISTS(SELECT * FROM Reviews WHERE ProductID = @ProductID AND CustomerID = @CustomerID)
+					BEGIN												
+						DELETE FROM Reviews WHERE ProductID = @ProductID AND CustomerID = @CustomerID
+						
+						SELECT @ResponseMessage = 200;
+					END
+				ELSE
+					BEGIN
+					--order does not exist
+						SELECT @ResponseMessage = 401;
+					END
+			END
+		ELSE
+			BEGIN
+			--user not logged in
+				SELECT @ResponseMessage = 400;
+			END
+
+	IF @@ERROR != 0
+		BEGIN
+			SELECT @ResponseMessage = 500;
+			ROLLBACK TRANSACTION
+		END
+	ELSE
+		COMMIT TRANSACTION
+END
+GO
+
+
 
 
 

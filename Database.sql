@@ -1030,7 +1030,7 @@ BEGIN
 		ELSE
 			BEGIN
 			--user not logged in
-				SELECT @ResponseMessage = 400;
+				SELECT @ResponseMessage = 402;
 			END
 			
 	IF @@ERROR != 0

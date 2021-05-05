@@ -1193,7 +1193,50 @@ BEGIN
 END
 GO
 
+-----------------------------------------------
 
+CREATE PROCEDURE dbo.EditReview
+@Token VARCHAR(25),
+@Rating INT,
+@ProductID INT,
+@Title VARCHAR(50),
+@Description TEXT,
+@ResponseMessage Int OUTPUT
+AS
+BEGIN
+	BEGIN TRANSACTION
+		IF EXISTS (SELECT * FROM Sessions WHERE Token = @Token AND CURRENT_TIMESTAMP <= ExpiryTime)
+			BEGIN
+				IF Exists(SELECT * FROM Products WHERE ProductID = @ProductID)
+					BEGIN
+						DECLARE @CustomerID AS INT = (SELECT CustomerID FROM Sessions WHERE Token = @Token);
+						
+                        UPDATE Reviews SET Rating = @Rating, Title = @Title, Description = @Description
+                        WHERE ProductID = @ProductID;
+						
+						SELECT @ResponseMessage = 200;
+					END
+				ELSE
+					BEGIN
+					--Product does not exist
+						SELECT @ResponseMessage = 401;
+					END
+			END
+		ELSE
+			BEGIN
+			--user not logged in
+				SELECT @ResponseMessage = 400;
+			END
+			
+	IF @@ERROR != 0
+		BEGIN
+			SELECT @ResponseMessage = 500;
+			ROLLBACK TRANSACTION
+		END
+	ELSE
+		COMMIT TRANSACTION
+END
+GO
 
 
 

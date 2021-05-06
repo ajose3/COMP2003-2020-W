@@ -195,3 +195,12 @@ Week 22(26/04/2021-30/04/2021)
 Transformed JSON data into csv files and read into the database. 
 API testing is underway while project is being rescaffolded due to many changes over the past few months. 
 Member has retruned from personal reasons meaning group is once again at full capabilty and extra tasks could be assigned this week.
+
+Week 23 (03/05/21 – 07/05/21):
+
+During week 22, we met on zoom for our weekly group meeting. We are approaching the final stretch of the project and took another look at what we have completed thus far. 
+The majority of the applications have been developed so the API & Recommender system became the main focus.
+We extended a few tasks from the week previous and set a few more where the tasks had been entirely completed. 
+As the finish was approaching, we also started to think about getting some of the report sections done.
+Once all tasks for the week had been assigned, the meeting was concluded, and we got to work. 
+

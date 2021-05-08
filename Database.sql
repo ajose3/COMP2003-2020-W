@@ -294,7 +294,6 @@ CREATE PROCEDURE AdminEditCustomer
 @FirstName VARCHAR(50),
 @LastName VARCHAR(50),
 @Email VARCHAR(320),
-@Password VARCHAR(50),
 @Age INT,
 @Gender BIT,
 @Address TEXT,
@@ -315,7 +314,7 @@ BEGIN
 						END
 					ELSE
 						BEGIN
-							UPDATE Customer SET FirstName = @FirstName, LastName = @LastName, EmailAddress = @Email, Password = @Password, Age = @Age, Gender = @Gender, Address = @Address, PhoneNumber = @PhoneNumber WHERE CustomerID = @CustomerID AND Admin = 0;
+							UPDATE Customer SET FirstName = @FirstName, LastName = @LastName, EmailAddress = @Email, Age = @Age, Gender = @Gender, Address = @Address, PhoneNumber = @PhoneNumber WHERE CustomerID = @CustomerID AND Admin = 0;
 							SELECT @ResponseMessage = 200;
 						END
 				END
@@ -1175,7 +1174,7 @@ Go
 
 ---------
 
-CREATE PROCEDURE dbo.AddStock
+CREATE PROCEDURE [dbo].[AddStock]
 @Token VARCHAR(25),
 @ProductId INT,
 @Stock INT,
@@ -1191,11 +1190,7 @@ BEGIN
 					BEGIN
 						IF EXISTS(SELECT * FROM Products WHERE ProductId = @ProductId)
 							BEGIN
-								--product id already exists
-								SELECT @ResponseMessage = 409;
-							END
-						ELSE
-							BEGIN
+
                                 DECLARE @CurrentStock AS INT = (SELECT Stock FROM Products WHERE ProductId = @ProductId);
 
 
@@ -1203,6 +1198,14 @@ BEGIN
 								WHERE Products.ProductID = @ProductId
 								
 								SELECT @ResponseMessage = 200;
+								
+							END
+						ELSE
+							BEGIN
+
+                                --product id already exists
+								SELECT @ResponseMessage = 409;
+                                
 							END
 					END
 				ELSE
@@ -1226,6 +1229,7 @@ BEGIN
 		COMMIT TRANSACTION
 END
 GO
+
 
 -----------------------------------------------
 

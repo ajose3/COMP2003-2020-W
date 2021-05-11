@@ -1112,6 +1112,7 @@ BEGIN
 			-- select top 5 
 
 			SELECT TOP 5* from Products WHERE AvgRating = @Rating AND Category = @Category;
+			ORDER BY NEWID();
 
 		END
 END

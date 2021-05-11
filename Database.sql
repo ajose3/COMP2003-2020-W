@@ -1317,7 +1317,36 @@ BEGIN
 END
 GO
 
+----------------
 
+CREATE PROCEDURE [dbo].[RecommendMostCategory]
+@Token VARCHAR(25)
+AS
+BEGIN
+	IF EXISTS(SELECT * FROM Sessions WHERE Token = @Token AND CURRENT_TIMESTAMP <= ExpiryTime)
+		BEGIN
+			DECLARE @CustomerID AS INT = (SELECT CustomerID FROM Sessions WHERE Token = @Token);
+			
+			-- select the most common value for category 
+
+			DECLARE @TopCat AS VARCHAR(50) = (SELECT TOP 1 Category AS MOST_FREQUENT
+            FROM Products
+            GROUP BY Category
+            ORDER BY COUNT(Category) DESC)
+
+            DECLARE @TopCat2 AS VARCHAR(50) = (SELECT Category AS MOST_FREQUENT
+            FROM Products
+            GROUP BY Category
+            ORDER BY COUNT(Category) DESC
+            OFFSET 1 ROW 
+            FETCH NEXT 1 ROW ONLY);
+
+            SELECT TOP 5* FROM Products WHERE Category = @TopCat OR Category = @TopCat2
+            ORDER BY NEWID();
+
+		END
+END
+GO
 
 
 

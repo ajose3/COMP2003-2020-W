@@ -204,3 +204,10 @@ We extended a few tasks from the week previous and set a few more where the task
 As the finish was approaching, we also started to think about getting some of the report sections done.
 Once all tasks for the week had been assigned, the meeting was concluded, and we got to work. 
 
+Week 23 (10/05/21 - 14/05/21):
+
+During week 23, the team met to reflect on our progress and to distribute the remaining tasks to complete the project.
+Having previously decided to focus mainly on the API and the Recommender system, we split the remaining tasks amongst us and spent a few extra days this week finishing them both.
+As well as this, we reflected on the progress made on the admin interface, and determined tasks to accelerate its development as the deadline approaches.
+Having completed most of the coding for the project, our attention is now increasingly on the report and final presentation.
+

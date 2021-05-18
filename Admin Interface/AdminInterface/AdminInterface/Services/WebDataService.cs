@@ -17,8 +17,8 @@ namespace AdminInterface.Services
         {
             var request = new HttpRequestMessage
             {
-                Method = HttpMethod.Get,
-                RequestUri = new Uri($"http://web.socem.plymouth.ac.uk/comp2003/COMP2003_W/Admin/Validate?email={email}&password={password}"),
+                Method = HttpMethod.Get, 
+                RequestUri = new Uri($"http://web.socem.plymouth.ac.uk/comp2003/COMP2003_W/customer/Validate?email={email}&password={password}"),
             };
 
             var response = await Client.SendAsync(request).ConfigureAwait(false);

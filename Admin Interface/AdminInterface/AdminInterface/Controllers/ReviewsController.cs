@@ -127,9 +127,15 @@ namespace AdminInterface.Controllers
         }
 
         // GET: Reviews/Delete/5
-        public async Task<IActionResult> Delete(int? id)
+        [HttpGet("{id}/{customerid}")]
+        public async Task<IActionResult> Delete(int? id, int? customerid)
         {
             if (id == null)
+            {
+                return NotFound();
+            }
+
+            if (customerid == null)
             {
                 return NotFound();
             }
@@ -138,6 +144,9 @@ namespace AdminInterface.Controllers
                 .Include(r => r.Customer)
                 .Include(r => r.Product)
                 .FirstOrDefaultAsync(m => m.ProductId == id);
+
+            reviews.CustomerId = Convert.ToInt32(customerid);
+
             if (reviews == null)
             {
                 return NotFound();
@@ -147,11 +156,11 @@ namespace AdminInterface.Controllers
         }
 
         // POST: Reviews/Delete/5
-        [HttpPost, ActionName("Delete")]
+        [HttpPost("{id}/{customerid}"), ActionName("DeleteConfirmed")]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> DeleteConfirmed(int id)
+        public async Task<IActionResult> DeleteConfirmed([FromRoute]int id, [FromRoute]int customerid)
         {
-            var reviews = await _context.Reviews.FindAsync(id);
+            var reviews = await _context.Reviews.FindAsync(id, customerid);
             _context.Reviews.Remove(reviews);
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));

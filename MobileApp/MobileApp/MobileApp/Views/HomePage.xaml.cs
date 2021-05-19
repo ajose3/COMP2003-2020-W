@@ -21,9 +21,14 @@ namespace MobileApp.Views
         {
             InitializeComponent();
             BasketService.Init();
-            BindingContext = new HomeViewModel();
+            //BindingContext = new HomeViewModel();
             //SearchBarTextChanged += HandleSearchBarTextChanged; //Another approach to search (unfinished)
-        }       
+        }
+        protected override void OnAppearing()
+        {
+            base.OnAppearing();
+            BindingContext = new HomeViewModel();
+        }
 
 
         //collection view select

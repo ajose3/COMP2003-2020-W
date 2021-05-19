@@ -42,5 +42,18 @@ namespace MobileApp.Views
             {
             };
         }
+        protected override async void OnAppearing()
+        {
+            base.OnAppearing();
+            string tokenValues = TokenData.value;
+            if(tokenValues == null)
+            {
+                
+            }
+            else if (tokenValues.Length > 3)
+            {
+                await Shell.Current.GoToAsync($"//{nameof(HomePage)}");
+            }
+        }
     }
 }

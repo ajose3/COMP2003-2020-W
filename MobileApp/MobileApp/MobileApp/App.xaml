@@ -79,8 +79,8 @@
 
             <DataTemplate x:Key="ProductTemplate">
                 <Grid Padding="5">
-                    <Frame BorderColor="#D8DAE0" CornerRadius="20" HasShadow="True">
-                        <Grid Padding="0">
+                    <Frame BorderColor="#D8DAE0" CornerRadius="20" HasShadow="True" Padding="5">
+                        <Grid Padding="0" Margin="0">
                             <Grid.RowDefinitions>
                                 <RowDefinition Height="Auto"/>
                                 <RowDefinition Height="Auto"/>
@@ -118,35 +118,36 @@
 
             <DataTemplate x:Key="CarouselTemplate">
                 <StackLayout>
+                    <StackLayout.GestureRecognizers>
+                        <!--<TapGestureRecognizer Command="{Binding selectCarouselItem}" CommandParameter="{Binding Id}" />-->
+                        <TapGestureRecognizer Tapped="CarouselItemTapped" />
+                    </StackLayout.GestureRecognizers>
                     <Frame HasShadow="True"
                                    BorderColor="LightGray"
                                    CornerRadius="5"
                                    Margin="4,2"
                                    Padding="0,10"
-                                   HeightRequest="220"
+                                   HeightRequest="250"
                                    WidthRequest="250">
-                        <StackLayout Margin="0" Padding="0">
-                            <StackLayout.GestureRecognizers>
-                                <!--<TapGestureRecognizer Command="{Binding selectCarouselItem}" CommandParameter="{Binding Id}" />-->
-                                <TapGestureRecognizer Tapped="CarouselItemTapped" />
-                            </StackLayout.GestureRecognizers>
+                        <Grid Margin="0" Padding="0" RowDefinitions="3*,.02*,56,.60*">
                             <Label Text="{Binding Id}" IsVisible="false" x:Name="ProductID"/>
-                            <Image Source="{Binding ImageUrl}" 
+                            <Image Source="{Binding ImageUrl}" Grid.Row="0"
                                            Aspect="AspectFit"
-                                           HeightRequest="125"
+                                           HeightRequest="120"
                                            VerticalOptions="Start"
                                            HorizontalOptions="Center" />
-                            <BoxView Style="{StaticResource SeparatorLineStyle}" Margin="0,0,0,0"/>
-                            <Label Text="{Binding Name}" 
+                            <BoxView Style="{StaticResource SeparatorLineStyle}" Margin="0,0,0,0" Grid.Row="1"/>
+                            <Label Text="{Binding Name}" Grid.Row="2"
                                            FontAttributes="Bold"
-                                           FontSize="28"
-                                           HorizontalOptions="Center"
+                                           FontSize="22"
+                                           HorizontalOptions="Center" HorizontalTextAlignment="Center"
                                            VerticalOptions="Center" TextColor="Black"/>
-                            <Label Text="{Binding Price, StringFormat='Price: £{0}'}"
-                                           FontSize="24"
+                            <Label Text="{Binding Price, StringFormat='Price: £{0}'}" Grid.Row="3"
+                                           FontSize="22"
                                            TextColor="Black"
-                                           HorizontalOptions="Center"/>
-                        </StackLayout>
+                                           HorizontalOptions="Center"
+                                           HorizontalTextAlignment="Center"/>
+                        </Grid>
                     </Frame>
                 </StackLayout>
             </DataTemplate>

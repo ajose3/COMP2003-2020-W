@@ -14,14 +14,15 @@ namespace MobileApp.ViewModels
     {
         public OrdersViewModel()
         {
-            Orders = OrderData.LoadOrders();
+            //Orders = OrderData.LoadOrdersAsync();
+            //Orders = (List<OrdersGroup>)load;
             OnPropertyChanged("Orders");
         }
         public List<OrdersGroup> Orders { get; set; }
 
-        public ICommand load => new Command(() =>
+        public ICommand load => new Command(async () =>
         {
-            Orders = OrderData.LoadOrders();
+            Orders = await OrderData.LoadOrdersAsync();
             OnPropertyChanged("Orders");
         });
 

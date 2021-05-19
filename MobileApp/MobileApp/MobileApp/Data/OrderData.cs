@@ -1,8 +1,10 @@
 ﻿using MobileApp.Models;
+using MobileApp.Services;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Threading.Tasks;
 
 namespace MobileApp.Data
 {
@@ -17,20 +19,26 @@ namespace MobileApp.Data
             Orders = new List<Order>();
         }
 
-        public static void AddToOrder(Product product)
+        public static async Task AddToOrderAsync(BasketProduct product)
         {
             //convert product to order
             Order order = new Order(product.Id, product.Name, product.Description, product.Price, product.ImageUrl, product.Stock, 1);
-            //add to orderdata list (change to api call in future)
-            Orders.Add(order);
+
+            WebDataService webDataService = new WebDataService();
+            await webDataService.PostAddOrder(product.Id, product.Quantity);
+
+            ////add to orderdata list (change to api call in future)
+            //Orders.Add(order);
         }
         public static void Clear()
         {
             Orders.Clear();
         }
 
-        public static List<OrdersGroup> LoadOrders()
+        public static async Task<List<OrdersGroup>> LoadOrdersAsync()
         {
+            WebDataService webDataService = new WebDataService();
+            Orders = await webDataService.GetOrders();
             //UserOrders = new List<Order>();
             bool isGrouped = false;
             GroupedOrders = new List<OrdersGroup>();

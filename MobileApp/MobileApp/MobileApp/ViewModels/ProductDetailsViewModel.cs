@@ -18,6 +18,7 @@ namespace MobileApp.ViewModels
     [QueryProperty("ProductId", "id")]
     public class ProductDetailsViewModel : INotifyPropertyChanged
     {
+        WebDataService dataService = new WebDataService();
         public ProductDetailsViewModel()
         {
             SelectRatingCommand = new Command<string>(SelectRating);
@@ -46,8 +47,15 @@ namespace MobileApp.ViewModels
                     OnPropertyChanged("ImageUrl");
                     OnPropertyChanged("Stock");
                     OnPropertyChanged("Reviews");
+                    Task.Run(async () => await GetRecommended());
                 }
             }
+        }
+
+        public async Task GetRecommended()
+        {
+            recommended = await dataService.GetRelatedProduct(Id);
+            OnPropertyChanged("recommended");
         }
 
         private void AverageRating()
@@ -107,6 +115,8 @@ namespace MobileApp.ViewModels
             OnPropertyChanged("StarColor5");
         }
 
+
+        public List<Product> recommended { get; set; }
         public int Id { get; set; }
         public string Name { get; set; }
         public string Description { get; private set; }

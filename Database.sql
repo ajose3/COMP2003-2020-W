@@ -1370,10 +1370,20 @@ CREATE PROCEDURE Logout
 AS
 BEGIN
     BEGIN TRANSACTION
-		IF EXISTS (SELECT * FROM Sessions WHERE Token = @Token AND CURRENT_TIMESTAMP <= ExpiryTime)
-        BEGIN
-            DELETE FROM dbo.Sessions WHERE Token = @Token
-        END
+		IF EXISTS (SELECT * FROM Sessions WHERE Token = @Token)
+            BEGIN
+                DELETE FROM dbo.Sessions WHERE Token = @Token
+                
+                --- Success
+                SELECT @ResponseMessage = 200;
+            END
+        ELSE
+            BEGIN
+                
+                ---Token does not exist
+                SELECT @ResponseMessage = 401;
+            
+            END
     IF @@ERROR != 0
 		BEGIN
 			SELECT @ResponseMessage = 500;
@@ -1382,6 +1392,7 @@ BEGIN
 	ELSE
 		COMMIT TRANSACTION
 END
+GO
 
 
 

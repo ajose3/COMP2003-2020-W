@@ -40,6 +40,26 @@ namespace _2003_Web_API.Controllers
             }
         }
 
+        // GET: api/Customers
+        // - Logout Customer -
+        [HttpDelete]
+        [Route("customer/logOut")]
+        [Produces("application/json")]
+        public async Task<ActionResult<string>> LogOut(string token)
+        {
+            string response = await dataAccess.LogOut(token);
+            // check token
+            if (response == "400" || response == "401" || response == "500")
+            {
+                return BadRequest(response);
+            }
+            else
+            {
+                return Ok(response);
+            }
+        }
+
+
         // POST: api/Customers
         // - Register Customer -
         [HttpPost]

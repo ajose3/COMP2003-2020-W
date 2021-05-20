@@ -56,6 +56,11 @@ namespace _2003_Web_API.Models
                     order.TimeOrdered = Convert.ToDateTime(reader[1]);
                     order.Quantity = Convert.ToInt32(reader[2]);
                     order.ProductId = Convert.ToInt32(reader[3]);
+                    order.ProductName = reader[6].ToString();
+                    order.ImageUrl = reader[7].ToString();
+                    order.Price = Convert.ToDecimal(reader[10]);
+                    order.Category = reader[12].ToString();
+
                     orderList.Add(order);
                 }
                 catch (Exception)

@@ -6,6 +6,11 @@ namespace MobileApp.Models
 {
     public class Order : Product
     {
+        //OrderId
+        //    timeOrdered
+        //    productId
+        //    customer Id
+
         public int Quantity { get; set; }
         public DateTime OrderDate { get; set; }
         public DateTime DeliveryDate { get; set; }

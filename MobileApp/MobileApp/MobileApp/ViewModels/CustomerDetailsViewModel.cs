@@ -38,8 +38,28 @@ namespace MobileApp.ViewModels
             get { return password; }
             set
             {
-                email = value;
+                password = value;
                 OnPropertyChanged("Password");
+            }
+        }
+        public string newPassword;
+        public string NewPassword
+        {
+            get { return newPassword; }
+            set
+            {
+                newPassword = value;
+                OnPropertyChanged("NewPassword");
+            }
+        }
+        public string newPasswordConfirm;
+        public string NewPasswordConfirm
+        {
+            get { return newPasswordConfirm; }
+            set
+            {
+                newPasswordConfirm = value;
+                OnPropertyChanged("NewPasswordConfirm");
             }
         }
         public string firstName;
@@ -159,6 +179,19 @@ namespace MobileApp.ViewModels
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
+
+        public ICommand ChangePassword => new Command(async () =>
+        {
+            if (newPassword == newPasswordConfirm)
+            {
+                //dataService.PutChangePassword(password, newPassword);
+                await dataService.PutChangePassword(newPassword);
+            }
+            else
+            {
+                await Shell.Current.DisplayAlert("Oops", "Your new passwords don't match", "Ok");
+            }
+        });
 
     }
 }

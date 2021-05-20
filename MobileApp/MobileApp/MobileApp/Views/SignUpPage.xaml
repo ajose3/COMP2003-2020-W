@@ -25,7 +25,7 @@
 
                 <Label Text="Confirm Password" FontSize="Large" TextColor="Black"/>
                 <Frame CornerRadius="20" BorderColor="LightGray" HasShadow="True" Padding="10,0"  Margin="0,10">
-                    <Entry x:Name="passwordConfirmEntry" Text="{Binding Password}" Placeholder="Confirm password" FontSize="Large" IsPassword="True"/>
+                    <Entry x:Name="passwordConfirmEntry" Text="{Binding PasswordConfirm}" Placeholder="Confirm password" FontSize="Large" IsPassword="True"/>
                 </Frame>
 
                 <Label Text="First Name" FontSize="Large" TextColor="Black"/>
@@ -52,14 +52,15 @@
                         </Picker.Items>
                     </Picker>
                 </Frame>
+                
                 <Label Text="Address" FontSize="Large" TextColor="Black"/>
                 <Frame CornerRadius="20" BorderColor="LightGray" HasShadow="True" Padding="10,0"  Margin="0,10">
-                    <Entry x:Name="addressEntry" Text="{Binding PhoneNumber}" Placeholder="Address" FontSize="Large"/>
+                    <Entry x:Name="addressEntry" Text="{Binding Address}" Placeholder="Address" FontSize="Large"/>
                 </Frame>
 
                 <Label Text="Phone Number" FontSize="Large" TextColor="Black"/>
                 <Frame CornerRadius="20" BorderColor="LightGray" HasShadow="True" Padding="10,0"  Margin="0,10">
-                    <Entry x:Name="phoneNumberEntry" Text="{Binding Address}" Placeholder="Phone Number" FontSize="Large"/>
+                    <Entry x:Name="phoneNumberEntry" Text="{Binding PhoneNumber}" Placeholder="Phone Number" FontSize="Large"/>
                 </Frame>
 
                 <Button Text="Register" Command="{Binding RegisterCmd}"/>

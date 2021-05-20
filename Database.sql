@@ -1362,6 +1362,27 @@ BEGIN
 END
 GO
 
+---------------------------
+
+CREATE PROCEDURE Logout
+@Token VARCHAR(25),
+@ResponseMessage INT OUTPUT
+AS
+BEGIN
+    BEGIN TRANSACTION
+		IF EXISTS (SELECT * FROM Sessions WHERE Token = @Token AND CURRENT_TIMESTAMP <= ExpiryTime)
+        BEGIN
+            DELETE FROM dbo.Sessions WHERE Token = @Token
+        END
+    IF @@ERROR != 0
+		BEGIN
+			SELECT @ResponseMessage = 500;
+			ROLLBACK TRANSACTION
+		END
+	ELSE
+		COMMIT TRANSACTION
+END
+
 
 
 

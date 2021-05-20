@@ -618,7 +618,7 @@ BEGIN
 			BEGIN
 				DECLARE @CustomerID AS INT = (SELECT CustomerID FROM Sessions WHERE Token = @Token);
 				
-				SELECT * FROM Orders WHERE CustomerID = @CustomerID
+				SELECT * FROM Orders INNER JOIN Products ON Orders.ProductID = Products.ProductID WHERE CustomerID = @CustomerID
 				
 				SELECT @ResponseMessage = 200;
 			END

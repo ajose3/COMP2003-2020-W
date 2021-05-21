@@ -52,7 +52,7 @@ namespace MobileApp.Data
                     tempGroup.OrderDate = order.OrderDate;
                     tempOrderList.Add(order);
                     tempGroup.theOrders = tempOrderList;
-                    tempGroup.Total = order.Total;
+                    tempGroup.Total = order.getTotal();
                     GroupedOrders.Add(tempGroup);
                     isGrouped = true;
                 }
@@ -63,7 +63,7 @@ namespace MobileApp.Data
                         if(group.OrderDate.Date == order.OrderDate.Date)
                         {
                             group.theOrders.Add(order);
-                            group.Total += order.Total;
+                            group.Total += order.getTotal();
                             isGrouped = true;
                         }
                     }
@@ -75,7 +75,7 @@ namespace MobileApp.Data
                         List<Order> tempOrderList = new List<Order>();
                         tempOrderList.Add(order);
                         tempGroup.theOrders = tempOrderList;
-                        tempGroup.Total = order.Total;
+                        tempGroup.Total = order.getTotal();
                         GroupedOrders.Add(tempGroup);
                     }
                 }

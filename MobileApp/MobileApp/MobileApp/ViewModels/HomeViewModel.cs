@@ -87,6 +87,14 @@ namespace MobileApp.ViewModels
             Shell.Current.GoToAsync($"productdetails?id={productId}");
         });
 
+
+        public ICommand Logout => new Command(() =>
+        {
+            Shell.Current.DisplayAlert("LO","Logging out","OK");
+            dataService.Logout();
+        });
+
+
         #region INotifyPropertyChanged
 
         public event PropertyChangedEventHandler PropertyChanged;

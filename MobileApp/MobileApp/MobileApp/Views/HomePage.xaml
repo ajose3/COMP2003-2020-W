@@ -25,6 +25,13 @@
         </Style>
     </ContentPage.Resources>
 
+    <ContentPage.ToolbarItems>
+        <ToolbarItem Text="Logout"
+                 Order="Primary"
+                 Priority="0" 
+                 Command="{Binding Logout}"/>
+    </ContentPage.ToolbarItems>
+
 
     <ContentPage.BindingContext>
         <vm:HomeViewModel/>

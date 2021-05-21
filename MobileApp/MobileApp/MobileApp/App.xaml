@@ -154,12 +154,11 @@
 
             <DataTemplate x:Key="OrderDetailsTemplate">
                 <Grid Padding="3">
-                    
-                    <Frame BorderColor="#D8DAE0" CornerRadius="20" HasShadow="True" Padding="10">
+                    <Frame BorderColor="#D8DAE0" CornerRadius="20" HasShadow="True" Padding="5">
                         <StackLayout>
                             <Grid Padding="0">
                                 <Grid.RowDefinitions>
-                                    <RowDefinition Height="1.05*"/>
+                                    <RowDefinition Height="57"/>
                                     <RowDefinition Height="*"/>
                                     <RowDefinition Height="*"/>
                                 </Grid.RowDefinitions>
@@ -172,7 +171,7 @@
                                 <Image Grid.RowSpan="3"
                                    Source="{Binding ImageUrl}" 
                                    Aspect="AspectFit"
-                                   HeightRequest="80"/>
+                                   HeightRequest="10"/>
                                 <Label Margin="10,0,0,0" Grid.Column="1"
                                    Text="{Binding Name}" 
                                    FontAttributes="Bold" 
@@ -285,9 +284,9 @@
                     <Frame BorderColor="#D8DAE0" CornerRadius="20" HasShadow="True">
                         <Grid Padding="0">
                             <Grid.RowDefinitions>
-                                <RowDefinition Height=".5*"/>
-                                <RowDefinition Height=".2*"/>
-                                <RowDefinition Height="2*"/>
+                                <RowDefinition Height=".1*"/>
+                                <RowDefinition Height="20"/>
+                                <RowDefinition Height="150"/>
                                 <!--<RowDefinition Height="Auto"/>-->
                                 <!--<RowDefinition Height="Auto"/>-->
                             </Grid.RowDefinitions>
@@ -311,12 +310,13 @@
                                    TextColor="DarkGray"
                                    FontSize="20"/>
                             <Label Margin="0,0,0,0" Padding="0" Grid.Column="4" Grid.Row="0" Grid.ColumnSpan="3"
-                                   Text="{Binding Total, StringFormat='Total: £{0}'}" 
+                                   Text="{Binding Total, StringFormat='Total: £{0:F2}'}" 
                                    TextColor="DarkGray"
                                    FontSize="20"/>
                             <BoxView Style="{StaticResource SeparatorLineStyle}"
                                      Grid.Row="1"
-                                     Grid.ColumnSpan="7"/>
+                                     Grid.ColumnSpan="7"
+                                     Margin="0"/>
                             <!--<Image />-->
                             <Image 
                                 Grid.Column="0"

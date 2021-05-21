@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
 using System.Text;
 
@@ -12,6 +13,7 @@ namespace MobileApp.Models
         //    customer Id
 
         public int Quantity { get; set; }
+        [JsonProperty("timeOrdered")]
         public DateTime OrderDate { get; set; }
         public DateTime DeliveryDate { get; set; }
         public bool displayBtn { get; set; } // binded to to toggle button visablility ->
@@ -20,7 +22,7 @@ namespace MobileApp.Models
 
         public Order()
         {
-            getTotal();
+            //getTotal();
         }
 
         public Order(int theId, string theName, string theDescription, float thePrice, string theImageUrl, int theStock, int theQuantity)

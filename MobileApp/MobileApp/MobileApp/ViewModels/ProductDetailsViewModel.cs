@@ -24,6 +24,7 @@ namespace MobileApp.ViewModels
             SelectRatingCommand = new Command<string>(SelectRating);
         }
 
+
         public int ProductId
         {
             set
@@ -38,18 +39,30 @@ namespace MobileApp.ViewModels
                     Price = product.Price;
                     ImageUrl = product.ImageUrl;
                     Stock = product.Stock;
-                    Reviews = ReviewData.getReviews(Id);
-                    AverageRating();
+                    //Reviews = ReviewData.getReviews(Id);
                     OnPropertyChanged("Id");
                     OnPropertyChanged("Name");
                     OnPropertyChanged("Description");
                     OnPropertyChanged("Price");
                     OnPropertyChanged("ImageUrl");
                     OnPropertyChanged("Stock");
-                    OnPropertyChanged("Reviews");
                     Task.Run(async () => await GetRecommended());
+                    Task.Run(async () => await LoadReviews());
                 }
             }
+        }
+
+        public async Task LoadReviews()
+        {
+            Reviews = await dataService.GetReviews(Id);
+            OnPropertyChanged("Reviews");
+
+            AverageRating();
+            OnPropertyChanged("StarColor1");
+            OnPropertyChanged("StarColor2");
+            OnPropertyChanged("StarColor3");
+            OnPropertyChanged("StarColor4");
+            OnPropertyChanged("StarColor5");
         }
 
         public async Task GetRecommended()
@@ -171,13 +184,28 @@ namespace MobileApp.ViewModels
             await Shell.Current.GoToAsync("checkoutpage");
         });
 
-        public ICommand WriteReview => new Command(() =>
+        public ICommand WriteReview => new Command(async () =>
         {
-            ReviewData.writeReview(Id, RRating, RTitle, RDescription);
-            Reviews = ReviewData.getReviews(Id);
-            OnPropertyChanged("Reviews");
-            AverageRating();
-            clearReview();
+            if (TokenData.value.Length > 3)
+            {
+                //ReviewData.writeReview(Id, RRating, RTitle, RDescription);
+
+                Review r = new Review(Id, RRating, RTitle, RDescription);
+
+                await dataService.PostAddReview(r);
+
+                Task.Run(async () => await LoadReviews());
+
+                //Reviews = ReviewData.getReviews(Id);
+                OnPropertyChanged("Reviews");
+                clearReview();
+            }
+            else
+            {
+                await Shell.Current.GoToAsync("/loginPage");
+            }
+
+
         });
         public ICommand ResetWriteCommand => new Command(() =>
         {

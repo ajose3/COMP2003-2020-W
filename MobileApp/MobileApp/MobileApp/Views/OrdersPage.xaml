@@ -20,6 +20,7 @@
                 ItemsLayout="VerticalList"
                 VerticalOptions="Start"
                 HorizontalOptions="Center"
+                
                 ItemsSource="{Binding Orders}"
                 ItemTemplate="{StaticResource OrderTemplate}"
                 SelectedItem="{Binding SelectedOrder, Mode=TwoWay}"

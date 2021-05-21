@@ -1037,7 +1037,7 @@ CREATE PROCEDURE WriteReview
 @ProductID INT,
 @Title VARCHAR(50),
 @Description TEXT,
-@ResponseMessage INT OUTPUT
+@ResponseMessage Int OUTPUT
 AS
 BEGIN
 	BEGIN TRANSACTION
@@ -1046,13 +1046,20 @@ BEGIN
 				IF Exists(SELECT * FROM Products WHERE ProductID = @ProductID)
 					BEGIN
 						DECLARE @CustomerID AS INT = (SELECT CustomerID FROM Sessions WHERE Token = @Token);
-						
-						INSERT INTO Reviews
-						(ProductID, CustomerID, Rating, Title, Description)
-						VALUES
-						(@ProductID, @CustomerID, @Rating, @Title, @Description);
-						
+
+                        IF EXISTS (SELECT * FROM Reviews WHERE CustomerID = @CustomerID AND ProductID = @ProductID)
+                            BEGIN
+                                UPDATE Reviews SET Title = @Title, Description = @Description WHERE CustomerID = @CustomerID AND ProductID = @ProductID;
+                            END
+                        ELSE
+                            BEGIN
+                                INSERT INTO Reviews
+                                (ProductID, CustomerID, Rating, Title, Description)
+                                VALUES
+                                (@ProductID, @CustomerID, @Rating, @Title, @Description);
+                            END
 						SELECT @ResponseMessage = 200;
+
 					END
 				ELSE
 					BEGIN

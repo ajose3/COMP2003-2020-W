@@ -26,7 +26,6 @@ namespace MobileApp.ViewModels
             //OpenWebCommand = new Command(async () => await Browser.OpenAsync("https://aka.ms/xamarin-quickstart"));
         }
 
-
         public async Task GetRecommended()
         {
             recommended = await dataService.GetRecommended();
@@ -88,10 +87,10 @@ namespace MobileApp.ViewModels
         });
 
 
-        public ICommand Logout => new Command(() =>
+        public ICommand Logout => new Command(async () =>
         {
-            Shell.Current.DisplayAlert("LO","Logging out","OK");
-            dataService.Logout();
+            //Shell.Current.DisplayAlert("LO","Logging out","OK");
+            await dataService.Logout();
         });
 
 

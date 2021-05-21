@@ -241,10 +241,7 @@ namespace MobileApp.Services
 
             //Console.WriteLine(p);
 
-            return products;
-            
-
-            
+            return products;            
         }
 
         public async Task<List<Product>> GetRelatedProduct(int productId)
@@ -342,18 +339,17 @@ namespace MobileApp.Services
 
         public async Task<string> Logout()
         {
-
             var request = new HttpRequestMessage
             {
-                Method = HttpMethod.Post,
-                RequestUri = new Uri($"https://localhost:44300/customer/logOut?token={TokenData.value}"),
+                Method = HttpMethod.Delete,
+                RequestUri = new Uri($"http://web.socem.plymouth.ac.uk/COMP2003/COMP2003_W/customer/logOut?token={TokenData.value}"),
                 //Content = new StringContent(json, Encoding.UTF8, "application/json"),
             };
 
             TokenData.value = "0";
 
             var response = await Client.SendAsync(request).ConfigureAwait(false);
-            response.EnsureSuccessStatusCode();
+            //response.EnsureSuccessStatusCode();
             return await response.Content.ReadAsStringAsync().ConfigureAwait(false);
         }
 

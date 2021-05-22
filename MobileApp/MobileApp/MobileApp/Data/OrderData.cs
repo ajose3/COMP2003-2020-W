@@ -2,6 +2,7 @@
 using MobileApp.Services;
 using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -10,6 +11,7 @@ namespace MobileApp.Data
 {
     class OrderData
     {
+        static WebDataService dataService = new WebDataService();
         public static List<Order> Orders { get; private set; }
         public static List<Order> UserOrders { get; private set; }
         public static List<OrdersGroup> GroupedOrders { get; private set; }
@@ -24,11 +26,7 @@ namespace MobileApp.Data
             //convert product to order
             Order order = new Order(product.Id, product.Name, product.Description, product.Price, product.ImageUrl, product.Stock, 1);
 
-            WebDataService webDataService = new WebDataService();
-            await webDataService.PostAddOrder(product.Id, product.Quantity);
-
-            ////add to orderdata list (change to api call in future)
-            //Orders.Add(order);
+            await dataService.PostAddOrder(product.Id, product.Quantity);
         }
         public static void Clear()
         {
@@ -37,8 +35,8 @@ namespace MobileApp.Data
 
         public static async Task<List<OrdersGroup>> LoadOrdersAsync()
         {
-            WebDataService webDataService = new WebDataService();
-            Orders = await webDataService.GetOrders();
+            //WebDataService webDataService = new WebDataService();
+            Orders = await dataService.GetOrders();
             //UserOrders = new List<Order>();
             bool isGrouped = false;
             GroupedOrders = new List<OrdersGroup>();
@@ -80,7 +78,11 @@ namespace MobileApp.Data
                     }
                 }
             }
-            return GroupedOrders;
+            List<OrdersGroup> SortedGroupOrders = GroupedOrders.OrderByDescending(i => i.OrderDate).ToList();
+
+            //GroupedOrders = (List<OrdersGroup>)GroupedOrders.OrderBy(x => x.OrderDate);
+
+            return SortedGroupOrders;
         }
         public static List<Order> loadOrdersByDate(DateTime requestedDate)
         {
@@ -93,7 +95,9 @@ namespace MobileApp.Data
                     requestedOrder.Add(order);
                 }
             }
-            return requestedOrder;
+            List<Order> SortedOrders = requestedOrder.OrderBy(i => i.DeliveryDate).ToList();
+            //return requestedOrder;
+            return SortedOrders;
         }
         public static void toggleBtn(Order selectedOrder)
         {
@@ -105,9 +109,9 @@ namespace MobileApp.Data
                 }
             }
         }
-        public static void removeOrder(Order order)
+        public static async Task removeOrderAsync(Order order)
         {
-            Orders.Remove(order);
+            await dataService.DeleteOrder(order.OrderID);
         }
     }
 }

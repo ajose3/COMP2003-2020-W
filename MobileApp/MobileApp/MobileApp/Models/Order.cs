@@ -7,10 +7,7 @@ namespace MobileApp.Models
 {
     public class Order : Product
     {
-        //OrderId
-        //    timeOrdered
-        //    productId
-        //    customer Id
+        public int OrderID { get; set; }
 
         public int Quantity { get; set; }
         [JsonProperty("timeOrdered")]
@@ -22,7 +19,6 @@ namespace MobileApp.Models
 
         public Order()
         {
-            //getTotal();
         }
 
         public Order(int theId, string theName, string theDescription, float thePrice, string theImageUrl, int theStock, int theQuantity)
@@ -41,6 +37,12 @@ namespace MobileApp.Models
             DeliveryDate = DateTime.Now.AddDays(rand.Next(31)); 
             Total = getTotal();
             displayBtn = false;
+        }
+
+        public DateTime GetDeliveryDate()
+        {
+            var rand = new Random();
+            return DateTime.Now.AddDays(rand.Next(31));
         }
 
 

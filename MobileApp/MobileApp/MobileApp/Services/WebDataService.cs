@@ -19,17 +19,13 @@ namespace MobileApp.Services
         HttpClient Client => httpClient ?? (httpClient = new HttpClient());
         public async Task GetValidateCustomer(User user)
         {
-            //var json = JsonConvert.SerializeObject(user);
-
             var request = new HttpRequestMessage
             {
                 Method = HttpMethod.Get,
                 RequestUri = new Uri($"http://web.socem.plymouth.ac.uk/COMP2003/COMP2003_W/customer/validate?email={user.email}&password={user.password}"),
-                //Content = new StringContent(json, Encoding.UTF8, "application/json"),
             };
 
             var response = await Client.SendAsync(request).ConfigureAwait(false);
-            //response.EnsureSuccessStatusCode();
             string returnedJson = await response.Content.ReadAsStringAsync().ConfigureAwait(false);
             returnedJson = returnedJson.Replace("/","").Replace("\"","");
             TokenData.value = returnedJson;
@@ -47,7 +43,6 @@ namespace MobileApp.Services
             };
 
             var response = await Client.SendAsync(request).ConfigureAwait(false);
-            //response.EnsureSuccessStatusCode();
             var a = await response.Content.ReadAsStringAsync().ConfigureAwait(false);
             return a;
 
@@ -74,14 +69,10 @@ namespace MobileApp.Services
         {
             string token = TokenData.value;
 
-            //var json = JsonConvert.SerializeObject(user);
-
             var request = new HttpRequestMessage
             {
                 Method = HttpMethod.Put,
                 RequestUri = new Uri($"http://web.socem.plymouth.ac.uk/COMP2003/COMP2003_W/customer/changePassword?token={token}&newPassword={newPassword}"),
-                //RequestUri = new Uri($"http://web.socem.plymouth.ac.uk/COMP2003/COMP2003_W/customer/changePassword?token={token}&oldPassword={password}&newPassword={newPassword}"),
-                //Content = new StringContent(json, Encoding.UTF8, "application/json"),
             };
 
             var response = await Client.SendAsync(request).ConfigureAwait(false);
@@ -97,13 +88,10 @@ namespace MobileApp.Services
             {
                 Method = HttpMethod.Get,
                 RequestUri = new Uri($"http://web.socem.plymouth.ac.uk/COMP2003/COMP2003_W/customer/details?token={token}"),
-                //Content = new StringContent(json, Encoding.UTF8, "application/json"),
             };
-
             var response = await Client.SendAsync(request).ConfigureAwait(false);
             response.EnsureSuccessStatusCode();
             var returnedJson = await response.Content.ReadAsStringAsync().ConfigureAwait(false);
-            //var a = response.JsonConvert.De
             
             User user = JsonConvert.DeserializeObject<User>(returnedJson);
             return user;
@@ -112,19 +100,15 @@ namespace MobileApp.Services
 
         public async Task<string> PostAddOrder(int productId, int quantity)
         {
-            //var json = JsonConvert.SerializeObject(product);
-
             var request = new HttpRequestMessage
             {
                 Method = HttpMethod.Post,
                 RequestUri = new Uri($"http://web.socem.plymouth.ac.uk/COMP2003/COMP2003_W/orders/add?token={TokenData.value}&productId={productId}&quantity={quantity}"),
-                //Content = new StringContent(json, Encoding.UTF8, "application/json"),
             };
 
             var response = await Client.SendAsync(request).ConfigureAwait(false);
             response.EnsureSuccessStatusCode();
             return await response.Content.ReadAsStringAsync().ConfigureAwait(false);
-
         }
 
         public async Task<List<Order>> GetOrders()
@@ -134,17 +118,33 @@ namespace MobileApp.Services
             {
                 Method = HttpMethod.Get,
                 RequestUri = new Uri($"http://web.socem.plymouth.ac.uk/COMP2003/COMP2003_W/orders/get?token={TokenData.value}"),
-                //Content = new StringContent(json, Encoding.UTF8, "application/json"),
             };
 
             var response = await Client.SendAsync(request).ConfigureAwait(false);
             response.EnsureSuccessStatusCode();
             string returnedJson = await response.Content.ReadAsStringAsync().ConfigureAwait(false);
-            //returnedJson = returnedJson.Replace("/", "").Replace("\"", "");
-            //TokenData.value = returnedJson;
 
-            orders = JsonConvert.DeserializeObject<List<Order>>(returnedJson);//fix
+            orders = JsonConvert.DeserializeObject<List<Order>>(returnedJson);
+
+            foreach (var order in orders)
+            {
+                order.DeliveryDate = order.GetDeliveryDate();
+            }
+            
             return orders;
+        }
+
+        public async Task<string> DeleteOrder(int orderId)
+        {
+            var request = new HttpRequestMessage
+            {
+                Method = HttpMethod.Delete,
+                RequestUri = new Uri($"http://web.socem.plymouth.ac.uk/COMP2003/COMP2003_W/orders/delete?token={TokenData.value}&orderID={orderId}"),
+            };
+
+            var response = await Client.SendAsync(request).ConfigureAwait(false);
+            var a = await response.Content.ReadAsStringAsync().ConfigureAwait(false);
+            return a;
         }
 
 
@@ -155,21 +155,16 @@ namespace MobileApp.Services
             {
                 Method = HttpMethod.Get,
                 RequestUri = new Uri($"http://web.socem.plymouth.ac.uk/COMP2003/COMP2003_W/products/getTrending"),
-                //Content = new StringContent(json, Encoding.UTF8, "application/json"),
             };
 
             var response = await Client.SendAsync(request).ConfigureAwait(false);
             response.EnsureSuccessStatusCode();
             string returnedJson = await response.Content.ReadAsStringAsync().ConfigureAwait(false);
 
-            //Product p = new Product();
             List<Product> products;
             products = JsonConvert.DeserializeObject<List<Product>>(returnedJson);
 
-            //Console.WriteLine(p);
-
             return products[0];
-
         }
 
         public async Task<Product> GetFeatured()
@@ -178,18 +173,14 @@ namespace MobileApp.Services
             {
                 Method = HttpMethod.Get,
                 RequestUri = new Uri($"http://web.socem.plymouth.ac.uk/COMP2003/COMP2003_W/products/getFeatured"),
-                //Content = new StringContent(json, Encoding.UTF8, "application/json"),
             };
 
             var response = await Client.SendAsync(request).ConfigureAwait(false);
             response.EnsureSuccessStatusCode();
             string returnedJson = await response.Content.ReadAsStringAsync().ConfigureAwait(false);
 
-            //Product p = new Product();
             List<Product> products;
             products = JsonConvert.DeserializeObject<List<Product>>(returnedJson);
-
-            //Console.WriteLine(p);
 
             return products[0];
 
@@ -201,18 +192,13 @@ namespace MobileApp.Services
             {
                 Method = HttpMethod.Get,
                 RequestUri = new Uri($"http://web.socem.plymouth.ac.uk/COMP2003/COMP2003_W/products/get"),
-                //Content = new StringContent(json, Encoding.UTF8, "application/json"),
             };
-
             var response = await Client.SendAsync(request).ConfigureAwait(false);
             response.EnsureSuccessStatusCode();
             string returnedJson = await response.Content.ReadAsStringAsync().ConfigureAwait(false);
 
-            //Product p = new Product();
             List<Product> products;
             products = JsonConvert.DeserializeObject<List<Product>>(returnedJson);
-
-            //Console.WriteLine(p);
 
             return products;
         }
@@ -228,18 +214,14 @@ namespace MobileApp.Services
             {
                 Method = HttpMethod.Get,
                 RequestUri = new Uri($"http://web.socem.plymouth.ac.uk/COMP2003/COMP2003_W/customer/recommend?token={TokenData.value}"),
-                //Content = new StringContent(json, Encoding.UTF8, "application/json"),
             };
 
             var response = await Client.SendAsync(request).ConfigureAwait(false);
             response.EnsureSuccessStatusCode();
             string returnedJson = await response.Content.ReadAsStringAsync().ConfigureAwait(false);
 
-            //Product p = new Product();
             List<Product> products;
             products = JsonConvert.DeserializeObject<List<Product>>(returnedJson);
-
-            //Console.WriteLine(p);
 
             return products;            
         }
@@ -255,14 +237,12 @@ namespace MobileApp.Services
             {
                 Method = HttpMethod.Get,
                 RequestUri = new Uri($"http://web.socem.plymouth.ac.uk/COMP2003/COMP2003_W/customer/related?token={TokenData.value}&productId={productId}"),
-                //Content = new StringContent(json, Encoding.UTF8, "application/json"),
             };
 
             var response = await Client.SendAsync(request).ConfigureAwait(false);
             response.EnsureSuccessStatusCode();
             string returnedJson = await response.Content.ReadAsStringAsync().ConfigureAwait(false);
 
-            //Product p = new Product();
             List<Product> products;
             products = JsonConvert.DeserializeObject<List<Product>>(returnedJson);
 
@@ -275,14 +255,12 @@ namespace MobileApp.Services
             {
                 Method = HttpMethod.Get,
                 RequestUri = new Uri($"http://web.socem.plymouth.ac.uk/COMP2003/COMP2003_W/reviews/get?productId={productId}"),
-                //Content = new StringContent(json, Encoding.UTF8, "application/json"),
             };
 
             var response = await Client.SendAsync(request).ConfigureAwait(false);
             response.EnsureSuccessStatusCode();
             string returnedJson = await response.Content.ReadAsStringAsync().ConfigureAwait(false);
 
-            //Product p = new Product();
             List<Review> reviews;
             reviews = JsonConvert.DeserializeObject<List<Review>>(returnedJson);
 
@@ -334,7 +312,6 @@ namespace MobileApp.Services
             var response = await Client.SendAsync(request).ConfigureAwait(false);
             response.EnsureSuccessStatusCode();
             return await response.Content.ReadAsStringAsync().ConfigureAwait(false);
-
         }
 
         public async Task<string> Logout()
@@ -349,7 +326,6 @@ namespace MobileApp.Services
             TokenData.value = "0";
 
             var response = await Client.SendAsync(request).ConfigureAwait(false);
-            //response.EnsureSuccessStatusCode();
             return await response.Content.ReadAsStringAsync().ConfigureAwait(false);
         }
 

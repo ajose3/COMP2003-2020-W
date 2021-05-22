@@ -706,14 +706,31 @@ BEGIN
 						DECLARE @Quantity AS INT = (SELECT Quantity FROM Orders WHERE OrderID = @OrderID)
 						
 						DECLARE @ProductID AS INT = (SELECT ProductID FROM Orders WHERE OrderID = @OrderID)
-						
-						DELETE FROM Orders WHERE OrderID = @OrderID AND CustomerID = @CustomerID
-						
-						UPDATE Products
-						SET 
-						Stock = (Stock + @Quantity), TotalSold = (TotalSold - @Quantity)
-						WHERE
-						ProductID = @ProductID;
+
+                        IF @Quantity = 1
+                            BEGIN
+                                DELETE FROM Orders WHERE OrderID = @OrderID AND CustomerID = @CustomerID
+
+                                UPDATE Products
+                                SET 
+                                Stock = (Stock + 1), TotalSold = (TotalSold - 1)
+                                WHERE
+                                ProductID = @ProductID;
+                            END
+                        ELSE
+                            BEGIN
+                                UPDATE Orders
+                                SET
+                                Quantity = @Quantity - 1
+                                WHERE
+                                OrderID = @OrderID
+
+                                UPDATE Products
+                                SET 
+                                Stock = (Stock + 1), TotalSold = (TotalSold - 1)
+                                WHERE
+                                ProductID = @ProductID;
+                            END
 						
 						SELECT @ResponseMessage = 200;
 					END

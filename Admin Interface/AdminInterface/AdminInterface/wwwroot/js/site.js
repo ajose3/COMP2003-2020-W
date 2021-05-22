@@ -53,7 +53,7 @@ function navDropdownMenuClick() {
 }
 
 function setupDashboard() {
-    setupOrdersWidget();
+    //setupOrdersWidget();
 }
 
 function setupOrdersWidget() {
@@ -81,11 +81,11 @@ function setupOrdersWidget() {
             animateChart(progressLength);
 
         } catch (err) {
-            console.log("error setting up orders widget: error getting data value from element");
+            //console.log("error setting up orders widget: error getting data value from element");
         }
 
     } else {
-        console.log("error setting up orders widget: error getting selected target");
+        //console.log("error setting up orders widget: error getting selected target");
     }
 }
 

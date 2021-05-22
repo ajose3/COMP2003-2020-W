@@ -211,3 +211,5 @@ Having previously decided to focus mainly on the API and the Recommender system,
 As well as this, we reflected on the progress made on the admin interface, and determined tasks to accelerate its development as the deadline approaches.
 Having completed most of the coding for the project, our attention is now increasingly on the report and final presentation.
 
+Week 25 (17/05/21 - 21/05/21):
+We started by disusing what task had been completed and started planning for the demo on the 25th. This week we had some tasks that required the whole group to work on, so we had a longer session to work on these. The admin interface had some issues that we worked through as well as some stored procedures. We discussed what we had left to do and set some tasks for next week: Connecting to the API, making slides for presentation demo, making some sufficient data  for the database

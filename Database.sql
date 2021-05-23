@@ -1068,7 +1068,7 @@ BEGIN
                             BEGIN
                                 IF EXISTS (SELECT * FROM Reviews WHERE CustomerID = @CustomerID AND ProductID = @ProductID)
                                     BEGIN
-                                        UPDATE Reviews SET Title = @Title, Description = @Description WHERE CustomerID = @CustomerID AND ProductID = @ProductID;
+                                        UPDATE Reviews SET Title = @Title, Description = @Description, Rating = @Rating WHERE CustomerID = @CustomerID AND ProductID = @ProductID;
                                     END
                                 ELSE
                                     BEGIN
@@ -1077,6 +1077,7 @@ BEGIN
                                         VALUES
                                         (@ProductID, @CustomerID, @Rating, @Title, @Description);                                
                                     END
+                                EXEC CalculateInsertAverage @ProdID = @ProductID;
                                 SELECT @ResponseMessage = 200;
                             END
                         ELSE
@@ -1181,25 +1182,27 @@ SELECT * FROM [NumReviews]
 
 
 --- Updating Average Rating every time a new review is made.
-CREATE TRIGGER dbo.UpdateProductRating
-ON dbo.Reviews
-AFTER INSERT, DELETE
-AS
-BEGIN
-	DECLARE @ProductID INT;
-	SET @ProductID = ( SELECT ProductID from inserted)
-	EXEC dbo.CalculateInsertAverage
-END;
+-- CREATE TRIGGER UpdateProductRating
+-- ON Reviews
+-- AFTER INSERT, DELETE
+-- AS
+-- BEGIN
+-- 	DECLARE @ProdID INT;
+-- 	SET @ProdID = ( SELECT ProductID from inserted)
+-- 	EXEC dbo.CalculateInsertAverage @ProductID = @ProdID
+-- END;
 
-CREATE PROCEDURE CalculateInsertAverage (@ProductID int, @CurrentRating int)
+CREATE PROCEDURE CalculateInsertAverage @ProdID int
 AS
 BEGIN
+	Declare @CurrentRating FLOAT;
 	Set @CurrentRating = (SELECT AVG(Rating) 
 	FROM dbo.Reviews
-	Where ProductID = @ProductID)
+	Where ProductID = @ProdID)
+
 	UPDATE dbo.Products
 	SET AVGRating = @CurrentRating
-	WHERE ProductID = @ProductID
+	WHERE ProductID = @ProdID
 END
 Go
 

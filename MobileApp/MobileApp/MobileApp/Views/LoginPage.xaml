@@ -24,10 +24,10 @@
             <Button Text="Login" x:Name="LoginBtn" Command="{Binding LoginCmd}" Margin="0,10"/>
             <BoxView Style="{StaticResource SeparatorLineStyle}" Margin="0,0,0,0"/>
             <!--<Label x:Name="messageLabel"/>-->
-            <FlexLayout Wrap="Wrap" JustifyContent="Center" Margin="0,10">
-                <Button WidthRequest="165" Text="Sign Up" Command="{Binding GoSignUpPage}" FontSize="18" Margin="5"/>
-                <Button WidthRequest="165" Text="Reset Password" Command="{Binding GoResetPage}" FontSize="18" Margin="5"/>
-            </FlexLayout>
+            <Grid ColumnDefinitions="*,*" Margin="0,5">
+                <Button WidthRequest="165" Text="Sign Up" Command="{Binding GoSignUpPage}" FontSize="18" Margin="0,5"/>
+                <Button WidthRequest="165" Text="Reset Password" Command="{Binding GoResetPage}" FontSize="18" Margin="0,5" Grid.Column="1"/>
+            </Grid>
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>

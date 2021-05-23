@@ -32,7 +32,7 @@ namespace MobileApp.ViewModels
             if (TokenData.value !=null || TokenData.value != "0")
             {
                 //await Shell.Current.GoToAsync("successPage");
-                await Shell.Current.DisplayAlert("Token", TokenData.value, "Ok");
+                //await Shell.Current.DisplayAlert("Token", TokenData.value, "Ok");
                 await Shell.Current.Navigation.PopToRootAsync();
             }
         });

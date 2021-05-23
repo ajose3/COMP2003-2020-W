@@ -213,10 +213,10 @@
             </DataTemplate>
 
             <DataTemplate x:Key="ReviewTemplate">
-                <Grid Padding="5">
-                    <Frame BorderColor="#D8DAE0" CornerRadius="20" HasShadow="True" HeightRequest="120">
+                <Grid Padding="0,5">
+                    <Frame BorderColor="#D8DAE0" CornerRadius="20" HasShadow="True">
                         <StackLayout>
-                            <Label Text="{Binding Title}" FontSize="28" TextColor="Black"/>
+                            <Label Text="{Binding Title}" FontSize="24" TextColor="Black"/>
                             <FlexLayout>
                                 <Label Text="{StaticResource IconStar}" FontFamily="FA-S" FontSize="20" TextColor="{Binding StarColor1}"/>
                                 <Label Text="{StaticResource IconStar}" FontFamily="FA-S" FontSize="20" TextColor="{Binding StarColor2}"/>

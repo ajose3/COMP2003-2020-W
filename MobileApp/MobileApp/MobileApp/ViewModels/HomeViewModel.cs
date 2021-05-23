@@ -7,6 +7,7 @@ using System.Windows.Input;
 using MobileApp.Data;
 using MobileApp.Models;
 using MobileApp.Services;
+using MobileApp.Views;
 using Xamarin.Essentials;
 using Xamarin.Forms;
 
@@ -91,6 +92,7 @@ namespace MobileApp.ViewModels
         {
             //Shell.Current.DisplayAlert("LO","Logging out","OK");
             await dataService.Logout();
+            await Shell.Current.GoToAsync($"//{nameof(HomePage)}/loginPage");
         });
 
 

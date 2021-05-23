@@ -192,13 +192,18 @@ namespace MobileApp.ViewModels
 
                 Review r = new Review(Id, RRating, RTitle, RDescription);
 
-                await dataService.PostAddReview(r);
+                string response = await dataService.PostAddReview(r);
 
-                Task.Run(async () => await LoadReviews());
+                await Task.Run(async () => await LoadReviews());
 
                 //Reviews = ReviewData.getReviews(Id);
                 OnPropertyChanged("Reviews");
                 clearReview();
+
+                if (response == "208")
+                {
+                    await Shell.Current.DisplayAlert("Oops", "Your review couldn't be added. \n It appears you don't own this item.", "OK");
+                }
             }
             else
             {

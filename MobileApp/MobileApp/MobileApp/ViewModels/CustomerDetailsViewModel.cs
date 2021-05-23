@@ -185,7 +185,12 @@ namespace MobileApp.ViewModels
             if (newPassword == newPasswordConfirm)
             {
                 //dataService.PutChangePassword(password, newPassword);
-                await dataService.PutChangePassword(newPassword);
+                string responseCode = await dataService.PutChangePassword(newPassword);
+                await Shell.Current.Navigation.PopAsync();
+                if (responseCode != "200")
+                {
+                    await Shell.Current.DisplayAlert("Oops", "Something went wrong changing your password. \nPlease try again.", "Ok");
+                }
             }
             else
             {

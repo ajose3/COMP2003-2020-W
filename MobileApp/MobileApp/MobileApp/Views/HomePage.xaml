@@ -28,7 +28,7 @@
     <ContentPage.ToolbarItems>
         <ToolbarItem 
             x:Name="logoutBtn"
-            Text="Logout"
+            Text="{Binding loginText}"
                  Order="Primary"
                  Priority="0" 
                  Command="{Binding Logout}"/>

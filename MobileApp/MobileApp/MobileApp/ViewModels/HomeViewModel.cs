@@ -16,16 +16,30 @@ namespace MobileApp.ViewModels
     public class HomeViewModel : INotifyPropertyChanged
     {
         WebDataService dataService = new WebDataService();
-        public HomeViewModel() 
+        public HomeViewModel()
         {
+            if (TokenData.value == null)
+            {
+                loginText = "login";
+            }
+            else if (TokenData.value.Length > 3)
+            {
+                loginText = "logout";
+            }
+            else
+            {
+                loginText = "login";
+            }
+
             Task.Run(async () => await GetTrending());
             Task.Run(async () => await GetFeatured());
-            Task.Run(async () => await GetAllProducts()); 
+            Task.Run(async () => await GetAllProducts());
             Task.Run(async () => await GetRecommended());
             //OnPropertyChanged("Products");
             //TrendingToday = dataService.GetTrending();
             //OpenWebCommand = new Command(async () => await Browser.OpenAsync("https://aka.ms/xamarin-quickstart"));
         }
+        public string loginText { get; set; }
 
         public async Task GetRecommended()
         {

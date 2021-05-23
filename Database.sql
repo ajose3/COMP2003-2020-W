@@ -1064,19 +1064,25 @@ BEGIN
 					BEGIN
 						DECLARE @CustomerID AS INT = (SELECT CustomerID FROM Sessions WHERE Token = @Token);
 
-                        IF EXISTS (SELECT * FROM Reviews WHERE CustomerID = @CustomerID AND ProductID = @ProductID)
+                        IF EXISTS (SELECT * FROM Orders WHERE CustomerID = @CustomerID AND ProductID = @ProductID) 
                             BEGIN
-                                UPDATE Reviews SET Title = @Title, Description = @Description WHERE CustomerID = @CustomerID AND ProductID = @ProductID;
+                                IF EXISTS (SELECT * FROM Reviews WHERE CustomerID = @CustomerID AND ProductID = @ProductID)
+                                    BEGIN
+                                        UPDATE Reviews SET Title = @Title, Description = @Description WHERE CustomerID = @CustomerID AND ProductID = @ProductID;
+                                    END
+                                ELSE
+                                    BEGIN
+                                        INSERT INTO Reviews
+                                        (ProductID, CustomerID, Rating, Title, Description)
+                                        VALUES
+                                        (@ProductID, @CustomerID, @Rating, @Title, @Description);                                
+                                    END
+                                SELECT @ResponseMessage = 200;
                             END
                         ELSE
                             BEGIN
-                                INSERT INTO Reviews
-                                (ProductID, CustomerID, Rating, Title, Description)
-                                VALUES
-                                (@ProductID, @CustomerID, @Rating, @Title, @Description);
+                                SELECT @ResponseMessage = 208;
                             END
-						SELECT @ResponseMessage = 200;
-
 					END
 				ELSE
 					BEGIN

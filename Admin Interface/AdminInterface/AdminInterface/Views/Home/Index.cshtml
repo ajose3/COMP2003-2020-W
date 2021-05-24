@@ -58,17 +58,17 @@
             <tbody>
                 <tr>
                     <td>#12345</td>
-                    <td>$45.00</td>
+                    <td>£45.00</td>
                     <td>Dispatched</td>
                 </tr>
                 <tr>
                     <td>#23456</td>
-                    <td>$09.49</td>
+                    <td>£09.49</td>
                     <td>Delivered</td>
                 </tr>
                 <tr>
                     <td>#34567</td>
-                    <td>$14.28</td>
+                    <td>£14.28</td>
                     <td>Delivered</td>
                 </tr>
             </tbody>
@@ -78,6 +78,43 @@
 
 <div class="dashboardSection">
     <div class="dashboardBlock dashboardLeftBlock">
+        <span class="dashboardSectionHeader">Most Popular</span>
+        <div id="productsWrapper">
+
+            <a asp-controller="Products" asp-action="Details" asp-route-id="1">
+                <div class="product">
+                    <div class="productContainer">
+                        <img class="productImage" src="https://images-na.ssl-images-amazon.com/images/I/81gIeZ6rr0L._AC_SL1500_.jpg">
+                        <div class="productName">LG 55UN71006LB 55 Inch UHD 4K HDR Smart LED TV</div>
+                        <div class="productSold">Total Sold: 6</div>
+                    </div>
+                </div>
+            </a>
+
+            <a asp-controller="Products" asp-action="Details" asp-route-id="5">
+                <div class="product">
+                    <div class="productContainer">
+                        <img class="productImage" src="https://images-na.ssl-images-amazon.com/images/I/61wHra8XvtL._AC_SL1200_.jpg">
+                        <div class="productName">Sony BRAVIA KD49X70 - 49-inch - LED - 4K Ultra HD</div>
+                        <div class="productSold">Total Sold: 5</div>
+                    </div>
+                </div>
+            </a>
+
+            <a asp-controller="Products" asp-action="Details" asp-route-id="12">
+                <div class="product">
+                    <div class="productContainer">
+                        <img class="productImage" src="https://images-na.ssl-images-amazon.com/images/I/81GmE72mEaL._AC_SL1500_.jpg">
+                        <div class="productName">Acer Chromebook 314 CB314-H - (Intel Celeron N4000</div>
+                        <div class="productSold">Total Sold: 2</div>
+                    </div>
+                </div>
+            </a>
+
+        </div>
+    </div>
+
+    <div class="dashboardBlock dashboardRightBlock">
         <span class="dashboardSectionHeader">Low Stock</span>
 
         <div class="selectItemsWrapper">

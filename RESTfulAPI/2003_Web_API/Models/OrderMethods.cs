@@ -56,10 +56,11 @@ namespace _2003_Web_API.Models
                     order.TimeOrdered = Convert.ToDateTime(reader[1]);
                     order.Quantity = Convert.ToInt32(reader[2]);
                     order.ProductId = Convert.ToInt32(reader[3]);
-                    order.ProductName = reader[6].ToString();
-                    order.ImageUrl = reader[7].ToString();
-                    order.Price = Convert.ToDecimal(reader[10]);
-                    order.Category = reader[12].ToString();
+                    order.DeliveryDate = Convert.ToDateTime(reader[5]);
+                    order.ProductName = reader[7].ToString();
+                    order.ImageUrl = reader[8].ToString();
+                    order.Price = Convert.ToDecimal(reader[11]);
+                    order.Category = reader[13].ToString();
 
                     orderList.Add(order);
                 }
@@ -73,7 +74,7 @@ namespace _2003_Web_API.Models
             return orderList;
         }
 
-        public async Task<int> Add(string token, int productId, int quantity)
+        public async Task<int> Add(string token, int productId, int quantity, DateTime deliveryDate)
         {
             int response = 400;
 
@@ -102,6 +103,7 @@ namespace _2003_Web_API.Models
                 new SqlParameter("@Token", token),
                 new SqlParameter("@Quantity", quantity),
                 new SqlParameter("@ProductID", productId),
+                new SqlParameter("@DeliveryDate", deliveryDate),
                 outputParam
             };
 

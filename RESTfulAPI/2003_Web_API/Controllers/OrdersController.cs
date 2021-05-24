@@ -42,10 +42,10 @@ namespace _2003_Web_API.Controllers
         [HttpPost]
         [Route("orders/add")]
         [Produces("application/json")]
-        public async Task<ActionResult<int>> Post(string token, int productId, int quantity)
+        public async Task<ActionResult<int>> Post(string token, int productId, int quantity, DateTime deliveryDate)
         {
 
-            int responseMessage = await dataAccess.Add(token, productId, quantity);
+            int responseMessage = await dataAccess.Add(token, productId, quantity, deliveryDate);
             // check response
             if (responseMessage == 200)
             {

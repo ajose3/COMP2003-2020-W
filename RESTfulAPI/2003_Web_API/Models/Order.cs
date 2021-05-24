@@ -9,6 +9,7 @@ namespace _2003_Web_API.Models
     {
         public int OrderId { get; set; }
         public DateTime TimeOrdered { get; set; }
+        public DateTime DeliveryDate { get; set; }
         public int Quantity { get; set; }
         //public int ProductId { get; set; }
         public int CustomerId { get; set; }

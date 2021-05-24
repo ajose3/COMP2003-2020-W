@@ -24,9 +24,9 @@ namespace MobileApp.Data
         public static async Task AddToOrderAsync(BasketProduct product)
         {
             //convert product to order
-            Order order = new Order(product.Id, product.Name, product.Description, product.Price, product.ImageUrl, product.Stock, 1);
+            Order order = new Order(product.Id, product.Name, product.Description, product.Price, product.ImageUrl, product.Stock, product.Quantity);
 
-            await dataService.PostAddOrder(product.Id, product.Quantity);
+            await dataService.PostAddOrder(order.Id, order.Quantity,order.DeliveryDate);
         }
         public static void Clear()
         {

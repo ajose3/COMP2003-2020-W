@@ -98,12 +98,12 @@ namespace MobileApp.Services
 
         }
 
-        public async Task<string> PostAddOrder(int productId, int quantity)
+        public async Task<string> PostAddOrder(int productId, int quantity, DateTime deliveryDate)
         {
             var request = new HttpRequestMessage
             {
                 Method = HttpMethod.Post,
-                RequestUri = new Uri($"http://web.socem.plymouth.ac.uk/COMP2003/COMP2003_W/orders/add?token={TokenData.value}&productId={productId}&quantity={quantity}"),
+                RequestUri = new Uri($"http://web.socem.plymouth.ac.uk/COMP2003/COMP2003_W/orders/add?token={TokenData.value}&productId={productId}&quantity={quantity}&DeliveryDate={deliveryDate}"),
             };
 
             var response = await Client.SendAsync(request).ConfigureAwait(false);
@@ -126,10 +126,10 @@ namespace MobileApp.Services
 
             orders = JsonConvert.DeserializeObject<List<Order>>(returnedJson);
 
-            foreach (var order in orders)
-            {
-                order.DeliveryDate = order.GetDeliveryDate();
-            }
+            //foreach (var order in orders)
+            //{
+            //    order.DeliveryDate = order.GetDeliveryDate();
+            //}
             
             return orders;
         }

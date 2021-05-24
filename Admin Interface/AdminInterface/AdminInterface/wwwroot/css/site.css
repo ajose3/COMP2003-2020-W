@@ -628,3 +628,12 @@ button.accept-policy {
     font-size: 16px;
     color: #333;
 }
+
+.detailsImageWrapper {
+    width: 100%;
+}
+
+.detailsImage {
+    width: 300px;
+    padding: 20px 20px 30px 20px;
+}

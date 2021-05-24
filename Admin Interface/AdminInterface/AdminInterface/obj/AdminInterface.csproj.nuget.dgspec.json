@@ -1,31 +1,30 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\jackb\\Source\\Repos\\ajose3\\COMP2003-2020-W\\Admin Interface\\AdminInterface\\AdminInterface\\AdminInterface.csproj": {}
+    "/Users/alistair/Documents/GitHub/COMP2003-2020-W/Admin Interface/AdminInterface/AdminInterface/AdminInterface.csproj": {}
   },
   "projects": {
-    "C:\\Users\\jackb\\Source\\Repos\\ajose3\\COMP2003-2020-W\\Admin Interface\\AdminInterface\\AdminInterface\\AdminInterface.csproj": {
+    "/Users/alistair/Documents/GitHub/COMP2003-2020-W/Admin Interface/AdminInterface/AdminInterface/AdminInterface.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\jackb\\Source\\Repos\\ajose3\\COMP2003-2020-W\\Admin Interface\\AdminInterface\\AdminInterface\\AdminInterface.csproj",
+        "projectUniqueName": "/Users/alistair/Documents/GitHub/COMP2003-2020-W/Admin Interface/AdminInterface/AdminInterface/AdminInterface.csproj",
         "projectName": "AdminInterface",
-        "projectPath": "C:\\Users\\jackb\\Source\\Repos\\ajose3\\COMP2003-2020-W\\Admin Interface\\AdminInterface\\AdminInterface\\AdminInterface.csproj",
-        "packagesPath": "C:\\Users\\jackb\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\jackb\\Source\\Repos\\ajose3\\COMP2003-2020-W\\Admin Interface\\AdminInterface\\AdminInterface\\obj\\",
+        "projectPath": "/Users/alistair/Documents/GitHub/COMP2003-2020-W/Admin Interface/AdminInterface/AdminInterface/AdminInterface.csproj",
+        "packagesPath": "/Users/alistair/.nuget/packages/",
+        "outputPath": "/Users/alistair/Documents/GitHub/COMP2003-2020-W/Admin Interface/AdminInterface/AdminInterface/obj/",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\jackb\\AppData\\Roaming\\NuGet\\NuGet.Config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+          "/Users/alistair/.config/NuGet/NuGet.Config"
         ],
         "originalTargetFrameworks": [
-          "netcoreapp3.0"
+          "netcoreapp3.1"
         ],
         "sources": {
-          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
-          "netcoreapp3.0": {
+          "netcoreapp3.1": {
+            "targetAlias": "netcoreapp3.1",
             "projectReferences": {}
           }
         },
@@ -36,7 +35,8 @@
         }
       },
       "frameworks": {
-        "netcoreapp3.0": {
+        "netcoreapp3.1": {
+          "targetAlias": "netcoreapp3.1",
           "dependencies": {
             "EntityFramework": {
               "target": "Package",
@@ -79,7 +79,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.0.100\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "/usr/local/share/dotnet/sdk/5.0.203/RuntimeIdentifierGraph.json"
         }
       }
     }

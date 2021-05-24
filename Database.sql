@@ -1353,7 +1353,7 @@ GO
 
 ----------------
 
--- Displays random products from the top category
+-- Displays random products from the top category // home page
 CREATE PROCEDURE [dbo].[RecommendMostCategory]
 @Token VARCHAR(25)
 AS
@@ -1383,6 +1383,56 @@ BEGIN
 END
 GO
 
+CREATE PROCEDURE [dbo].[GetTopFromCat]
+@Token VARCHAR(50),
+@TopCat VARCHAR(50),
+@TopCat2 VARCHAR(50)
+AS
+BEGIN
+	IF EXISTS(SELECT * FROM Sessions WHERE Token = @Token AND CURRENT_TIMESTAMP <= ExpiryTime)
+		BEGIN
+            SELECT TOP 5* FROM Products WHERE Category = @TopCat OR Category = @TopCat2
+            ORDER BY NEWID();
+        END
+    ELSE
+        BEGIN
+            SELECT  TOP 8* FROM Products ORDER BY NEWID();
+        END
+END
+GO
+
+CREATE PROCEDURE [dbo].[CustomersReviews]
+@Token VARCHAR(50)
+AS
+BEGIN
+	IF EXISTS(SELECT * FROM Sessions WHERE Token = @Token AND CURRENT_TIMESTAMP <= ExpiryTime)
+	BEGIN
+		DECLARE @CustomerID AS INT = (SELECT CustomerID FROM Sessions WHERE Token = @Token);
+		SELECT * FROM ProductReviews WHERE CustomerID = @CustomerID
+	END
+END
+GO
+
+
+-- -- get orders and reviews
+-- CREATE PROCEDURE [dbo].[GetOrdersAndReviews]
+-- @Token VARCHAR(25)
+-- AS
+-- BEGIN
+-- 	IF EXISTS(SELECT * FROM Sessions WHERE Token = @Token AND CURRENT_TIMESTAMP <= ExpiryTime)
+-- 		BEGIN
+-- 			DECLARE @CustomerID AS INT = (SELECT CustomerID FROM Sessions WHERE Token = @Token);
+			
+-- 			-- select the most common value for category 
+
+-- 			SELECT OrderID, Orders.ProductID, Quantity, Rating, Category
+-- 			FROM Orders
+-- 			INNER JOIN Reviews ON Orders.ProductID = Reviews.ProductID AND Orders.CustomerID = Reviews.CustomerID INNER JOIN Products ON Orders.ProductID = Products.ProductID
+-- 			WHERE Orders.CustomerID = @CustomerID
+
+-- 		END
+-- END
+-- GO
 
 
 

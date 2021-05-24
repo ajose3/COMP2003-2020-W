@@ -1,20 +1,21 @@
 ﻿<Properties StartupConfiguration="{DDFFCD52-952F-4D8E-8205-B781A0F4C0D0}|Default">
-  <MonoDevelop.Ide.ItemProperties.AdminInterface PreferredExecutionTarget="/Applications/Safari.app" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="AdminInterface/wwwroot/js/site.js">
+  <MonoDevelop.Ide.ItemProperties.AdminInterface PreferredExecutionTarget="/Applications/Google Chrome.app" />
+  <MonoDevelop.Ide.Workbench ActiveDocument="AdminInterface/Views/Products/Index.cshtml">
     <Files>
       <File FileName="AdminInterface/Models/Sessions.cs" Line="1" Column="1" />
-      <File FileName="AdminInterface/Views/Shared/_ValidationScriptsPartial.cshtml" Line="1" Column="1" />
-      <File FileName="AdminInterface/Views/Shared/_Layout.cshtml" Line="1" Column="1" />
-      <File FileName="AdminInterface/Views/Products/Index.cshtml" Line="79" Column="8" />
-      <File FileName="AdminInterface/wwwroot/css/site.css" Line="573" Column="22" />
-      <File FileName="AdminInterface/Models/Products.cs" Line="1" Column="1" />
-      <File FileName="AdminInterface/Views/Orders/Index.cshtml" Line="55" Column="8" />
-      <File FileName="AdminInterface/Views/Login/Index.cshtml" Line="1" Column="1" />
+      <File FileName="AdminInterface/Views/Shared/_ValidationScriptsPartial.cshtml" />
+      <File FileName="AdminInterface/Views/Shared/_Layout.cshtml" Line="42" Column="24" />
+      <File FileName="AdminInterface/Views/Products/Index.cshtml" Line="71" Column="18" />
+      <File FileName="AdminInterface/wwwroot/css/site.css" Line="615" Column="29" />
+      <File FileName="AdminInterface/Models/Products.cs" />
+      <File FileName="AdminInterface/Views/Orders/Index.cshtml" />
+      <File FileName="AdminInterface/Views/Login/Index.cshtml" />
       <File FileName="AdminInterface/Views/Reviews/Index.cshtml" Line="62" Column="1" />
-      <File FileName="AdminInterface/Views/Sessions/Index.cshtml" Line="29" Column="13" />
-      <File FileName="AdminInterface/Views/Customers/Index.cshtml" Line="85" Column="42" />
-      <File FileName="AdminInterface/Views/Home/Index.cshtml" Line="129" Column="39" />
+      <File FileName="AdminInterface/Views/Sessions/Index.cshtml" />
+      <File FileName="AdminInterface/Views/Customers/Index.cshtml" />
+      <File FileName="AdminInterface/Views/Home/Index.cshtml" Line="90" Column="27" />
       <File FileName="AdminInterface/wwwroot/js/site.js" Line="88" Column="11" />
+      <File FileName="AdminInterface/Views/Products/Details.cshtml" Line="1" Column="1" />
     </Files>
     <Pads>
       <Pad Id="ProjectPad">
@@ -25,21 +26,18 @@
               <Node name="Models" expanded="True" />
               <Node name="Views" expanded="True">
                 <Node name="Home" expanded="True" />
-                <Node name="Reviews" expanded="True" />
+                <Node name="Products" expanded="True">
+                  <Node name="Index.cshtml" selected="True" />
+                </Node>
                 <Node name="Shared" expanded="True" />
               </Node>
               <Node name="wwwroot" expanded="True">
                 <Node name="css" expanded="True" />
-                <Node name="js" expanded="True">
-                  <Node name="site.js" selected="True" />
-                </Node>
+                <Node name="js" expanded="True" />
               </Node>
             </Node>
           </Node>
         </State>
-      </Pad>
-      <Pad Id="MonoDevelop.Debugger.WatchPad">
-        <State />
       </Pad>
     </Pads>
   </MonoDevelop.Ide.Workbench>

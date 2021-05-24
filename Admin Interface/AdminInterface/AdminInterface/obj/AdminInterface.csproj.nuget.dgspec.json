@@ -1,21 +1,25 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\jackb\\Source\\Repos\\ajose3\\COMP2003-2020-W\\Admin Interface\\AdminInterface\\AdminInterface\\AdminInterface.csproj": {}
+    "C:\\Users\\finla\\Source\\Repos\\ajose3\\COMP2003-2020-W\\Admin Interface\\AdminInterface\\AdminInterface\\AdminInterface.csproj": {}
   },
   "projects": {
-    "C:\\Users\\jackb\\Source\\Repos\\ajose3\\COMP2003-2020-W\\Admin Interface\\AdminInterface\\AdminInterface\\AdminInterface.csproj": {
+    "C:\\Users\\finla\\Source\\Repos\\ajose3\\COMP2003-2020-W\\Admin Interface\\AdminInterface\\AdminInterface\\AdminInterface.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\jackb\\Source\\Repos\\ajose3\\COMP2003-2020-W\\Admin Interface\\AdminInterface\\AdminInterface\\AdminInterface.csproj",
+        "projectUniqueName": "C:\\Users\\finla\\Source\\Repos\\ajose3\\COMP2003-2020-W\\Admin Interface\\AdminInterface\\AdminInterface\\AdminInterface.csproj",
         "projectName": "AdminInterface",
-        "projectPath": "C:\\Users\\jackb\\Source\\Repos\\ajose3\\COMP2003-2020-W\\Admin Interface\\AdminInterface\\AdminInterface\\AdminInterface.csproj",
-        "packagesPath": "C:\\Users\\jackb\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\jackb\\Source\\Repos\\ajose3\\COMP2003-2020-W\\Admin Interface\\AdminInterface\\AdminInterface\\obj\\",
+        "projectPath": "C:\\Users\\finla\\Source\\Repos\\ajose3\\COMP2003-2020-W\\Admin Interface\\AdminInterface\\AdminInterface\\AdminInterface.csproj",
+        "packagesPath": "C:\\Users\\finla\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\finla\\Source\\Repos\\ajose3\\COMP2003-2020-W\\Admin Interface\\AdminInterface\\AdminInterface\\obj\\",
         "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "C:\\Microsoft\\Xamarin\\NuGet\\"
+        ],
         "configFilePaths": [
-          "C:\\Users\\jackb\\AppData\\Roaming\\NuGet\\NuGet.Config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+          "C:\\Users\\finla\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Xamarin.Offline.config"
         ],
         "originalTargetFrameworks": [
           "netcoreapp3.0"

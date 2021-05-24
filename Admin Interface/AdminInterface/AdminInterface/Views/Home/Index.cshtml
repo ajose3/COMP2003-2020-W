@@ -56,21 +56,27 @@
                 </tr>
             </thead>
             <tbody>
-                <tr>
-                    <td>#12345</td>
-                    <td>£45.00</td>
-                    <td>Dispatched</td>
-                </tr>
-                <tr>
-                    <td>#23456</td>
-                    <td>£09.49</td>
-                    <td>Delivered</td>
-                </tr>
-                <tr>
-                    <td>#34567</td>
-                    <td>£14.28</td>
-                    <td>Delivered</td>
-                </tr>
+                <a asp-controller="Orders" asp-action="Details" asp-route-id="6">
+                    <tr>
+                         <td>#6</td>
+                         <td>£482.96</td>
+                         <td>Processing</td>
+                    </tr>
+                </a>
+                <a asp-controller="Orders" asp-action="Details" asp-route-id="12">
+                    <tr>
+                        <td>#12</td>
+                        <td>£440.00</td>
+                        <td>Dispatched</td>
+                    </tr>
+                </a>
+                <a asp-controller="Orders" asp-action="Details" asp-route-id="18">
+                    <tr>
+                        <td>#18</td>
+                        <td>£229.00</td>
+                        <td>Dispatched</td>
+                    </tr>
+                </a>
             </tbody>
         </table>
     </div>
@@ -115,49 +121,43 @@
     </div>
 
     <div class="dashboardBlock dashboardRightBlock">
-        <span class="dashboardSectionHeader">Low Stock</span>
+        <span class="dashboardSectionHeader">Low in Stock</span>
+        <div id="productsWrapper">
 
-        <div class="selectItemsWrapper">
-            <div class="selectItem">
-                <div class="selectItemContent">
-                    <div class="selectItemTitle">Product</div>
+            <a asp-controller="Products" asp-action="Details" asp-route-id="43">
+                <div class="product">
+                    <div class="productContainer">
+                        <img class="productImage" src="https://m.media-amazon.com/images/I/61mpMH5TzkL._AC_UY218_.jpg">
+                        <div class="productName">Logitech G502 LIGHTSPEED Wireless Gaming Mouse</div>
+                        <div class="productSold">Stock: 92</div>
+                    </div>
                 </div>
-                <div class="selectItemSVGWrapper">
-                    <svg class="selectSVG" width="30" height="30">
-                        <path class="selectSVGPath" fill="none" stroke-linecap="round" stroke-width="3" d="M 7.5 5 22.5 15 M 22.5 15 7.5 25" />
-                    </svg>
-                </div>
-            </div>
+            </a>
 
-            <div class="selectItem">
-                <div class="selectItemContent">
-                    <div class="selectItemTitle">Product</div>
+            <a asp-controller="Products" asp-action="Details" asp-route-id="4">
+                <div class="product">
+                    <div class="productContainer">
+                        <img class="productImage" src="https://images-na.ssl-images-amazon.com/images/I/81R1Dp8SMuL._AC_SL1500_.jpg">
+                        <div class="productName">Panasonic TX-24J330B HD Ready TV</div>
+                        <div class="productSold">Stock: 98</div>
+                    </div>
                 </div>
-                <div class="selectItemSVGWrapper">
-                    <svg class="selectSVG" width="30" height="30">
-                        <path class="selectSVGPath" fill="none" stroke-linecap="round" stroke-width="3" d="M 7.5 5 22.5 15 M 22.5 15 7.5 25" />
-                    </svg>
-                </div>
-            </div>
+            </a>
 
-            <div class="selectItem">
-                <div class="selectItemContent">
-                    <div class="selectItemTitle">Product</div>
+            <a asp-controller="Products" asp-action="Details" asp-route-id="25">
+                <div class="product">
+                    <div class="productContainer">
+                        <img class="productImage" src="https://images-na.ssl-images-amazon.com/images/I/415tZH2vjXL._AC_.jpg">
+                        <div class="productName">Sony PlayStation 4 500GB Console - Black </div>
+                        <div class="productSold">Stock: 98</div>
+                    </div>
                 </div>
-                <div class="selectItemSVGWrapper">
-                    <svg class="selectSVG" width="30" height="30">
-                        <path class="selectSVGPath" fill="none" stroke-linecap="round" stroke-width="3" d="M 7.5 5 22.5 15 M 22.5 15 7.5 25" />
-                    </svg>
-                </div>
-            </div>
-
-            <div class="selectItemsBtns">
-                <div class="widgetBtn gridBtnLeft">view all</div>
-            </div>
+            </a>
 
         </div>
-
     </div>
+
+
 </div>
 
 <script>let activePageIndex = 0;

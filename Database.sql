@@ -1126,7 +1126,8 @@ EXEC WriteReview @Token = '00-4B68-A7CA-EA85320CB2ED', @Title = 'title', @Rating
 SELECT @Out AS 'OutputMessage';
 --------
 
-
+-- gets products from the same category with the same or better rating
+-- look at customers orders -> find their most comely bought category and find best products from there
 CREATE PROCEDURE Recommending
 @Token VARCHAR(25),
 @ProductId INT
@@ -1352,6 +1353,7 @@ GO
 
 ----------------
 
+-- Displays random products from the top category
 CREATE PROCEDURE [dbo].[RecommendMostCategory]
 @Token VARCHAR(25)
 AS

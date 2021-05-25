@@ -60,7 +60,7 @@
                 <Setter Property="Color" Value="{StaticResource LineColor}"/>
             </Style>
 
-            <DataTemplate x:Key="SearchPredictTemplate">
+            <!--<DataTemplate x:Key="SearchPredictTemplate">
                 <Grid Padding="10" HeightRequest="50">
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="0.4*" />
@@ -75,6 +75,17 @@
                                Text="{Binding Name}"
                                FontAttributes="Bold" />
                 </Grid>
+            </DataTemplate>-->
+
+            <DataTemplate x:Key="SearchPredictTemplate">
+                <StackLayout Padding="5" BackgroundColor="White">
+                    <Label 
+                        Text="{Binding Name}"
+                        FontAttributes="Bold"
+                        HeightRequest="25"
+                        FontSize="20"/>
+                    <BoxView Margin="0" Color="{StaticResource GridLineColor}" Style="{StaticResource SeparatorLineStyle}"/>
+                </StackLayout>
             </DataTemplate>
 
             <DataTemplate x:Key="ProductTemplate">

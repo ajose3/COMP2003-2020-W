@@ -168,7 +168,7 @@
             <Label Margin="10,10" Text="You might like" FontSize="30" CharacterSpacing="0.5" TextColor="Black" FontAttributes="Bold"/>
             <!--collection of all items in product array-->
             <CollectionView Margin="5"
-                            BackgroundColor="#f7f7f7"
+                            BackgroundColor="White"
                             ItemsLayout="VerticalList"
                             ItemsSource="{Binding products}"
                             ItemTemplate="{StaticResource ProductTemplate}"

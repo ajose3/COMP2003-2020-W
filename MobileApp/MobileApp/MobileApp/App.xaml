@@ -60,7 +60,7 @@
                 <Setter Property="Color" Value="{StaticResource LineColor}"/>
             </Style>
 
-            <DataTemplate x:Key="SearchPredictTemplate">
+            <!--<DataTemplate x:Key="SearchPredictTemplate">
                 <Grid Padding="10" HeightRequest="50">
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="0.4*" />
@@ -75,12 +75,23 @@
                                Text="{Binding Name}"
                                FontAttributes="Bold" />
                 </Grid>
+            </DataTemplate>-->
+
+            <DataTemplate x:Key="SearchPredictTemplate">
+                <StackLayout Padding="5" BackgroundColor="White">
+                    <Label 
+                        Text="{Binding Name}"
+                        FontAttributes="Bold"
+                        HeightRequest="25"
+                        FontSize="20"/>
+                    <BoxView Margin="0" Color="{StaticResource GridLineColor}" Style="{StaticResource SeparatorLineStyle}"/>
+                </StackLayout>
             </DataTemplate>
 
             <DataTemplate x:Key="ProductTemplate">
                 <Grid Padding="5">
-                    <Frame BorderColor="#D8DAE0" CornerRadius="20" HasShadow="True">
-                        <Grid Padding="0">
+                    <Frame BorderColor="#D8DAE0" CornerRadius="20" HasShadow="True" Padding="5">
+                        <Grid Padding="0" Margin="0">
                             <Grid.RowDefinitions>
                                 <RowDefinition Height="Auto"/>
                                 <RowDefinition Height="Auto"/>
@@ -118,47 +129,47 @@
 
             <DataTemplate x:Key="CarouselTemplate">
                 <StackLayout>
+                    <StackLayout.GestureRecognizers>
+                        <!--<TapGestureRecognizer Command="{Binding selectCarouselItem}" CommandParameter="{Binding Id}" />-->
+                        <TapGestureRecognizer Tapped="CarouselItemTapped" />
+                    </StackLayout.GestureRecognizers>
                     <Frame HasShadow="True"
                                    BorderColor="LightGray"
                                    CornerRadius="5"
                                    Margin="4,2"
                                    Padding="0,10"
-                                   HeightRequest="220"
+                                   HeightRequest="250"
                                    WidthRequest="250">
-                        <StackLayout Margin="0" Padding="0">
-                            <StackLayout.GestureRecognizers>
-                                <!--<TapGestureRecognizer Command="{Binding selectCarouselItem}" CommandParameter="{Binding Id}" />-->
-                                <TapGestureRecognizer Tapped="CarouselItemTapped" />
-                            </StackLayout.GestureRecognizers>
+                        <Grid Margin="0" Padding="0" RowDefinitions="3*,.02*,56,.60*">
                             <Label Text="{Binding Id}" IsVisible="false" x:Name="ProductID"/>
-                            <Image Source="{Binding ImageUrl}" 
+                            <Image Source="{Binding ImageUrl}" Grid.Row="0"
                                            Aspect="AspectFit"
-                                           HeightRequest="125"
+                                           HeightRequest="120"
                                            VerticalOptions="Start"
                                            HorizontalOptions="Center" />
-                            <BoxView Style="{StaticResource SeparatorLineStyle}" Margin="0,0,0,0"/>
-                            <Label Text="{Binding Name}" 
+                            <BoxView Style="{StaticResource SeparatorLineStyle}" Margin="0,0,0,0" Grid.Row="1"/>
+                            <Label Text="{Binding Name}" Grid.Row="2"
                                            FontAttributes="Bold"
-                                           FontSize="28"
-                                           HorizontalOptions="Center"
+                                           FontSize="22"
+                                           HorizontalOptions="Center" HorizontalTextAlignment="Center"
                                            VerticalOptions="Center" TextColor="Black"/>
-                            <Label Text="{Binding Price, StringFormat='Price: £{0}'}"
-                                           FontSize="24"
+                            <Label Text="{Binding Price, StringFormat='Price: £{0}'}" Grid.Row="3"
+                                           FontSize="22"
                                            TextColor="Black"
-                                           HorizontalOptions="Center"/>
-                        </StackLayout>
+                                           HorizontalOptions="Center"
+                                           HorizontalTextAlignment="Center"/>
+                        </Grid>
                     </Frame>
                 </StackLayout>
             </DataTemplate>
 
             <DataTemplate x:Key="OrderDetailsTemplate">
                 <Grid Padding="3">
-                    
-                    <Frame BorderColor="#D8DAE0" CornerRadius="20" HasShadow="True" Padding="10">
+                    <Frame BorderColor="#D8DAE0" CornerRadius="20" HasShadow="True" Padding="5">
                         <StackLayout>
                             <Grid Padding="0">
                                 <Grid.RowDefinitions>
-                                    <RowDefinition Height="1.05*"/>
+                                    <RowDefinition Height="57"/>
                                     <RowDefinition Height="*"/>
                                     <RowDefinition Height="*"/>
                                 </Grid.RowDefinitions>
@@ -166,24 +177,32 @@
                                     <ColumnDefinition Width="100"/>
                                     <!--<ColumnDefinition Width="2*"/>-->
                                     <ColumnDefinition Width="*"/>
+                                    <ColumnDefinition Width="75"/>
                                 </Grid.ColumnDefinitions>
                                 <!-- scale image to fit the view (won't be cropped to fill view) -->
                                 <Image Grid.RowSpan="3"
                                    Source="{Binding ImageUrl}" 
                                    Aspect="AspectFit"
-                                   HeightRequest="80"/>
-                                <Label Margin="10,0,0,0" Grid.Column="1"
+                                   HeightRequest="10"/>
+                                <Label Margin="10,0,0,0" Grid.Column="1" Grid.ColumnSpan="2"
                                    Text="{Binding Name}" 
                                    FontAttributes="Bold" 
                                    TextColor="Black"
-                                   FontSize="23"/>
+                                   FontSize="23" Padding="0"/>
                                 <Label Margin="10,0,0,0" Grid.Column="1" Grid.Row="1"
                                        Text="{Binding Price, StringFormat='Price: £{0}'}"
                                        VerticalOptions="End" 
                                        TextColor="Black"
                                        FontSize="22"
                                        />
-                                <Label Margin="10,0,0,0" Grid.Column="1" Grid.Row="2"
+                                <Label Margin="0" Grid.Column="2" Grid.Row="1"
+                                       Text="{Binding Quantity, StringFormat='Qty: {0}'}"
+                                       VerticalOptions="End" 
+                                       HorizontalOptions="Center"
+                                       HorizontalTextAlignment="Center"
+                                       TextColor="Black"
+                                       FontSize="22"/>
+                                <Label Margin="10,0,0,0" Grid.Column="1" Grid.Row="2" Grid.ColumnSpan="2"
                                        Text="{Binding DeliveryDate, StringFormat='Estimated: {0:dd/MM/yy}'}"
                                        VerticalOptions="End" 
                                        TextColor="Black"
@@ -205,10 +224,10 @@
             </DataTemplate>
 
             <DataTemplate x:Key="ReviewTemplate">
-                <Grid Padding="5">
-                    <Frame BorderColor="#D8DAE0" CornerRadius="20" HasShadow="True" HeightRequest="120">
+                <Grid Padding="0,5">
+                    <Frame BorderColor="#D8DAE0" CornerRadius="20" HasShadow="True">
                         <StackLayout>
-                            <Label Text="{Binding Title}" FontSize="28" TextColor="Black"/>
+                            <Label Text="{Binding Title}" FontSize="24" TextColor="Black"/>
                             <FlexLayout>
                                 <Label Text="{StaticResource IconStar}" FontFamily="FA-S" FontSize="20" TextColor="{Binding StarColor1}"/>
                                 <Label Text="{StaticResource IconStar}" FontFamily="FA-S" FontSize="20" TextColor="{Binding StarColor2}"/>
@@ -229,25 +248,25 @@
                     <Frame BorderColor="#D8DAE0" CornerRadius="20" HasShadow="True" Padding="0,10">
                         <Grid Padding="0">
                             <Grid.RowDefinitions>
-                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="55"/>
                                 <RowDefinition Height="Auto"/>
                                 <!--<RowDefinition Height="5"/>-->
                             </Grid.RowDefinitions>
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition Width="1.2*"/>
                                 <ColumnDefinition Width="2*"/>
-                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="80"/>
                             </Grid.ColumnDefinitions>
                             <!-- scale image to fit the view (won't be cropped to fill view) -->
                             <Image Grid.RowSpan="2"
                                Source="{Binding ImageUrl}" 
                                Aspect="AspectFit"
                                HeightRequest="80"/>
-                            <Label Margin="5,0,0,0" Grid.Column="1" Grid.ColumnSpan="2"
+                            <Label Margin="5,0,0,0" Grid.Column="1" Grid.ColumnSpan="1"
                                Text="{Binding Name}" 
                                FontAttributes="Bold" 
                                TextColor="Black"
-                               FontSize="28"/>
+                               FontSize="22"/>
                             <Label Margin="5,0,0,0" Grid.Column="1" Grid.Row="1" Grid.ColumnSpan="1" 
                                    Text="{Binding Price,StringFormat='Price: £{0}'}"
                                    FontSize="24"
@@ -284,9 +303,9 @@
                     <Frame BorderColor="#D8DAE0" CornerRadius="20" HasShadow="True">
                         <Grid Padding="0">
                             <Grid.RowDefinitions>
-                                <RowDefinition Height=".5*"/>
-                                <RowDefinition Height=".2*"/>
-                                <RowDefinition Height="2*"/>
+                                <RowDefinition Height=".1*"/>
+                                <RowDefinition Height="20"/>
+                                <RowDefinition Height="150"/>
                                 <!--<RowDefinition Height="Auto"/>-->
                                 <!--<RowDefinition Height="Auto"/>-->
                             </Grid.RowDefinitions>
@@ -310,13 +329,13 @@
                                    TextColor="DarkGray"
                                    FontSize="20"/>
                             <Label Margin="0,0,0,0" Padding="0" Grid.Column="4" Grid.Row="0" Grid.ColumnSpan="3"
-                                   Text="{Binding Total, StringFormat='Total: £{0}'}" 
+                                   Text="{Binding Total, StringFormat='Total: £{0:F2}'}" 
                                    TextColor="DarkGray"
                                    FontSize="20"/>
                             <BoxView Style="{StaticResource SeparatorLineStyle}"
                                      Grid.Row="1"
-                                     Grid.ColumnSpan="7"/>
-                            <!--<Image />-->
+                                     Grid.ColumnSpan="7"
+                                     Margin="0"/>
                             <Image 
                                 Grid.Column="0"
                                 Grid.Row="2"
@@ -361,8 +380,6 @@
                                     HorizontalTextAlignment="Center"
                                     VerticalTextAlignment="Center"
                                    />
-
-                                <!--Text="{Binding theOrders.Count}"-->
                             </Frame>
                         </Grid>
                     </Frame>

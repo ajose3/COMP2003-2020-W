@@ -75,6 +75,58 @@ namespace _2003_Web_API.Models
             return token;
         }
 
+        public async Task<string> LogOut(string token)
+        {
+            string response = "400";
+
+            /*
+            208 - call successful but user not found
+            500 - connection success but unknown error
+            400 - method call failed
+            */
+
+            dataAccess.Database.OpenConnection();
+            DbCommand cmd = dataAccess.Database.GetDbConnection().CreateCommand();
+            cmd.CommandText = "Logout";
+            cmd.CommandType = CommandType.StoredProcedure;
+
+            // setup output parameter
+            SqlParameter outputParam = new SqlParameter("@ResponseMessage", SqlDbType.VarChar)
+            {
+                Direction = ParameterDirection.Output,
+                Size = 25
+            };
+
+
+            // setup procedure parameters
+            SqlParameter[] @params =
+            {
+
+                new SqlParameter("@Token", token),
+                outputParam
+            };
+
+            // add each parameter to command
+            foreach (var param in @params) cmd.Parameters.Add(param);
+
+            // execute command
+            await cmd.ExecuteNonQueryAsync();
+
+
+
+            try
+            {
+                // get output value from command
+                response = cmd.Parameters["@ResponseMessage"].Value.ToString();
+            }
+            catch (Exception)
+            {
+                System.Diagnostics.Debug.WriteLine("Logout: error getting output value from sql call");
+            }
+
+            return response;
+        }
+
         public async Task<int> Register(Customer customer)
         {
             int response = 400;

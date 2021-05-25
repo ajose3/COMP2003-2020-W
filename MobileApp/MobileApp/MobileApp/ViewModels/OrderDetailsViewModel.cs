@@ -15,29 +15,19 @@ namespace MobileApp.ViewModels
     {
         public OrderDetailsViewModel()
         {
-            RemoveFromOrder = new Command<Order>(RemoveOrder);
         }
-        public Command<Order> RemoveFromOrder { get; }
-
 
         public DateTime orderDate { get; set; }
-
         public List<Order> OrdersInGroup { get; set; }
 
-        //public ICommand RemoveFromOrder => new Command<Order>((Order order) =>
-        //{
-        //    OrderData.removeOrder(order);
-
-        //    OrdersInGroup = OrderData.loadOrdersByDate(orderDate);
-        //    OnPropertyChanged("OrdersInGroup");
-        //});
-        public void RemoveOrder(Order order)
+        public ICommand RemoveFromOrder => new Command<Order>(async (order) =>
         {
-            OrderData.removeOrder(order);
-
+            await OrderData.removeOrderAsync(order);
+            await OrderData.LoadOrdersAsync();
             OrdersInGroup = OrderData.loadOrdersByDate(orderDate);
             OnPropertyChanged("OrdersInGroup");
-        }
+        });
+
         public string OrderDate
         {
             //get => orderDate;

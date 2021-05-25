@@ -78,12 +78,13 @@
 
                     <Label Text="Recommended" TextColor="Black" FontSize="30"/>
                     <!--Carousel -> itemSource is list of all products change to recomeneded product list-->
-                    <CarouselView ItemsSource="{x:Static data:RecommendedProducts.RecProducts}"
+                    <CarouselView ItemsSource="{Binding recommended}"
                                     Margin="0,5,0,0"
                                     PeekAreaInsets="100"
                                     IndicatorView="indicatorview"
                                     HeightRequest="250"
                                     ItemTemplate="{StaticResource CarouselTemplate}">
+                        <!--ItemsSource="{x:Static data:RecommendedProducts.RecProducts}"-->
                     </CarouselView>
                     <IndicatorView x:Name="indicatorview"
                                     Margin="0,10,0,0"
@@ -153,11 +154,11 @@
                         <Button Text="{StaticResource IconStar}" FontFamily="FA-S" FontSize="20" TextColor="{Binding RStarColor5}" WidthRequest="30" HeightRequest="30" Padding="0" BackgroundColor="Transparent" BorderColor="Transparent" Command="{Binding SelectRatingCommand}" CommandParameter="5"/>
                     </FlexLayout>
                     <Frame BorderColor="LightGray" CornerRadius="20" Padding="10,0" HasShadow="True" Margin="0,10">
-                        <Entry Text="{Binding RTitle}" Placeholder="Title" PlaceholderColor="DarkGray" FontSize="28" TextColor="Black" BackgroundColor="White"/>
+                        <Entry x:Name="RTitle" Text="{Binding RTitle}" Placeholder="Title" PlaceholderColor="DarkGray" FontSize="28" TextColor="Black" BackgroundColor="White"/>
                     </Frame>
                     
                     <Frame BorderColor="LightGray" CornerRadius="20" Padding="10,0" HasShadow="True">
-                        <Editor Text="{Binding RDescription}" Placeholder="Description" PlaceholderColor="DarkGray" FontSize="28" TextColor="Black" HeightRequest="200" BackgroundColor="White"/>
+                        <Editor x:Name="RDescription" Text="{Binding RDescription}" Placeholder="Description" PlaceholderColor="DarkGray" FontSize="28" TextColor="Black" HeightRequest="200" BackgroundColor="White"/>
                     </Frame>
                     <Button Text="Done" Command="{Binding WriteReview}" Clicked="DoneReview_Clicked"/>
                 </StackLayout>

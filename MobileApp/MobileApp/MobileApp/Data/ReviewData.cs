@@ -76,51 +76,51 @@ namespace MobileApp.Data
         public static List<Review> getReviews(int ProdId)
         {
             Reviews = new List<Review>();
-            foreach (var review in AllReviews)
-            {
-                if (review.ProdID == ProdId)
-                {
-                    Reviews.Add(new Review
-                    {
-                        ProdID = review.ProdID,
-                        CustomerID = review.CustomerID,
-                        Rating = review.Rating,
-                        Title = review.Title,
-                        Desciption = review.Desciption
-                    });
-                }
-            }
-            if (Reviews.Count != 0)
-            {
-                foreach (var rev in Reviews)
-                {
-                    rev.StarColor1 = "Gray";
-                    rev.StarColor2 = "Gray";
-                    rev.StarColor3 = "Gray";
-                    rev.StarColor4 = "Gray";
-                    rev.StarColor5 = "Gray";
-                    if (rev.Rating >= 1)
-                    {
-                        rev.StarColor1 = "Gold";
-                    }
-                    if (rev.Rating >= 2)
-                    {
-                        rev.StarColor2 = "Gold";
-                    }
-                    if (rev.Rating >= 3)
-                    {
-                        rev.StarColor3 = "Gold";
-                    }
-                    if (rev.Rating >= 4)
-                    {
-                        rev.StarColor4 = "Gold";
-                    }
-                    if (rev.Rating >= 5)
-                    {
-                        rev.StarColor5 = "Gold";
-                    }
-                }
-            }
+            //foreach (var review in AllReviews)
+            //{
+            //    if (review.ProdID == ProdId)
+            //    {
+            //        Reviews.Add(new Review
+            //        {
+            //            ProdID = review.ProdID,
+            //            CustomerID = review.CustomerID,
+            //            Rating = review.Rating,
+            //            Title = review.Title,
+            //            Desciption = review.Desciption
+            //        });
+            //    }
+            //}
+            //if (Reviews.Count != 0)
+            //{
+            //    foreach (var rev in Reviews)
+            //    {
+            //        rev.StarColor1 = "Gray";
+            //        rev.StarColor2 = "Gray";
+            //        rev.StarColor3 = "Gray";
+            //        rev.StarColor4 = "Gray";
+            //        rev.StarColor5 = "Gray";
+            //        if (rev.Rating >= 1)
+            //        {
+            //            rev.StarColor1 = "Gold";
+            //        }
+            //        if (rev.Rating >= 2)
+            //        {
+            //            rev.StarColor2 = "Gold";
+            //        }
+            //        if (rev.Rating >= 3)
+            //        {
+            //            rev.StarColor3 = "Gold";
+            //        }
+            //        if (rev.Rating >= 4)
+            //        {
+            //            rev.StarColor4 = "Gold";
+            //        }
+            //        if (rev.Rating >= 5)
+            //        {
+            //            rev.StarColor5 = "Gold";
+            //        }
+            //    }
+            //}
             return (List<Review>)Reviews;
         }
         public static void writeReview(int prodId, int rating, string title, string desciption)

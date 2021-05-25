@@ -268,7 +268,6 @@ C:\Git\COMP2003-2020-W\RESTfulAPI\2003_Web_API\bin\Debug\netcoreapp3.1\runtimes\
 C:\Git\COMP2003-2020-W\RESTfulAPI\2003_Web_API\bin\Debug\netcoreapp3.1\runtimes\unix\lib\netcoreapp2.0\System.Runtime.Caching.dll
 C:\Git\COMP2003-2020-W\RESTfulAPI\2003_Web_API\bin\Debug\netcoreapp3.1\runtimes\win\lib\netcoreapp2.0\System.Runtime.Caching.dll
 C:\Git\COMP2003-2020-W\RESTfulAPI\2003_Web_API\bin\Debug\netcoreapp3.1\runtimes\win\lib\netstandard2.0\System.Security.Cryptography.ProtectedData.dll
-C:\Git\COMP2003-2020-W\RESTfulAPI\2003_Web_API\obj\Debug\netcoreapp3.1\2003_Web_API.csprojAssemblyReference.cache
 C:\Git\COMP2003-2020-W\RESTfulAPI\2003_Web_API\obj\Debug\netcoreapp3.1\2003_Web_API.AssemblyInfoInputs.cache
 C:\Git\COMP2003-2020-W\RESTfulAPI\2003_Web_API\obj\Debug\netcoreapp3.1\2003_Web_API.AssemblyInfo.cs
 C:\Git\COMP2003-2020-W\RESTfulAPI\2003_Web_API\obj\Debug\netcoreapp3.1\2003_Web_API.csproj.CoreCompileInputs.cache

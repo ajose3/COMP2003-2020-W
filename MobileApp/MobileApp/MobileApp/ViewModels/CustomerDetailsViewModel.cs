@@ -1,5 +1,6 @@
 ﻿using MobileApp.Models;
 using MobileApp.Services;
+using MobileApp.Views;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -13,10 +14,12 @@ namespace MobileApp.ViewModels
 {
     public class CustomerDetailsViewModel : INotifyPropertyChanged
     {
+        WebDataService dataService = new WebDataService();
         public CustomerDetailsViewModel()
         {
             Task.Run(async () => await LoadDetails());
         }
+        //User user { get; set; }
 
         public event PropertyChangedEventHandler PropertyChanged;
         public string email;
@@ -35,8 +38,28 @@ namespace MobileApp.ViewModels
             get { return password; }
             set
             {
-                email = value;
+                password = value;
                 OnPropertyChanged("Password");
+            }
+        }
+        public string newPassword;
+        public string NewPassword
+        {
+            get { return newPassword; }
+            set
+            {
+                newPassword = value;
+                OnPropertyChanged("NewPassword");
+            }
+        }
+        public string newPasswordConfirm;
+        public string NewPasswordConfirm
+        {
+            get { return newPasswordConfirm; }
+            set
+            {
+                newPasswordConfirm = value;
+                OnPropertyChanged("NewPasswordConfirm");
             }
         }
         public string firstName;
@@ -105,6 +128,7 @@ namespace MobileApp.ViewModels
         {
             WebDataService webDataService = new WebDataService();
             User user = await webDataService.GetCustomerDetails();
+            OnPropertyChanged("user");
             Email = user.email;
             //Password = (user.password).ToString();
             FirstName = user.FirstName;
@@ -122,6 +146,18 @@ namespace MobileApp.ViewModels
             }
         }
 
+        public User buildUser() 
+        {
+            bool gen = false;
+            if(gender == "Male")
+            {
+                gen = true;
+            }
+            User user = new User(email, Password, FirstName, LastName, Age, Address, PhoneNumber, gen);
+
+            return user;
+        }
+
         public ICommand GoToEditPage => new Command(() =>
         {
             Shell.Current.GoToAsync("editDetailsPage");
@@ -132,10 +168,35 @@ namespace MobileApp.ViewModels
             Shell.Current.GoToAsync("editPasswordPage");
         });
 
+        public ICommand updateUser => new Command(async () =>
+        {
+            await dataService.PutUpdateCustomer(buildUser());
+            await Shell.Current.DisplayAlert("Changed", "Changed Details", "Ok");
+            await Shell.Current.GoToAsync($"//{nameof(HomePage)}");
+        });
+
         protected virtual void OnPropertyChanged(string propertyName)
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
+
+        public ICommand ChangePassword => new Command(async () =>
+        {
+            if (newPassword == newPasswordConfirm)
+            {
+                //dataService.PutChangePassword(password, newPassword);
+                string responseCode = await dataService.PutChangePassword(newPassword);
+                await Shell.Current.Navigation.PopAsync();
+                if (responseCode != "200")
+                {
+                    await Shell.Current.DisplayAlert("Oops", "Something went wrong changing your password. \nPlease try again.", "Ok");
+                }
+            }
+            else
+            {
+                await Shell.Current.DisplayAlert("Oops", "Your new passwords don't match", "Ok");
+            }
+        });
 
     }
 }

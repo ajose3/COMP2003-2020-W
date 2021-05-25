@@ -1,10 +1,13 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
+using System.Threading.Tasks;
 using System.Windows.Input;
 using MobileApp.Data;
 using MobileApp.Models;
 using MobileApp.Services;
+using MobileApp.Views;
 using Xamarin.Essentials;
 using Xamarin.Forms;
 
@@ -12,13 +15,52 @@ namespace MobileApp.ViewModels
 {
     public class HomeViewModel : INotifyPropertyChanged
     {
-        public HomeViewModel() 
+        WebDataService dataService = new WebDataService();
+        public HomeViewModel()
         {
-            Featured = ProductData.GetFeatured();
-            OnPropertyChanged("Featured");
-            TrendingToday = ProductData.GetTrending();
-            OnPropertyChanged("TrendingToday");
+            if (TokenData.value == null)
+            {
+                loginText = "login";
+            }
+            else if (TokenData.value.Length > 3)
+            {
+                loginText = "logout";
+            }
+            else
+            {
+                loginText = "login";
+            }
+
+            Task.Run(async () => await GetTrending());
+            Task.Run(async () => await GetFeatured());
+            Task.Run(async () => await GetAllProducts());
+            Task.Run(async () => await GetRecommended());
+            //OnPropertyChanged("Products");
+            //TrendingToday = dataService.GetTrending();
             //OpenWebCommand = new Command(async () => await Browser.OpenAsync("https://aka.ms/xamarin-quickstart"));
+        }
+        public string loginText { get; set; }
+
+        public async Task GetRecommended()
+        {
+            recommended = await dataService.GetRecommended();
+            OnPropertyChanged("recommended");
+        }
+        public async Task GetTrending()
+        {
+            TrendingToday = await dataService.GetTrending();
+            OnPropertyChanged("TrendingToday");
+        }
+        public async Task GetFeatured()
+        {
+            Featured = await dataService.GetFeatured();
+            OnPropertyChanged("Featured");
+        }
+        public async Task GetAllProducts()
+        {
+            products = await dataService.GetAllProducts();
+            OnPropertyChanged("products");
+            ProductData.Products = products;
         }
 
         public ICommand PerformSearch => new Command<string>((string query) =>
@@ -28,6 +70,10 @@ namespace MobileApp.ViewModels
         public Product TrendingToday { get; set; }
 
         public Product Featured { get; set; }
+
+        public List<Product> products { get; private set; }
+        public List<Product> recommended { get; private set; }
+
 
         private Product selectItem;
         public Product SelectItem
@@ -54,6 +100,15 @@ namespace MobileApp.ViewModels
         {
             Shell.Current.GoToAsync($"productdetails?id={productId}");
         });
+
+
+        public ICommand Logout => new Command(async () =>
+        {
+            //Shell.Current.DisplayAlert("LO","Logging out","OK");
+            await dataService.Logout();
+            await Shell.Current.GoToAsync($"//{nameof(HomePage)}/loginPage");
+        });
+
 
         #region INotifyPropertyChanged
 

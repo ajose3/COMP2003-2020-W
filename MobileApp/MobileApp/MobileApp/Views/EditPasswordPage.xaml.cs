@@ -1,4 +1,5 @@
-﻿using System;
+﻿using MobileApp.ViewModels;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -15,6 +16,17 @@ namespace MobileApp.Views
         public EditPasswordPage()
         {
             InitializeComponent();
+            BindingContext = new CustomerDetailsViewModel();
+
+
+            newPasswordEntry.Completed += (object sender, EventArgs e) =>
+            {
+                confirmNewPasswordEntry.Focus();
+            };
+            confirmNewPasswordEntry.Completed += (object sender, EventArgs e) =>
+            {
+            };
+
         }
     }
 }

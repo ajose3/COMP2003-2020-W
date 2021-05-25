@@ -29,10 +29,15 @@ namespace MobileApp.ViewModels
             await webDataService.GetValidateCustomer(user);
             //var result = await webDataService.PutUpdateCustomer(user);
             //Shell.Current.DisplayAlert("LoginResult",user.OnSubmit(),"OK");
-            if (TokenData.value !=null || TokenData.value != "0")
+            if (TokenData.value == null || TokenData.value == "0" || TokenData.value.Length < 4 )
             {
-                await Shell.Current.GoToAsync("successPage");
-                await Shell.Current.DisplayAlert("Token", TokenData.value, "Ok");
+                //await Shell.Current.GoToAsync("successPage");
+                //await Shell.Current.DisplayAlert("Token", TokenData.value, "Ok");
+                await Shell.Current.DisplayAlert("Oops", "login failed", "Ok");
+            }
+            else
+            {
+                await Shell.Current.Navigation.PopToRootAsync();
             }
         });
         public ICommand GoSignUpPage => new Command(() =>

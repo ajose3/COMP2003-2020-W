@@ -57,12 +57,14 @@ namespace MobileApp.ViewModels
             {
                 ProductData.Products.Where(i => i.Id == Product.Id).FirstOrDefault().Stock -= Product.Quantity;
 
-                Product product = new Product(Product);
+                //Product product = new Product(Product);
 
-                for (int i = 0; i < Product.Quantity; i++)
-                {
-                    OrderData.AddToOrder(Product);
-                }
+                //for (int i = 0; i < Product.Quantity; i++)
+                //{
+                //    await OrderData.AddToOrderAsync(Product);
+                //}
+
+                await OrderData.AddToOrderAsync(Product);
             }
 
             await BasketService.ClearProducts();

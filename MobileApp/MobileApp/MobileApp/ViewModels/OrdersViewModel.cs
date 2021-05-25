@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
 using System.Text;
+using System.Threading.Tasks;
 using System.Windows.Input;
 using Xamarin.Forms;
 
@@ -14,14 +15,22 @@ namespace MobileApp.ViewModels
     {
         public OrdersViewModel()
         {
-            Orders = OrderData.LoadOrders();
+            //Orders = OrderData.LoadOrdersAsync();
+            //Orders = (List<OrdersGroup>)load;
+            Task.Run(async () => await LoadDetails());
             OnPropertyChanged("Orders");
         }
         public List<OrdersGroup> Orders { get; set; }
 
-        public ICommand load => new Command(() =>
+        public async Task LoadDetails()
         {
-            Orders = OrderData.LoadOrders();
+            Orders = await OrderData.LoadOrdersAsync();
+            OnPropertyChanged("Orders");
+        }
+
+        public ICommand load => new Command(async () =>
+        {
+            Orders = await OrderData.LoadOrdersAsync();
             OnPropertyChanged("Orders");
         });
 

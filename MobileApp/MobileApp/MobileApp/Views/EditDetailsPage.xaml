@@ -52,7 +52,7 @@
                     <Entry x:Name="phoneNumberEntry" Text="{Binding Address}" Placeholder="Phone Number" FontSize="Large"/>
                 </Frame>
 
-                <Button Text="Update User"/>
+                <Button Text="Update User" Command="{Binding updateUser}"/>
             </StackLayout>
         </ScrollView>
     </ContentPage.Content>

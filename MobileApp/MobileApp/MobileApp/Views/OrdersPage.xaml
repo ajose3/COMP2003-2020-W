@@ -20,6 +20,7 @@
                 ItemsLayout="VerticalList"
                 VerticalOptions="Start"
                 HorizontalOptions="Center"
+                
                 ItemsSource="{Binding Orders}"
                 ItemTemplate="{StaticResource OrderTemplate}"
                 SelectedItem="{Binding SelectedOrder, Mode=TwoWay}"
@@ -29,7 +30,7 @@
 
 
             <!-- separator line -->
-            <BoxView Style="{StaticResource SeparatorLineStyle}"/>
+            <!--<BoxView Style="{StaticResource SeparatorLineStyle}"/>-->
 
             <!-- flex box to display total price label next to value binding -->
             <!--<FlexLayout>
@@ -37,7 +38,7 @@
                 <Label Text="{Binding TotalPrice}" FontSize="Large"
                     Style="{DynamicResource BodyStyle}" TextColor="Black"/>
             </FlexLayout>-->
-            <Button Text="load" Command="{Binding load}"/>
+            <!--<Button Text="load" Command="{Binding load}"/>-->
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>

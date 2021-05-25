@@ -47,5 +47,24 @@ namespace _2003_Web_API.Controllers
                 return BadRequest(products);
             }
         }
+
+        [HttpGet]
+        [Route("recommendation/home")]
+        [Produces("application/json")]
+        public async Task<ActionResult<int>> GetHome(string Token)
+        {
+
+            List<Product> products = await dataAccess.GetHome(Token);
+            return Ok(products);
+            //// check response
+            //if (responseMessage == 200)
+            //{
+            //    return Ok(responseMessage);
+            //}
+            //else
+            //{
+            //    return BadRequest(responseMessage);
+            //}
+        }
     }
 }

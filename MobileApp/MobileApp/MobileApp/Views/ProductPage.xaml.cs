@@ -18,6 +18,11 @@ namespace MobileApp.Views
         {
             InitializeComponent();
             BindingContext = new ProductDetailsViewModel();
+
+            RTitle.Completed += (object sender, EventArgs e) =>
+            {
+                RDescription.Focus();
+            };
         }
         uint duration = 100;
         double openY = (Device.RuntimePlatform == "Android") ? 20 : 60;

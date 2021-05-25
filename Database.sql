@@ -706,14 +706,31 @@ BEGIN
 						DECLARE @Quantity AS INT = (SELECT Quantity FROM Orders WHERE OrderID = @OrderID)
 						
 						DECLARE @ProductID AS INT = (SELECT ProductID FROM Orders WHERE OrderID = @OrderID)
-						
-						DELETE FROM Orders WHERE OrderID = @OrderID AND CustomerID = @CustomerID
-						
-						UPDATE Products
-						SET 
-						Stock = (Stock + @Quantity), TotalSold = (TotalSold - @Quantity)
-						WHERE
-						ProductID = @ProductID;
+
+                        IF @Quantity = 1
+                            BEGIN
+                                DELETE FROM Orders WHERE OrderID = @OrderID AND CustomerID = @CustomerID
+
+                                UPDATE Products
+                                SET 
+                                Stock = (Stock + 1), TotalSold = (TotalSold - 1)
+                                WHERE
+                                ProductID = @ProductID;
+                            END
+                        ELSE
+                            BEGIN
+                                UPDATE Orders
+                                SET
+                                Quantity = @Quantity - 1
+                                WHERE
+                                OrderID = @OrderID
+
+                                UPDATE Products
+                                SET 
+                                Stock = (Stock + 1), TotalSold = (TotalSold - 1)
+                                WHERE
+                                ProductID = @ProductID;
+                            END
 						
 						SELECT @ResponseMessage = 200;
 					END
@@ -1037,7 +1054,7 @@ CREATE PROCEDURE WriteReview
 @ProductID INT,
 @Title VARCHAR(50),
 @Description TEXT,
-@ResponseMessage INT OUTPUT
+@ResponseMessage Int OUTPUT
 AS
 BEGIN
 	BEGIN TRANSACTION
@@ -1046,13 +1063,27 @@ BEGIN
 				IF Exists(SELECT * FROM Products WHERE ProductID = @ProductID)
 					BEGIN
 						DECLARE @CustomerID AS INT = (SELECT CustomerID FROM Sessions WHERE Token = @Token);
-						
-						INSERT INTO Reviews
-						(ProductID, CustomerID, Rating, Title, Description)
-						VALUES
-						(@ProductID, @CustomerID, @Rating, @Title, @Description);
-						
-						SELECT @ResponseMessage = 200;
+
+                        IF EXISTS (SELECT * FROM Orders WHERE CustomerID = @CustomerID AND ProductID = @ProductID) 
+                            BEGIN
+                                IF EXISTS (SELECT * FROM Reviews WHERE CustomerID = @CustomerID AND ProductID = @ProductID)
+                                    BEGIN
+                                        UPDATE Reviews SET Title = @Title, Description = @Description, Rating = @Rating WHERE CustomerID = @CustomerID AND ProductID = @ProductID;
+                                    END
+                                ELSE
+                                    BEGIN
+                                        INSERT INTO Reviews
+                                        (ProductID, CustomerID, Rating, Title, Description)
+                                        VALUES
+                                        (@ProductID, @CustomerID, @Rating, @Title, @Description);                                
+                                    END
+                                EXEC CalculateInsertAverage @ProdID = @ProductID;
+                                SELECT @ResponseMessage = 200;
+                            END
+                        ELSE
+                            BEGIN
+                                SELECT @ResponseMessage = 208;
+                            END
 					END
 				ELSE
 					BEGIN
@@ -1095,7 +1126,8 @@ EXEC WriteReview @Token = '00-4B68-A7CA-EA85320CB2ED', @Title = 'title', @Rating
 SELECT @Out AS 'OutputMessage';
 --------
 
-
+-- gets products from the same category with the same or better rating
+-- look at customers orders -> find their most comely bought category and find best products from there
 CREATE PROCEDURE Recommending
 @Token VARCHAR(25),
 @ProductId INT
@@ -1158,25 +1190,27 @@ SELECT * FROM [NumReviews]
 
 
 --- Updating Average Rating every time a new review is made.
-CREATE TRIGGER dbo.UpdateProductRating
-ON dbo.Reviews
-AFTER INSERT, DELETE
-AS
-BEGIN
-	DECLARE @ProductID INT;
-	SET @ProductID = ( SELECT ProductID from inserted)
-	EXEC dbo.CalculateInsertAverage
-END;
+-- CREATE TRIGGER UpdateProductRating
+-- ON Reviews
+-- AFTER INSERT, DELETE
+-- AS
+-- BEGIN
+-- 	DECLARE @ProdID INT;
+-- 	SET @ProdID = ( SELECT ProductID from inserted)
+-- 	EXEC dbo.CalculateInsertAverage @ProductID = @ProdID
+-- END;
 
-CREATE PROCEDURE CalculateInsertAverage (@ProductID int, @CurrentRating int)
+CREATE PROCEDURE CalculateInsertAverage @ProdID int
 AS
 BEGIN
+	Declare @CurrentRating FLOAT;
 	Set @CurrentRating = (SELECT AVG(Rating) 
 	FROM dbo.Reviews
-	Where ProductID = @ProductID)
+	Where ProductID = @ProdID)
+
 	UPDATE dbo.Products
 	SET AVGRating = @CurrentRating
-	WHERE ProductID = @ProductID
+	WHERE ProductID = @ProdID
 END
 Go
 
@@ -1326,6 +1360,7 @@ GO
 
 ----------------
 
+-- Displays random products from the top category // home page
 CREATE PROCEDURE [dbo].[RecommendMostCategory]
 @Token VARCHAR(25)
 AS
@@ -1394,6 +1429,56 @@ BEGIN
 END
 GO
 
+CREATE PROCEDURE [dbo].[GetTopFromCat]
+@Token VARCHAR(50),
+@TopCat VARCHAR(50),
+@TopCat2 VARCHAR(50)
+AS
+BEGIN
+	IF EXISTS(SELECT * FROM Sessions WHERE Token = @Token AND CURRENT_TIMESTAMP <= ExpiryTime)
+		BEGIN
+            SELECT TOP 5* FROM Products WHERE Category = @TopCat OR Category = @TopCat2
+            ORDER BY NEWID();
+        END
+    ELSE
+        BEGIN
+            SELECT  TOP 8* FROM Products ORDER BY NEWID();
+        END
+END
+GO
+
+CREATE PROCEDURE [dbo].[CustomersReviews]
+@Token VARCHAR(50)
+AS
+BEGIN
+	IF EXISTS(SELECT * FROM Sessions WHERE Token = @Token AND CURRENT_TIMESTAMP <= ExpiryTime)
+	BEGIN
+		DECLARE @CustomerID AS INT = (SELECT CustomerID FROM Sessions WHERE Token = @Token);
+		SELECT * FROM ProductReviews WHERE CustomerID = @CustomerID
+	END
+END
+GO
+
+
+-- -- get orders and reviews
+-- CREATE PROCEDURE [dbo].[GetOrdersAndReviews]
+-- @Token VARCHAR(25)
+-- AS
+-- BEGIN
+-- 	IF EXISTS(SELECT * FROM Sessions WHERE Token = @Token AND CURRENT_TIMESTAMP <= ExpiryTime)
+-- 		BEGIN
+-- 			DECLARE @CustomerID AS INT = (SELECT CustomerID FROM Sessions WHERE Token = @Token);
+			
+-- 			-- select the most common value for category 
+
+-- 			SELECT OrderID, Orders.ProductID, Quantity, Rating, Category
+-- 			FROM Orders
+-- 			INNER JOIN Reviews ON Orders.ProductID = Reviews.ProductID AND Orders.CustomerID = Reviews.CustomerID INNER JOIN Products ON Orders.ProductID = Products.ProductID
+-- 			WHERE Orders.CustomerID = @CustomerID
+
+-- 		END
+-- END
+-- GO
 
 
 

@@ -25,6 +25,15 @@
         </Style>
     </ContentPage.Resources>
 
+    <ContentPage.ToolbarItems>
+        <ToolbarItem 
+            x:Name="logoutBtn"
+            Text="{Binding loginText}"
+                 Order="Primary"
+                 Priority="0" 
+                 Command="{Binding Logout}"/>
+    </ContentPage.ToolbarItems>
+
 
     <ContentPage.BindingContext>
         <vm:HomeViewModel/>
@@ -45,12 +54,13 @@
             <Label Margin="10,0,0,0" Text="Recommended" CharacterSpacing="0.5" FontSize="24" TextColor="Black" FontAttributes="Bold"/>
 
             <!--Carousel -> itemSource is list of all products change to recomeneded product list-->
-            <CarouselView ItemsSource="{x:Static data:RecommendedProducts.RecProducts}"
+            <CarouselView ItemsSource="{Binding recommended}"
                           Margin="0,5,0,0"
                           PeekAreaInsets="100"
                           IndicatorView="indicatorview"
                           HeightRequest="250"
                           ItemTemplate="{StaticResource CarouselTemplate}">
+                <!--ItemsSource="{x:Static data:RecommendedProducts.RecProducts}"-->
             </CarouselView>
             <IndicatorView
                 x:Name="indicatorview"
@@ -93,15 +103,18 @@
                                Margin="0"
                                />
                         <BoxView Style="{StaticResource SeparatorLineStyle}" Margin="0,0,0,0"/>
-                        <Label Text="{Binding TrendingToday.Name}" 
+                        <Grid RowDefinitions="54,*">
+                            <Label Text="{Binding TrendingToday.Name}" Grid.Row="0" 
                                 FontAttributes="Bold"
-                                FontSize="24"
+                                FontSize="22"
                                 HorizontalOptions="Center"
-                                VerticalOptions="Center" TextColor="Black"/>
-                        <Label Text="{Binding TrendingToday.Price, StringFormat='Price: £{0}'}"
-                               FontSize="24"
+                                VerticalOptions="Center" TextColor="Black"
+                               HorizontalTextAlignment="Center"/>
+                            <Label Text="{Binding TrendingToday.Price, StringFormat='Price: £{0}'}" Grid.Row="1"
+                               FontSize="22"
                                HorizontalOptions="Center"
                                VerticalOptions="Center" TextColor="Black"/>
+                        </Grid>
                     </StackLayout>
                 </Frame>
                 <Frame HasShadow="True"
@@ -114,6 +127,7 @@
                         <StackLayout.GestureRecognizers>
                             <TapGestureRecognizer Command="{Binding GoToProduct}" CommandParameter="{Binding Featured.Id}" />
                         </StackLayout.GestureRecognizers>
+                        
                         <Label Text="Featured Today"
                                 FontAttributes="Bold"
                                 FontSize="24"
@@ -129,15 +143,21 @@
                                 VerticalOptions="Start"
                                 HorizontalOptions="Center" />
                         <BoxView Style="{StaticResource SeparatorLineStyle}" Margin="0,0,0,0"/>
+                        <Grid RowDefinitions="54,*">
                         <Label Text="{Binding Featured.Name}" 
                                 FontAttributes="Bold"
-                                FontSize="24"
+                                FontSize="22"
                                 HorizontalOptions="Center"
-                                VerticalOptions="Center" TextColor="Black"/>
+                                VerticalOptions="Center" 
+                               HorizontalTextAlignment="Center"
+                               TextColor="Black"
+                               Grid.Row="0"/>
                         <Label Text="{Binding Featured.Price, StringFormat='Price: £{0}'}"
-                               FontSize="24"
+                               FontSize="22"
                                HorizontalOptions="Center"
-                               VerticalOptions="Center" TextColor="Black"/>
+                               VerticalOptions="Center" TextColor="Black"
+                               Grid.Row="1"/>
+                        </Grid>
                     </StackLayout>
                 </Frame>
             </Grid>
@@ -148,15 +168,18 @@
             <Label Margin="10,10" Text="You might like" FontSize="30" CharacterSpacing="0.5" TextColor="Black" FontAttributes="Bold"/>
             <!--collection of all items in product array-->
             <CollectionView Margin="5"
-                            BackgroundColor="#f7f7f7"
+                            BackgroundColor="White"
                             ItemsLayout="VerticalList"
-                            ItemsSource="{x:Static data:ProductData.Products}"
+                            ItemsSource="{Binding products}"
                             ItemTemplate="{StaticResource ProductTemplate}"
                             SelectionMode="Single"
                             SelectionChanged="OnCollectionViewSelectionChanged"
                             SelectedItem="{Binding SelectItem, Mode=TwoWay}"
                             ItemsUpdatingScrollMode="KeepScrollOffset"
                             >
+                <!--ItemsSource="{x:Static data:ProductData.Products}"-->
+                <!--ItemsSource="{Binding products}"-->
+
                 <CollectionView.EmptyView>
                     <Label HorizontalOptions="Center" Text="No Products"/>
                 </CollectionView.EmptyView>

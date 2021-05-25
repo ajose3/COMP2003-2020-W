@@ -1,4 +1,5 @@
 ﻿using MobileApp.Data;
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -11,6 +12,7 @@ namespace MobileApp.Models
     public class User : INotifyPropertyChanged
     {
         public event PropertyChangedEventHandler PropertyChanged = delegate { };
+        [JsonProperty("emailAddress")]
         public string email;
         public string password;
         public string FirstName;

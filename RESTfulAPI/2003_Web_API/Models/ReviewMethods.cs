@@ -209,5 +209,51 @@ namespace _2003_Web_API.Models
             return response;
         }
 
+
+        public async Task<List<ReviewsWithName>> GetCustomersReviews(string token)
+        {
+            dataAccess.Database.OpenConnection();
+            DbCommand cmd2 = dataAccess.Database.GetDbConnection().CreateCommand();
+            cmd2.CommandText = "CustomersReviews";
+            cmd2.CommandType = CommandType.StoredProcedure;
+
+            // setup procedure parameters
+            SqlParameter[] @params2 =
+            {
+                new SqlParameter("@Token", token)
+            };
+
+            // add each parameter to command
+            foreach (var param2 in @params2) cmd2.Parameters.Add(param2);
+
+            List<ReviewsWithName> reviewList = new List<ReviewsWithName>();
+
+            // retrieve the data
+            DbDataReader reader2 = await cmd2.ExecuteReaderAsync();
+            while (reader2.Read())
+            {
+                try
+                {
+                    ReviewsWithName review = new ReviewsWithName();
+                    review.ProductID = Convert.ToInt32(reader2[0]);
+                    review.CustomerId = Convert.ToInt32(reader2[1]);
+                    review.Rating = Convert.ToInt32(reader2[2]);
+                    review.Title = reader2[3].ToString();
+                    review.Description = reader2[4].ToString();
+                    review.ProductName = reader2[5].ToString();
+                    reviewList.Add(review);
+                }
+                catch (Exception)
+                {
+                    System.Diagnostics.Debug.WriteLine("Get reviews: error creating review from response data");
+                }
+
+            }
+
+            reader2.Close();
+
+            return reviewList;
+        }
+
     }
 }

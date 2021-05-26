@@ -18,10 +18,14 @@ namespace MobileApp.ViewModels
         public CustomerDetailsViewModel()
         {
             Task.Run(async () => await LoadDetails());
+            Task.Run(async () => await LoadReviews());
         }
         //User user { get; set; }
 
         public event PropertyChangedEventHandler PropertyChanged;
+
+        public List<ReviewWName> Reviews { get; set; }
+
         public string email;
         public string Email
         {
@@ -124,6 +128,12 @@ namespace MobileApp.ViewModels
             }
         }
 
+        public async Task LoadReviews()
+        {
+            Reviews = await dataService.GetCustomersReviews();
+            OnPropertyChanged("Reviews");
+        }
+
         public async Task LoadDetails()
         {
             WebDataService webDataService = new WebDataService();
@@ -158,6 +168,10 @@ namespace MobileApp.ViewModels
             return user;
         }
 
+        public ICommand GoToAllReviewsPage => new Command(() =>
+        {
+            Shell.Current.GoToAsync("allReviewsPage");
+        });
         public ICommand GoToEditPage => new Command(() =>
         {
             Shell.Current.GoToAsync("editDetailsPage");
@@ -197,6 +211,21 @@ namespace MobileApp.ViewModels
                 await Shell.Current.DisplayAlert("Oops", "Your new passwords don't match", "Ok");
             }
         });
+
+
+
+        public ICommand RemoveOrderCommand => new Command<ReviewWName>(async (review) =>
+        {
+            if (review == null)
+            {
+                return;
+            }
+            await dataService.DeleteReview(review);
+            await LoadReviews();
+            OnPropertyChanged("Reviews");
+        });
+
+
 
     }
 }

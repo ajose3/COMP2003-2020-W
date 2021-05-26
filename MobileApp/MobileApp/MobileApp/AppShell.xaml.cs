@@ -34,8 +34,9 @@ namespace MobileApp
             Routing.RegisterRoute("searchPage", typeof(SearchPage));
             Routing.RegisterRoute("ordersPage", typeof(OrdersPage));
             Routing.RegisterRoute("orderDetailsPage", typeof(OrderDetailsPage));
+            Routing.RegisterRoute("allReviewsPage", typeof(AllReviewsPage));
 
-            
+
 
             foreach (var item in routes)
             {

@@ -242,6 +242,40 @@
                 </Grid>
             </DataTemplate>
 
+            <DataTemplate x:Key="ReviewWNameTemplate">
+                <Grid Padding="0,5">
+                    <Frame BorderColor="#D8DAE0" CornerRadius="20" HasShadow="True">
+
+                        <StackLayout>
+                            <Grid ColumnDefinitions="*,45">
+                                <Label Text="{Binding ProductName}" FontSize="24" TextColor="Black" HeightRequest="62" FontAttributes="Bold" Grid.Column="0" Grid.ColumnSpan="1"/>
+                                <Button Margin="0,0,0,0" Grid.Column="1"
+                                    Text="{StaticResource IconBin}"
+                                    FontFamily="FA-S" 
+                                    TextColor="Red"
+                                    FontSize="24"
+                                        Padding="0"
+                                        HorizontalOptions="Center"
+                                        VerticalOptions="Center"
+                                    BackgroundColor="Transparent"
+                                    Command="{Binding Source={RelativeSource AncestorType={x:Type viewModels:CustomerDetailsViewModel}},Path=RemoveOrderCommand}"
+                                    CommandParameter="{Binding .}"/>
+                            </Grid>
+                            <Label Text="{Binding Title}" FontSize="24" TextColor="Black"/>
+                            <FlexLayout>
+                                <Label Text="{StaticResource IconStar}" FontFamily="FA-S" FontSize="20" TextColor="{Binding StarColor1}"/>
+                                <Label Text="{StaticResource IconStar}" FontFamily="FA-S" FontSize="20" TextColor="{Binding StarColor2}"/>
+                                <Label Text="{StaticResource IconStar}" FontFamily="FA-S" FontSize="20" TextColor="{Binding StarColor3}"/>
+                                <Label Text="{StaticResource IconStar}" FontFamily="FA-S" FontSize="20" TextColor="{Binding StarColor4}"/>
+                                <Label Text="{StaticResource IconStar}" FontFamily="FA-S" FontSize="20" TextColor="{Binding StarColor5}"/>
+                            </FlexLayout>
+                            <BoxView Style="{StaticResource SeparatorLineStyle}" Margin="0,0,0,0"/>
+                            <Label Text="{Binding Desciption}" FontSize="20" TextColor="Black"/>
+                        </StackLayout>
+                    </Frame>
+                </Grid>
+            </DataTemplate>
+
 
             <DataTemplate x:Key="BasketTemplate">
                 <Grid Padding="0">

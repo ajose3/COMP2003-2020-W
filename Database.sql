@@ -1454,7 +1454,8 @@ BEGIN
 	IF EXISTS(SELECT * FROM Sessions WHERE Token = @Token AND CURRENT_TIMESTAMP <= ExpiryTime)
 	BEGIN
 		DECLARE @CustomerID AS INT = (SELECT CustomerID FROM Sessions WHERE Token = @Token);
-		SELECT * FROM ProductReviews WHERE CustomerID = @CustomerID
+		SELECT Products.ProductID, CustomerID, Rating, Title, ProductReviews.Description, Products.ProductName FROM ProductReviews 
+        INNER JOIN Products ON ProductReviews.ProductId = Products.ProductId WHERE CustomerID = @CustomerID
 	END
 END
 GO

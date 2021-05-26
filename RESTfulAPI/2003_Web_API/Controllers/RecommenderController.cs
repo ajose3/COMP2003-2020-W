@@ -51,10 +51,10 @@ namespace _2003_Web_API.Controllers
         [HttpGet]
         [Route("recommendation/home")]
         [Produces("application/json")]
-        public async Task<ActionResult<int>> GetHome(string Token)
+        public async Task<ActionResult<int>> GetRecommendedForHome(string Token)
         {
 
-            List<Product> products = await dataAccess.GetHome(Token);
+            List<Product> products = await dataAccess.RecommendedForHome(Token);
             return Ok(products);
             //// check response
             //if (responseMessage == 200)

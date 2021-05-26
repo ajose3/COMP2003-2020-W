@@ -293,3 +293,4 @@ C:\Git\COMP2003-2020-W\RESTfulAPI\2003_Web_API\obj\Debug\netcoreapp3.1\2003_Web_
 C:\Git\COMP2003-2020-W\RESTfulAPI\2003_Web_API\obj\Debug\netcoreapp3.1\2003_Web_API.dll
 C:\Git\COMP2003-2020-W\RESTfulAPI\2003_Web_API\obj\Debug\netcoreapp3.1\2003_Web_API.pdb
 C:\Git\COMP2003-2020-W\RESTfulAPI\2003_Web_API\obj\Debug\netcoreapp3.1\2003_Web_API.genruntimeconfig.cache
+C:\Git\COMP2003-2020-W\RESTfulAPI\2003_Web_API\obj\Debug\netcoreapp3.1\2003_Web_API.csprojAssemblyReference.cache

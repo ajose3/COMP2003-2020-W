@@ -1,0 +1,25 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="MobileApp.Views.AllReviewsPage">
+    <ContentPage.Content>
+        <StackLayout Padding="10">
+            <Label Text="All Reviews"
+                   FontSize="Title"
+                   FontAttributes="Bold"
+                   />
+            <CollectionView BackgroundColor="White"
+                                    ItemsLayout="VerticalList"
+                                    ItemsSource="{Binding Reviews}"
+                                    ItemTemplate="{StaticResource ReviewWNameTemplate}"
+                                    SelectionMode="Single"
+                                    SelectedItem="{Binding SelectReview, Mode=TwoWay}"
+                            >
+                <!--SelectionChanged="ReviewClicked">-->
+                <CollectionView.EmptyView>
+                    <Label HorizontalOptions="Center" HorizontalTextAlignment="Center" Text="It looks like you haven't made any reviews" FontSize="24" TextColor="Black"/>
+                </CollectionView.EmptyView>
+            </CollectionView>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

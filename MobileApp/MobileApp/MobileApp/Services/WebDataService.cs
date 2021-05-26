@@ -325,6 +325,24 @@ namespace MobileApp.Services
             return await response.Content.ReadAsStringAsync().ConfigureAwait(false);
         }
 
+        public async Task<string> DeleteReview(ReviewWName review)
+        {
+            var json = JsonConvert.SerializeObject(review);
+
+            var request = new HttpRequestMessage
+            {
+                Method = HttpMethod.Delete,
+                RequestUri = new Uri($"http://web.socem.plymouth.ac.uk/COMP2003/COMP2003_W/reviews/delete?token={TokenData.value}&ProductId={review.ProdID}"),
+                Content = new StringContent(json, Encoding.UTF8, "application/json"),
+            };
+
+            var response = await Client.SendAsync(request).ConfigureAwait(false);
+            //response.EnsureSuccessStatusCode();
+            return await response.Content.ReadAsStringAsync().ConfigureAwait(false);
+        }
+
+
+
         public async Task<string> Logout()
         {
             var request = new HttpRequestMessage
@@ -338,6 +356,58 @@ namespace MobileApp.Services
 
             var response = await Client.SendAsync(request).ConfigureAwait(false);
             return await response.Content.ReadAsStringAsync().ConfigureAwait(false);
+        }
+
+
+
+
+        public async Task<List<ReviewWName>> GetCustomersReviews()
+        {
+            var request = new HttpRequestMessage
+            {
+                Method = HttpMethod.Get,
+                RequestUri = new Uri($"http://web.socem.plymouth.ac.uk/COMP2003/COMP2003_W/reviews/getCustomersProds?token={TokenData.value}"),
+            };
+
+            var response = await Client.SendAsync(request).ConfigureAwait(false);
+            //response.EnsureSuccessStatusCode();
+            string returnedJson = await response.Content.ReadAsStringAsync().ConfigureAwait(false);
+
+            List<ReviewWName> reviews;
+            reviews = JsonConvert.DeserializeObject<List<ReviewWName>>(returnedJson);
+
+            if (reviews.Count != 0)
+            {
+                foreach (var rev in reviews)
+                {
+                    rev.StarColor1 = "Gray";
+                    rev.StarColor2 = "Gray";
+                    rev.StarColor3 = "Gray";
+                    rev.StarColor4 = "Gray";
+                    rev.StarColor5 = "Gray";
+                    if (rev.Rating >= 1)
+                    {
+                        rev.StarColor1 = "Gold";
+                    }
+                    if (rev.Rating >= 2)
+                    {
+                        rev.StarColor2 = "Gold";
+                    }
+                    if (rev.Rating >= 3)
+                    {
+                        rev.StarColor3 = "Gold";
+                    }
+                    if (rev.Rating >= 4)
+                    {
+                        rev.StarColor4 = "Gold";
+                    }
+                    if (rev.Rating >= 5)
+                    {
+                        rev.StarColor5 = "Gold";
+                    }
+                }
+            }
+            return reviews;
         }
 
     }

@@ -87,5 +87,16 @@ namespace _2003_Web_API.Controllers
             }
         }
 
+        // GET: api/reviews
+        // - Get all reviews for a product -
+        [HttpGet]
+        [Route("reviews/getCustomersProds")]
+        [Produces("application/json")]
+        public async Task<ActionResult<string>> ReviewsFromCustomer(string token)
+        {
+            List<ReviewsWithName> reviews = await dataAccess.GetCustomersReviews(token);
+            return Ok(reviews);
+        }
+
     }
 }

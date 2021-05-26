@@ -124,7 +124,7 @@ namespace _2003_Web_API.Models
 
 
 
-        public async Task<List<Product>> GetHome(string token)
+        public async Task<List<Product>> RecommendedForHome(string token)
         {
 
             ////get all customer orders

@@ -18,6 +18,7 @@
             <!--<Label Text="{Binding Password, StringFormat='Password: {0}'} " FontSize="25"/>-->
             <Label Text="{Binding Gender, StringFormat='Gender: {0}'} " FontSize="24" TextColor="Black"/>
 
+            <Button Text="My Product Reviews" Font="24" Command="{Binding GoToAllReviewsPage}"/>
             <Button Text="Edit Details" Font="24" Command="{Binding GoToEditPage}"/>
             <Button Text="Change Password" Font="24" Command="{Binding GoToEditPasswordPage}"/>
 

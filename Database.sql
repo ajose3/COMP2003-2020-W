@@ -1564,7 +1564,22 @@ GO
 
 
 
-
+CREATE PROCEDURE [dbo].[GetOrdersbyId]
+@Token VARCHAR(50),
+@ProductID INT
+AS
+BEGIN
+    IF EXISTS (SELECT * FROM Sessions WHERE Token = @Token AND CURRENT_TIMESTAMP <= ExpiryTime)
+        BEGIN
+            DECLARE @AdminID AS INT = (SELECT CustomerID FROM Sessions WHERE Token = @Token);
+            
+            IF EXISTS(SELECT * FROM Customer WHERE CustomerID = @AdminID AND Admin = 1)
+                BEGIN
+                    SELECT * FROM Orders WHERE ProductID = @ProductID;
+                END
+        END
+END
+GO
 
 
 

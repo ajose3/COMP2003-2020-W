@@ -1516,6 +1516,53 @@ END
 GO
 
 
+---------------------------------------------------------------------
+
+
+CREATE PROCEDURE [dbo].[GetMostPopular]
+@Token VARCHAR(25),
+@ResponseMessage INT OUTPUT
+AS
+BEGIN
+	BEGIN TRANSACTION
+		IF EXISTS (SELECT * FROM Sessions WHERE Token = @Token AND CURRENT_TIMESTAMP <= ExpiryTime)
+			BEGIN
+				DECLARE @AdminID AS INT = (SELECT CustomerID FROM Sessions WHERE Token = @Token);
+                
+                IF EXISTS(SELECT * FROM Customer WHERE CustomerID = @AdminID AND Admin = 1)
+				    BEGIN
+				        
+                        DECLARE @TopPopular1 AS INT = (SELECT MAX(TotalSold)
+                        FROM Products)
+
+                        DECLARE @TopPopular2 AS INT = (SELECT MAX(TotalSold)
+                        FROM Products WHERE TotalSold < (@TopPopular1))
+
+                        DECLARE @TopPopular3 AS INT = (SELECT MAX(TotalSold)
+                        FROM Products WHERE TotalSold < (@TopPopular2))
+
+                        SELECT TOP 3* FROM Products WHERE TotalSold = @TopPopular1 OR TotalSold = @TopPopular2 OR TotalSold = @TopPopular3
+                        ORDER BY NEWID();
+                
+				        SELECT @ResponseMessage = 200;
+                    END
+			END
+		ELSE
+			BEGIN
+				SELECT @ResponseMessage = 401;
+			END
+			
+	IF @@ERROR != 0
+		BEGIN
+			SELECT @ResponseMessage = 500;
+			ROLLBACK TRANSACTION
+		END
+	ELSE
+		COMMIT TRANSACTION
+END
+GO
+
+
 
 
 

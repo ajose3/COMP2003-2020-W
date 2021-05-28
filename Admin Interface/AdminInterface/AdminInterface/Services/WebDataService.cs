@@ -18,11 +18,11 @@ namespace AdminInterface.Services
             var request = new HttpRequestMessage
             {
                 Method = HttpMethod.Get, 
-                RequestUri = new Uri($"http://web.socem.plymouth.ac.uk/comp2003/COMP2003_W/customer/Validate?email={email}&password={password}"),
+                RequestUri = new Uri($"http://web.socem.plymouth.ac.uk/comp2003/COMP2003_W/admin/Validate?email={email}&password={password}"),
             };
 
             var response = await Client.SendAsync(request).ConfigureAwait(false);
-            response.EnsureSuccessStatusCode();
+            //response.EnsureSuccessStatusCode();
             string returnedJson = await response.Content.ReadAsStringAsync().ConfigureAwait(false);
             returnedJson = returnedJson.Replace("/", "").Replace("\"", "");
             Token.value = returnedJson;

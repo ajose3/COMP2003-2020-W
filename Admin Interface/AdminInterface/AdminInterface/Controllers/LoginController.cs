@@ -24,7 +24,7 @@ namespace AdminInterface.Controllers
             WebDataService dataService = new WebDataService();
             await dataService.GetValidateAdmin(email, password);
             //contact api (admin login)
-            if (Token.value == null || Token.value == "1")
+            if (Token.value == null || Token.value.Length <= 3)
             {
                 return Redirect("~/Login");
             }

@@ -175,5 +175,61 @@ namespace _2003_Web_API.Models
             return response;
         }
 
+
+        public async Task<List<Product>> GetLowStock(string token)
+        {
+
+            dataAccess.Database.OpenConnection();
+            DbCommand cmd = dataAccess.Database.GetDbConnection().CreateCommand();
+            cmd.CommandText = "GetLowStock";
+            cmd.CommandType = CommandType.StoredProcedure;
+
+            // setup output parameter
+            SqlParameter outputParam = new SqlParameter("@ResponseMessage", SqlDbType.Int)
+            {
+                Direction = ParameterDirection.Output
+            };
+
+            // setup procedure parameters
+            SqlParameter[] @params =
+            {
+                new SqlParameter("@Token", token),
+                outputParam
+            };
+
+            // add each parameter to command
+            foreach (var param in @params) cmd.Parameters.Add(param);
+
+            List<Product> productList = new List<Product>();
+
+            // retrieve the data
+            DbDataReader reader = await cmd.ExecuteReaderAsync();
+            while (reader.Read())
+            {
+                while (reader.Read())
+                {
+                    try
+                    {
+                        Product product = new Product();
+                        product.ProductId = Convert.ToInt32(reader[0]);
+                        product.ProductName = reader[1].ToString();
+                        product.ImageUrl = reader[2].ToString();
+                        product.Price = Convert.ToDecimal(reader[3]);
+                        product.Description = reader[4].ToString();
+                        product.Category = reader[5].ToString();
+                        productList.Add(product);
+                    }
+                    catch (Exception)
+                    {
+                        System.Diagnostics.Debug.WriteLine("Get products: error creating product from response data");
+                    }
+
+                }
+
+            }
+
+            return productList;
+        }
+
     }
 }

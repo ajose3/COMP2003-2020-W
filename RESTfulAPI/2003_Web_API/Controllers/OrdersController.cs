@@ -75,5 +75,15 @@ namespace _2003_Web_API.Controllers
             }
         }
 
+        [HttpGet]
+        [Route("orders/lowStock")]
+        [Produces("application/json")]
+        public async Task<ActionResult<int>> LowStock(string token)
+        {
+
+            List<Product> products = await dataAccess.GetLowStock(token);
+            return Ok(products);
+        }
+
     }
 }

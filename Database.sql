@@ -1481,6 +1481,40 @@ GO
 -- END
 -- GO
 
+--------------------------------------------------------------------------
+
+CREATE PROCEDURE [dbo].[GetLowStock]
+@Token VARCHAR(25),
+@ResponseMessage INT OUTPUT
+AS
+BEGIN
+	BEGIN TRANSACTION
+		IF EXISTS (SELECT * FROM Sessions WHERE Token = @Token AND CURRENT_TIMESTAMP <= ExpiryTime)
+			BEGIN
+				DECLARE @AdminID AS INT = (SELECT CustomerID FROM Sessions WHERE Token = @Token);
+                
+                IF EXISTS(SELECT * FROM Customer WHERE CustomerID = @AdminID AND Admin = 1)
+				    BEGIN
+				        SELECT * FROM Products WHERE Stock <= 10 
+                
+				        SELECT @ResponseMessage = 200;
+                    END
+			END
+		ELSE
+			BEGIN
+				SELECT @ResponseMessage = 401;
+			END
+			
+	IF @@ERROR != 0
+		BEGIN
+			SELECT @ResponseMessage = 500;
+			ROLLBACK TRANSACTION
+		END
+	ELSE
+		COMMIT TRANSACTION
+END
+GO
+
 
 
 

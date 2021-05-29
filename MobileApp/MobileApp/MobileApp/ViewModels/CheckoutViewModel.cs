@@ -50,26 +50,32 @@ namespace MobileApp.ViewModels
         public ICommand RefreshCommand { get; }
         public ICommand ClickedPayBtnCmd => new Command(async () =>
         {
-            await Shell.Current.DisplayAlert("Clicked Pay", null, "OK");
-            // for each product in basket
-            loadBasket();
-            foreach (var Product in basket)
+            if (TokenData.value != null)
             {
-                ProductData.Products.Where(i => i.Id == Product.Id).FirstOrDefault().Stock -= Product.Quantity;
+                if (TokenData.value.Length > 3)
+                {
+                    // for each product in basket
+                    loadBasket();
+                    foreach (var Product in basket)
+                    {
+                        await OrderData.AddToOrderAsync(Product);
+                    }
 
-                //Product product = new Product(Product);
+                    await BasketService.ClearProducts();
 
-                //for (int i = 0; i < Product.Quantity; i++)
-                //{
-                //    await OrderData.AddToOrderAsync(Product);
-                //}
+                    await Shell.Current.DisplayAlert("Thank you for your purchase", null, "OK");
 
-                await OrderData.AddToOrderAsync(Product);
+                    await Shell.Current.Navigation.PopToRootAsync();
+                }
+                else
+                {
+                    await Shell.Current.DisplayAlert("Oops", "Please login", "OK");
+                }
             }
-
-            await BasketService.ClearProducts();
-
-            await Shell.Current.Navigation.PopToRootAsync();
+            else
+            {
+                await Shell.Current.DisplayAlert("Oops", "Please login", "OK");
+            }
         });
 
         bool isRefreshing;

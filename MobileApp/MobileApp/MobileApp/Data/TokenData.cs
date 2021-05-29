@@ -11,7 +11,7 @@ namespace MobileApp.Data
         TokenData() { value = "0"; }
         public static string value { get; set; }
 
-        public static TokenData FromJson(string json) => JsonConvert.DeserializeObject<TokenData>(json);
+        //public static TokenData FromJson(string json) => JsonConvert.DeserializeObject<TokenData>(json);
 
     }
 }

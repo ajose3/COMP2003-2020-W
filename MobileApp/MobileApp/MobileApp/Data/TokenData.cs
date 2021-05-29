@@ -14,8 +14,4 @@ namespace MobileApp.Data
         public static TokenData FromJson(string json) => JsonConvert.DeserializeObject<TokenData>(json);
 
     }
-    //public partial class TokenData
-    //{
-    //}
-
 }

@@ -28,7 +28,7 @@ namespace MobileApp.ViewModels
         {
             var abasket = await BasketService.GetProducts();
             basket = (List<BasketProduct>)abasket;
-            NumItems = GetNumItem();
+            NumItems = GetNumItems();
             TotalPrice = GetTotalPrice();
             OnPropertyChanged("basket");
             OnPropertyChanged("NumItems");
@@ -132,7 +132,7 @@ namespace MobileApp.ViewModels
             return totalPrice;
         }
 
-        public int GetNumItem()
+        public int GetNumItems()
         {
             int num = 0;
 

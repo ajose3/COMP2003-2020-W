@@ -214,7 +214,7 @@ namespace MobileApp.ViewModels
 
 
 
-        public ICommand RemoveOrderCommand => new Command<ReviewWName>(async (review) =>
+        public ICommand RemoveReviewCommand => new Command<ReviewWName>(async (review) =>
         {
             if (review == null)
             {

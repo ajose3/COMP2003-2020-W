@@ -23,12 +23,10 @@ namespace MobileApp.ViewModels
         public ICommand LoginCmd => new Command(async () =>
         {
             User user = new User(username,password);
-            //user.OnSubmit();
 
             WebDataService webDataService = new WebDataService();
             await webDataService.GetValidateCustomer(user);
-            //var result = await webDataService.PutUpdateCustomer(user);
-            //Shell.Current.DisplayAlert("LoginResult",user.OnSubmit(),"OK");
+
             if (TokenData.value == null || TokenData.value == "0" || TokenData.value.Length < 4 )
             {
                 //await Shell.Current.GoToAsync("successPage");

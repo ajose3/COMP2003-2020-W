@@ -80,8 +80,6 @@ namespace MobileApp.Data
             }
             List<OrdersGroup> SortedGroupOrders = GroupedOrders.OrderByDescending(i => i.OrderDate).ToList();
 
-            //GroupedOrders = (List<OrdersGroup>)GroupedOrders.OrderBy(x => x.OrderDate);
-
             return SortedGroupOrders;
         }
         public static List<Order> loadOrdersByDate(DateTime requestedDate)
@@ -96,7 +94,7 @@ namespace MobileApp.Data
                 }
             }
             List<Order> SortedOrders = requestedOrder.OrderBy(i => i.DeliveryDate).ToList();
-            //return requestedOrder;
+
             return SortedOrders;
         }
         public static void toggleBtn(Order selectedOrder)

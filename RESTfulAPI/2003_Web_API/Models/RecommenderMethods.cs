@@ -126,52 +126,6 @@ namespace _2003_Web_API.Models
 
         public async Task<List<Product>> RecommendedForHome(string token)
         {
-
-            ////get all customer orders
-            //dataAccess.Database.OpenConnection();
-            //DbCommand cmd = dataAccess.Database.GetDbConnection().CreateCommand();
-            //cmd.CommandText = "Recommending";
-            //cmd.CommandType = CommandType.StoredProcedure;
-
-            //// setup procedure parameters
-            //SqlParameter[] @params =
-            //{
-            //    new SqlParameter("@Token", token)
-            //};
-
-            //// add each parameter to command
-            //foreach (var param in @params) cmd.Parameters.Add(param);
-
-            //List<OrderReviewProduct> orderList = new List<OrderReviewProduct>();
-
-            //// retrieve the data
-            //DbDataReader reader = await cmd.ExecuteReaderAsync();
-            //while (reader.Read())
-            //{
-            //    try
-            //    {
-            //        OrderReviewProduct order = new OrderReviewProduct();
-            //        order.orderId = Convert.ToInt32(reader[0]);
-            //        order.productId = Convert.ToInt32(reader[1]);
-            //        order.quantity = Convert.ToInt32(reader[2]);
-            //        order.rating = Convert.ToInt32(reader[3]);
-            //        order.category = reader[4].ToString();
-            //        orderList.Add(order);
-            //    }
-            //    catch (Exception)
-            //    {
-            //        System.Diagnostics.Debug.WriteLine("Get products: error creating product from response data");
-            //    }
-
-            //}
-
-            //foreach (var o in orderList)
-            //{
-            //    o
-            //}
-
-
-
             //get orders
             dataAccess.Database.OpenConnection();
             DbCommand cmd = dataAccess.Database.GetDbConnection().CreateCommand();

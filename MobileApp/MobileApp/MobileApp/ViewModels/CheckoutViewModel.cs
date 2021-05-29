@@ -13,14 +13,11 @@ namespace MobileApp.ViewModels
 {
     public class CheckoutViewModel : INotifyPropertyChanged
     {
-        //public int NumItems => Basket.Products.Count;
-        //public float TotalPrice => Basket.GetTotalPrice();
         public CheckoutViewModel()
         {
             RemoveProductCommand = new Command<Product>(RemoveProductTask);
             RefreshCommand = new Command(ExecuteRefreshCommand);
             loadBasket();
-            OnPropertyChanged("basket");
         }
         public List<BasketProduct> basket { get; set; }
         public int NumItems { get; set; }

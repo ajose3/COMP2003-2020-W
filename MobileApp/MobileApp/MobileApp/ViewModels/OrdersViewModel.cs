@@ -17,6 +17,7 @@ namespace MobileApp.ViewModels
         {
             //Orders = OrderData.LoadOrdersAsync();
             //Orders = (List<OrdersGroup>)load;
+            RefreshCommand = new Command(ExecuteRefreshCommand);
             Task.Run(async () => await LoadDetails());
             OnPropertyChanged("Orders");
         }
@@ -27,6 +28,8 @@ namespace MobileApp.ViewModels
             Orders = await OrderData.LoadOrdersAsync();
             OnPropertyChanged("Orders");
         }
+        public ICommand RefreshCommand { get; }
+
 
         public ICommand load => new Command(async () =>
         {
@@ -50,6 +53,23 @@ namespace MobileApp.ViewModels
                 selectedOrder = value;
                 OnPropertyChanged();
             }
+        }
+
+        bool isRefreshing;
+        public bool IsRefreshing
+        {
+            get => isRefreshing;
+            set
+            {
+                isRefreshing = value;
+                OnPropertyChanged(nameof(IsRefreshing));
+            }
+        }
+        async void ExecuteRefreshCommand()
+        {
+            await LoadDetails();
+            // Stop refreshing
+            IsRefreshing = false;
         }
 
         #region INotifyPropertyChanged

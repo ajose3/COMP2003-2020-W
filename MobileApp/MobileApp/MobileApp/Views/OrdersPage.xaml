@@ -13,8 +13,10 @@
                     HorizontalOptions="Start" 
                     FontSize="Title" FontAttributes="Bold" TextColor="Black" />
 
-            <!-- collection view of all products in basket -->
-            <CollectionView
+            <!-- collection view of all orders -->
+            <RefreshView IsRefreshing="{Binding IsRefreshing}"
+                         Command="{Binding RefreshCommand}">
+                <CollectionView
                 Margin="0,5,0,0"
                 x:Name="ItemsCollectionView"
                 ItemsLayout="VerticalList"
@@ -26,6 +28,7 @@
                 SelectedItem="{Binding SelectedOrder, Mode=TwoWay}"
                 SelectionMode="Single"
                 />
+            </RefreshView>
             <!--ItemsSource="{x:Static data:OrderData.GroupedOrders}"-->
 
 

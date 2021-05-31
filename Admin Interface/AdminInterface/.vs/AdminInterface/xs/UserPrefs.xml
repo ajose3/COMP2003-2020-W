@@ -1,37 +1,56 @@
 ﻿<Properties StartupConfiguration="{DDFFCD52-952F-4D8E-8205-B781A0F4C0D0}|Default">
   <MonoDevelop.Ide.ItemProperties.AdminInterface PreferredExecutionTarget="/Applications/Google Chrome.app" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="AdminInterface/Views/Products/Create.cshtml">
+  <MonoDevelop.Ide.Workbench ActiveDocument="AdminInterface/Controllers/HomeController.cs">
     <Files>
       <File FileName="AdminInterface/Models/Sessions.cs" Line="1" Column="1" />
       <File FileName="AdminInterface/Views/Shared/_ValidationScriptsPartial.cshtml" />
-      <File FileName="AdminInterface/Views/Shared/_Layout.cshtml" />
-      <File FileName="AdminInterface/Views/Products/Index.cshtml" Line="79" Column="42" />
-      <File FileName="AdminInterface/wwwroot/css/site.css" Line="638" Column="34" />
-      <File FileName="AdminInterface/Models/Products.cs" />
-      <File FileName="AdminInterface/Views/Orders/Index.cshtml" />
+      <File FileName="AdminInterface/Views/Shared/_Layout.cshtml" Line="25" Column="56" />
+      <File FileName="AdminInterface/Views/Products/Index.cshtml" Line="4" Column="36" />
+      <File FileName="AdminInterface/wwwroot/css/site.css" Line="177" Column="2" />
+      <File FileName="AdminInterface/Models/Products.cs" Line="1" Column="1" />
+      <File FileName="AdminInterface/Views/Orders/Index.cshtml" Line="13" Column="12" />
       <File FileName="AdminInterface/Views/Login/Index.cshtml" />
-      <File FileName="AdminInterface/Views/Reviews/Index.cshtml" />
-      <File FileName="AdminInterface/Views/Sessions/Index.cshtml" />
+      <File FileName="AdminInterface/Views/Reviews/Index.cshtml" Line="4" Column="35" />
+      <File FileName="AdminInterface/Views/Sessions/Index.cshtml" Line="4" Column="36" />
       <File FileName="AdminInterface/Views/Customers/Index.cshtml" />
-      <File FileName="AdminInterface/Views/Home/Index.cshtml" Line="97" Column="134" />
+      <File FileName="AdminInterface/Views/Home/Index.cshtml" Line="65" Column="71" />
       <File FileName="AdminInterface/wwwroot/js/site.js" />
-      <File FileName="AdminInterface/Views/Products/Details.cshtml" Line="69" Column="42" />
-      <File FileName="AdminInterface/Views/Products/Edit.cshtml" Line="77" Column="42" />
-      <File FileName="AdminInterface/Views/Products/Delete.cshtml" Line="80" Column="42" />
-      <File FileName="AdminInterface/Views/Products/Create.cshtml" Line="71" Column="42" />
+      <File FileName="AdminInterface/Views/Products/Details.cshtml" Line="4" Column="36" />
+      <File FileName="AdminInterface/Views/Products/Edit.cshtml" Line="4" Column="36" />
+      <File FileName="AdminInterface/Views/Products/Delete.cshtml" Line="4" Column="34" />
+      <File FileName="AdminInterface/Views/Products/Create.cshtml" Line="4" Column="36" />
+      <File FileName="AdminInterface/Models/COMP2003_WContext.cs" Line="1" Column="1" />
+      <File FileName="AdminInterface/Models/Customer.cs" Line="27" Column="66" />
+      <File FileName="AdminInterface/Controllers/ProductsController.cs" Line="25" Column="10" />
+      <File FileName="AdminInterface/Controllers/HomeController.cs" Line="25" Column="19" />
+      <File FileName="AdminInterface/Views/Home/Privacy.cshtml" Line="1" Column="1" />
+      <File FileName="AdminInterface/Views/Orders/Create.cshtml" Line="4" Column="34" />
+      <File FileName="AdminInterface/Views/Orders/Delete.cshtml" Line="4" Column="32" />
+      <File FileName="AdminInterface/Views/Orders/Details.cshtml" Line="4" Column="34" />
+      <File FileName="AdminInterface/Views/Orders/Edit.cshtml" Line="4" Column="34" />
+      <File FileName="AdminInterface/Views/Reviews/Create.cshtml" Line="4" Column="33" />
+      <File FileName="AdminInterface/Views/Reviews/Details.cshtml" Line="4" Column="33" />
+      <File FileName="AdminInterface/Views/Sessions/Create.cshtml" Line="4" Column="34" />
+      <File FileName="AdminInterface/Views/Sessions/Delete.cshtml" Line="4" Column="34" />
+      <File FileName="AdminInterface/Views/Sessions/Details.cshtml" Line="4" Column="34" />
+      <File FileName="AdminInterface/Views/Sessions/Edit.cshtml" Line="4" Column="34" />
+      <File FileName="AdminInterface/Models/Orders.cs" Line="1" Column="1" />
     </Files>
     <Pads>
       <Pad Id="ProjectPad">
         <State name="__root__">
           <Node name="AdminInterface" expanded="True">
             <Node name="AdminInterface" expanded="True">
-              <Node name="Controllers" expanded="True" />
+              <Node name="Controllers" expanded="True">
+                <Node name="HomeController.cs" selected="True" />
+              </Node>
               <Node name="Models" expanded="True" />
               <Node name="Views" expanded="True">
                 <Node name="Home" expanded="True" />
-                <Node name="Products" expanded="True">
-                  <Node name="Create.cshtml" selected="True" />
-                </Node>
+                <Node name="Orders" expanded="True" />
+                <Node name="Products" expanded="True" />
+                <Node name="Reviews" expanded="True" />
+                <Node name="Sessions" expanded="True" />
                 <Node name="Shared" expanded="True" />
               </Node>
               <Node name="wwwroot" expanded="True">

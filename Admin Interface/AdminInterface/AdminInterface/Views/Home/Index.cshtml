@@ -1,5 +1,5 @@
 ﻿@{
-    ViewData["Title"] = "Home Page";
+    ViewData["Title"] = "Home";
 }
 
 <!--<div class="text-center">
@@ -44,23 +44,47 @@
 
         <canvas id="lineChart"></canvas>
 
+    @model IEnumerable<AdminInterface.Models.Products>
+
     </div>
     <div class="dashboardBlock dashboardRightBlock">
-        <span class="dashboardSectionHeader">Order Status</span>
+        <span class="dashboardSectionHeader">Recent Orders</span>
         <table id="orderStatusTable" class="table">
             <thead>
                 <tr>
-                    <th>Invoice</th>
-                    <th>Amount</th>
-                    <th>Status</th>
+                    <th>Order No.</th>
+                    <th>Total</th>
+                    <th>Date</th>
                 </tr>
             </thead>
             <tbody>
-                <a asp-controller="Orders" asp-action="Details" asp-route-id="6">
+
+                @{
+                    // get orders data
+                    List<Orders> orders = (List<Orders>)ViewData["Orders"];
+                    List<Orders> recentOrders = orders.GetRange(0, 5);
+                }
+
+                @foreach (var order in recentOrders)
+                {
+                    <a asp-controller="Orders" asp-action="Details" asp-route-id="@order.OrderId">
+                        <tr>
+                            <td>@order.OrderId</td>
+                            @{
+                                Products orderProduct = Model.Where(p => p.ProductId == order.ProductId).ToList()[0];
+                                var orderTotal = orderProduct.Price * order.Quantity;
+                            }
+                            <td>£@orderTotal.ToString("n2")</td>
+                            <td>@order.TimeOrdered</td>
+                        </tr>
+                    </a>
+                }
+
+                <!--<a asp-controller="Orders" asp-action="Details" asp-route-id="6">
                     <tr>
-                         <td>#6</td>
-                         <td>£482.96</td>
-                         <td>Processing</td>
+                        <td>#6</td>
+                        <td>£482.96</td>
+                        <td>Processing</td>
                     </tr>
                 </a>
                 <a asp-controller="Orders" asp-action="Details" asp-route-id="12">
@@ -76,46 +100,80 @@
                         <td>£229.00</td>
                         <td>Dispatched</td>
                     </tr>
-                </a>
+                </a>-->
             </tbody>
         </table>
     </div>
 </div>
+
+
+@{
+    var popularProducts = new List<Products>();
+    var lowStockProducts = new List<Products>();
+    foreach (var item in Model)
+    {
+        // get popular products
+        // if less than 3 products in array
+        if (popularProducts.Count < 3)
+        {
+            // add to array
+            popularProducts.Add(item);
+        }
+        else
+        {
+            // first is lowest
+            popularProducts = popularProducts.OrderBy(p => p.TotalSold).ToList();
+            // if current product has more sales than lowest in array
+            if (popularProducts[0].TotalSold < item.TotalSold)
+            {
+                // replace lowest product with current one
+                popularProducts[0] = item;
+            }
+        }
+
+        // get low stock products
+        if (lowStockProducts.Count < 3)
+        {
+            // add to array
+            lowStockProducts.Add(item);
+        }
+        else
+        {
+            // first is highest
+            lowStockProducts = lowStockProducts.OrderByDescending(p => p.Stock).ToList();
+            // if current product has less stock than highest in array
+            if (lowStockProducts[0].Stock > item.Stock)
+            {
+                // replace highest stock product with current one
+                lowStockProducts[0] = item;
+            }
+        }
+
+    }
+
+    // order array by total sold (1st highest)
+    popularProducts = popularProducts.OrderByDescending(p => p.TotalSold).ToList();
+    // order array by stock (1st lowest)
+    lowStockProducts = lowStockProducts.OrderBy(p => p.Stock).ToList();
+}
 
 <div class="dashboardSection">
     <div class="dashboardBlock dashboardLeftBlock">
         <span class="dashboardSectionHeader">Most Popular</span>
         <div id="productsWrapper">
 
-            <a asp-controller="Products" asp-action="Details" asp-route-id="1">
-                <div class="product">
-                    <div class="productContainer">
-                        <img class="productImage" src="https://images-na.ssl-images-amazon.com/images/I/81gIeZ6rr0L._AC_SL1500_.jpg">
-                        <div class="productName">LG 55UN71006LB 55 Inch UHD 4K HDR Smart LED TV</div>
-                        <div class="productSold">Total Sold: 6</div>
+            @foreach (var product in popularProducts)
+            {
+                <a asp-controller="Products" asp-action="Details" asp-route-id="@product.ProductId">
+                    <div class="product">
+                        <div class="productContainer">
+                            <img class="productImage" src="@product.ImageUrl">
+                            <div class="productName">@product.ProductName</div>
+                            <div class="productSold">Total Sold: @product.TotalSold</div>
+                        </div>
                     </div>
-                </div>
-            </a>
-
-            <a asp-controller="Products" asp-action="Details" asp-route-id="5">
-                <div class="product">
-                    <div class="productContainer">
-                        <img class="productImage" src="https://images-na.ssl-images-amazon.com/images/I/61wHra8XvtL._AC_SL1200_.jpg">
-                        <div class="productName">Sony BRAVIA KD49X70 - 49-inch - LED - 4K Ultra HD</div>
-                        <div class="productSold">Total Sold: 5</div>
-                    </div>
-                </div>
-            </a>
-
-            <a asp-controller="Products" asp-action="Details" asp-route-id="12">
-                <div class="product">
-                    <div class="productContainer">
-                        <img class="productImage" src="https://images-na.ssl-images-amazon.com/images/I/81GmE72mEaL._AC_SL1500_.jpg">
-                        <div class="productName">Acer Chromebook 314 CB314-H - (Intel Celeron N4000</div>
-                        <div class="productSold">Total Sold: 2</div>
-                    </div>
-                </div>
-            </a>
+                </a>
+            }
 
         </div>
     </div>
@@ -124,41 +182,25 @@
         <span class="dashboardSectionHeader">Low in Stock</span>
         <div id="productsWrapper">
 
-            <a asp-controller="Products" asp-action="Details" asp-route-id="43">
-                <div class="product">
-                    <div class="productContainer">
-                        <img class="productImage" src="https://m.media-amazon.com/images/I/61mpMH5TzkL._AC_UY218_.jpg">
-                        <div class="productName">Logitech G502 LIGHTSPEED Wireless Gaming Mouse</div>
-                        <div class="productSold">Stock: 92</div>
+            @foreach (var product in lowStockProducts)
+            {
+                <a asp-controller="Products" asp-action="Details" asp-route-id="@product.ProductId">
+                    <div class="product">
+                        <div class="productContainer">
+                            <img class="productImage" src="@product.ImageUrl">
+                            <div class="productName">@product.ProductName</div>
+                            <div class="productSold">Stock: @product.Stock</div>
+                        </div>
                     </div>
-                </div>
-            </a>
-
-            <a asp-controller="Products" asp-action="Details" asp-route-id="4">
-                <div class="product">
-                    <div class="productContainer">
-                        <img class="productImage" src="https://images-na.ssl-images-amazon.com/images/I/81R1Dp8SMuL._AC_SL1500_.jpg">
-                        <div class="productName">Panasonic TX-24J330B HD Ready TV</div>
-                        <div class="productSold">Stock: 98</div>
-                    </div>
-                </div>
-            </a>
-
-            <a asp-controller="Products" asp-action="Details" asp-route-id="25">
-                <div class="product">
-                    <div class="productContainer">
-                        <img class="productImage" src="https://images-na.ssl-images-amazon.com/images/I/415tZH2vjXL._AC_.jpg">
-                        <div class="productName">Sony PlayStation 4 500GB Console - Black </div>
-                        <div class="productSold">Stock: 98</div>
-                    </div>
-                </div>
-            </a>
+                </a>
+            }
 
         </div>
     </div>
 
 
 </div>
+
 
 <script>let activePageIndex = 0;
 

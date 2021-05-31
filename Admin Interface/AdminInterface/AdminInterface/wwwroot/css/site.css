@@ -170,18 +170,11 @@ button.accept-policy {
 #navTitle {
     margin-left: 20px;
     padding-right: 5px;
+    font-size: 25px;
+    letter-spacing: 1px;
+    text-decoration: none;
+    color: #4f4f4f;
 }
-
-    #navTitle a {
-        font-size: 25px;
-        letter-spacing: 1px;
-        text-decoration: none;
-        color: var(--inactiveColor);
-    }
-
-        #navTitle a:hover {
-            color: #4f4f4f;
-        }
 
 #navbarRightWrapper {
     display: flex;

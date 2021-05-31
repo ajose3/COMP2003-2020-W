@@ -4,7 +4,7 @@ https://go.microsoft.com/fwlink/?LinkID=208121.
 -->
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup>
-    <_PublishTargetUrl>C:\Users\joshu\Desktop\APIWithCustomerReviews</_PublishTargetUrl>
-    <History>True|2021-05-26T11:19:08.9745817Z;True|2021-05-25T00:01:08.1560786+01:00;True|2021-05-24T23:34:28.0088198+01:00;True|2021-05-24T14:23:19.1590034+01:00;True|2021-05-20T19:01:32.9691617+01:00;</History>
+    <_PublishTargetUrl>C:\Users\joshu\Desktop\APIWithGetOrdersId</_PublishTargetUrl>
+    <History>True|2021-05-28T15:20:19.2350859Z;True|2021-05-26T12:19:08.9745817+01:00;True|2021-05-25T00:01:08.1560786+01:00;True|2021-05-24T23:34:28.0088198+01:00;True|2021-05-24T14:23:19.1590034+01:00;True|2021-05-20T19:01:32.9691617+01:00;</History>
   </PropertyGroup>
 </Project>

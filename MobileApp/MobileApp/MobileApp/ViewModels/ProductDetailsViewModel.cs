@@ -198,7 +198,7 @@ namespace MobileApp.ViewModels
 
                 //Reviews = ReviewData.getReviews(Id);
                 OnPropertyChanged("Reviews");
-                clearReview();
+                ClearReview();
 
                 if (response == "208")
                 {
@@ -214,7 +214,7 @@ namespace MobileApp.ViewModels
         });
         public ICommand ResetWriteCommand => new Command(() =>
         {
-            clearReview();
+            ClearReview();
         });
 
         public Command<string> SelectRatingCommand { get; }
@@ -265,7 +265,7 @@ namespace MobileApp.ViewModels
             OnPropertyChanged("RStarColor4");
             OnPropertyChanged("RStarColor5");
         }
-        public void clearReview()
+        public void ClearReview()
         {
             RRating = 0;
             RTitle = "";

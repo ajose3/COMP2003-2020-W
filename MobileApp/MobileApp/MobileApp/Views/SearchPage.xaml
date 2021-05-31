@@ -13,7 +13,7 @@
             <!--collection of all items in product array-->
             <CollectionView x:Name="productsCollectionView"
                             Margin="5"
-                            BackgroundColor="#f7f7f7"
+                            BackgroundColor="White"
                             ItemsLayout="VerticalList"
                             ItemsSource="{Binding FilteredProducts}"
                             ItemTemplate="{StaticResource ProductTemplate}"

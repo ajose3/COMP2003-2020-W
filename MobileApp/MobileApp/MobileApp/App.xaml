@@ -258,7 +258,7 @@
                                         HorizontalOptions="Center"
                                         VerticalOptions="Center"
                                     BackgroundColor="Transparent"
-                                    Command="{Binding Source={RelativeSource AncestorType={x:Type viewModels:CustomerDetailsViewModel}},Path=RemoveOrderCommand}"
+                                    Command="{Binding Source={RelativeSource AncestorType={x:Type viewModels:CustomerDetailsViewModel}},Path=RemoveReviewCommand}"
                                     CommandParameter="{Binding .}"/>
                             </Grid>
                             <Label Text="{Binding Title}" FontSize="24" TextColor="Black"/>

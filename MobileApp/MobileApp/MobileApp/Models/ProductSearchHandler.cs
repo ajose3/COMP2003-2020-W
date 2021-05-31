@@ -34,8 +34,6 @@ namespace MobileApp.Models
             // Note: strings will be URL encoded for navigation. Therefore, decode at the receiver.
             //await Shell.Current.GoToAsync($"productdetails?id={((Product)item).Id}");
 
-            //await (App.Current.MainPage as Xamarin.Forms.Shell).GoToAsync($"productdetails?id={((Product)item).Id}");
-
             await Shell.Current.GoToAsync($"productdetails?id={((Product)item).Id}");
         }
 
@@ -43,7 +41,6 @@ namespace MobileApp.Models
         {
             //await Shell.Current.DisplayAlert("Query Confirmed", null, "OK");
             // take to search page
-            //await Shell.Current.GoToAsync("searchPage");
             await Shell.Current.GoToAsync($"searchPage?query={Query}");
         }
     }

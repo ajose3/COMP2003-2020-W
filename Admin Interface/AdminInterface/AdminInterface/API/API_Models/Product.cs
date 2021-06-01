@@ -3,9 +3,9 @@ using System.Collections.Generic;
 
 #nullable disable
 
-namespace _2003_Web_API.Models
+namespace Web_API.Models
 {
-    public partial class Product
+    public partial class API_Product
     {
         /*public Product()
         {

@@ -10,13 +10,13 @@ using AdminInterface.Models;
 
 #nullable disable
 
-namespace _2003_Web_API.Models
+namespace Web_API.Models
 {
-    public class CustomerMethods
+    public class API_CustomerMethods
     {
         private readonly COMP2003_WContext dataAccess;
 
-        public CustomerMethods(COMP2003_WContext context)
+        public API_CustomerMethods(COMP2003_WContext context)
         {
             dataAccess = context;
         }
@@ -128,7 +128,7 @@ namespace _2003_Web_API.Models
             return response;
         }
 
-        public async Task<int> Register(Customer customer)
+        public async Task<int> Register(API_Customer customer)
         {
             int response = 400;
 
@@ -189,7 +189,7 @@ namespace _2003_Web_API.Models
             return response;
         }
 
-        public async Task<int> Edit(string token, Customer customer)
+        public async Task<int> Edit(string token, API_Customer customer)
         {
             int response = 400;
 
@@ -353,7 +353,7 @@ namespace _2003_Web_API.Models
             return response;
         }
 
-        public async Task<Customer> GetDetails(string token)
+        public async Task<API_Customer> GetDetails(string token)
         {
             int response = 400;
 
@@ -389,7 +389,7 @@ namespace _2003_Web_API.Models
             // execute command
             await cmd.ExecuteNonQueryAsync();
 
-            Customer customer = new Customer();
+            API_Customer customer = new API_Customer();
 
             // retrieve the data
             DbDataReader reader = await cmd.ExecuteReaderAsync();

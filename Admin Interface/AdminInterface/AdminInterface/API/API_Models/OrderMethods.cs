@@ -9,18 +9,18 @@ using Microsoft.EntityFrameworkCore.Metadata;
 using static Microsoft.EntityFrameworkCore.DbLoggerCategory;
 using AdminInterface.Models;
 
-namespace _2003_Web_API.Models
+namespace Web_API.Models
 {
-    public class OrderMethods
+    public class API_OrderMethods
     {
         private readonly COMP2003_WContext dataAccess;
 
-        public OrderMethods(COMP2003_WContext context)
+        public API_OrderMethods(COMP2003_WContext context)
         {
             dataAccess = context;
         }
 
-        public async Task<List<Order>> Get(string token)
+        public async Task<List<API_Order>> Get(string token)
         {
 
             dataAccess.Database.OpenConnection();
@@ -44,7 +44,7 @@ namespace _2003_Web_API.Models
             // add each parameter to command
             foreach (var param in @params) cmd.Parameters.Add(param);
 
-            List<Order> orderList = new List<Order>();
+            List<API_Order> orderList = new List<API_Order>();
 
             // retrieve the data
             DbDataReader reader = await cmd.ExecuteReaderAsync();
@@ -52,7 +52,7 @@ namespace _2003_Web_API.Models
             {
                 try
                 {
-                    Order order = new Order();
+                    API_Order order = new API_Order();
                     order.OrderId = Convert.ToInt32(reader[0]);
                     order.TimeOrdered = Convert.ToDateTime(reader[1]);
                     order.Quantity = Convert.ToInt32(reader[2]);
@@ -177,7 +177,7 @@ namespace _2003_Web_API.Models
         }
 
 
-        public async Task<List<Product>> GetLowStock(string token)
+        public async Task<List<API_Product>> GetLowStock(string token)
         {
 
             dataAccess.Database.OpenConnection();
@@ -201,7 +201,7 @@ namespace _2003_Web_API.Models
             // add each parameter to command
             foreach (var param in @params) cmd.Parameters.Add(param);
 
-            List<Product> productList = new List<Product>();
+            List<API_Product> productList = new List<API_Product>();
 
             // retrieve the data
             DbDataReader reader = await cmd.ExecuteReaderAsync();
@@ -209,7 +209,7 @@ namespace _2003_Web_API.Models
             {
                 try
                 {
-                    Product product = new Product();
+                    API_Product product = new API_Product();
                     product.ProductId = Convert.ToInt32(reader[0]);
                     product.ProductName = reader[1].ToString();
                     product.ImageUrl = reader[2].ToString();
@@ -229,7 +229,7 @@ namespace _2003_Web_API.Models
 
 
 
-        public async Task<List<Order>> GetOrdersbyId(string token,int productId)
+        public async Task<List<API_Order>> GetOrdersbyId(string token,int productId)
         {
 
             dataAccess.Database.OpenConnection();
@@ -254,7 +254,7 @@ namespace _2003_Web_API.Models
             // add each parameter to command
             foreach (var param in @params) cmd.Parameters.Add(param);
 
-            List<Order> orderList = new List<Order>();
+            List<API_Order> orderList = new List<API_Order>();
 
             // retrieve the data
             DbDataReader reader = await cmd.ExecuteReaderAsync();
@@ -262,7 +262,7 @@ namespace _2003_Web_API.Models
             {
                 try
                 {
-                    Order order = new Order();
+                    API_Order order = new API_Order();
                     order.OrderId = Convert.ToInt32(reader[0]);
                     order.TimeOrdered = Convert.ToDateTime(reader[1]);
                     order.Quantity = Convert.ToInt32(reader[2]);

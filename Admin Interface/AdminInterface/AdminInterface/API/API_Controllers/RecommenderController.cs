@@ -3,26 +3,27 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
-using _2003_Web_API.Models;
+using Web_API.Models;
 using AdminInterface.Models;
 
-namespace _2003_Web_API.Controllers
+// API controllers have to be in AdminInterface namespace to be initialised with context
+namespace AdminInterface.API_Controllers
 {
     public class RecommenderController : Controller
     {
-        private readonly RecommenderMethods dataAccess;
+        private readonly API_RecommenderMethods dataAccess;
 
         public RecommenderController(COMP2003_WContext context)
         {
-            dataAccess = new RecommenderMethods(context);
+            dataAccess = new API_RecommenderMethods(context);
         }
 
         [HttpGet]
         [Route("customer/related")]
         [Produces("application/json")]
-        public async Task<ActionResult<List<Product>>> GetRelated(string token, int productId)
+        public async Task<ActionResult<List<API_Product>>> GetRelated(string token, int productId)
         {
-            List<Product> products = await dataAccess.GetRelatedProducts(token, productId);
+            List<API_Product> products = await dataAccess.GetRelatedProducts(token, productId);
             if (products != null)
             {
                 return Ok(products);
@@ -36,9 +37,9 @@ namespace _2003_Web_API.Controllers
         [HttpGet]
         [Route("customer/recommend")]
         [Produces("application/json")]
-        public async Task<ActionResult<List<Product>>> Get(string token)
+        public async Task<ActionResult<List<API_Product>>> Get(string token)
         {
-            List<Product> products = await dataAccess.GetMostRecommended(token);
+            List<API_Product> products = await dataAccess.GetMostRecommended(token);
             if (products != null)
             {
                 return Ok(products);
@@ -55,7 +56,7 @@ namespace _2003_Web_API.Controllers
         public async Task<ActionResult<int>> GetRecommendedForHome(string Token)
         {
 
-            List<Product> products = await dataAccess.RecommendedForHome(Token);
+            List<API_Product> products = await dataAccess.RecommendedForHome(Token);
             return Ok(products);
             //// check response
             //if (responseMessage == 200)

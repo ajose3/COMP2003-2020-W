@@ -7,18 +7,18 @@ using Microsoft.Data.SqlClient;
 using Microsoft.EntityFrameworkCore;
 using AdminInterface.Models;
 
-namespace _2003_Web_API.Models
+namespace Web_API.Models
 {
-    public class ReviewMethods
+    public class API_ReviewMethods
     {
         private readonly COMP2003_WContext dataAccess;
 
-        public ReviewMethods(COMP2003_WContext context)
+        public API_ReviewMethods(COMP2003_WContext context)
         {
             dataAccess = context;
         }
 
-        public async Task<List<Review>> Get(int productId)
+        public async Task<List<API_Review>> Get(int productId)
         {
             string queryString = $"SELECT * FROM ProductReviews WHERE ProductID = {productId}";
 
@@ -27,7 +27,7 @@ namespace _2003_Web_API.Models
             cmd.CommandText = queryString;
             cmd.CommandType = CommandType.Text;
 
-            List<Review> reviewList = new List<Review>();
+            List<API_Review> reviewList = new List<API_Review>();
 
             // retrieve the data
             DbDataReader reader = await cmd.ExecuteReaderAsync();
@@ -35,7 +35,7 @@ namespace _2003_Web_API.Models
             {
                 try
                 {
-                    Review review = new Review();
+                    API_Review review = new API_Review();
                     review.ProductID = Convert.ToInt32(reader[0]);
                     review.CustomerId = Convert.ToInt32(reader[1]);
                     review.Rating = Convert.ToInt32(reader[2]);
@@ -53,7 +53,7 @@ namespace _2003_Web_API.Models
             return reviewList;
         }
 
-        public async Task<int> Add(string token, Review review)
+        public async Task<int> Add(string token, API_Review review)
         {
             int response = 400;
 
@@ -106,7 +106,7 @@ namespace _2003_Web_API.Models
             return response;
         }
 
-        public async Task<int> Edit(string token, Review review)
+        public async Task<int> Edit(string token, API_Review review)
         {
             int response = 400;
 
@@ -211,7 +211,7 @@ namespace _2003_Web_API.Models
         }
 
 
-        public async Task<List<ReviewsWithName>> GetCustomersReviews(string token)
+        public async Task<List<API_ReviewsWithName>> GetCustomersReviews(string token)
         {
             dataAccess.Database.OpenConnection();
             DbCommand cmd2 = dataAccess.Database.GetDbConnection().CreateCommand();
@@ -227,7 +227,7 @@ namespace _2003_Web_API.Models
             // add each parameter to command
             foreach (var param2 in @params2) cmd2.Parameters.Add(param2);
 
-            List<ReviewsWithName> reviewList = new List<ReviewsWithName>();
+            List<API_ReviewsWithName> reviewList = new List<API_ReviewsWithName>();
 
             // retrieve the data
             DbDataReader reader2 = await cmd2.ExecuteReaderAsync();
@@ -235,7 +235,7 @@ namespace _2003_Web_API.Models
             {
                 try
                 {
-                    ReviewsWithName review = new ReviewsWithName();
+                    API_ReviewsWithName review = new API_ReviewsWithName();
                     review.ProductID = Convert.ToInt32(reader2[0]);
                     review.CustomerId = Convert.ToInt32(reader2[1]);
                     review.Rating = Convert.ToInt32(reader2[2]);

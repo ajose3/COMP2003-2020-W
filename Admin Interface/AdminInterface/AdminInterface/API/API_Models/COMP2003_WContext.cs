@@ -5,10 +5,10 @@ using System.Threading.Tasks;
 using Microsoft.Data.SqlClient;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata;
-using _2003_Web_API.Models;
 
 #nullable disable
 
+// has to use AdminInterface.Models namespace to extend context that is being used
 namespace AdminInterface.Models
 {
     public partial class COMP2003_WContext : DbContext

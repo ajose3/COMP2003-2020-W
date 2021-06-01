@@ -3,21 +3,22 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
-using _2003_Web_API.Models;
+using Web_API.Models;
 using AdminInterface.Models;
 
 // For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
-namespace _2003_Web_API.Controllers
+// API controllers have to be in AdminInterface namespace to be initialised with context
+namespace AdminInterface.API_Controllers
 {
     public class CustomersController : Controller
     {
         //private readonly COMP2003_WContext dataAccess;
-        private readonly CustomerMethods dataAccess;
+        private readonly API_CustomerMethods dataAccess;
 
         public CustomersController(COMP2003_WContext context)
         {
-            dataAccess = new CustomerMethods(context);
+            dataAccess = new API_CustomerMethods(context);
             //dataAccess = context;
         }
 
@@ -66,7 +67,7 @@ namespace _2003_Web_API.Controllers
         [HttpPost]
         [Route("customer/register")]
         [Produces("application/json")]
-        public async Task<ActionResult<int>> Post([FromBody] Customer customer)
+        public async Task<ActionResult<int>> Post([FromBody] API_Customer customer)
         {
 
             int responseMessage = await dataAccess.Register(customer);
@@ -86,7 +87,7 @@ namespace _2003_Web_API.Controllers
         [HttpPut]
         [Route("customer/edit")]
         [Produces("application/json")]
-        public async Task<ActionResult<int>> Put(string token, [FromBody] Customer customer)
+        public async Task<ActionResult<int>> Put(string token, [FromBody] API_Customer customer)
         {
             int responseMessage = await dataAccess.Edit(token, customer);
             // "9B-4B45-AEE8-F307034EA892"

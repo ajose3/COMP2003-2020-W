@@ -5,10 +5,11 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
-using _2003_Web_API.Models;
+using Web_API.Models;
 using AdminInterface.Models;
 
-namespace _2003_Web_API.Controllers
+// API controllers have to be in AdminInterface namespace to be initialised with context
+namespace AdminInterface.API_Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
@@ -25,7 +26,7 @@ namespace _2003_Web_API.Controllers
         // - Validate Session -
         [HttpGet]
         [Produces("application/json")]
-        public async Task<ActionResult<bool>> GetSession(Session session)
+        public async Task<ActionResult<bool>> GetSession(API_Session session)
         {
             return Ok(true);
         }

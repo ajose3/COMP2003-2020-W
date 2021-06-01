@@ -10,18 +10,18 @@ using Microsoft.EntityFrameworkCore.Metadata;
 using static Microsoft.EntityFrameworkCore.DbLoggerCategory;
 using AdminInterface.Models;
 
-namespace _2003_Web_API.Models
+namespace Web_API.Models
 {
-    public class RecommenderMethods
+    public class API_RecommenderMethods
     {
         private readonly COMP2003_WContext dataAccess;
 
-        public RecommenderMethods(COMP2003_WContext context)
+        public API_RecommenderMethods(COMP2003_WContext context)
         {
             dataAccess = context;
         }
 
-        public async Task<List<Product>> GetMostRecommended(string token)
+        public async Task<List<API_Product>> GetMostRecommended(string token)
         {
 
             dataAccess.Database.OpenConnection();
@@ -47,7 +47,7 @@ namespace _2003_Web_API.Models
             foreach (var param in @params) cmd.Parameters.Add(param);
 
 
-            List<Product> productList = new List<Product>();
+            List<API_Product> productList = new List<API_Product>();
 
             // retrieve the data
             DbDataReader reader = await cmd.ExecuteReaderAsync();
@@ -55,7 +55,7 @@ namespace _2003_Web_API.Models
             {
                 try
                 {
-                    Product product = new Product();
+                    API_Product product = new API_Product();
                     product.ProductId = Convert.ToInt32(reader[0]);
                     product.ProductName = reader[1].ToString();
                     product.ImageUrl = reader[2].ToString();
@@ -76,7 +76,7 @@ namespace _2003_Web_API.Models
         }
 
 
-        public async Task<List<Product>> GetRelatedProducts(string token, int productId)
+        public async Task<List<API_Product>> GetRelatedProducts(string token, int productId)
         {
             //get all customer orders
             dataAccess.Database.OpenConnection();
@@ -94,7 +94,7 @@ namespace _2003_Web_API.Models
             // add each parameter to command
             foreach (var param in @params) cmd.Parameters.Add(param);
 
-            List<Product> productList = new List<Product>();
+            List<API_Product> productList = new List<API_Product>();
 
             // retrieve the data
             DbDataReader reader = await cmd.ExecuteReaderAsync();
@@ -102,7 +102,7 @@ namespace _2003_Web_API.Models
             {
                 try
                 {
-                    Product product = new Product();
+                    API_Product product = new API_Product();
                     product.ProductId = Convert.ToInt32(reader[0]);
                     product.ProductName = reader[1].ToString();
                     product.ImageUrl = reader[2].ToString();
@@ -125,7 +125,7 @@ namespace _2003_Web_API.Models
 
 
 
-        public async Task<List<Product>> RecommendedForHome(string token)
+        public async Task<List<API_Product>> RecommendedForHome(string token)
         {
             //get orders
             dataAccess.Database.OpenConnection();
@@ -149,7 +149,7 @@ namespace _2003_Web_API.Models
             // add each parameter to command
             foreach (var param in @params) cmd.Parameters.Add(param);
 
-            List<Order> orderList = new List<Order>();
+            List<API_Order> orderList = new List<API_Order>();
 
             // retrieve the data
             DbDataReader reader = await cmd.ExecuteReaderAsync();
@@ -157,7 +157,7 @@ namespace _2003_Web_API.Models
             {
                 try
                 {
-                    Order order = new Order();
+                    API_Order order = new API_Order();
                     order.OrderId = Convert.ToInt32(reader[0]);
                     order.TimeOrdered = Convert.ToDateTime(reader[1]);
                     order.Quantity = Convert.ToInt32(reader[2]);
@@ -194,7 +194,7 @@ namespace _2003_Web_API.Models
             // add each parameter to command
             foreach (var param2 in @params2) cmd2.Parameters.Add(param2);
 
-            List<Review> reviewList = new List<Review>();
+            List<API_Review> reviewList = new List<API_Review>();
 
             // retrieve the data
             DbDataReader reader2 = await cmd2.ExecuteReaderAsync();
@@ -202,7 +202,7 @@ namespace _2003_Web_API.Models
             {
                 try
                 {
-                    Review review = new Review();
+                    API_Review review = new API_Review();
                     review.ProductID = Convert.ToInt32(reader2[0]);
                     review.CustomerId = Convert.ToInt32(reader2[1]);
                     review.Rating = Convert.ToInt32(reader2[2]);
@@ -221,11 +221,11 @@ namespace _2003_Web_API.Models
 
             bool reviewed;
             bool found;
-            List <OrderReviewProduct> ORPList = new List<OrderReviewProduct>();
+            List <API_OrderReviewProduct> ORPList = new List<API_OrderReviewProduct>();
             foreach (var o in orderList)
             {
                 found = false;
-                OrderReviewProduct ORP = new OrderReviewProduct();
+                API_OrderReviewProduct ORP = new API_OrderReviewProduct();
                 reviewed = false;
                 //ORP.productId = o.ProductId;
                 ORP.category = o.Category;
@@ -267,7 +267,7 @@ namespace _2003_Web_API.Models
 
             if (ORPList.Count() > 1)
             {
-                List<OrderReviewProduct> SortedList = ORPList.OrderByDescending(o => o.weight).ToList();
+                List<API_OrderReviewProduct> SortedList = ORPList.OrderByDescending(o => o.weight).ToList();
                 favouriteCat = SortedList[0].category;
                 favouriteCat2 = SortedList[1].category;
             }
@@ -295,7 +295,7 @@ namespace _2003_Web_API.Models
             // add each parameter to command
             foreach (var param in @params3) cmd3.Parameters.Add(param);
 
-            List<Product> productList = new List<Product>();
+            List<API_Product> productList = new List<API_Product>();
 
             // retrieve the data
             DbDataReader reader3 = await cmd3.ExecuteReaderAsync();
@@ -303,7 +303,7 @@ namespace _2003_Web_API.Models
             {
                 try
                 {
-                    Product product = new Product();
+                    API_Product product = new API_Product();
                     product.ProductId = Convert.ToInt32(reader3[0]);
                     product.ProductName = reader3[1].ToString();
                     product.ImageUrl = reader3[2].ToString();

@@ -3,9 +3,9 @@ using System.Collections.Generic;
 
 #nullable disable
 
-namespace _2003_Web_API.Models
+namespace Web_API.Models
 {
-    public class Review
+    public class API_Review
     {
         public int ProductID { get; set; }
         public int CustomerId { get; set; }

@@ -3,20 +3,21 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
-using _2003_Web_API.Models;
+using Web_API.Models;
 using AdminInterface.Models;
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
-namespace _2003_Web_API.Controllers
+// API controllers have to be in AdminInterface namespace to be initialised with context
+namespace AdminInterface.API_Controllers
 {
     public class ReviewsController : Controller
     {
-        private readonly ReviewMethods dataAccess;
+        private readonly API_ReviewMethods dataAccess;
 
         public ReviewsController(COMP2003_WContext context)
         {
-            dataAccess = new ReviewMethods(context);
+            dataAccess = new API_ReviewMethods(context);
         }
 
 
@@ -27,7 +28,7 @@ namespace _2003_Web_API.Controllers
         [Produces("application/json")]
         public async Task<ActionResult<string>> Get(int productId)
         {
-            List<Review> reviews = await dataAccess.Get(productId);
+            List<API_Review> reviews = await dataAccess.Get(productId);
             return Ok(reviews);
         }
 
@@ -36,7 +37,7 @@ namespace _2003_Web_API.Controllers
         [HttpPost]
         [Route("reviews/add")]
         [Produces("application/json")]
-        public async Task<ActionResult<int>> Post(string token, [FromBody] Review review)
+        public async Task<ActionResult<int>> Post(string token, [FromBody] API_Review review)
         {
 
             int responseMessage = await dataAccess.Add(token, review);
@@ -54,7 +55,7 @@ namespace _2003_Web_API.Controllers
         [HttpPut]
         [Route("reviews/edit")]
         [Produces("application/json")]
-        public async Task<ActionResult<int>> Put(string token, [FromBody] Review review)
+        public async Task<ActionResult<int>> Put(string token, [FromBody] API_Review review)
         {
 
             int responseMessage = await dataAccess.Edit(token, review);
@@ -95,7 +96,7 @@ namespace _2003_Web_API.Controllers
         [Produces("application/json")]
         public async Task<ActionResult<string>> ReviewsFromCustomer(string token)
         {
-            List<ReviewsWithName> reviews = await dataAccess.GetCustomersReviews(token);
+            List<API_ReviewsWithName> reviews = await dataAccess.GetCustomersReviews(token);
             return Ok(reviews);
         }
 

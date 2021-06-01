@@ -3,21 +3,23 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
-using _2003_Web_API.Models;
+using Web_API.Models;
 using AdminInterface.Models;
+
 
 // For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
-namespace AdminInterface.Controllers
+// API controllers have to be in AdminInterface namespace to be initialised with context
+namespace AdminInterface.API_Controllers
 {
     public class AdminsController : Controller
     {
         //private readonly COMP2003_WContext dataAccess;
-        private readonly AdminMethods dataAccess;
+        private readonly API_AdminMethods dataAccess;
 
         public AdminsController(COMP2003_WContext context)
         {
-            dataAccess = new AdminMethods(context);
+            dataAccess = new API_AdminMethods(context);
             //dataAccess = context;
         }
 
@@ -46,7 +48,7 @@ namespace AdminInterface.Controllers
         [HttpPost]
         [Route("admin/register")]
         [Produces("application/json")]
-        public async Task<ActionResult<int>> Post(string token, [FromBody] Customer customer)
+        public async Task<ActionResult<int>> Post(string token, [FromBody] API_Customer customer)
         {
 
             int responseMessage = await dataAccess.Register(token, customer);
@@ -84,7 +86,7 @@ namespace AdminInterface.Controllers
         [HttpPut]
         [Route("admin/EditAdmin")]
         [Produces("application/json")]
-        public async Task<ActionResult<int>> EditAdmin(string token, [FromBody] Customer customer)
+        public async Task<ActionResult<int>> EditAdmin(string token, [FromBody] API_Customer customer)
         {
             int responseMessage = await dataAccess.EditAdmin(token, customer);
             // check response
@@ -105,7 +107,7 @@ namespace AdminInterface.Controllers
         [HttpPut]
         [Route("admin/EditCustomer")]
         [Produces("application/json")]
-        public async Task<ActionResult<int>> EditCustomer(string token, [FromBody] Customer customer)
+        public async Task<ActionResult<int>> EditCustomer(string token, [FromBody] API_Customer customer)
         {
             int responseMessage = await dataAccess.EditCustomer(token, customer);
             // check response
@@ -157,10 +159,6 @@ namespace AdminInterface.Controllers
                 return BadRequest(responseMessage);
             }
         }
-
-
-
-
 
     }
 }

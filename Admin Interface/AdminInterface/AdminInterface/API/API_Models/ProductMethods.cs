@@ -11,18 +11,18 @@ using AdminInterface.Models;
 
 #nullable disable
 
-namespace _2003_Web_API.Models
+namespace Web_API.Models
 {
-    public class ProductMethods
+    public class API_ProductMethods
     {
         private readonly COMP2003_WContext dataAccess;
 
-        public ProductMethods(COMP2003_WContext context)
+        public API_ProductMethods(COMP2003_WContext context)
         {
             dataAccess = context;
         }
 
-        public async Task<List<Product>> Get()
+        public async Task<List<API_Product>> Get()
         {
             string queryString = "SELECT * FROM ProductsForCustomer";
 
@@ -31,7 +31,7 @@ namespace _2003_Web_API.Models
             cmd.CommandText = queryString;
             cmd.CommandType = CommandType.Text;
 
-            List<Product> productList = new List<Product>();
+            List<API_Product> productList = new List<API_Product>();
 
             // retrieve the data
             DbDataReader reader = await cmd.ExecuteReaderAsync();
@@ -39,7 +39,7 @@ namespace _2003_Web_API.Models
             {
                 try
                 {
-                    Product product = new Product();
+                    API_Product product = new API_Product();
                     product.ProductId = Convert.ToInt32(reader[0]);
                     product.ProductName = reader[1].ToString();
                     product.ImageUrl = reader[2].ToString();
@@ -58,7 +58,7 @@ namespace _2003_Web_API.Models
             return productList;
         }
 
-        public async Task<int> Add(string token,Product product)
+        public async Task<int> Add(string token, API_Product product)
         {
             int response = 400;
 
@@ -114,7 +114,7 @@ namespace _2003_Web_API.Models
         }
 
 
-        public async Task<int> Edit(string token, Product product)
+        public async Task<int> Edit(string token, API_Product product)
         {
             int response = 400;
 
@@ -220,7 +220,7 @@ namespace _2003_Web_API.Models
             return response;
         }
 
-        public async Task<List<Product>> GetTrending()
+        public async Task<List<API_Product>> GetTrending()
         {
             string queryString = "SELECT * FROM TrendingProduct";
 
@@ -229,7 +229,7 @@ namespace _2003_Web_API.Models
             cmd.CommandText = queryString;
             cmd.CommandType = CommandType.Text;
 
-            List<Product> productList = new List<Product>();
+            List<API_Product> productList = new List<API_Product>();
 
             // retrieve the data
             DbDataReader reader = await cmd.ExecuteReaderAsync();
@@ -237,7 +237,7 @@ namespace _2003_Web_API.Models
             {
                 try
                 {
-                    Product product = new Product();
+                    API_Product product = new API_Product();
                     product.ProductId = Convert.ToInt32(reader[0]);
                     product.ProductName = reader[1].ToString();
                     product.ImageUrl = reader[2].ToString();
@@ -257,7 +257,7 @@ namespace _2003_Web_API.Models
         }
 
 
-        public async Task<List<Product>> GetFeatured()
+        public async Task<List<API_Product>> GetFeatured()
         {
             string queryString = "SELECT * FROM FeaturedProduct";
 
@@ -266,7 +266,7 @@ namespace _2003_Web_API.Models
             cmd.CommandText = queryString;
             cmd.CommandType = CommandType.Text;
 
-            List<Product> productList = new List<Product>();
+            List<API_Product> productList = new List<API_Product>();
 
             // retrieve the data
             DbDataReader reader = await cmd.ExecuteReaderAsync();
@@ -274,7 +274,7 @@ namespace _2003_Web_API.Models
             {
                 try
                 {
-                    Product product = new Product();
+                    API_Product product = new API_Product();
                     product.ProductId = Convert.ToInt32(reader[0]);
                     product.ProductName = reader[1].ToString();
                     product.ImageUrl = reader[2].ToString();

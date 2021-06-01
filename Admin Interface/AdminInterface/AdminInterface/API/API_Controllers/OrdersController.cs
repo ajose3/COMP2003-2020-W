@@ -1,19 +1,20 @@
-﻿using _2003_Web_API.Models;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Web_API.Models;
 using AdminInterface.Models;
 
-namespace _2003_Web_API.Controllers
+// API controllers have to be in AdminInterface namespace to be initialised with context
+namespace AdminInterface.API_Controllers
 {
     public class OrdersController : Controller
     {
-        private readonly OrderMethods dataAccess;
+        private readonly API_OrderMethods dataAccess;
         public OrdersController(COMP2003_WContext context)
         {
-            dataAccess = new OrderMethods(context);
+            dataAccess = new API_OrderMethods(context);
         }
 
 
@@ -25,7 +26,7 @@ namespace _2003_Web_API.Controllers
         public async Task<ActionResult<int>> Get(string token)
         {
 
-            List<Order> orders = await dataAccess.Get(token);
+            List<API_Order> orders = await dataAccess.Get(token);
             return Ok(orders);
             //// check response
             //if (responseMessage == 200)
@@ -82,7 +83,7 @@ namespace _2003_Web_API.Controllers
         public async Task<ActionResult<int>> LowStock(string token)
         {
 
-            List<Product> products = await dataAccess.GetLowStock(token);
+            List<API_Product> products = await dataAccess.GetLowStock(token);
             return Ok(products);
         }
 
@@ -92,7 +93,7 @@ namespace _2003_Web_API.Controllers
         [Produces("application/json")]
         public async Task<ActionResult<int>> OrdersById(string token, int productId)
         {
-            List<Order> orders = await dataAccess.GetOrdersbyId(token, productId);
+            List<API_Order> orders = await dataAccess.GetOrdersbyId(token, productId);
             return Ok(orders);
         }
     }

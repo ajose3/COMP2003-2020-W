@@ -3,9 +3,9 @@ using System.Collections.Generic;
 
 #nullable disable
 
-/*namespace _2003_Web_API.Models
+namespace Web_API.Models
 {
-    public partial class Customer
+    public partial class API_Customer
     {
         public int CustomerId { get; set; }
         public string FirstName { get; set; }
@@ -18,4 +18,4 @@ using System.Collections.Generic;
         public string PhoneNumber { get; set; }
         public bool Admin { get; set; }
     }
-}*/
+}

@@ -5,16 +5,17 @@ using System.Threading.Tasks;
 using Microsoft.Data.SqlClient;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata;
+using AdminInterface.Models;
 
 #nullable disable
 
-namespace AdminInterface.Models
+namespace Web_API.Models
 {
-    public partial class AdminMethods
+    public partial class API_AdminMethods
     {
         private readonly COMP2003_WContext dataAccess;
 
-        public AdminMethods(COMP2003_WContext context)
+        public API_AdminMethods(COMP2003_WContext context)
         {
             dataAccess = context;
         }
@@ -73,7 +74,7 @@ namespace AdminInterface.Models
             return token;
         }
 
-        public async Task<int> Register(string token, Customer customer)
+        public async Task<int> Register(string token, API_Customer customer)
         {
             int response = 400;
 
@@ -135,7 +136,7 @@ namespace AdminInterface.Models
             return response;
         }
 
-        public async Task<int> EditAdmin(string adminToken, Customer customer)
+        public async Task<int> EditAdmin(string adminToken, API_Customer customer)
         {
             int response = 400;
 
@@ -246,7 +247,7 @@ namespace AdminInterface.Models
             return response;
         }
 
-        public async Task<int> EditCustomer(string adminToken, Customer customer)
+        public async Task<int> EditCustomer(string adminToken, API_Customer customer)
         {
             int response = 400;
 

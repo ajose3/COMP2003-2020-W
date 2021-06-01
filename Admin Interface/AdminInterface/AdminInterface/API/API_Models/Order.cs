@@ -3,9 +3,9 @@ using System.Collections.Generic;
 
 #nullable disable
 
-namespace _2003_Web_API.Models
+namespace Web_API.Models
 {
-    public partial class Order:Product
+    public partial class API_Order : API_Product
     {
         public int OrderId { get; set; }
         public DateTime TimeOrdered { get; set; }

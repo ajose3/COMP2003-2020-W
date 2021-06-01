@@ -3,20 +3,21 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
-using _2003_Web_API.Models;
+using Web_API.Models;
 using AdminInterface.Models;
 
 // For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
-namespace _2003_Web_API.Controllers
+// API controllers have to be in AdminInterface namespace to be initialised with context
+namespace AdminInterface.API_Controllers
 {
     public class ProductsController : Controller
     {
-        private readonly ProductMethods dataAccess;
+        private readonly API_ProductMethods dataAccess;
 
         public ProductsController(COMP2003_WContext context)
         {
-            dataAccess = new ProductMethods(context);
+            dataAccess = new API_ProductMethods(context);
             //dataAccess = context;
         }
 
@@ -28,7 +29,7 @@ namespace _2003_Web_API.Controllers
         [Produces("application/json")]
         public async Task<ActionResult> Get()
         {
-            List<Product> products = await dataAccess.Get();
+            List<API_Product> products = await dataAccess.Get();
             return Ok(products);
         }
 
@@ -39,7 +40,7 @@ namespace _2003_Web_API.Controllers
         [HttpPost]
         [Route("product/add")]
         [Produces("application/json")]
-        public async Task<ActionResult<int>> Post(string token,[FromBody] Product product)
+        public async Task<ActionResult<int>> Post(string token,[FromBody] API_Product product)
         {
 
             int responseMessage = await dataAccess.Add(token, product);
@@ -57,7 +58,7 @@ namespace _2003_Web_API.Controllers
         [HttpPut]
         [Route("product/edit")]
         [Produces("application/json")]
-        public async Task<ActionResult<int>> Put(string token, [FromBody] Product product)
+        public async Task<ActionResult<int>> Put(string token, [FromBody] API_Product product)
         {
 
             int responseMessage = await dataAccess.Edit(token, product);
@@ -98,7 +99,7 @@ namespace _2003_Web_API.Controllers
         [Produces("application/json")]
         public async Task<ActionResult> GetTrending()
         {
-            List<Product> products = await dataAccess.GetTrending();
+            List<API_Product> products = await dataAccess.GetTrending();
             return Ok(products);
         }
 
@@ -107,7 +108,7 @@ namespace _2003_Web_API.Controllers
         [Produces("application/json")]
         public async Task<ActionResult> GetFeatured()
         {
-            List<Product> products = await dataAccess.GetFeatured();
+            List<API_Product> products = await dataAccess.GetFeatured();
             return Ok(products);
         }
 

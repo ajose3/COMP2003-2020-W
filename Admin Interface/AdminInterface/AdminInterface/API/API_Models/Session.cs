@@ -3,9 +3,9 @@ using System.Collections.Generic;
 
 #nullable disable
 
-namespace _2003_Web_API.Models
+namespace Web_API.Models
 {
-    public partial class Session
+    public partial class API_Session
     {
         public int SessionId { get; set; }
         public int CustomerId { get; set; }

@@ -1,6 +1,7 @@
 ﻿@*
     For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 *@
+
 @{
     ViewData["Title"] = "Login Page";
     Layout = null;
@@ -14,8 +15,22 @@
         <h1>Login</h1>
         <input type="text" id="email" placeholder="Email" name="email"><br>
         <input type="password" id="password" placeholder="Password" name="password"><br><br>
-        <input type="submit" value="Login" class="submitBtn">
+        <input type="submit" value="Login" class="submitBtn" action="handleClick()">
     </form>
 </div>
 
-<script></script>
+<script>
+
+    function saveTheCookie(value) {
+        var today = new Date(); // Actual date
+        var expire = new Date(); // Expiration of the cookie
+
+        var cookie_name = "admin_token"; // Name for the cookie to be recognized
+        var number_of_days = 10; // Number of days for the cookie to be valid (10 in this case)
+
+        expire.setTime(today.getTime() + 60 * 60 * 1000 * 24 * number_of_days); // Current time + (60 sec * 60 min * 1000 milisecs * 24 hours * number_of_days)
+
+        document.cookie = cookie_name + "=" + escape(value) + "; expires=" + expire.toGMTString();
+    }
+
+</script>

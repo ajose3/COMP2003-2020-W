@@ -7,9 +7,11 @@ using Microsoft.EntityFrameworkCore;
 using System.Diagnostics;
 using System.Threading.Tasks;
 using System.Linq;
+using Microsoft.AspNetCore.Authorization;
 
 namespace AdminInterface.Controllers
 {
+    [Authorize]
     public class HomeController : Controller
     {
         private readonly COMP2003_WContext _context;

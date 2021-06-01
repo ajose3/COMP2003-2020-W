@@ -6,9 +6,11 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using AdminInterface.Models;
+using Microsoft.AspNetCore.Authorization;
 
 namespace AdminInterface.Controllers
 {
+    [Authorize]
     public class ProductsController : Controller
     {
         private readonly COMP2003_WContext _context;

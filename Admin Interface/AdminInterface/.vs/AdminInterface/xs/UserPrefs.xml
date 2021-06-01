@@ -1,28 +1,28 @@
 ﻿<Properties StartupConfiguration="{DDFFCD52-952F-4D8E-8205-B781A0F4C0D0}|Default">
   <MonoDevelop.Ide.ItemProperties.AdminInterface PreferredExecutionTarget="/Applications/Google Chrome.app" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="AdminInterface/Models/DashboardGraphNode.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="AdminInterface/Controllers/LoginController.cs">
     <Files>
       <File FileName="AdminInterface/Models/Sessions.cs" Line="1" Column="1" />
-      <File FileName="AdminInterface/Views/Shared/_ValidationScriptsPartial.cshtml" />
-      <File FileName="AdminInterface/Views/Shared/_Layout.cshtml" />
-      <File FileName="AdminInterface/Views/Products/Index.cshtml" />
+      <File FileName="AdminInterface/Views/Shared/_ValidationScriptsPartial.cshtml" Line="1" Column="1" />
+      <File FileName="AdminInterface/Views/Shared/_Layout.cshtml" Line="50" Column="139" />
+      <File FileName="AdminInterface/Views/Products/Index.cshtml" Line="6" Column="1" />
       <File FileName="AdminInterface/wwwroot/css/site.css" />
-      <File FileName="AdminInterface/Models/Products.cs" />
-      <File FileName="AdminInterface/Views/Orders/Index.cshtml" />
-      <File FileName="AdminInterface/Views/Login/Index.cshtml" />
-      <File FileName="AdminInterface/Views/Reviews/Index.cshtml" />
-      <File FileName="AdminInterface/Views/Sessions/Index.cshtml" />
-      <File FileName="AdminInterface/Views/Customers/Index.cshtml" />
-      <File FileName="AdminInterface/Views/Home/Index.cshtml" Line="214" Column="2" />
-      <File FileName="AdminInterface/wwwroot/js/site.js" />
+      <File FileName="AdminInterface/Models/Products.cs" Line="1" Column="1" />
+      <File FileName="AdminInterface/Views/Orders/Index.cshtml" Line="6" Column="1" />
+      <File FileName="AdminInterface/Views/Login/Index.cshtml" Line="36" Column="10" />
+      <File FileName="AdminInterface/Views/Reviews/Index.cshtml" Line="6" Column="1" />
+      <File FileName="AdminInterface/Views/Sessions/Index.cshtml" Line="4" Column="36" />
+      <File FileName="AdminInterface/Views/Customers/Index.cshtml" Line="6" Column="1" />
+      <File FileName="AdminInterface/Views/Home/Index.cshtml" Line="68" Column="1" />
+      <File FileName="AdminInterface/wwwroot/js/site.js" Line="27" Column="49" />
       <File FileName="AdminInterface/Views/Products/Details.cshtml" />
       <File FileName="AdminInterface/Views/Products/Edit.cshtml" />
       <File FileName="AdminInterface/Views/Products/Delete.cshtml" />
       <File FileName="AdminInterface/Views/Products/Create.cshtml" />
       <File FileName="AdminInterface/Models/COMP2003_WContext.cs" Line="14" Column="62" />
       <File FileName="AdminInterface/Models/Customer.cs" />
-      <File FileName="AdminInterface/Controllers/ProductsController.cs" />
-      <File FileName="AdminInterface/Controllers/HomeController.cs" Line="48" Column="53" />
+      <File FileName="AdminInterface/Controllers/ProductsController.cs" Line="27" Column="10" />
+      <File FileName="AdminInterface/Controllers/HomeController.cs" Line="14" Column="16" />
       <File FileName="AdminInterface/Views/Home/Privacy.cshtml" />
       <File FileName="AdminInterface/Views/Orders/Create.cshtml" />
       <File FileName="AdminInterface/Views/Orders/Delete.cshtml" />
@@ -34,15 +34,15 @@
       <File FileName="AdminInterface/Views/Sessions/Delete.cshtml" />
       <File FileName="AdminInterface/Views/Sessions/Details.cshtml" />
       <File FileName="AdminInterface/Views/Sessions/Edit.cshtml" />
-      <File FileName="AdminInterface/Models/Orders.cs" />
+      <File FileName="AdminInterface/Models/Orders.cs" Line="9" Column="50" />
       <File FileName="AdminInterface/appsettings.json" Line="1" Column="1" />
       <File FileName="AdminInterface/API/API_Controllers/AdminController.cs" Line="45" Column="1" />
-      <File FileName="AdminInterface/Controllers/CustomersController.cs" Line="10" Column="37" />
+      <File FileName="AdminInterface/Controllers/CustomersController.cs" Line="13" Column="16" />
       <File FileName="AdminInterface/API/API_Controllers/CustomersController.cs" Line="7" Column="29" />
       <File FileName="AdminInterface/API/API_Models/AdminMethods.cs" Line="74" Column="26" />
-      <File FileName="AdminInterface/Controllers/LoginController.cs" Line="36" Column="43" />
+      <File FileName="AdminInterface/Controllers/LoginController.cs" Line="9" Column="1" />
       <File FileName="AdminInterface/Services/WebDataService.cs" Line="22" Column="15" />
-      <File FileName="AdminInterface/Startup.cs" Line="12" Column="37" />
+      <File FileName="AdminInterface/Startup.cs" Line="62" Column="37" />
       <File FileName="AdminInterface/Program.cs" Line="1" Column="1" />
       <File FileName="AdminInterface/Properties/launchSettings.json" Line="1" Column="1" />
       <File FileName="AdminInterface/API/API_Models/COMP2003_WContext.cs" Line="8" Column="1" />
@@ -64,7 +64,13 @@
       <File FileName="AdminInterface/API/API_Models/Review.cs" Line="14" Column="48" />
       <File FileName="AdminInterface/API/API_Models/ReviewsWithName.cs" Line="10" Column="48" />
       <File FileName="AdminInterface/API/API_Models/Session.cs" Line="12" Column="42" />
-      <File FileName="AdminInterface/Models/DashboardGraphNode.cs" Line="1" Column="1" />
+      <File FileName="AdminInterface/Models/DashboardGraphNode.cs" Line="13" Column="39" />
+      <File FileName="AdminInterface/Models/LoginToken.cs" Line="1" Column="1" />
+      <File FileName="AdminInterface/Controllers/OrdersController.cs" Line="13" Column="16" />
+      <File FileName="AdminInterface/Controllers/ReviewsController.cs" Line="13" Column="16" />
+      <File FileName="AdminInterface/Controllers/SessionsController.cs" Line="13" Column="16" />
+      <File FileName="AdminInterface/Views/Customers/Edit.cshtml" Line="1" Column="1" />
+      <File FileName="AdminInterface/Controllers/LogoutController.cs" Line="1" Column="1" />
     </Files>
     <Pads>
       <Pad Id="ProjectPad">
@@ -75,17 +81,20 @@
                 <Node name="API_Controllers" expanded="True" />
                 <Node name="API_Models" expanded="True" />
               </Node>
-              <Node name="Controllers" expanded="True" />
-              <Node name="Models" expanded="True">
-                <Node name="Orders.cs" selected="True" />
+              <Node name="Controllers" expanded="True">
+                <Node name="LoginController.cs" selected="True" />
               </Node>
+              <Node name="Models" expanded="True" />
               <Node name="Properties" expanded="True" />
               <Node name="Services" expanded="True" />
               <Node name="Views" expanded="True">
                 <Node name="Home" expanded="True" />
                 <Node name="Login" expanded="True" />
+                <Node name="Shared" expanded="True" />
               </Node>
-              <Node name="wwwroot" expanded="True" />
+              <Node name="wwwroot" expanded="True">
+                <Node name="js" expanded="True" />
+              </Node>
               <Node name="appsettings.json" expanded="True" />
             </Node>
           </Node>

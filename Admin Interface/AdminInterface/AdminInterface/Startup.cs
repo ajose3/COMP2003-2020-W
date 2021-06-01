@@ -10,6 +10,8 @@ using System.Linq;
 using System.Threading.Tasks;
 using AdminInterface.Models;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.AspNetCore.Authentication.Cookies;
+using Microsoft.AspNetCore.Http;
 
 namespace AdminInterface
 {
@@ -29,6 +31,14 @@ namespace AdminInterface
 
             services.AddDbContext<COMP2003_WContext>(options =>
             options.UseSqlServer(Configuration.GetConnectionString("COMP2003_W_DB")));
+
+            services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
+            .AddCookie(CookieAuthenticationDefaults.AuthenticationScheme,
+            options =>
+            {
+                options.LoginPath = "/Login";
+            });
+
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -49,6 +59,7 @@ namespace AdminInterface
 
             app.UseRouting();
 
+            app.UseAuthentication();
             app.UseAuthorization();
 
             app.UseEndpoints(endpoints =>

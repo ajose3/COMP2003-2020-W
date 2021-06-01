@@ -1,62 +1,83 @@
 ﻿<Properties StartupConfiguration="{DDFFCD52-952F-4D8E-8205-B781A0F4C0D0}|Default">
   <MonoDevelop.Ide.ItemProperties.AdminInterface PreferredExecutionTarget="/Applications/Google Chrome.app" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="AdminInterface/Controllers/HomeController.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="AdminInterface/Models/COMP2003_WContext.cs">
     <Files>
       <File FileName="AdminInterface/Models/Sessions.cs" Line="1" Column="1" />
       <File FileName="AdminInterface/Views/Shared/_ValidationScriptsPartial.cshtml" />
-      <File FileName="AdminInterface/Views/Shared/_Layout.cshtml" Line="25" Column="56" />
-      <File FileName="AdminInterface/Views/Products/Index.cshtml" Line="4" Column="36" />
-      <File FileName="AdminInterface/wwwroot/css/site.css" Line="177" Column="2" />
-      <File FileName="AdminInterface/Models/Products.cs" Line="1" Column="1" />
-      <File FileName="AdminInterface/Views/Orders/Index.cshtml" Line="13" Column="12" />
+      <File FileName="AdminInterface/Views/Shared/_Layout.cshtml" />
+      <File FileName="AdminInterface/Views/Products/Index.cshtml" />
+      <File FileName="AdminInterface/wwwroot/css/site.css" />
+      <File FileName="AdminInterface/Models/Products.cs" />
+      <File FileName="AdminInterface/Views/Orders/Index.cshtml" />
       <File FileName="AdminInterface/Views/Login/Index.cshtml" />
-      <File FileName="AdminInterface/Views/Reviews/Index.cshtml" Line="4" Column="35" />
-      <File FileName="AdminInterface/Views/Sessions/Index.cshtml" Line="4" Column="36" />
+      <File FileName="AdminInterface/Views/Reviews/Index.cshtml" />
+      <File FileName="AdminInterface/Views/Sessions/Index.cshtml" />
       <File FileName="AdminInterface/Views/Customers/Index.cshtml" />
-      <File FileName="AdminInterface/Views/Home/Index.cshtml" Line="65" Column="71" />
+      <File FileName="AdminInterface/Views/Home/Index.cshtml" Line="3" Column="2" />
       <File FileName="AdminInterface/wwwroot/js/site.js" />
-      <File FileName="AdminInterface/Views/Products/Details.cshtml" Line="4" Column="36" />
-      <File FileName="AdminInterface/Views/Products/Edit.cshtml" Line="4" Column="36" />
-      <File FileName="AdminInterface/Views/Products/Delete.cshtml" Line="4" Column="34" />
-      <File FileName="AdminInterface/Views/Products/Create.cshtml" Line="4" Column="36" />
-      <File FileName="AdminInterface/Models/COMP2003_WContext.cs" Line="1" Column="1" />
-      <File FileName="AdminInterface/Models/Customer.cs" Line="27" Column="66" />
-      <File FileName="AdminInterface/Controllers/ProductsController.cs" Line="25" Column="10" />
-      <File FileName="AdminInterface/Controllers/HomeController.cs" Line="25" Column="19" />
-      <File FileName="AdminInterface/Views/Home/Privacy.cshtml" Line="1" Column="1" />
-      <File FileName="AdminInterface/Views/Orders/Create.cshtml" Line="4" Column="34" />
-      <File FileName="AdminInterface/Views/Orders/Delete.cshtml" Line="4" Column="32" />
-      <File FileName="AdminInterface/Views/Orders/Details.cshtml" Line="4" Column="34" />
-      <File FileName="AdminInterface/Views/Orders/Edit.cshtml" Line="4" Column="34" />
-      <File FileName="AdminInterface/Views/Reviews/Create.cshtml" Line="4" Column="33" />
-      <File FileName="AdminInterface/Views/Reviews/Details.cshtml" Line="4" Column="33" />
-      <File FileName="AdminInterface/Views/Sessions/Create.cshtml" Line="4" Column="34" />
-      <File FileName="AdminInterface/Views/Sessions/Delete.cshtml" Line="4" Column="34" />
-      <File FileName="AdminInterface/Views/Sessions/Details.cshtml" Line="4" Column="34" />
-      <File FileName="AdminInterface/Views/Sessions/Edit.cshtml" Line="4" Column="34" />
-      <File FileName="AdminInterface/Models/Orders.cs" Line="1" Column="1" />
+      <File FileName="AdminInterface/Views/Products/Details.cshtml" />
+      <File FileName="AdminInterface/Views/Products/Edit.cshtml" />
+      <File FileName="AdminInterface/Views/Products/Delete.cshtml" />
+      <File FileName="AdminInterface/Views/Products/Create.cshtml" />
+      <File FileName="AdminInterface/Models/COMP2003_WContext.cs" Line="9" Column="16" />
+      <File FileName="AdminInterface/Models/Customer.cs" />
+      <File FileName="AdminInterface/Controllers/ProductsController.cs" />
+      <File FileName="AdminInterface/Controllers/HomeController.cs" Line="9" Column="19" />
+      <File FileName="AdminInterface/Views/Home/Privacy.cshtml" />
+      <File FileName="AdminInterface/Views/Orders/Create.cshtml" />
+      <File FileName="AdminInterface/Views/Orders/Delete.cshtml" />
+      <File FileName="AdminInterface/Views/Orders/Details.cshtml" />
+      <File FileName="AdminInterface/Views/Orders/Edit.cshtml" />
+      <File FileName="AdminInterface/Views/Reviews/Create.cshtml" />
+      <File FileName="AdminInterface/Views/Reviews/Details.cshtml" />
+      <File FileName="AdminInterface/Views/Sessions/Create.cshtml" />
+      <File FileName="AdminInterface/Views/Sessions/Delete.cshtml" />
+      <File FileName="AdminInterface/Views/Sessions/Details.cshtml" />
+      <File FileName="AdminInterface/Views/Sessions/Edit.cshtml" />
+      <File FileName="AdminInterface/Models/Orders.cs" />
+      <File FileName="AdminInterface/appsettings.json" Line="1" Column="1" />
+      <File FileName="AdminInterface/API/API_Controllers/AdminController.cs" Line="49" Column="76" />
+      <File FileName="AdminInterface/Controllers/CustomersController.cs" Line="10" Column="37" />
+      <File FileName="AdminInterface/API/API_Controllers/CustomersController.cs" Line="7" Column="29" />
+      <File FileName="AdminInterface/API/API_Models/AdminMethods.cs" Line="19" Column="34" />
+      <File FileName="AdminInterface/Controllers/LoginController.cs" Line="9" Column="33" />
+      <File FileName="AdminInterface/Services/WebDataService.cs" Line="1" Column="1" />
+      <File FileName="AdminInterface/Startup.cs" Line="30" Column="15" />
+      <File FileName="AdminInterface/Program.cs" Line="1" Column="1" />
+      <File FileName="AdminInterface/Properties/launchSettings.json" Line="1" Column="1" />
+      <File FileName="AdminInterface/API/API_Models/COMP2003_WContext.cs" Line="11" Column="1" />
+      <File FileName="AdminInterface/appsettings.Development.json" Line="1" Column="1" />
+      <File FileName="AdminInterface/API/API_Controllers/OrdersController.cs" Line="7" Column="29" />
+      <File FileName="AdminInterface/API/API_Controllers/ProductsController.cs" Line="7" Column="29" />
+      <File FileName="AdminInterface/API/API_Controllers/RecommenderController.cs" Line="7" Column="29" />
+      <File FileName="AdminInterface/API/API_Controllers/ReviewsController.cs" Line="7" Column="29" />
+      <File FileName="AdminInterface/API/API_Controllers/SessionsController.cs" Line="9" Column="29" />
+      <File FileName="AdminInterface/API/API_Models/Customer.cs" Line="21" Column="4" />
+      <File FileName="AdminInterface/API/API_Models/CustomerMethods.cs" Line="9" Column="29" />
+      <File FileName="AdminInterface/API/API_Models/OrderMethods.cs" Line="10" Column="29" />
+      <File FileName="AdminInterface/API/API_Models/ProductMethods.cs" Line="10" Column="29" />
+      <File FileName="AdminInterface/API/API_Models/RecommenderMethods.cs" Line="11" Column="29" />
+      <File FileName="AdminInterface/API/API_Models/ReviewMethods.cs" Line="8" Column="29" />
     </Files>
     <Pads>
       <Pad Id="ProjectPad">
         <State name="__root__">
           <Node name="AdminInterface" expanded="True">
             <Node name="AdminInterface" expanded="True">
-              <Node name="Controllers" expanded="True">
-                <Node name="HomeController.cs" selected="True" />
+              <Node name="API" expanded="True">
+                <Node name="API_Controllers" expanded="True" />
+                <Node name="API_Models" expanded="True" />
               </Node>
-              <Node name="Models" expanded="True" />
+              <Node name="Controllers" expanded="True" />
+              <Node name="Models" expanded="True">
+                <Node name="COMP2003_WContext.cs" selected="True" />
+              </Node>
+              <Node name="Properties" expanded="True" />
+              <Node name="Services" expanded="True" />
               <Node name="Views" expanded="True">
                 <Node name="Home" expanded="True" />
-                <Node name="Orders" expanded="True" />
-                <Node name="Products" expanded="True" />
-                <Node name="Reviews" expanded="True" />
-                <Node name="Sessions" expanded="True" />
-                <Node name="Shared" expanded="True" />
               </Node>
-              <Node name="wwwroot" expanded="True">
-                <Node name="css" expanded="True" />
-                <Node name="js" expanded="True" />
-              </Node>
+              <Node name="appsettings.json" expanded="True" />
             </Node>
           </Node>
         </State>

@@ -1,31 +1,41 @@
 ﻿using System;
+using System.Data;
+using System.Data.Common;
+using System.Threading.Tasks;
+using Microsoft.Data.SqlClient;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata;
+using _2003_Web_API.Models;
+
+#nullable disable
 
 namespace AdminInterface.Models
 {
     public partial class COMP2003_WContext : DbContext
     {
-
-        public virtual DbSet<Customer> Customer { get; set; }
-        public virtual DbSet<Orders> Orders { get; set; }
-        public virtual DbSet<Products> Products { get; set; }
-        public virtual DbSet<Reviews> Reviews { get; set; }
-        public virtual DbSet<Sessions> Sessions { get; set; }
-
-        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+        public COMP2003_WContext()
         {
-            if (!optionsBuilder.IsConfigured)
-            {
-#warning To protect potentially sensitive information in your connection string, you should move it out of source code. See http://go.microsoft.com/fwlink/?LinkId=723263 for guidance on storing connection strings.
-                optionsBuilder.UseSqlServer("Server=socem1.uopnet.plymouth.ac.uk;Database=COMP2003_W; User Id=COMP2003_W; Password=KxrE776*");
-            }
         }
 
-        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        public COMP2003_WContext(DbContextOptions<COMP2003_WContext> options)
+            : base(options)
         {
+        }
+
+        /*public virtual DbSet<Customer> Customers { get; set; }
+        public virtual DbSet<Order> Orders { get; set; }
+        public virtual DbSet<Product> Products { get; set; }
+        //public virtual DbSet<Review> Reviews { get; set; }
+        public virtual DbSet<Session> Sessions { get; set; }*/
+
+        /*protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            modelBuilder.HasAnnotation("Relational:Collation", "Latin1_General_CI_AS");
+
             modelBuilder.Entity<Customer>(entity =>
             {
+                entity.ToTable("Customer");
+
                 entity.Property(e => e.CustomerId).HasColumnName("CustomerID");
 
                 entity.Property(e => e.Address).HasColumnType("text");
@@ -55,11 +65,8 @@ namespace AdminInterface.Models
                     .IsUnicode(false);
             });
 
-            modelBuilder.Entity<Orders>(entity =>
+            modelBuilder.Entity<Order>(entity =>
             {
-                entity.HasKey(e => e.OrderId)
-                    .HasName("PK__Orders__C3905BAF0B565464");
-
                 entity.Property(e => e.OrderId).HasColumnName("OrderID");
 
                 entity.Property(e => e.CustomerId).HasColumnName("CustomerID");
@@ -80,11 +87,8 @@ namespace AdminInterface.Models
                     .HasConstraintName("FK__Orders__ProductI__0E6E26BF");
             });
 
-            modelBuilder.Entity<Products>(entity =>
+            modelBuilder.Entity<Product>(entity =>
             {
-                entity.HasKey(e => e.ProductId)
-                    .HasName("PK__Products__B40CC6ED4AD4064A");
-
                 entity.Property(e => e.ProductId).HasColumnName("ProductID");
 
                 entity.Property(e => e.Category)
@@ -104,7 +108,7 @@ namespace AdminInterface.Models
                     .IsUnicode(false);
             });
 
-            modelBuilder.Entity<Reviews>(entity =>
+            modelBuilder.Entity<Review>(entity =>
             {
                 entity.HasKey(e => new { e.ProductId, e.CustomerId })
                     .HasName("PK__Reviews__2E4620A6AFA7E760");
@@ -131,11 +135,8 @@ namespace AdminInterface.Models
                     .HasConstraintName("FK__Reviews__Product__1332DBDC");
             });
 
-            modelBuilder.Entity<Sessions>(entity =>
+            modelBuilder.Entity<Session>(entity =>
             {
-                entity.HasKey(e => e.SessionId)
-                    .HasName("PK__Sessions__E9CBB312CF3ABCD2");
-
                 entity.Property(e => e.SessionId).HasColumnName("Session_ID");
 
                 entity.Property(e => e.CustomerId).HasColumnName("CustomerID");
@@ -156,6 +157,19 @@ namespace AdminInterface.Models
             OnModelCreatingPartial(modelBuilder);
         }
 
-        partial void OnModelCreatingPartial(ModelBuilder modelBuilder);
+        partial void OnModelCreatingPartial(ModelBuilder modelBuilder);*/
+
+
+
+
+        public static string HashPassword(string password)
+        {
+            byte[] data = System.Text.Encoding.ASCII.GetBytes(password);
+            data = new System.Security.Cryptography.SHA256Managed().ComputeHash(data);
+            String hash = System.Text.Encoding.ASCII.GetString(data);
+            hash = hash.Replace("'", "");
+            return hash;
+        }
+
     }
 }

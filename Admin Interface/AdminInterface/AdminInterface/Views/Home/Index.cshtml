@@ -215,7 +215,12 @@
 }
 
 
-<script>let activePageIndex = 0;
+<script>
+    let activePageIndex = 0;
+
+    const monthNames = ["January", "February", "March", "April", "May", "June",
+        "July", "August", "September", "October", "November", "December"
+    ];
 
     // create array for node data
     var monthsData = [];
@@ -226,7 +231,8 @@
         // add sales data to array
         salesData.push($(this).attr('data-sales'));
         // add month data to array
-        monthsData.push($(this).attr('data-month'));
+        let monthName = monthNames[$(this).attr('data-month') - 1]
+        monthsData.push(monthName);
     });
 
     const chart = document.getElementById("lineChart");

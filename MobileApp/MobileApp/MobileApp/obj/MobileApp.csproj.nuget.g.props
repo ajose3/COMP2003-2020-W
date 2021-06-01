@@ -7,7 +7,7 @@
     <NuGetPackageRoot Condition=" '$(NuGetPackageRoot)' == '' ">$(UserProfile)\.nuget\packages\</NuGetPackageRoot>
     <NuGetPackageFolders Condition=" '$(NuGetPackageFolders)' == '' ">C:\Users\Edward\.nuget\packages\;C:\Program Files (x86)\Microsoft\Xamarin\NuGet\</NuGetPackageFolders>
     <NuGetProjectStyle Condition=" '$(NuGetProjectStyle)' == '' ">PackageReference</NuGetProjectStyle>
-    <NuGetToolVersion Condition=" '$(NuGetToolVersion)' == '' ">5.9.0</NuGetToolVersion>
+    <NuGetToolVersion Condition=" '$(NuGetToolVersion)' == '' ">5.10.0</NuGetToolVersion>
   </PropertyGroup>
   <ItemGroup Condition=" '$(ExcludeRestorePackageImports)' != 'true' ">
     <SourceRoot Include="C:\Users\Edward\.nuget\packages\" />
@@ -17,6 +17,10 @@
     <MSBuildAllProjects>$(MSBuildAllProjects);$(MSBuildThisFileFullPath)</MSBuildAllProjects>
   </PropertyGroup>
   <ImportGroup Condition=" '$(ExcludeRestorePackageImports)' != 'true' ">
+    <Import Project="$(NuGetPackageRoot)xamarin.uitest\3.0.19\build\Xamarin.UITest.props" Condition="Exists('$(NuGetPackageRoot)xamarin.uitest\3.0.19\build\Xamarin.UITest.props')" />
     <Import Project="C:\Program Files (x86)\Microsoft\Xamarin\NuGet\xamarin.forms\5.0.0.2012\buildTransitive\Xamarin.Forms.props" Condition="Exists('C:\Program Files (x86)\Microsoft\Xamarin\NuGet\xamarin.forms\5.0.0.2012\buildTransitive\Xamarin.Forms.props')" />
   </ImportGroup>
+  <PropertyGroup Condition=" '$(ExcludeRestorePackageImports)' != 'true' ">
+    <PkgXamarin_UITest Condition=" '$(PkgXamarin_UITest)' == '' ">C:\Users\Edward\.nuget\packages\xamarin.uitest\3.0.19</PkgXamarin_UITest>
+  </PropertyGroup>
 </Project>

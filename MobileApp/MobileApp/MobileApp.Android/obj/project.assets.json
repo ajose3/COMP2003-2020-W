@@ -1082,6 +1082,18 @@
           "buildTransitive/monoandroid50/Xamarin.Google.Guava.ListenableFuture.targets": {}
         }
       },
+      "Xamarin.UITest/3.0.19": {
+        "type": "package",
+        "compile": {
+          "lib/portable-net45+win8+wp8/Xamarin.UITest.dll": {}
+        },
+        "runtime": {
+          "lib/portable-net45+win8+wp8/Xamarin.UITest.dll": {}
+        },
+        "build": {
+          "build/_._": {}
+        }
+      },
       "MobileApp/1.0.0": {
         "type": "project",
         "framework": ".NETStandard,Version=v2.0",
@@ -1090,6 +1102,7 @@
           "RestSharp": "106.11.7",
           "Xamarin.Essentials": "1.6.1",
           "Xamarin.Forms": "5.0.0.2012",
+          "Xamarin.UITest": "3.0.19",
           "sqlite-net-pcl": "1.7.335"
         },
         "compile": {
@@ -2423,6 +2436,26 @@
         "lib/monoandroid50/Xamarin.Google.Guava.ListenableFuture.dll",
         "xamarin.google.guava.listenablefuture.1.0.0.2.nupkg.sha512",
         "xamarin.google.guava.listenablefuture.nuspec"
+      ]
+    },
+    "Xamarin.UITest/3.0.19": {
+      "sha512": "Vz7sElRK/Mmb+5MkmCri8V+eeHoFdkqXfjA/GGIBjWzztrdD+mLpbfahVqjeRKB/xB669AF/IjKCgAFN6CYnMg==",
+      "type": "package",
+      "path": "xamarin.uitest/3.0.19",
+      "hasTools": true,
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "LICENSE.md",
+        "ThirdPartyNotices.txt",
+        "build/Xamarin.UITest.props",
+        "lib/net45/Xamarin.UITest.dll",
+        "lib/net45/Xamarin.UITest.xml",
+        "lib/portable-net45+win8+wp8/Xamarin.UITest.dll",
+        "lib/portable-net45+win8+wp8/Xamarin.UITest.xml",
+        "tools/test-cloud.exe",
+        "xamarin.uitest.3.0.19.nupkg.sha512",
+        "xamarin.uitest.nuspec"
       ]
     },
     "MobileApp/1.0.0": {

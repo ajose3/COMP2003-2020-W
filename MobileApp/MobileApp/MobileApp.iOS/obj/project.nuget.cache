@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "q+raW7X3Sha3z3WSdL+fXz/szhOvu8oM+tWtIWVXJ2E+5mzECrDovafuenTTESRrImoCst27E0PsQS7rPDZk8w==",
+  "dgSpecHash": "gqnhlEfCXfrBHPoq9tVc5nXHuJyIg3u1d/eWpKIoFLR1L/nbSaoCHrkodqkMaaGhI8uByBM+DqmykW6txlokBA==",
   "success": true,
   "projectFilePath": "C:\\Users\\Edward\\source\\repos\\COMP2003-2020-WMain\\MobileApp\\MobileApp\\MobileApp.iOS\\MobileApp.iOS.csproj",
   "expectedPackageFiles": [
@@ -15,7 +15,8 @@
     "C:\\Users\\Edward\\.nuget\\packages\\system.numerics.vectors\\4.5.0\\system.numerics.vectors.4.5.0.nupkg.sha512",
     "C:\\Users\\Edward\\.nuget\\packages\\system.runtime.compilerservices.unsafe\\4.5.2\\system.runtime.compilerservices.unsafe.4.5.2.nupkg.sha512",
     "C:\\Program Files (x86)\\Microsoft\\Xamarin\\NuGet\\xamarin.essentials\\1.6.1\\xamarin.essentials.1.6.1.nupkg.sha512",
-    "C:\\Program Files (x86)\\Microsoft\\Xamarin\\NuGet\\xamarin.forms\\5.0.0.2012\\xamarin.forms.5.0.0.2012.nupkg.sha512"
+    "C:\\Program Files (x86)\\Microsoft\\Xamarin\\NuGet\\xamarin.forms\\5.0.0.2012\\xamarin.forms.5.0.0.2012.nupkg.sha512",
+    "C:\\Users\\Edward\\.nuget\\packages\\xamarin.uitest\\3.0.19\\xamarin.uitest.3.0.19.nupkg.sha512"
   ],
   "logs": []
 }

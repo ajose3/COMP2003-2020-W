@@ -2911,3 +2911,13 @@ C:\Users\Edward\source\repos\COMP2003-2020-WMain\MobileApp\MobileApp\MobileApp.A
 C:\Users\Edward\source\repos\COMP2003-2020-WMain\MobileApp\MobileApp\MobileApp.Android\obj\Debug\100\stamp\_GenerateJavaStubs.stamp
 C:\Users\Edward\source\repos\COMP2003-2020-WMain\MobileApp\MobileApp\MobileApp.Android\obj\Debug\100\stamp\_GeneratePackageManagerJava.stamp
 C:\Users\Edward\source\repos\COMP2003-2020-WMain\MobileApp\MobileApp\MobileApp.Android\obj\Debug\100\stamp\_ResolveLibraryProjectImports.stamp
+C:\Users\Edward\source\repos\COMP2003-2020-WMain\MobileApp\MobileApp\MobileApp.Android\bin\Debug\test-cloud.exe
+C:\Users\Edward\source\repos\COMP2003-2020-WMain\MobileApp\MobileApp\MobileApp.Android\obj\Debug\100\MobileApp.Android.csproj.AssemblyReference.cache
+C:\Users\Edward\source\repos\COMP2003-2020-WMain\MobileApp\MobileApp\MobileApp.Android\obj\Debug\100\lp\53\jl\files.cache
+C:\Users\Edward\source\repos\COMP2003-2020-WMain\MobileApp\MobileApp\MobileApp.Android\obj\Debug\100\lp\57\jl\files.cache
+C:\Users\Edward\source\repos\COMP2003-2020-WMain\MobileApp\MobileApp\MobileApp.Android\obj\Debug\100\lp\65\jl\files.cache
+C:\Users\Edward\source\repos\COMP2003-2020-WMain\MobileApp\MobileApp\MobileApp.Android\obj\Debug\100\lp\70\jl\files.cache
+C:\Users\Edward\source\repos\COMP2003-2020-WMain\MobileApp\MobileApp\MobileApp.Android\obj\Debug\100\lp\75\jl\files.cache
+C:\Users\Edward\source\repos\COMP2003-2020-WMain\MobileApp\MobileApp\MobileApp.Android\obj\Debug\100\lp\78\jl\files.cache
+C:\Users\Edward\source\repos\COMP2003-2020-WMain\MobileApp\MobileApp\MobileApp.Android\obj\Debug\100\lp\81\jl\files.cache
+C:\Users\Edward\source\repos\COMP2003-2020-WMain\MobileApp\MobileApp\MobileApp.Android\obj\Debug\100\lp\89\jl\files.cache

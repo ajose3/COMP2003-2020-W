@@ -186,7 +186,6 @@ C:\Users\Edward\source\repos\COMP2003-2020-WMain\MobileApp\MobileApp\MobileApp\b
 C:\Users\Edward\source\repos\COMP2003-2020-WMain\MobileApp\MobileApp\MobileApp\bin\Debug\netstandard2.0\MobileApp.dll
 C:\Users\Edward\source\repos\COMP2003-2020-WMain\MobileApp\MobileApp\MobileApp\bin\Debug\netstandard2.0\ref\MobileApp.dll
 C:\Users\Edward\source\repos\COMP2003-2020-WMain\MobileApp\MobileApp\MobileApp\bin\Debug\netstandard2.0\MobileApp.pdb
-C:\Users\Edward\source\repos\COMP2003-2020-WMain\MobileApp\MobileApp\MobileApp\obj\Debug\netstandard2.0\MobileApp.csprojAssemblyReference.cache
 C:\Users\Edward\source\repos\COMP2003-2020-WMain\MobileApp\MobileApp\MobileApp\obj\Debug\netstandard2.0\App.xaml.g.cs
 C:\Users\Edward\source\repos\COMP2003-2020-WMain\MobileApp\MobileApp\MobileApp\obj\Debug\netstandard2.0\AppShell.xaml.g.cs
 C:\Users\Edward\source\repos\COMP2003-2020-WMain\MobileApp\MobileApp\MobileApp\obj\Debug\netstandard2.0\Views\AllReviewsPage.xaml.g.cs
@@ -209,3 +208,5 @@ C:\Users\Edward\source\repos\COMP2003-2020-WMain\MobileApp\MobileApp\MobileApp\o
 C:\Users\Edward\source\repos\COMP2003-2020-WMain\MobileApp\MobileApp\MobileApp\obj\Debug\netstandard2.0\MobileApp.dll
 C:\Users\Edward\source\repos\COMP2003-2020-WMain\MobileApp\MobileApp\MobileApp\obj\Debug\netstandard2.0\ref\MobileApp.dll
 C:\Users\Edward\source\repos\COMP2003-2020-WMain\MobileApp\MobileApp\MobileApp\obj\Debug\netstandard2.0\MobileApp.pdb
+C:\Users\Edward\source\repos\COMP2003-2020-WMain\MobileApp\MobileApp\MobileApp\bin\Debug\netstandard2.0\test-cloud.exe
+C:\Users\Edward\source\repos\COMP2003-2020-WMain\MobileApp\MobileApp\MobileApp\obj\Debug\netstandard2.0\MobileApp.csproj.AssemblyReference.cache

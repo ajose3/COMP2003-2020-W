@@ -1,4 +1,4 @@
-﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
+﻿/*using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
 using MobileApp.Data;
 using MobileApp.Models;
@@ -9,7 +9,7 @@ namespace UnitTestProject1
     [TestClass]
     public class UnitTest1
     {
-        /*[TestMethod]
+        *//*[TestMethod]
         public async Task RetrieveValue_AsynchronousSuccess_Adds42()
         {
             var service = new Mock<IMyService>();
@@ -74,7 +74,7 @@ namespace UnitTestProject1
               PhoneNumber = "8407484287",
 
           };
-  */
+  *//*
 
         User testUserValidated = new User()
         {
@@ -126,4 +126,4 @@ namespace UnitTestProject1
         }
 
     }
-}
+}*/

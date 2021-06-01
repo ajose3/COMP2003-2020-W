@@ -11,6 +11,10 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MobileApp", "MobileApp\Mobi
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UnitTestProject1", "UnitTestProject1\UnitTestProject1.csproj", "{9AB6711A-61D3-483A-8373-6100E0EE19B9}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "tests", "tests", "{7954860B-708C-47BA-98A8-FFDD7A42D961}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UITest1", "UITest1\UITest1.csproj", "{66A87096-CE67-4E1C-8040-1A0C1EED39F4}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -87,9 +91,24 @@ Global
 		{9AB6711A-61D3-483A-8373-6100E0EE19B9}.Release|iPhone.Build.0 = Release|Any CPU
 		{9AB6711A-61D3-483A-8373-6100E0EE19B9}.Release|iPhoneSimulator.ActiveCfg = Release|Any CPU
 		{9AB6711A-61D3-483A-8373-6100E0EE19B9}.Release|iPhoneSimulator.Build.0 = Release|Any CPU
+		{66A87096-CE67-4E1C-8040-1A0C1EED39F4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{66A87096-CE67-4E1C-8040-1A0C1EED39F4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{66A87096-CE67-4E1C-8040-1A0C1EED39F4}.Debug|iPhone.ActiveCfg = Debug|Any CPU
+		{66A87096-CE67-4E1C-8040-1A0C1EED39F4}.Debug|iPhone.Build.0 = Debug|Any CPU
+		{66A87096-CE67-4E1C-8040-1A0C1EED39F4}.Debug|iPhoneSimulator.ActiveCfg = Debug|Any CPU
+		{66A87096-CE67-4E1C-8040-1A0C1EED39F4}.Debug|iPhoneSimulator.Build.0 = Debug|Any CPU
+		{66A87096-CE67-4E1C-8040-1A0C1EED39F4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{66A87096-CE67-4E1C-8040-1A0C1EED39F4}.Release|Any CPU.Build.0 = Release|Any CPU
+		{66A87096-CE67-4E1C-8040-1A0C1EED39F4}.Release|iPhone.ActiveCfg = Release|Any CPU
+		{66A87096-CE67-4E1C-8040-1A0C1EED39F4}.Release|iPhone.Build.0 = Release|Any CPU
+		{66A87096-CE67-4E1C-8040-1A0C1EED39F4}.Release|iPhoneSimulator.ActiveCfg = Release|Any CPU
+		{66A87096-CE67-4E1C-8040-1A0C1EED39F4}.Release|iPhoneSimulator.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{66A87096-CE67-4E1C-8040-1A0C1EED39F4} = {7954860B-708C-47BA-98A8-FFDD7A42D961}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {B5F9B2ED-AB6A-4A76-BB85-FF12B1A33879}

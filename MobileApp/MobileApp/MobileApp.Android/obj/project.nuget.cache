@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "WxeloQYZTxOcFkzd/ThW3R0bK8qaozk87f/jdnUmhZe6S1C8U7qoC4mjaX6kKZ56HnzQQOQWn2SJEYHgHaqxSg==",
+  "dgSpecHash": "5fFl5m24QaIUG2mR72FERAN5/sKIkKHdVLRuDf2Ee23eBoh8MyMEKOlTGyUoMvUeusi7l7MXN3x7F5Ri2yKSrA==",
   "success": true,
   "projectFilePath": "C:\\Users\\Edward\\source\\repos\\COMP2003-2020-WMain\\MobileApp\\MobileApp\\MobileApp.Android\\MobileApp.Android.csproj",
   "expectedPackageFiles": [
@@ -62,7 +62,8 @@
     "C:\\Program Files (x86)\\Microsoft\\Xamarin\\NuGet\\xamarin.essentials\\1.6.1\\xamarin.essentials.1.6.1.nupkg.sha512",
     "C:\\Program Files (x86)\\Microsoft\\Xamarin\\NuGet\\xamarin.forms\\5.0.0.2012\\xamarin.forms.5.0.0.2012.nupkg.sha512",
     "C:\\Program Files (x86)\\Microsoft\\Xamarin\\NuGet\\xamarin.google.android.material\\1.2.1.1\\xamarin.google.android.material.1.2.1.1.nupkg.sha512",
-    "C:\\Program Files (x86)\\Microsoft\\Xamarin\\NuGet\\xamarin.google.guava.listenablefuture\\1.0.0.2\\xamarin.google.guava.listenablefuture.1.0.0.2.nupkg.sha512"
+    "C:\\Program Files (x86)\\Microsoft\\Xamarin\\NuGet\\xamarin.google.guava.listenablefuture\\1.0.0.2\\xamarin.google.guava.listenablefuture.1.0.0.2.nupkg.sha512",
+    "C:\\Users\\Edward\\.nuget\\packages\\xamarin.uitest\\3.0.19\\xamarin.uitest.3.0.19.nupkg.sha512"
   ],
   "logs": []
 }

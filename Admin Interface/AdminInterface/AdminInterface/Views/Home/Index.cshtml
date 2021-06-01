@@ -2,6 +2,7 @@
     ViewData["Title"] = "Home";
 }
 
+
 <!--<div class="text-center">
     <h1 class="display-4">Welcome</h1>
     <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
@@ -44,7 +45,7 @@
 
         <canvas id="lineChart"></canvas>
 
-    @model IEnumerable<AdminInterface.Models.Products>
+        @model IEnumerable<AdminInterface.Models.Products>
 
     </div>
     <div class="dashboardBlock dashboardRightBlock">
@@ -60,8 +61,8 @@
             <tbody>
 
                 @{
-                            // get orders data
-                            List<Orders> orders = (List<Orders>)ViewData["Orders"];
+                    // get orders data
+                    List<Orders> orders = (List<Orders>)ViewData["Orders"];
                     List<Orders> recentOrders = orders.GetRange(0, 5);
                 }
 
@@ -202,19 +203,43 @@
 </div>
 
 
+@{
+    // get graph nodes
+    List<DashboardGraphNode> graphNodes = (List<DashboardGraphNode>)ViewData["GraphNodes"];
+}
+
+@foreach (var node in graphNodes)
+{
+    <!-- add data for graph -->
+    <data class="graphData" data-sales="@node.totalSales" data-month="@node.month"></data>
+}
+
+
 <script>let activePageIndex = 0;
+
+    // create array for node data
+    var monthsData = [];
+    var salesData = [];
+
+    // for each node in data
+    $(".graphData").each(function () {
+        // add sales data to array
+        salesData.push($(this).attr('data-sales'));
+        // add month data to array
+        monthsData.push($(this).attr('data-month'));
+    });
 
     const chart = document.getElementById("lineChart");
     let lineChart = new Chart(chart, {
         // The type of chart we want to create
         type: 'line',
         data: {
-            labels: ['January', 'February', 'March', 'April', 'May', 'June', 'July'],
+            labels: monthsData,
             datasets: [{
                 label: 'Sales',
                 fill: false,
                 borderColor: 'rgb(255, 99, 132)',
-                data: [0, 10, 5, 2, 20, 30, 45]
+                data: salesData
             }]
         },
         // Configuration options go here

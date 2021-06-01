@@ -1,18 +1,15 @@
 ﻿using MobileApp.Data;
 using MobileApp.Models;
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
-using Newtonsoft.Json;
-using System.Net.Mime;
-using System.Net.Http.Headers;
-using RestSharp;
 
 namespace MobileApp.Services
 {
-    class WebDataService
+    public class WebDataService
     {
         HttpClient httpClient;
 
@@ -47,6 +44,7 @@ namespace MobileApp.Services
             return a;
 
         }
+
         public async Task<string> PutUpdateCustomer(User user)
         {
             string token = TokenData.value;
@@ -64,6 +62,7 @@ namespace MobileApp.Services
             response.EnsureSuccessStatusCode();
             return await response.Content.ReadAsStringAsync().ConfigureAwait(false);
         }
+
         //public async Task<string> PutChangePassword(string password, string newPassword)
         public async Task<string> PutChangePassword(string newPassword)
         {

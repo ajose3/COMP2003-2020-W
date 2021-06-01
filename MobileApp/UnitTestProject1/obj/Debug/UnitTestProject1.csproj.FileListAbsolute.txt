@@ -1,0 +1,16 @@
+C:\Users\Edward\source\repos\COMP2003-2020-WMain\MobileApp\UnitTestProject1\bin\Debug\Microsoft.VisualStudio.TestPlatform.MSTest.TestAdapter.dll
+C:\Users\Edward\source\repos\COMP2003-2020-WMain\MobileApp\UnitTestProject1\bin\Debug\Microsoft.VisualStudio.TestPlatform.MSTestAdapter.PlatformServices.Interface.dll
+C:\Users\Edward\source\repos\COMP2003-2020-WMain\MobileApp\UnitTestProject1\bin\Debug\Microsoft.VisualStudio.TestPlatform.MSTestAdapter.PlatformServices.dll
+C:\Users\Edward\source\repos\COMP2003-2020-WMain\MobileApp\UnitTestProject1\bin\Debug\UnitTestProject1.dll
+C:\Users\Edward\source\repos\COMP2003-2020-WMain\MobileApp\UnitTestProject1\bin\Debug\UnitTestProject1.pdb
+C:\Users\Edward\source\repos\COMP2003-2020-WMain\MobileApp\UnitTestProject1\bin\Debug\Microsoft.VisualStudio.TestPlatform.TestFramework.dll
+C:\Users\Edward\source\repos\COMP2003-2020-WMain\MobileApp\UnitTestProject1\bin\Debug\Microsoft.VisualStudio.TestPlatform.TestFramework.Extensions.dll
+C:\Users\Edward\source\repos\COMP2003-2020-WMain\MobileApp\UnitTestProject1\bin\Debug\MobileApp.dll
+C:\Users\Edward\source\repos\COMP2003-2020-WMain\MobileApp\UnitTestProject1\bin\Debug\MobileApp.pdb
+C:\Users\Edward\source\repos\COMP2003-2020-WMain\MobileApp\UnitTestProject1\bin\Debug\Microsoft.VisualStudio.TestPlatform.TestFramework.xml
+C:\Users\Edward\source\repos\COMP2003-2020-WMain\MobileApp\UnitTestProject1\bin\Debug\Microsoft.VisualStudio.TestPlatform.TestFramework.Extensions.xml
+C:\Users\Edward\source\repos\COMP2003-2020-WMain\MobileApp\UnitTestProject1\obj\Debug\UnitTestProject1.csprojAssemblyReference.cache
+C:\Users\Edward\source\repos\COMP2003-2020-WMain\MobileApp\UnitTestProject1\obj\Debug\UnitTestProject1.csproj.CoreCompileInputs.cache
+C:\Users\Edward\source\repos\COMP2003-2020-WMain\MobileApp\UnitTestProject1\obj\Debug\UnitTestProject1.csproj.CopyComplete
+C:\Users\Edward\source\repos\COMP2003-2020-WMain\MobileApp\UnitTestProject1\obj\Debug\UnitTestProject1.dll
+C:\Users\Edward\source\repos\COMP2003-2020-WMain\MobileApp\UnitTestProject1\obj\Debug\UnitTestProject1.pdb

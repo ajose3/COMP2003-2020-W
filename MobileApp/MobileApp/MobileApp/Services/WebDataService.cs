@@ -17,7 +17,7 @@ namespace MobileApp.Services
         HttpClient httpClient;
 
         HttpClient Client => httpClient ?? (httpClient = new HttpClient());
-        public async Task GetValidateCustomer(User user)
+        public async Task<string> GetValidateCustomer(User user)
         {
             var request = new HttpRequestMessage
             {
@@ -29,6 +29,7 @@ namespace MobileApp.Services
             string returnedJson = await response.Content.ReadAsStringAsync().ConfigureAwait(false);
             returnedJson = returnedJson.Replace("/","").Replace("\"","");
             TokenData.value = returnedJson;
+            return returnedJson;
 
         }
         public async Task<string> PostRegisterCustomer(User user)

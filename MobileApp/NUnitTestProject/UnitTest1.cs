@@ -72,6 +72,32 @@ namespace NUnitTestProject
                 _s = new WebDataService();
             }
 
+            [Test]
+            public async Task GetValidateCustomerSuccess()
+            {
+                User testUser = new User
+                {
+                    Address = "25 london eye",
+                    Age = 21,
+                    email = "randomemail@spam.com",
+                    FirstName = "Jack",
+                    LastName = "Potter",
+                    password = "password1234",
+                    PhoneNumber = "084876537342"
+                };
+
+                string returnToken = await _s.GetValidateCustomer(testUser);
+
+                if (returnToken.Length > 3)
+                {
+                    Assert.Pass();
+                }
+                else
+                {
+                    Assert.Fail();
+                }
+            }
+
 
             [Test]
             public async Task PostRegisterCustomerSuccess()

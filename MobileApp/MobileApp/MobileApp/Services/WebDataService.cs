@@ -12,7 +12,7 @@ using RestSharp;
 
 namespace MobileApp.Services
 {
-    class WebDataService
+    public class WebDataService
     {
         HttpClient httpClient;
 

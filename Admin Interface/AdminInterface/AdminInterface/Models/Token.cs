@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 
 namespace AdminInterface.Models
 {
-    public class Token
+    public static class Token
     {
         public static string value { get; set; }
     }

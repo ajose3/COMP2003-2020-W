@@ -1,25 +1,33 @@
 {
   "format": 1,
   "restore": {
-    "/Users/alistair/Documents/GitHub/COMP2003-2020-W/Admin Interface/AdminInterface/AdminInterface/AdminInterface.csproj": {}
+    "C:\\Git\\AdminInterface2003\\Admin Interface\\AdminInterface\\AdminInterface\\AdminInterface.csproj": {}
   },
   "projects": {
-    "/Users/alistair/Documents/GitHub/COMP2003-2020-W/Admin Interface/AdminInterface/AdminInterface/AdminInterface.csproj": {
+    "C:\\Git\\AdminInterface2003\\Admin Interface\\AdminInterface\\AdminInterface\\AdminInterface.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "/Users/alistair/Documents/GitHub/COMP2003-2020-W/Admin Interface/AdminInterface/AdminInterface/AdminInterface.csproj",
+        "projectUniqueName": "C:\\Git\\AdminInterface2003\\Admin Interface\\AdminInterface\\AdminInterface\\AdminInterface.csproj",
         "projectName": "AdminInterface",
-        "projectPath": "/Users/alistair/Documents/GitHub/COMP2003-2020-W/Admin Interface/AdminInterface/AdminInterface/AdminInterface.csproj",
-        "packagesPath": "/Users/alistair/.nuget/packages/",
-        "outputPath": "/Users/alistair/Documents/GitHub/COMP2003-2020-W/Admin Interface/AdminInterface/AdminInterface/obj/",
+        "projectPath": "C:\\Git\\AdminInterface2003\\Admin Interface\\AdminInterface\\AdminInterface\\AdminInterface.csproj",
+        "packagesPath": "C:\\Users\\joshu\\.nuget\\packages\\",
+        "outputPath": "C:\\Git\\AdminInterface2003\\Admin Interface\\AdminInterface\\AdminInterface\\obj\\",
         "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages",
+          "C:\\Program Files (x86)\\Microsoft\\Xamarin\\NuGet\\"
+        ],
         "configFilePaths": [
-          "/Users/alistair/.config/NuGet/NuGet.Config"
+          "C:\\Users\\joshu\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Xamarin.Offline.config"
         ],
         "originalTargetFrameworks": [
           "netcoreapp3.1"
         ],
         "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
@@ -79,7 +87,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "/usr/local/share/dotnet/sdk/5.0.203/RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.201\\RuntimeIdentifierGraph.json"
         }
       }
     }

@@ -16,12 +16,31 @@ namespace AdminInterface.Controllers
 {
     public class LogoutController : Controller
     {
+        //// GET: /<controller>/
+        //public async Task<IActionResult> IndexAsync()
+        //{
+        //    // sign out
+        //    await HttpContext.SignOutAsync(CookieAuthenticationDefaults.AuthenticationScheme);
+        //    return Redirect("~/Login");
+        //}
         // GET: /<controller>/
         public async Task<IActionResult> IndexAsync()
         {
             // sign out
             await HttpContext.SignOutAsync(CookieAuthenticationDefaults.AuthenticationScheme);
+            DeleteCookies();
+            Token.value = null;
             return Redirect("~/Login");
+        }
+
+
+
+        private void DeleteCookies()
+        {
+            foreach (var cookie in HttpContext.Request.Cookies)
+            {
+                Response.Cookies.Delete(cookie.Key);
+            }
         }
 
     }

@@ -31,7 +31,7 @@ namespace AdminInterface
 
             services.AddDbContext<COMP2003_WContext>(options =>
             options.UseSqlServer(Configuration.GetConnectionString("COMP2003_W_DB")));
-
+            
             services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
             .AddCookie(CookieAuthenticationDefaults.AuthenticationScheme,
             options =>

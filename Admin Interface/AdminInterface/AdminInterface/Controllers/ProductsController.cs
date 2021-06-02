@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using AdminInterface.Models;
 using Microsoft.AspNetCore.Authorization;
+using AdminInterface.Services;
 
 namespace AdminInterface.Controllers
 {
@@ -118,6 +119,7 @@ namespace AdminInterface.Controllers
         }
 
         // GET: Products/Delete/5
+        [Route("product/delete")]
         public async Task<IActionResult> Delete(int? id)
         {
             if (id == null)
@@ -140,9 +142,17 @@ namespace AdminInterface.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
-            var products = await _context.Products.FindAsync(id);
-            _context.Products.Remove(products);
-            await _context.SaveChangesAsync();
+            //var products = await _context.Products.FindAsync(id);
+            //_context.Products.Remove(products);
+            //await _context.SaveChangesAsync();
+            //return RedirectToAction(nameof(Index));
+
+
+            // call api
+            WebDataService dataService = new WebDataService();
+            await dataService.DeleteProduct(id);
+
+
             return RedirectToAction(nameof(Index));
         }
 

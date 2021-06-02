@@ -10,10 +10,13 @@ using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Authentication;
 using System.Security.Claims;
 
+using Microsoft.AspNetCore.Authorization;
+
 // For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
 namespace AdminInterface.Controllers
 {
+    [AllowAnonymous]
     public class LoginController : Controller
     {
         // GET: /<controller>/
@@ -22,8 +25,17 @@ namespace AdminInterface.Controllers
             // if user is already logged in
             if (User.Identity.IsAuthenticated)
             {
+                if (Token.value != null)
+                {
+                    // redirect
+                    return Redirect("~/Home");
+                }
+                else
+                {
+                    HttpContext.SignOutAsync(CookieAuthenticationDefaults.AuthenticationScheme);
+                }
                 // redirect
-                return Redirect("~/Home");
+                //return Redirect("~/Home");
             }
             return View();
         }

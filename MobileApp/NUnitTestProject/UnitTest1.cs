@@ -1,3 +1,4 @@
+using MobileApp.Data;
 using MobileApp.Models;
 using MobileApp.Services;
 using MobileApp.ViewModels;
@@ -10,6 +11,7 @@ namespace NUnitTestProject
 {
     public class Tests
     {
+        //some tests must be ran seperatly to be successful
         [TestFixture]
         public class LoginViewModelTest
         {
@@ -37,39 +39,32 @@ namespace NUnitTestProject
 
                 Assert.IsNotNull(_vm.password, "Username is null after being initialised");
             }
-
-            //[Test]
-            //public async Task Login_LoginSuccess()
-            //{
-            //    _vm.username = "test@email.com";
-            //    _vm.password = "password1";
-            //    if (_vm.LoginCmd.CanExecute(null))
-            //    {
-            //        //Console.WriteLine("Can execute");
-            //        _vm.LoginCmd.Execute(null);
-            //    }
-            //    else
-            //    {
-            //        //Console.WriteLine("Cannot execute");
-            //    }
-
-            //    Console.WriteLine(TokenData.value);
-
-            //    if (TokenData.value == "")
-            //    {
-            //        Assert.Pass();
-            //    }
-            //    Assert.Fail();
-            //}
         }
         [TestFixture]
         public class WebDataServiceTest
         {
+            TokenData token;
             WebDataService _s;
             [SetUp]
             public void Setup()
             {
                 _s = new WebDataService();
+                //Task.Run(async () => await GetValidateCustomerSuccess());
+                //string t = Task.Run(async () => await GetTokenString()).ToString();
+                //token = new TokenData(t);
+
+            }
+
+
+            public async Task Validate()
+            {
+                User testLoginUser = new User
+                {
+                    email = "unitTest@spam.com",
+                    password = "password"
+                };
+
+                await _s.GetValidateCustomer(testLoginUser);
             }
 
             [Test]
@@ -77,16 +72,14 @@ namespace NUnitTestProject
             {
                 User testUser = new User
                 {
-                    Address = "25 london eye",
-                    Age = 21,
-                    email = "randomemail@spam.com",
-                    FirstName = "Jack",
-                    LastName = "Potter",
-                    password = "password1234",
-                    PhoneNumber = "084876537342"
+                    email = "unitTest@spam.com",
+                    password = "password",
                 };
 
                 string returnToken = await _s.GetValidateCustomer(testUser);
+
+                Console.WriteLine(returnToken);
+
 
                 if (returnToken.Length > 3)
                 {
@@ -106,10 +99,10 @@ namespace NUnitTestProject
                 {
                     Address = "25 london eye",
                     Age = 21,
-                    email = "randomemail@spam.com",
+                    email = "unitTest@spam.com",
                     FirstName = "Jack",
                     LastName = "Potter",
-                    password = "password1234",
+                    password = "password",
                     PhoneNumber = "084876537342"
                 };
 
@@ -133,21 +126,39 @@ namespace NUnitTestProject
             [Test]
             public async Task PutUpdateCustomerSuccess()
             {
+                await Validate();
+
                 User testUser = new User
                 {
-                    Address = "28 london eye",
-                    Age = 12,
-                    email = "randomemail2@spam.com",
+                    Address = "25 london eye",
+                    Age = 21,
+                    email = "unitTest@spam.com",
                     FirstName = "Jack",
                     LastName = "Potter",
-                    password = "password1234",
+                    password = "password",
                     PhoneNumber = "084876537342"
                 };
 
                 string returnCode = await _s.PutUpdateCustomer(testUser);
 
+
                 if (returnCode == "200")
                 {
+                    // reset data for future testing
+
+                    User testUser2 = new User
+                    {
+                        Address = "25 london eye",
+                        Age = 21,
+                        email = "unitTest@spam.com",
+                        FirstName = "Jack",
+                        LastName = "Potter",
+                        password = "password",
+                        PhoneNumber = "084876537342"
+                    };
+
+                    await _s.PutUpdateCustomer(testUser2);
+
                     Assert.Pass();
                 }
                 if (returnCode == "208")
@@ -165,12 +176,21 @@ namespace NUnitTestProject
             [Test]
             public async Task PutChangePasswordSuccess()
             {
-                string newPassword = "password1";
+                await Validate();
 
+
+                string newPassword = "password1";
+                //change password and get success code
                 string returnCode = await _s.PutChangePassword(newPassword);
+
 
                 if (returnCode == "200")
                 {
+                    newPassword = "password";
+                    //change password back
+                    await _s.PutChangePassword(newPassword);
+
+
                     Assert.Pass();
                 }
                 if (returnCode == "208")
@@ -206,12 +226,17 @@ namespace NUnitTestProject
             [Test]
             public async Task PostAddOrderSuccess()
             {
-                int productId = 10;
+                await Validate();
+
+                //place order
+                int productId = 1;
                 int quantity = 1;
                 var rand = new Random();
                 DateTime deliveryDate = DateTime.Now.AddDays(rand.Next(31));
 
                 string returnCode = await _s.PostAddOrder(productId, quantity, deliveryDate);
+
+                Console.WriteLine(returnCode);
 
                 if (returnCode == "200")
                 {
@@ -232,7 +257,20 @@ namespace NUnitTestProject
             [Test]
             public async Task GetOrdersSuccess()
             {
+                await Validate();
+
+                //place order
+                int productId = 1;
+                int quantity = 1;
+                var rand = new Random();
+                DateTime deliveryDate = DateTime.Now.AddDays(rand.Next(31));
+
+                await _s.PostAddOrder(productId, quantity, deliveryDate);
+
+
                 List<Order> returnOrders = await _s.GetOrders();
+
+                Console.WriteLine(returnOrders.Count);
 
                 if (returnOrders.Count > 0)
                 {
@@ -247,7 +285,26 @@ namespace NUnitTestProject
             [Test]
             public async Task DeleteOrderSuccess()
             {
-                int orderId = 1;
+                //login
+
+                await Validate();
+
+                //add order
+                int productId = 1;
+                int quantity = 1;
+                var rand = new Random();
+                DateTime deliveryDate = DateTime.Now.AddDays(rand.Next(31));
+
+                await _s.PostAddOrder(productId, quantity, deliveryDate);
+
+                //get all orders
+                List<Order> returnOrders = await _s.GetOrders();
+
+                Console.WriteLine(returnOrders.Count);
+
+                //get first orders id
+                int orderId = returnOrders[0].OrderID;
+
                 string returnCode = await _s.DeleteOrder(orderId);
 
                 if (returnCode == "200")
@@ -312,7 +369,11 @@ namespace NUnitTestProject
             [Test]
             public async Task GetRecommendedSuccess()
             {
+                //await Validate();
+
                 List<Product> returnProducts = await _s.GetRecommended();
+
+                Console.WriteLine(returnProducts.Count);
 
                 if (returnProducts.Count > 0)
                 {
@@ -345,17 +406,30 @@ namespace NUnitTestProject
             [Test]
             public async Task PostAddReviewSuccess()
             {
+                // lognin
+                await Validate();
+
+                //place order
+                int productId = 1;
+                int quantity = 1;
+                var rand = new Random();
+                DateTime deliveryDate = DateTime.Now.AddDays(rand.Next(31));
+
+                await _s.PostAddOrder(productId, quantity, deliveryDate);
+
+                
+                //write review
                 Review testReview = new Review
                 {
-                    CustomerID = 1,
-                    ProdID = 1,
+                    ProdID = productId,
                     Title = "TestReview",
                     Desciption = "Test Description",
                     Rating = 5
-
                 };
 
                 string returnCode = await _s.PostAddReview(testReview);
+
+                Console.WriteLine(returnCode);
 
                 if (returnCode == "200")
                 {
@@ -402,16 +476,42 @@ namespace NUnitTestProject
             [Test]
             public async Task DeleteReviewSuccess()
             {
-                ReviewWName testReview = new ReviewWName
+                // lognin
+                await Validate();
+
+                //place order
+                int productId = 1;
+                int quantity = 1;
+                var rand = new Random();
+                DateTime deliveryDate = DateTime.Now.AddDays(rand.Next(31));
+
+                await _s.PostAddOrder(productId, quantity, deliveryDate);
+
+
+                //write review
+                Review testReview = new Review
                 {
-                    CustomerID = 1,
-                    ProdID = 1,
+                    ProdID = productId,
                     Title = "TestReview",
                     Desciption = "Test Description",
                     Rating = 5
                 };
 
-                string returnCode = await _s.DeleteReview(testReview);
+                await _s.PostAddReview(testReview);
+
+
+
+                //delete review
+                ReviewWName testDeleteReview = new ReviewWName
+                {
+                    CustomerID = 1,
+                    ProdID = productId,
+                    Title = "TestReview",
+                    Desciption = "Test Description",
+                    Rating = 5
+                };
+
+                string returnCode = await _s.DeleteReview(testDeleteReview);
 
                 if (returnCode == "200")
                 {
@@ -426,7 +526,20 @@ namespace NUnitTestProject
             [Test]
             public async Task LogOutSuccess()
             {
+                await Validate();
+
                 string returnCode = await _s.Logout();
+
+
+                Console.WriteLine(returnCode);
+                //returnCode = returnCode.Replace("\"", "");
+                //Console.WriteLine(returnCode);
+
+                //string a = (string)returnCode;
+                //Console.WriteLine(a.ToString());
+
+
+
 
                 if (returnCode == "200")
                 {
@@ -434,6 +547,7 @@ namespace NUnitTestProject
                 }
                 else
                 {
+                    //Console.WriteLine(a);
                     Assert.Fail();
                 }
             }
@@ -442,17 +556,34 @@ namespace NUnitTestProject
             [Test]
             public async Task GetCustomersReviewsSuccess()
             {
-                //ensure customer has review
+                // lognin
+                await Validate();
+
+                //place order
+                int productId = 1;
+                int quantity = 1;
+                var rand = new Random();
+                DateTime deliveryDate = DateTime.Now.AddDays(rand.Next(31));
+
+                await _s.PostAddOrder(productId, quantity, deliveryDate);
+
+
+                //write review
                 Review testReview = new Review
                 {
-                    ProdID = 2,
+                    ProdID = productId,
                     Title = "TestReview",
                     Desciption = "Test Description",
                     Rating = 5
                 };
 
+                await _s.PostAddReview(testReview);
+
+                //get all reviews
 
                 List<ReviewWName> returnReviews = await _s.GetCustomersReviews();
+
+                Console.WriteLine(returnReviews.Count);
 
                 if (returnReviews.Count > 0)
                 {

@@ -1,10 +1,10 @@
 {
   "version": 2,
-  "dgSpecHash": "bUJL+dNTHNf/BZlMPPfpY1DTBMDpRL3PV6BS+acDil8rjakP5EXD66dkuJboTw9EO0qVCUcKfG2TtNb/t3XVOg==",
+  "dgSpecHash": "ISaTTt9nWLzvIqPeYWjiZv2oJuU9ggRuRNiwqjrWF5W1Y6hI3RTcVMyhHRA+I3DnYDg385qC3wz8f5QOfPk1cg==",
   "success": true,
-  "projectFilePath": "C:\\Users\\Edward\\source\\repos\\COMP2003-2020-WMain\\MobileApp\\UITest1\\UITest1.csproj",
+  "projectFilePath": "C:\\Git\\test\\MobileApp\\UITest1\\UITest1.csproj",
   "expectedPackageFiles": [
-    "C:\\Program Files (x86)\\Microsoft\\Xamarin\\NuGet\\nunit\\3.12.0\\nunit.3.12.0.nupkg.sha512",
+    "C:\\Users\\joshu\\.nuget\\packages\\nunit\\3.12.0\\nunit.3.12.0.nupkg.sha512",
     "C:\\Program Files (x86)\\Microsoft\\Xamarin\\NuGet\\nunit3testadapter\\3.13.0\\nunit3testadapter.3.13.0.nupkg.sha512",
     "C:\\Program Files (x86)\\Microsoft\\Xamarin\\NuGet\\xamarin.uitest\\3.0.5\\xamarin.uitest.3.0.5.nupkg.sha512"
   ],

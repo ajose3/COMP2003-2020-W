@@ -6,14 +6,6 @@ namespace AdminInterface.Models
 {
     public partial class COMP2003_WContext : DbContext
     {
-        public COMP2003_WContext()
-        {
-        }
-
-        public COMP2003_WContext(DbContextOptions<COMP2003_WContext> options)
-            : base(options)
-        {
-        }
 
         public virtual DbSet<Customer> Customer { get; set; }
         public virtual DbSet<Orders> Orders { get; set; }

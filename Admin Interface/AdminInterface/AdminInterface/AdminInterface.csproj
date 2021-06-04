@@ -23,4 +23,9 @@
     <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="3.1.5" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="API\" />
+    <Folder Include="API\API_Controllers\" />
+    <Folder Include="API\API_Models\" />
+  </ItemGroup>
 </Project>

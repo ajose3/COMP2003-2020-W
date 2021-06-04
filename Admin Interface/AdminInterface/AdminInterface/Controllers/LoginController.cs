@@ -6,18 +6,40 @@ using System.Threading.Tasks;
 using AdminInterface.Models;
 using AdminInterface.Services;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Authentication.Cookies;
+using Microsoft.AspNetCore.Authentication;
+using System.Security.Claims;
+
+using Microsoft.AspNetCore.Authorization;
 
 // For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
 namespace AdminInterface.Controllers
 {
+    [AllowAnonymous]
     public class LoginController : Controller
     {
         // GET: /<controller>/
         public IActionResult Index()
         {
+            // if user is already logged in
+            if (User.Identity.IsAuthenticated)
+            {
+                if (Token.value != null)
+                {
+                    // redirect
+                    return Redirect("~/Home");
+                }
+                else
+                {
+                    HttpContext.SignOutAsync(CookieAuthenticationDefaults.AuthenticationScheme);
+                }
+                // redirect
+                //return Redirect("~/Home");
+            }
             return View();
         }
+
         [HttpPost]
         public async Task<IActionResult> IndexAsync(string email, string password)
         {
@@ -32,12 +54,32 @@ namespace AdminInterface.Controllers
             //if password correct
             else
             {
+                // create an authentication cookie
+                var claims = new List<Claim>
+                {
+                    new Claim(ClaimTypes.Name, email),
+                    new Claim(ClaimTypes.Role, "Administrator"),
+                };
+
+                var claimsIdentity = new ClaimsIdentity(
+                    claims, CookieAuthenticationDefaults.AuthenticationScheme);
+
+                var authProperties = new AuthenticationProperties
+                {
+                    IsPersistent = true
+                };
+
+                // sign user in
+                await HttpContext.SignInAsync(
+                    CookieAuthenticationDefaults.AuthenticationScheme,
+                    new ClaimsPrincipal(claimsIdentity),
+                    authProperties);
+
+                // redirect
                 return Redirect("~/Home");
             }
             
-
-
-
         }
+
     }
 }

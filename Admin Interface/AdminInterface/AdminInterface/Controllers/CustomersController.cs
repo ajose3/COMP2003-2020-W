@@ -6,9 +6,12 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using AdminInterface.Models;
+using Microsoft.AspNetCore.Authorization;
+using AdminInterface.Services;
 
 namespace AdminInterface.Controllers
 {
+    [Authorize]
     public class CustomersController : Controller
     {
         private readonly COMP2003_WContext _context;
@@ -116,6 +119,7 @@ namespace AdminInterface.Controllers
         }
 
         // GET: Customers/Delete/5
+        [Route("customer/delete")]
         public async Task<IActionResult> Delete(int? id)
         {
             if (id == null)
@@ -138,9 +142,15 @@ namespace AdminInterface.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
-            var customer = await _context.Customer.FindAsync(id);
-            _context.Customer.Remove(customer);
-            await _context.SaveChangesAsync();
+            //var customer = await _context.Customer.FindAsync(id);
+            //_context.Customer.Remove(customer);
+            //await _context.SaveChangesAsync();
+            //return RedirectToAction(nameof(Index));
+
+            // call api
+            WebDataService dataService = new WebDataService();
+            await dataService.DeleteCustomer(id);
+
             return RedirectToAction(nameof(Index));
         }
 

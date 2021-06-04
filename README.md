@@ -1,10 +1,10 @@
 # COMP2003-2020-W
 
 
-<h2> Product Vision: </h2>
+<h2> Product Vision </h2>
 To provide a more efficient and personalised online marketplace environment for buyers and sellers through more specialised and relevant product recommendations, saving consumers time by anticipating their needs while streamlining the product discovery process and therefore increasing sales.
 
-<h2>Team Members: </h2>
+<h2>Team Members </h2>
 Anand Jose <br>
 Joshua Churchill<br>
 Alistair James<br>
@@ -12,7 +12,16 @@ Edward Baillie Rodriguez<br>
 Finlay Williams<br>
 Jack Babbe <br>
 
-<h2>What you will find in this repository:</h2> 
+<h2>Login details</h2>
+<h3>Admin</h3>
+email: Admin1@email.com <br>
+password: password1
+<h3>Customer</h3>
+email: test@email.com <br>
+password: password1
+
+
+<h2>What you will find in this repository</h2> 
 
 * Admin Interface (Folder) - contains up to date code used to develop the admin interface
 * Diagrams (Folder) - contains a wireframe documents. Also, has all the diagrams in the interim report

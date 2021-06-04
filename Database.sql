@@ -576,6 +576,8 @@ BEGIN
 				Declare @CustomerID AS INT = (SELECT CustomerID FROM Sessions WHERE Token = @Token);
 				IF EXISTS(SELECT * FROM Customer WHERE CustomerID = @CustomerID AND Admin = 1)
 					BEGIN
+                        DELETE Reviews WHERE CustomerID = @CustomerDeletingID;
+
 						Delete Customer WHERE CustomerID = @CustomerDeletingID AND Admin = 0;
 						SELECT @ResponseMessage = 200;
 					END

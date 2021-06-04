@@ -12,12 +12,12 @@ using RestSharp;
 
 namespace MobileApp.Services
 {
-    class WebDataService
+    public class WebDataService
     {
         HttpClient httpClient;
 
         HttpClient Client => httpClient ?? (httpClient = new HttpClient());
-        public async Task GetValidateCustomer(User user)
+        public async Task<string> GetValidateCustomer(User user)
         {
             var request = new HttpRequestMessage
             {
@@ -29,6 +29,7 @@ namespace MobileApp.Services
             string returnedJson = await response.Content.ReadAsStringAsync().ConfigureAwait(false);
             returnedJson = returnedJson.Replace("/","").Replace("\"","");
             TokenData.value = returnedJson;
+            return returnedJson;
 
         }
         public async Task<string> PostRegisterCustomer(User user)
@@ -107,7 +108,7 @@ namespace MobileApp.Services
             };
 
             var response = await Client.SendAsync(request).ConfigureAwait(false);
-            response.EnsureSuccessStatusCode();
+            //response.EnsureSuccessStatusCode();
             return await response.Content.ReadAsStringAsync().ConfigureAwait(false);
         }
 
@@ -225,15 +226,6 @@ namespace MobileApp.Services
 
             List<Product> products;
             products = JsonConvert.DeserializeObject<List<Product>>(returnedJson);
-
-            //List<Product> ps = new List<Product>();
-
-            //for (int i = 0; i < 5; i++)
-            //{
-            //    ps.Add(products[i]);
-            //}
-            //return ps;
-
             return products;            
         }
 
@@ -355,7 +347,10 @@ namespace MobileApp.Services
             TokenData.value = "0";
 
             var response = await Client.SendAsync(request).ConfigureAwait(false);
-            return await response.Content.ReadAsStringAsync().ConfigureAwait(false);
+            string responseCode = await response.Content.ReadAsStringAsync().ConfigureAwait(false);
+            responseCode = responseCode.Replace("\"", "");
+            //return await response.Content.ReadAsStringAsync().ConfigureAwait(false);
+            return responseCode;
         }
 
 

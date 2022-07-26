@@ -1,5 +1,8 @@
 # COMP2003-2020-W
 
+## Description
+Full stack shopping application built in C# utilising Xamarin, ASP.Net API and Microsoft SQL Server Database
+
 
 ## Product Vision
 To provide a more efficient and personalised online marketplace environment for buyers and sellers through more specialised and relevant product recommendations, saving consumers time by anticipating their needs while streamlining the product discovery process and therefore increasing sales.
